@@ -28,4 +28,3 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
      Warnzeichen zu achten ist.
 6. Ergibt sich eine neue Empfehlung, mit dem Skill `leitlinie` belegen und
    in `BEURTEILUNG.md` eintragen.
-   Die Antwort selbst wird nicht gespeichert.

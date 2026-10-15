@@ -18,8 +18,7 @@ description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach
 3. Dem Benutzer die Änderungen zeigen: `git diff AKTE.md`, inhaltlich
    zusammengefasst, dazu die Widersprüche und Unklarheiten, die der Subagent
    meldet.
-4. Ist etwas falsch übertragen, korrigierst du es in `AKTE.md`. Ist eine
-   Unterlage falsch, kommt die Korrektur über den Skill `neue-information` in
-   `historie.md`.
+4. Ist eine Unterlage falsch, kommt die Korrektur über den Skill
+   `neue-information` in `historie.md`.
 5. Nach dem Ok des Benutzers: `akte-stand --aktualisieren`, dann `AKTE.md`
    committen.

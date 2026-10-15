@@ -22,13 +22,10 @@ in `historie.md`.
 2. Vorhandenes sammeln: Was sagen die Befunde in `unterlagen/` und frühere
    Angaben des Benutzers schon zu den Punkten unten? Daraus Vorschläge
    machen, statt neu zu fragen.
-3. Die Punkte nacheinander abfragen, wie im Gespräch in der Sprechstunde:
-   eine Frage nach der anderen, oder zwei, drei zusammengehörige in einem
-   Satz verbunden, nie als nummerierte Liste. Was der Benutzer nicht weiß,
-   wird als „unbekannt“ eingetragen; was er nicht sagen will, bleibt weg.
+3. Die Punkte nacheinander abfragen. Was der Benutzer nicht weiß, wird als
+   „unbekannt“ eingetragen; was er nicht sagen will, bleibt weg.
 4. Jeden Abschnitt so zeigen, wie er eingetragen würde, und erst nach
-   Bestätigung übernehmen. Umformulieren ist erlaubt, wenn der Benutzer
-   zustimmt. Vermutungen des Patienten als solche kennzeichnen.
+   Bestätigung übernehmen. Vermutungen des Patienten als solche kennzeichnen.
 5. Datei schreiben, committen, dann den Skill `akte-aktualisieren` ausführen.
 
 ## Schema

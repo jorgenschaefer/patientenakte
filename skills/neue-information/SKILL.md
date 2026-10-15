@@ -5,13 +5,9 @@ description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborw
 
 # Neue Information
 
-1. **Warnzeichen.** Bei neuen oder stärkeren Beschwerden zuerst prüfen, ob
-   sie eine ärztliche Behandlung noch am selben Tag oder den Notruf nötig
-   machen. Wenn ja, das sofort und deutlich sagen; der Rest wartet.
-2. **Nachfragen**, was zur Einordnung fehlt: Datum, wer was gesagt oder
-   verordnet hat, seit wann, wie stark. Fehlt `unterlagen/anamnese.md`, zuerst
-   den Skill `anamnese` ausführen.
-3. **Ablegen:**
+1. **Nachfragen**, was zur Einordnung fehlt: Datum, wer was gesagt oder
+   verordnet hat, seit wann, wie stark.
+2. **Ablegen:**
    - **Befund als Datei:** lesen, dann ablegen als
      `unterlagen/JJJJ-MM-TT-<art>_<absender>.pdf` mit dem Datum des Befunds,
      nicht des Eingangs.
@@ -22,11 +18,11 @@ description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborw
    - **Messwerte:** an die passende CSV in `unterlagen/` anhängen.
 
    Dann committen.
-4. **AKTE.md** mit dem Skill `akte-aktualisieren` nachziehen.
-5. **BEURTEILUNG.md prüfen:** Welche Einträge betrifft die Änderung?
+3. **AKTE.md** mit dem Skill `akte-aktualisieren` nachziehen.
+4. **BEURTEILUNG.md prüfen:** Welche Einträge betrifft die Änderung?
    Erledigte und überholte kommen mit Datum und Ergebnis nach „Erledigt“,
    betroffene werden angepasst und neu datiert. Neue Fragen belegst du mit dem
    Skill `leitlinie`. Committen.
-6. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
+5. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
    nächsten Schritten ändert. Verschiebt sich die Reihenfolge deutlich, den
    Skill `naechste-schritte` ausführen.

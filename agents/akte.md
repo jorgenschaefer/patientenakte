@@ -14,12 +14,11 @@ Der Auftrag nennt die Zieldatei (sonst `AKTE.md`), ob du schrittweise oder
 vollständig neu baust, und bei schrittweisem Bau die Dateien mit ihrem Status
 aus `akte-stand` (neu, geändert, entfernt).
 
-- **Schrittweise:** Zieldatei lesen, dann jede gemeldete Datei vollständig
-  lesen und einarbeiten. Bei geänderten Textdateien zeigt `git diff`, was neu
-  ist. Bei entfernten Dateien Angaben streichen, die nur auf ihnen beruhen.
+- **Schrittweise:** jede gemeldete Datei vollständig lesen. Bei geänderten
+  Textdateien zeigt `git diff`, was neu ist. Bei entfernten Dateien Angaben
+  streichen, die nur auf ihnen beruhen.
 - **Vollständig:** alle Dateien in `unterlagen/` lesen: zuerst `anamnese.md`,
   dann die Befunde nach Datum, dann `historie.md` und die Messreihen.
-- PDFs liest du mit dem Read-Tool; scheitert das, mit `pdftotext -layout`.
 - Den Abschnitt „Grundlage“ mit den Prüfsummen fasst du nicht an, ihn schreibt
   `akte-stand --aktualisieren`.
 
@@ -44,7 +43,7 @@ aus `akte-stand` (neu, geändert, entfernt).
   offene Punkte) tragen „Stand: TT.MM.JJJJ“.
 - **Knapp:** eine Angabe pro Zeile, keine Erzählung. Messwerte exakt mit
   Einheit und Referenzbereich übernehmen.
-- Nichts erfinden, nichts glätten. Unleserliches und Unklares meldest du.
+- Nichts glätten. Unleserliches und Unklares meldest du.
 
 ## Aufbau
 
