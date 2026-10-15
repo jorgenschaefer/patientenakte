@@ -1,18 +1,15 @@
 ---
 effort: S
-utility: M
+utility: S
 ---
 
-# `historie.md` widerspricht sich, Zitate daraus sind nicht eindeutig
+# Zitate aus `historie.md` sind nicht eindeutig
 
-`regeln.md:40-42` verlangt für `historie.md` zweierlei: chronologisch nach dem
-Datum der Aussage, und Einträge werden nur angehängt. Erfährt der Benutzer von
-einem Ereignis erst später, geht nur eins von beiden.
+Der Agent zitiert Einträge als `[historie TT.MM.JJJJ]`
+(`agents/akte.md:43`). Gibt es mehrere Einträge am selben Tag, ist nicht
+klar, welcher gemeint ist. Auch eine Korrektur nennt den Eintrag, den sie
+korrigiert (`skills/neue-information/SKILL.md`), ohne dass Einträge eine
+Kennung haben.
 
-Außerdem zitiert der Agent Einträge als `[historie TT.MM.JJJJ]`
-(`agents/akte.md:41`). Gibt es mehrere Einträge am selben Tag, ist nicht klar,
-welcher gemeint ist.
-
-Idee aus der Überprüfung: Einträge in der Reihenfolge des Eingangs anhängen,
-jeder mit einer Überschrift aus Eintragsdatum und laufender Nummer und mit dem
-Datum des Ereignisses getrennt; zitiert wird über die Überschrift.
+Idee aus der Überprüfung: jeder Eintrag mit einer Überschrift aus
+Eintragsdatum und laufender Nummer; zitiert wird über die Überschrift.
