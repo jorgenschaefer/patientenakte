@@ -118,10 +118,7 @@ Installation über einen Marketplace, schlag die Änderung nur vor.
 
 - Committe mit `git -C <plugin-verzeichnis>`, getrennt von den Commits der
   Akte. Gepusht wird nur auf Wunsch des Benutzers.
-- Das Repo ist öffentlich. Prüf vor dem Commit den Diff und die
-  Commit-Message auf Patientenspezifisches: Namen, Diagnosen, Medikamente,
-  Praxen, Kliniken, Beispiele aus dem Fall. Beispiele werden erfunden oder
-  allgemein formuliert. Die Git-Hooks des Repos prüfen zusätzlich gegen die
-  private Sperrliste; schlagen sie an, formulier um, statt sie zu umgehen.
+- Das Repo ist öffentlich und enthält nichts aus der Akte. Beispiele werden
+  erfunden oder allgemein formuliert.
 - Sag nach der Änderung, dass sie erst nach `/reload-plugins` greift,
   Änderungen an diesen Regeln erst in einer neuen Sitzung.

@@ -34,7 +34,6 @@ Das Plugin im Einzelnen:
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
   eingearbeitet sind.
 - `vorlagen/` – Vorlagen für neue Akten.
-- `githooks/` – Prüfung gegen eine private Sperrliste, siehe unten.
 
 ## Benutzung
 
@@ -72,29 +71,8 @@ ausgerichtet: AWMF-Leitlinien, Nationale VersorgungsLeitlinien, STIKO.
 
 ## Am Plugin arbeiten
 
-Das Repo ist öffentlich, die Akten nicht. Damit beim Verbessern des Plugins
-nichts aus einer Akte hierher gerät, prüfen Git-Hooks jeden Commit gegen eine
-Sperrliste:
-
-```bash
-git config core.hooksPath githooks
-mkdir -p ~/.config/patientenakte
-$EDITOR ~/.config/patientenakte/sperrliste
-```
-
-Die Sperrliste enthält einen Begriff pro Zeile: Namen der Patienten, Praxen,
-Ärzte und Kliniken, markante Diagnosen und Medikamente aus allen Akten. Groß-
-und Kleinschreibung zählt nicht; Zeilen mit `#` am Anfang sind Kommentare.
-`pre-commit` prüft die hinzugefügten Zeilen, `commit-msg` die
-Commit-Message. Fehlt die Liste, wird nicht committet; eine leere Datei
-genügt, wer keine Akte hat. Ein anderer Ort lässt sich mit
-`PATIENTENAKTE_SPERRLISTE` angeben.
-
-Vor einer Veröffentlichung zusätzlich die ganze Historie prüfen:
-
-```bash
-git log -p | grep -i -F -f <(grep -v -e '^\s*$' -e '^#' ~/.config/patientenakte/sperrliste)
-```
+Das Repo ist öffentlich und enthält nie Daten aus einer Akte; Beispiele
+werden erfunden oder allgemein formuliert.
 
 Änderungen an Skills und Agent greifen nach `/reload-plugins`, Änderungen an
 `regeln.md` in einer neuen Sitzung.

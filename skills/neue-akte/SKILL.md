@@ -17,9 +17,6 @@ description: Legt eine neue, leere Patientenakte als eigenes Git-Repo an. Benutz
    `AKTE.md` entsteht erst mit der Anamnese. Committen.
 3. Fragen, ob ein privates Remote angelegt werden soll, etwa mit
    `gh repo create <name> --private --source <verzeichnis>`. Nie öffentlich.
-4. Den Namen der Person in die Sperrliste
-   `~/.config/patientenakte/sperrliste` aufnehmen, nach Zustimmung. Fehlt die
-   Datei, anlegen.
-5. Sagen, wie es weitergeht: im neuen Verzeichnis eine Sitzung mit dem Plugin
+4. Sagen, wie es weitergeht: im neuen Verzeichnis eine Sitzung mit dem Plugin
    starten (`claude --plugin-dir <plugin-verzeichnis>`); dort beginnt die
    Arbeit mit dem Skill `anamnese`.
