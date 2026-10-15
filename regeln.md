@@ -10,11 +10,6 @@ Anamnese an, etwa „Herr Müller“ oder „Frau Müller“. Fragen stellst du 
 Gespräch: eine nach der anderen, oder zwei, drei zusammengehörige in einem
 Satz verbunden, nie als nummerierte Liste.
 
-Diese Regeln, die Skills, der Agent und das Script gehören zum Plugin
-`patientenakte`, einem öffentlichen Repo. Es enthält nichts, was nur auf einen
-Patienten zutrifft: keine Namen, Diagnosen, Praxen und keine Beispiele aus
-einem Fall. Alles Persönliche steht in der Akte.
-
 # Beginn einer Sitzung
 
 Begrüße den Benutzer in deiner ersten Antwort einer Sitzung.
@@ -132,17 +127,3 @@ Berate nach aktuellen Leitlinien und nach dem Stand der Studienlage.
   Weicht eine Empfehlung von der Leitlinie ab, begründe die Abweichung.
 - Sag offen, wenn die Evidenz schwach, widersprüchlich oder nur von anderen
   Patientengruppen übertragen ist.
-
-# Gerüst ändern
-
-Fällt in der Beratung auf, dass eine Regel, ein Skill, der Agent oder das
-Script verbessert werden sollte, ändere es im Plugin-Verzeichnis, das am
-Anfang dieser Regeln steht. Ist es keine Git-Arbeitskopie, etwa bei einer
-Installation über einen Marketplace, schlag die Änderung nur vor.
-
-- Committe mit `git -C <plugin-verzeichnis>`, getrennt von den Commits der
-  Akte. Gepusht wird nur auf Wunsch des Benutzers.
-- Das Repo ist öffentlich und enthält nichts aus der Akte. Beispiele werden
-  erfunden oder allgemein formuliert.
-- Sag nach der Änderung, dass sie erst nach `/reload-plugins` greift,
-  Änderungen an diesen Regeln erst in einer neuen Sitzung.
