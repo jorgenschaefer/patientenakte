@@ -26,7 +26,8 @@ in `historie.md`.
    „unbekannt“ eingetragen; was er nicht sagen will, bleibt weg.
 4. Jeden Abschnitt so zeigen, wie er eingetragen würde, und erst nach
    Bestätigung übernehmen. Vermutungen des Patienten als solche kennzeichnen.
-5. Datei schreiben, committen, dann den Skill `akte-aktualisieren` ausführen.
+5. Datei schreiben, committen, dann den Skill `akte-aktualisieren` ausführen,
+   danach den Skill `notfallpass`.
 
 ## Schema
 

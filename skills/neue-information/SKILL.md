@@ -30,12 +30,6 @@ description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborw
    `AKTE.md`, wie unter „Evidenz“ in `regeln.md` beschrieben, auch gegen
    Bedarfsmedikation und Nahrungsergänzung. Dem Benutzer das Ergebnis
    sagen, auch wenn nichts dagegen spricht.
-
-   Bei jeder Änderung der Medikation, auch beim Absetzen, daran erinnern,
-   den bundeseinheitlichen Medikationsplan beim Hausarzt oder in der
-   Apotheke aktualisieren zu lassen und die neue Fassung als Befund
-   abzulegen. Hat er noch keinen: Ab drei dauerhaft verordneten Mitteln
-   besteht Anspruch darauf.
 6. **BEURTEILUNG.md prüfen:** Welche Einträge betrifft die Änderung, auch
    unter „Beobachten“? Erledigte und überholte kommen mit Datum und Ergebnis
    nach „Erledigt“, betroffene werden angepasst und neu datiert. Neue Fragen
@@ -44,3 +38,7 @@ description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborw
 7. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
    nächsten Schritten ändert. Verschiebt sich die Reihenfolge deutlich, den
    Skill `naechste-schritte` ausführen.
+8. **Notfallpass:** Betrifft die Änderung Diagnosen, Medikation, Allergien,
+   Implantate oder eine Schwangerschaft, auch beim Absetzen oder Ausheilen,
+   den Skill `notfallpass` ausführen und den Benutzer bitten, den Text im
+   Handy zu ersetzen.

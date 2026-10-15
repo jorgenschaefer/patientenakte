@@ -86,6 +86,10 @@ Weitere Anliegen:
   Ergebnisse auf und löscht sie.
 - **„Was sagt die Leitlinie zu …?“** Claude sucht die Quelle und gibt wieder,
   was sie sagt, mit Empfehlungsgrad und Evidenzniveau.
+- **„Was gehört in meinen Notfallpass?“** Claude gibt Erkrankungen,
+  Medikamente, Allergien und Hinweise für den Notfall als kurzen Text zum
+  Kopieren in den Notfallpass des Handys aus. Nach jeder Änderung daran
+  kommt der Text von selbst.
 
 ## Neue Befunde und Angaben
 
@@ -122,7 +126,7 @@ Das Plugin im Einzelnen:
 - `regeln.md` – die Regeln für die Beratung; ein SessionStart-Hook spielt sie
   mit dem Stand der Akte in jede Sitzung ein.
 - `skills/` – `neue-information`, `naechste-schritte`, `termin-vorbereiten`,
-  `akte-aktualisieren`, `anamnese`, `leitlinie`.
+  `notfallpass`, `akte-aktualisieren`, `anamnese`, `leitlinie`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
   eingearbeitet sind und ob `AKTE.md` noch nicht durchgesehen ist.
