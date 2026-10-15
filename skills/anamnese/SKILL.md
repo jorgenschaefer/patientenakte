@@ -1,6 +1,6 @@
 ---
 name: anamnese
-description: Legt unterlagen/anamnese.md mit einer strukturierten Erstbefragung des Patienten an. Benutzen, wenn die Datei fehlt – etwa in einer neuen Akte – oder der Benutzer eine Erstbefragung wünscht.
+description: Legt unterlagen/anamnese.md mit einer strukturierten Erstbefragung des Patienten an. Richtet dabei eine neue, leere Akte ein. Benutzen, wenn die Datei fehlt – etwa in einer neuen Akte – oder der Benutzer eine Erstbefragung wünscht.
 ---
 
 # Anamnese
@@ -11,16 +11,24 @@ in `historie.md`.
 
 ## Ablauf
 
-1. Vorhandenes sammeln: Was sagen die Befunde in `unterlagen/` und frühere
+1. In einer neuen Akte zuerst anlegen, was fehlt:
+   - `BEURTEILUNG.md` aus `${CLAUDE_PLUGIN_ROOT}/vorlagen/BEURTEILUNG.md`;
+   - `literatur/README.md` aus
+     `${CLAUDE_PLUGIN_ROOT}/vorlagen/literatur-README.md`;
+   - das Verzeichnis `unterlagen/`.
+
+   Ist das Verzeichnis kein Git-Repo, abbrechen und auf das README des
+   Plugins verweisen. Committen.
+2. Vorhandenes sammeln: Was sagen die Befunde in `unterlagen/` und frühere
    Angaben des Benutzers schon zu den Punkten unten? Daraus Vorschläge
    machen, statt neu zu fragen.
-2. Die Punkte nacheinander abfragen, wenige Fragen auf einmal. Was der
+3. Die Punkte nacheinander abfragen, wenige Fragen auf einmal. Was der
    Benutzer nicht weiß, wird als „unbekannt“ eingetragen; was er nicht sagen
    will, bleibt weg.
-3. Jeden Abschnitt so zeigen, wie er eingetragen würde, und erst nach
+4. Jeden Abschnitt so zeigen, wie er eingetragen würde, und erst nach
    Bestätigung übernehmen. Umformulieren ist erlaubt, wenn der Benutzer
    zustimmt. Vermutungen des Patienten als solche kennzeichnen.
-4. Datei schreiben, committen, dann den Skill `akte-aktualisieren` ausführen.
+5. Datei schreiben, committen, dann den Skill `akte-aktualisieren` ausführen.
 
 ## Schema
 

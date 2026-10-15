@@ -29,42 +29,64 @@ Das Plugin im Einzelnen:
 - `regeln.md` – die Regeln für die Beratung; ein SessionStart-Hook spielt sie
   in jede Sitzung ein.
 - `skills/` – `neue-information`, `naechste-schritte`, `termin-vorbereiten`,
-  `akte-aktualisieren`, `anamnese`, `leitlinie`, `neue-akte`.
+  `akte-aktualisieren`, `anamnese`, `leitlinie`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
   eingearbeitet sind.
-- `vorlagen/` – Vorlagen für neue Akten.
+- `vorlagen/` – Vorlagen für `BEURTEILUNG.md` und `literatur/README.md`.
 
 ## Benutzung
 
-Nur benutzen:
+Das Plugin wird nie global aktiviert, sondern nur in den Akten. Sonst
+spielt es seine Regeln in jede Sitzung ein, auch in solche, die mit keiner
+Akte zu tun haben.
 
-```
-/plugin install patientenakte --marketplace jorgenschaefer/patientenakte
+Einmal den Marketplace hinzufügen:
+
+```bash
+claude plugin marketplace add jorgenschaefer/patientenakte
 ```
 
-Wer das Plugin während einer Beratung verbessern will, bindet eine
-Arbeitskopie als lokalen Marketplace ein. Claude Code lädt das Plugin dann
-direkt aus der Arbeitskopie, Änderungen greifen nach `/reload-plugins`:
+Für jede Akte ein neues, leeres Repo anlegen und das Plugin nur dort
+aktivieren:
+
+```bash
+mkdir ~/Projects/akte-<name>
+cd ~/Projects/akte-<name>
+git init
+claude plugin install patientenakte@patientenakte --scope local
+claude
+```
+
+`--scope local` trägt das Plugin in `.claude/settings.local.json` der Akte
+ein. In der ersten Sitzung schlägt Claude den Skill `anamnese` vor. Er legt
+`BEURTEILUNG.md`, `literatur/` und `unterlagen/` an und führt durch die
+Erstbefragung.
+
+Ein Remote für die Akte nur privat anlegen, etwa mit
+`gh repo create akte-<name> --private --source .`.
+
+### Mit einer Arbeitskopie des Plugins
+
+Wer das Plugin während einer Beratung verbessern will, fügt statt des
+GitHub-Repos eine Arbeitskopie als Marketplace hinzu. Claude Code lädt das
+Plugin dann direkt aus der Arbeitskopie:
 
 ```bash
 git clone https://github.com/jorgenschaefer/patientenakte ~/Projects/patientenakte
 claude plugin marketplace add ~/Projects/patientenakte
 ```
 
-In der Akte, in `.claude/settings.local.json`:
+Damit Claude in die Arbeitskopie schreiben darf, in der Akte zusätzlich in
+`.claude/settings.local.json`:
 
 ```json
 {
-  "enabledPlugins": { "patientenakte@patientenakte": true },
   "permissions": {
     "additionalDirectories": ["/home/<benutzer>/Projects/patientenakte"]
   }
 }
 ```
-
-`additionalDirectories` erlaubt Claude, in die Arbeitskopie zu schreiben.
-Eine neue Akte legt der Skill `neue-akte` an („leg eine neue Akte an“).
 
 Die Regeln sind auf Deutsch und auf das deutsche Gesundheitswesen
 ausgerichtet: AWMF-Leitlinien, Nationale VersorgungsLeitlinien, STIKO.

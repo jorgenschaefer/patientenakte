@@ -56,9 +56,9 @@ Skills und Agent tragen den Präfix des Plugins, z. B.
 - `termin-vorbereiten` – Themenliste für einen Arzt- oder Physiotermin und
   Auswertung danach.
 - `akte-aktualisieren` – baut `AKTE.md` in einem Subagenten nach.
-- `anamnese` – legt `unterlagen/anamnese.md` an, wenn sie fehlt.
+- `anamnese` – richtet eine neue Akte ein und legt `unterlagen/anamnese.md`
+  an, wenn sie fehlt.
 - `leitlinie` – Quelle suchen, Gültigkeit prüfen, in `literatur/` ablegen.
-- `neue-akte` – legt eine neue, leere Akte als eigenes Repo an.
 
 # Regeln
 
