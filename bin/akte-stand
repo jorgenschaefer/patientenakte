@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# Vergleicht die Dateien in unterlagen/ mit den Prüfsummen am Ende von AKTE.md.
+#
+#   bin/akte-stand                  listet neue, geänderte und entfernte Dateien
+#   bin/akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in AKTE.md
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+akte=AKTE.md
+verzeichnis=unterlagen
+anfang='<!-- akte-stand: Anfang -->'
+ende='<!-- akte-stand: Ende -->'
+
+aktuell() {
+  [[ -d $verzeichnis ]] || return 0
+  find "$verzeichnis" -type f ! -name '.*' -print0 | sort -z | xargs -0 -r sha256sum
+}
+
+gespeichert() {
+  [[ -f $akte ]] || return 0
+  awk -v a="$anfang" -v e="$ende" \
+    '$0 == a { drin = 1; next } $0 == e { drin = 0 } drin && /^[0-9a-f]{64}  /' "$akte"
+}
+
+vergleichen() {
+  awk '
+    FILENAME == ARGV[1] { alt[substr($0, 67)] = substr($0, 1, 64); next }
+    {
+      pfad = substr($0, 67)
+      if (!(pfad in alt)) print "neu: " pfad
+      else if (alt[pfad] != substr($0, 1, 64)) print "geändert: " pfad
+      delete alt[pfad]
+    }
+    END { for (pfad in alt) print "entfernt: " pfad }
+  ' <(gespeichert) <(aktuell) | sort -t: -k2
+}
+
+aktualisieren() {
+  if [[ ! -f $akte ]]; then
+    echo "$akte fehlt." >&2
+    exit 1
+  fi
+  local block
+  block="$anfang"$'\n''```'$'\n'"$(aktuell)"$'\n''```'$'\n'"$ende"
+  if grep -qxF "$anfang" "$akte"; then
+    BLOCK="$block" awk -v a="$anfang" -v e="$ende" '
+      $0 == a { print ENVIRON["BLOCK"]; weg = 1; next }
+      $0 == e { weg = 0; next }
+      !weg
+    ' "$akte" > "$akte.tmp"
+    mv "$akte.tmp" "$akte"
+  else
+    printf '\n## Grundlage\n\n*Prüfsummen der eingearbeiteten Unterlagen, geschrieben von `bin/akte-stand --aktualisieren`.*\n\n%s\n' "$block" >> "$akte"
+  fi
+}
+
+case "${1:-}" in
+  "")
+    ergebnis=$(vergleichen)
+    if [[ -z $ergebnis ]]; then
+      echo "AKTE.md ist auf dem Stand von $verzeichnis/."
+    else
+      echo "$ergebnis"
+    fi
+    ;;
+  --aktualisieren) aktualisieren ;;
+  *) echo "Aufruf: $0 [--aktualisieren]" >&2; exit 2 ;;
+esac
