@@ -55,9 +55,35 @@ er in `unterlagen/anamnese.md` eingetragen wird. Was man nicht weiß, wird als
 Vorhandene Befunde kann man vorher nach `unterlagen/` legen. Claude übernimmt
 daraus, was schon drinsteht, und fragt dann weniger.
 
-Am Ende baut Claude `AKTE.md` aus der Anamnese und den Befunden. Ab dann
-beginnt jede Sitzung mit einer Begrüßung, und man kann Fragen stellen, einen
-Termin vorbereiten lassen oder fragen, was als Nächstes ansteht.
+Am Ende baut Claude `AKTE.md` aus der Anamnese und den Befunden.
+
+## Folgegespräche
+
+Jede weitere Sitzung beginnt mit einer Begrüßung. Danach fragt man, was man
+wissen will, in normalen Sätzen; eine Befehlssyntax gibt es nicht.
+
+**Eine Frage**, etwa „Darf ich mit meinem Knie wieder joggen?“, beantwortet
+Claude auf Grundlage von `AKTE.md` und `BEURTEILUNG.md`. Vor einer Empfehlung
+zu Diagnostik, Therapie, Medikation oder Training sucht Claude die passende
+Leitlinie oder Studie, prüft, ob sie noch gilt, und legt sie in `literatur/`
+ab. Die Antwort nennt die Quelle und trennt, was dort steht, von dem, was
+Claude daraus für den eigenen Fall schließt. Bei neuen oder stärkeren
+Beschwerden prüft Claude zuerst, ob man noch am selben Tag zum Arzt muss.
+Fehlt für eine Antwort ein aktueller Stand, etwa ein Blutwert von vor einem
+Jahr, fragt Claude nach.
+
+Weitere Anliegen:
+
+- **„Was steht als Nächstes an?“** Claude sammelt alles Offene aus Akte und
+  Beurteilung und ordnet es nach Dringlichkeit: diese Woche, die nächsten
+  Wochen, später, dazu, was dauerhaft gilt.
+- **„Ich habe am Donnerstag einen Termin beim Orthopäden.“** Claude legt eine
+  Themenliste `termin-<praxis>-<datum>.md` an: was mitzubringen ist, Fragen
+  zum Vorlesen, das Wichtigste zuerst, und eine kurze Zusammenfassung für die
+  Praxis. Nach dem Termin geht Claude die Liste mit einem durch, nimmt die
+  Ergebnisse auf und löscht sie.
+- **„Was sagt die Leitlinie zu …?“** Claude sucht die Quelle und gibt wieder,
+  was sie sagt, mit Empfehlungsgrad und Evidenzniveau.
 
 ## Neue Befunde und Angaben
 
