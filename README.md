@@ -100,8 +100,8 @@ Ebenso im Gespräch mitteilen lassen sich Beschwerden, Ergebnisse eines
 Arztgesprächs, Änderungen der Medikation und Messwerte. Claude zeigt den
 Eintrag für `unterlagen/historie.md` vorher zur Bestätigung.
 
-Liegen beim Start einer Sitzung neue Dateien in `unterlagen/`, spricht
-Claude sie von sich aus an.
+Liegen beim Start einer Sitzung neue Dateien in `unterlagen/` oder die
+Themenliste eines vergangenen Termins, spricht Claude sie von sich aus an.
 
 ## Aufbau
 
@@ -118,7 +118,7 @@ literatur/       Leitlinien und Studien als PDF und Textfassung
 Das Plugin im Einzelnen:
 
 - `regeln.md` – die Regeln für die Beratung; ein SessionStart-Hook spielt sie
-  in jede Sitzung ein.
+  mit dem Stand der Akte in jede Sitzung ein.
 - `skills/` – `neue-information`, `naechste-schritte`, `termin-vorbereiten`,
   `akte-aktualisieren`, `anamnese`, `leitlinie`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.

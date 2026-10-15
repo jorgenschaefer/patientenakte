@@ -1,5 +1,30 @@
 #!/usr/bin/env bash
-# Spielt regeln.md zu Beginn jeder Sitzung als Kontext ein.
-set -euo pipefail
+# Spielt regeln.md und den Stand der Akte zu Beginn jeder Sitzung als Kontext
+# ein. Endet immer mit 0: Eine gescheiterte Prüfung erscheint als Zeile im
+# Stand, statt die Sitzung zu verhindern.
+set -uo pipefail
+
 printf 'Regeln des Plugins patientenakte.\n\n'
 cat "$CLAUDE_PLUGIN_ROOT/regeln.md"
+printf '\n# Stand der Akte\n\n*Ermittelt beim Start der Sitzung.*\n\n'
+
+cd "${CLAUDE_PROJECT_DIR:-.}" 2>/dev/null || { echo "Akte nicht gefunden: ${CLAUDE_PROJECT_DIR:-.}"; exit 0; }
+
+if [[ ! -f unterlagen/anamnese.md ]]; then
+  # shellcheck disable=SC2016 # Backticks sind Markdown.
+  echo '`unterlagen/anamnese.md` fehlt. Führ vor deiner ersten Antwort den Skill `patientenakte:anamnese` aus, was auch immer der Benutzer geschrieben hat.'
+  exit 0
+fi
+
+"$CLAUDE_PLUGIN_ROOT/bin/akte-stand" 2>&1 || echo "akte-stand ist gescheitert."
+
+heute=$(date +%F)
+for termin in termin-*-[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].md; do
+  [[ -f $termin ]] || continue
+  datum=${termin: -13:10}
+  if [[ $datum < $heute ]]; then
+    echo "Termin vorbei, Nachbereitung offen: $termin"
+  fi
+done
+
+exit 0

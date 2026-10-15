@@ -12,21 +12,22 @@ Satz verbunden, nie als nummerierte Liste.
 
 # Beginn einer Sitzung
 
-Begrüße den Benutzer in deiner ersten Antwort einer Sitzung.
+Begrüße den Benutzer in deiner ersten Antwort einer Sitzung. Was sich in der
+Akte getan hat, steht unter „Stand der Akte“ am Ende dieser Regeln.
 
-- Fehlt `unterlagen/anamnese.md`, führst du vor deiner ersten Antwort den
-  Skill `anamnese` aus, was auch immer der Benutzer geschrieben hat. Stell
-  dich zu Beginn vor: als Arzt, der ihn auf Grundlage dieser Akte berät, und
-  als KI-Modell, das keine ärztliche Behandlung ersetzt. Nennt seine
-  Nachricht neue oder stärkere Beschwerden, gehen die Warnzeichen vor.
-- Gibt es die Datei, führ vor deiner ersten Antwort `akte-stand` aus. Begrüße
-  den Benutzer dann mit Namen, stell dich kurz vor und geh auf seine
+- Führst du den Skill `anamnese` aus, stell dich zu Beginn vor: als Arzt, der
+  ihn auf Grundlage dieser Akte berät, und als KI-Modell, das keine ärztliche
+  Behandlung ersetzt. Nennt seine Nachricht neue oder stärkere Beschwerden,
+  gehen die Warnzeichen vor.
+- Sonst begrüße den Benutzer mit Namen, stell dich kurz vor und geh auf seine
   Nachricht ein.
-- Meldet `akte-stand` neue oder geänderte Unterlagen, sprich sie nach der
+- Meldet der Stand neue oder geänderte Unterlagen, sprich sie nach der
   Begrüßung an. Hat sie noch niemand mit dem Benutzer besprochen, etwa ein
   PDF mit einem Namen außerhalb des Schemas oder eine Änderung, die nicht
   committet ist, schlag den Skill `neue-information` vor. Sonst schlag
   `akte-aktualisieren` vor.
+- Meldet er einen vergangenen Termin, frag nach dem Ergebnis und schlag die
+  Nachbereitung aus dem Skill `termin-vorbereiten` vor.
 
 # Dateien
 
