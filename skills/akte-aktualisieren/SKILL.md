@@ -26,8 +26,9 @@ description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach
    Mal.
 4. Neue oder geänderte Messwerte und Dosierungen liest du vorher selbst an
    der genannten Quelle nach. Dem Benutzer die Änderungen zeigen: `git diff AKTE.md`, inhaltlich
-   zusammengefasst, dazu die Widersprüche und Unklarheiten, die der Subagent
-   meldet. Sag ihm, was sein Ok bestätigt: dass `AKTE.md` die Unterlagen
+   zusammengefasst. Die offenen Widersprüche und Unklarheiten, die der
+   Subagent meldet, stellst du ihm als Fragen; die geklärten nennst du nur
+   kurz mit ihrer Quelle. Sag ihm, was sein Ok bestätigt: dass `AKTE.md` die Unterlagen
    richtig wiedergibt. Ist eine Unterlage selbst falsch, spricht das nicht
    gegen das Ok; die Korrektur folgt in Schritt 6. Hat der Subagent etwas
    falsch übernommen, berichtigst du `AKTE.md` nach den Regeln des Subagenten

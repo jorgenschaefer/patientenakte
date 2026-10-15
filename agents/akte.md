@@ -78,4 +78,9 @@ Abschnitte ohne Inhalt lässt du weg.
 ## Rückmeldung
 
 Zum Schluss kurz: was du ergänzt, geändert und gestrichen hast und warum,
-dazu Widersprüche und Unklarheiten, die der Benutzer klären sollte.
+dazu zwei Listen:
+
+- **Offen:** Widersprüche und Unklarheiten, die keine Unterlage auflöst; die
+  soll der Benutzer klären.
+- **Geklärt:** Widersprüche, die eine neuere oder korrigierende Angabe
+  auflöst, je mit der Quelle dieser Angabe.
