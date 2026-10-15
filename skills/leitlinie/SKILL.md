@@ -1,15 +1,28 @@
 ---
 name: leitlinie
-description: Sucht eine Leitlinie, Studie oder Fachinformation zu einer medizinischen Frage, prüft ihre Gültigkeit und legt sie in literatur/ ab. Benutzen vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie, Medikation oder Training, die nicht schon mit aktueller Quelle in BEURTEILUNG.md steht, und wenn der Benutzer fragt, was die Leitlinie zu einem Thema sagt.
+description: Sucht eine Leitlinie, Studie oder Fachinformation zu einer Frage aus Medizin, Physiotherapie, Ernährung oder Sport, prüft ihre Gültigkeit und legt sie in literatur/ ab. Benutzen vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie, Medikation oder Training, die nicht schon mit aktueller Quelle in BEURTEILUNG.md steht, und wenn der Benutzer fragt, was die Leitlinie zu einem Thema sagt.
 ---
 
 # Leitlinie
 
-Rangfolge der Quellen: Leitlinien (AWMF S3, Nationale VersorgungsLeitlinien,
-dann S2e/S2k), dann systematische Übersichtsarbeiten (z. B. Cochrane), dann
-einzelne Studien, zuletzt Lehrbuchwissen und Expertenmeinung. Deutsche
-Leitlinien haben Vorrang; eine internationale kommt hinzu, wenn es keine
-deutsche zur Frage gibt oder die internationale deutlich neuer ist.
+Rangfolge der Quellen: Leitlinien, dann systematische Übersichtsarbeiten
+(z. B. Cochrane), dann einzelne Studien, zuletzt Lehrbuchwissen und
+Expertenmeinung. Unter den Leitlinien gehen AWMF S3 und Nationale
+VersorgungsLeitlinien vor S2e/S2k. Deutsche Leitlinien haben Vorrang; eine
+internationale kommt hinzu, wenn es keine deutsche zur Frage gibt oder die
+internationale deutlich neuer ist.
+
+Den Rang einer Leitlinie haben je nach Fachgebiet auch:
+
+- **Impfungen:** die Empfehlungen der STIKO;
+- **Medikation:** die Fachinformation, für Dosierung, Gegenanzeigen und
+  Wechselwirkungen;
+- **Ernährung:** die Referenzwerte und Leitlinien der DGE;
+- **Bewegung und Sport:** die Bewegungsempfehlungen der WHO, die
+  Positionspapiere des ACSM und der DGSP;
+- **Physiotherapie:** der physiotherapeutische Teil der AWMF-Leitlinien,
+  sonst die Leitlinien der KNGF und die Clinical Practice Guidelines des
+  JOSPT.
 
 1. In `literatur/README.md` nachsehen, ob die Quelle schon vorliegt.
 2. Online prüfen, ob es eine neuere Fassung gibt und bis wann die vorliegende
