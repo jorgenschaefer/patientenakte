@@ -24,7 +24,8 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
    - **Jetzt und diese Woche**, **in den nächsten Wochen**, **später**;
    - jeder Punkt: was zu tun ist, bei wem, bis wann, und in einem Satz warum,
      mit der Quelle aus `BEURTEILUNG.md` (Kurzname und Empfehlungsnummer);
-   - danach, was dauerhaft gilt: Übungen, Ernährung, Alltag und auf welche
-     Warnzeichen zu achten ist.
+   - danach, was dauerhaft gilt: Übungen, Ernährung, Alltag und die
+     Warnzeichen aus `BEURTEILUNG.md` mit ihrer Stufe. Neue Warnzeichen
+     dort eintragen.
 6. Ergibt sich eine neue Empfehlung, mit dem Skill `leitlinie` belegen und
    in `BEURTEILUNG.md` eintragen.

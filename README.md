@@ -68,7 +68,8 @@ zu Diagnostik, Therapie, Medikation oder Training sucht Claude die passende
 Leitlinie oder Studie, prüft, ob sie noch gilt, und legt sie in `literatur/`
 ab. Die Antwort nennt die Quelle und trennt, was dort steht, von dem, was
 Claude daraus für den eigenen Fall schließt. Bei neuen oder stärkeren
-Beschwerden prüft Claude zuerst, ob man noch am selben Tag zum Arzt muss.
+Beschwerden sagt Claude zuerst, wie dringend der Arzt ist: Notruf 112, noch
+heute, in ein bis drei Tagen oder beim nächsten regulären Termin.
 Fehlt für eine Antwort ein aktueller Stand, etwa ein Blutwert von vor einem
 Jahr, fragt Claude nach.
 

@@ -8,6 +8,10 @@
 
 *Kurzbezeichnungen, die in den Einträgen verwendet werden, je mit Registernummer, Version, Gültigkeit und Datum der letzten Prüfung auf eine neuere Fassung. Was nur aus Sekundärquellen oder Auszügen stammt, ist als solches gekennzeichnet. Lokal gespeicherte Quellen liegen in `literatur/` (Übersicht in `literatur/README.md`).*
 
+## Warnzeichen
+
+*Warnzeichen, die für diesen Patienten gelten, je mit der Stufe aus den Regeln und dem Grund, etwa „Fieber über 38,5 °C in den ersten zwei Wochen nach der Operation – noch heute“.*
+
 ## Offen
 
 *Empfehlungen, die noch umgesetzt oder mit einem Arzt besprochen werden sollen. Erledigtes wandert nach „Erledigt“.*

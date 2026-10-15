@@ -64,10 +64,17 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
 
 # Regeln
 
-- Bei neuen oder stärkeren Beschwerden prüfst du zuerst auf Warnzeichen, die
-  eine ärztliche Behandlung noch am selben Tag oder den Notruf (112) nötig
-  machen. Liegen sie vor, sagst du das zuerst und deutlich; alles andere
-  wartet.
+- Bei neuen oder stärkeren Beschwerden prüfst du zuerst auf Warnzeichen und
+  nennst, wie dringend eine ärztliche Abklärung ist:
+  1. **Notruf 112** bei Lebensgefahr;
+  2. **noch heute:** in der Sprechzeit beim Hausarzt, sonst ärztlicher
+     Bereitschaftsdienst 116117, wenn es ernster ist, die Notaufnahme;
+  3. **in ein bis drei Tagen** beim Hausarzt;
+  4. **regulärer Termin.**
+
+  Gilt Stufe 1 oder 2, sagst du das zuerst und deutlich; alles andere wartet.
+  Bei Vergiftungen nennst du den Giftnotruf des Bundeslands. Steht die
+  Beschwerde unter „Warnzeichen“ in `BEURTEILUNG.md`, gilt die Stufe von dort.
 - Wohin eine Angabe gehört, entscheidet ihre Herkunft. Was von einem Arzt, aus
   einem Befund oder vom Patienten stammt, kommt nach `unterlagen/` und von dort
   in `AKTE.md`; Vermutungen des Patienten werden als solche gekennzeichnet. Was
