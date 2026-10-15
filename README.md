@@ -10,33 +10,10 @@ Modell daraus schließt.
 Es ersetzt keine ärztliche Behandlung. Es hilft, Befunde zu ordnen, Termine
 vorzubereiten und Fragen zu stellen.
 
-## Aufbau
+Die Regeln sind auf Deutsch und auf das deutsche Gesundheitswesen
+ausgerichtet: AWMF-Leitlinien, Nationale VersorgungsLeitlinien, STIKO.
 
-Das Plugin enthält nur das Gerüst: Regeln, Skills, einen Agenten und ein
-Script. Jede Akte ist ein eigenes, privates Git-Repo:
-
-```
-AKTE.md          aktueller Stand aus unterlagen/, nur Fakten mit Quelle
-BEURTEILUNG.md   Empfehlungen und Einschätzungen des Modells, mit Quelle
-unterlagen/      Befunde als PDF, anamnese.md, historie.md, Messreihen als CSV
-literatur/       Leitlinien und Studien als PDF und Textfassung
-```
-
-**Akten gehören nie in ein öffentliches Repo.** Sie enthalten
-Gesundheitsdaten.
-
-Das Plugin im Einzelnen:
-
-- `regeln.md` – die Regeln für die Beratung; ein SessionStart-Hook spielt sie
-  in jede Sitzung ein.
-- `skills/` – `neue-information`, `naechste-schritte`, `termin-vorbereiten`,
-  `akte-aktualisieren`, `anamnese`, `leitlinie`.
-- `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
-- `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
-  eingearbeitet sind.
-- `vorlagen/` – Vorlagen für `BEURTEILUNG.md` und `literatur/README.md`.
-
-## Benutzung
+## Installation
 
 Das Plugin wird nie global aktiviert, sondern nur in den Akten. Sonst
 spielt es seine Regeln in jede Sitzung ein, auch in solche, die mit keiner
@@ -56,18 +33,33 @@ mkdir ~/Projects/akte-<name>
 cd ~/Projects/akte-<name>
 git init
 claude plugin install patientenakte@patientenakte --scope local
-claude
 ```
 
 `--scope local` trägt das Plugin in `.claude/settings.local.json` der Akte
-ein. In der ersten Sitzung beginnt Claude mit dem Skill `anamnese`. Er legt
-`BEURTEILUNG.md`, `literatur/` und `unterlagen/` an und führt durch die
-Erstbefragung.
+ein.
 
-Ein Remote für die Akte nur privat anlegen, etwa mit
+**Akten gehören nie in ein öffentliches Repo.** Sie enthalten
+Gesundheitsdaten. Ein Remote für die Akte nur privat anlegen, etwa mit
 `gh repo create akte-<name> --private --source .`.
 
-### Neue Befunde und Angaben
+## Das erste Gespräch
+
+In der Akte `claude` starten und etwas schreiben, ein „Hallo“ genügt. Claude
+stellt sich vor, legt `BEURTEILUNG.md`, `literatur/` und `unterlagen/` an und
+beginnt mit der Erstbefragung: Stammdaten, Beschwerden, Vorerkrankungen,
+Medikamente, Allergien, Impfungen, Lebensumstände, Sport und die
+behandelnden Ärzte. Claude fragt nacheinander und zeigt jeden Abschnitt, bevor
+er in `unterlagen/anamnese.md` eingetragen wird. Was man nicht weiß, wird als
+„unbekannt“ vermerkt; was man nicht sagen will, bleibt weg.
+
+Vorhandene Befunde kann man vorher nach `unterlagen/` legen. Claude übernimmt
+daraus, was schon drinsteht, und fragt dann weniger.
+
+Am Ende baut Claude `AKTE.md` aus der Anamnese und den Befunden. Ab dann
+beginnt jede Sitzung mit einer Begrüßung, und man kann Fragen stellen, einen
+Termin vorbereiten lassen oder fragen, was als Nächstes ansteht.
+
+## Neue Befunde und Angaben
 
 Einen neuen Befund, etwa einen MRT-Befund als PDF, gibt man Claude im
 Gespräch: Pfad nennen oder Datei in den Prompt ziehen, dazu, was es ist.
@@ -83,38 +75,28 @@ Eintrag für `unterlagen/historie.md` vorher zur Bestätigung.
 Liegen beim Start einer Sitzung neue Dateien in `unterlagen/`, spricht
 Claude sie von sich aus an.
 
-### Mit einer Arbeitskopie des Plugins
+## Aufbau
 
-Wer das Plugin während einer Beratung verbessern will, fügt statt des
-GitHub-Repos eine Arbeitskopie als Marketplace hinzu. Claude Code lädt das
-Plugin dann direkt aus der Arbeitskopie:
+Das Plugin enthält nur das Gerüst: Regeln, Skills, einen Agenten und ein
+Script. Jede Akte ist ein eigenes, privates Git-Repo:
 
-```bash
-git clone https://github.com/jorgenschaefer/patientenakte ~/Projects/patientenakte
-claude plugin marketplace add ~/Projects/patientenakte
+```
+AKTE.md          aktueller Stand aus unterlagen/, nur Fakten mit Quelle
+BEURTEILUNG.md   Empfehlungen und Einschätzungen des Modells, mit Quelle
+unterlagen/      Befunde als PDF, anamnese.md, historie.md, Messreihen als CSV
+literatur/       Leitlinien und Studien als PDF und Textfassung
 ```
 
-Damit Claude in die Arbeitskopie schreiben darf, in der Akte zusätzlich in
-`.claude/settings.local.json`:
+Das Plugin im Einzelnen:
 
-```json
-{
-  "permissions": {
-    "additionalDirectories": ["/home/<benutzer>/Projects/patientenakte"]
-  }
-}
-```
-
-Die Regeln sind auf Deutsch und auf das deutsche Gesundheitswesen
-ausgerichtet: AWMF-Leitlinien, Nationale VersorgungsLeitlinien, STIKO.
-
-## Am Plugin arbeiten
-
-Das Repo ist öffentlich und enthält nie Daten aus einer Akte; Beispiele
-werden erfunden oder allgemein formuliert.
-
-Änderungen an Skills und Agent greifen nach `/reload-plugins`, Änderungen an
-`regeln.md` in einer neuen Sitzung.
+- `regeln.md` – die Regeln für die Beratung; ein SessionStart-Hook spielt sie
+  in jede Sitzung ein.
+- `skills/` – `neue-information`, `naechste-schritte`, `termin-vorbereiten`,
+  `akte-aktualisieren`, `anamnese`, `leitlinie`.
+- `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
+- `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
+  eingearbeitet sind.
+- `vorlagen/` – Vorlagen für `BEURTEILUNG.md` und `literatur/README.md`.
 
 ## Lizenz
 
