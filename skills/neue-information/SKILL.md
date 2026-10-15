@@ -16,6 +16,12 @@ vorhandenen und lässt ihn bestätigen. Weil er noch nicht committet ist,
 darfst du ihn dabei ändern oder entfernen. Die Einträge aus diesem Gespräch
 bleiben bis Schritt 7 absichtlich ohne Commit; sie zeigst du nicht erneut.
 
+Einen neuen Messwert ordnest du, wann immer du ihn kommentierst, gegen die
+Reihe desselben Parameters unter „Messwerte“ in `AKTE.md` ein: frühere Werte
+mit Datum, Differenz zum letzten Wert in Zahlen, ob er gestiegen, gesunken
+oder gleich ist, ob er einen Trend fortsetzt und ob er im Referenzbereich
+bleibt.
+
 ## Aufnehmen
 
 1. **Prüfen, ob es hineingehört,** nach der Regel in `regeln.md`: neu und

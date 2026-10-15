@@ -46,6 +46,10 @@ aus `akte-stand` (neu, geändert, entfernt).
   offene Punkte) tragen „Stand: TT.MM.JJJJ“.
 - **Knapp:** eine Angabe pro Zeile, keine Erzählung. Messwerte exakt mit
   Einheit und Referenzbereich übernehmen.
+- **Messwerte:** Ein Parameter aus den Befunden behält jeden Wert, auch
+  den ältesten, ohne Zusammenfassung, etwa
+  `Kreatinin (0,7–1,2 mg/dl): 0,9 [2014-03-02-labor] · 1,1 [2025-03-01-labor]`.
+  Ändern sich Einheit oder Referenz, steht das am Wert.
 - **Doppelte Befunde:** Stimmt ein Befund in Datum, Absender, Art und Inhalt
   mit einem anderen überein, etwa dasselbe Dokument aus zwei Quellen,
   übernimmst du ihn nicht als zweiten Befund, sondern meldest ihn unter
@@ -71,7 +75,7 @@ aus `akte-stand` (neu, geändert, entfernt).
 ## Impfungen und Immunstatus
 ## Vorsorge                        Früherkennung, Check-up, Zahnarzt, Augenarzt, Betriebsarzt, Kontrollen wegen einer Erkrankung, je mit Datum und Ergebnis
 ## Lebensumstände                  Beruf, Wohnsituation, Hilfsmittel, Genussmittel, Sport, Familienanamnese
-## Messwerte                       Tabelle: Wert | Referenz | Verlauf; Messreihen zusammengefasst mit Verweis auf die CSV
+## Messwerte                       je Parameter eine Zeile mit Referenz und allen Werten aus den Befunden, älteste zuerst, je mit Quelle; Messreihen aus den CSV zusammengefasst mit Verweis auf die CSV
 ## Verlauf                         wichtige Ereignisse, je eine Zeile, chronologisch
 ## Offen                           ärztlich veranlasst oder vom Patienten geplant, noch nicht erledigt; Termine
 ## Grundlage                       Prüfsummen, von akte-stand
