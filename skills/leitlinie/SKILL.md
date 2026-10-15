@@ -15,8 +15,10 @@ internationale deutlich neuer ist.
 Den Rang einer Leitlinie haben je nach Fachgebiet auch:
 
 - **Impfungen:** die Empfehlungen der STIKO;
-- **Medikation:** die Fachinformation, für Dosierung, Gegenanzeigen und
-  Wechselwirkungen;
+- **Vorsorge:** die Richtlinien des G-BA zu Früherkennung und
+  Gesundheitsuntersuchung (Check-up);
+- **Medikation:** die Fachinformation, für Dosierung, Gegenanzeigen,
+  Wechselwirkungen und Kontrolluntersuchungen;
 - **Ernährung:** die Referenzwerte und Leitlinien der DGE;
 - **Bewegung und Sport:** die Bewegungsempfehlungen der WHO, die
   Positionspapiere des ACSM und der DGSP;
