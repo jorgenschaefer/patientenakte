@@ -1,6 +1,6 @@
 ---
 effort: L
-utility: M
+utility: S
 ---
 
 # Kein Medikationsplan zum Mitnehmen
