@@ -2,9 +2,10 @@
 
 Ein Plugin für [Claude Code](https://claude.com/claude-code), das auf
 Grundlage einer persönlichen Patientenakte in medizinischen,
-physiotherapeutischen und sportwissenschaftlichen Fragen berät: nach
-aktuellen Leitlinien, mit Quellen und mit klarer Trennung zwischen dem, was
-in Befunden steht, und dem, was ein Modell daraus schließt.
+physiotherapeutischen, ernährungswissenschaftlichen und
+sportwissenschaftlichen Fragen berät: nach aktuellen Leitlinien, mit Quellen
+und mit klarer Trennung zwischen dem, was in Befunden steht, und dem, was ein
+Modell daraus schließt.
 
 Es ersetzt keine ärztliche Behandlung. Es hilft, Befunde zu ordnen, Termine
 vorzubereiten und Fragen zu stellen.
