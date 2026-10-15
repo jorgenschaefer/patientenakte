@@ -15,11 +15,10 @@ Bedarfsmedikation, Nahrungsergänzung) mit Präparat, Wirkstoff und Dosis, die
 er bei sich tragen und vorzeigen kann und die bei jeder Änderung der
 Medikation nachgezogen wird.
 
-Schon umgesetzt: `skills/neue-information/SKILL.md`, Schritt 5, erinnert bei
-jeder Änderung daran, den bundeseinheitlichen Medikationsplan beim Hausarzt
-oder in der Apotheke aktualisieren zu lassen. Den gibt es aber erst ab drei
-dauerhaft verordneten Mitteln, und Bedarfsmedikation oder Nahrungsergänzung
-fehlen darin oft.
+Schon umgesetzt: Der Skill `notfallpass` gibt alle Mittel mit den übrigen
+Angaben für den Notfall als Text zum Kopieren in den Notfallpass des Handys
+aus, nach jeder Änderung von selbst (`skills/neue-information/SKILL.md`,
+Schritt 8). Was fehlt, ist ein Plan zum Ausdrucken und Vorlegen.
 
 Idee des Benutzers: ein Script, das aus der Akte einen Plan im offiziellen
 Format als PDF erzeugt. Das Format legt die KBV fest (Anlage 3 zur
