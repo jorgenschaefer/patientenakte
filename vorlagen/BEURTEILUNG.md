@@ -14,12 +14,12 @@
 
 ## Beobachten
 
-*Was im Verlauf verfolgt wird, je mit Datum, Grund mit Kennzeichnung, Datei in `unterlagen/` und Spalten, etwa „Schlaf – `unterlagen/schlaf.csv` (Datum, Stunden, Qualität 1–5, Bemerkung) – wegen Durchschlafstörung, Modell“. Beobachtungen werden nur zu diesen Themen aufgenommen. Ein Thema kommt erst dazu, wenn der Benutzer zustimmt; ist der Grund erledigt, wandert es nach „Erledigt“.*
+*Was im Verlauf verfolgt wird, je mit Datum, Grund mit Kennzeichnung, Datei in `unterlagen/` und Spalten, etwa „Schlaf – `unterlagen/schlaf.csv` (Datum, Stunden, Qualität 1–5, Bemerkung) – wegen Durchschlafstörung, Modell“. Beobachtungen werden nur zu diesen Themen aufgenommen. Ein Thema kommt erst dazu, wenn der Benutzer zustimmt; ist der Grund erledigt, wird es gelöscht.*
 
 ## Offen
 
-*Empfehlungen, die noch umgesetzt oder mit einem Arzt besprochen werden sollen. Erledigtes wandert nach „Erledigt“.*
+*Empfehlungen, die noch umgesetzt oder mit einem Arzt besprochen werden sollen. Erledigtes und Überholtes wird gelöscht, das Ergebnis steht in `unterlagen/historie.md`; Abgelehntes wandert nach „Abgelehnt“.*
 
-## Erledigt
+## Abgelehnt
 
-*Erledigte oder überholte Einträge mit Datum und Ergebnis.*
+*Empfehlungen, die weiter gelten würden, aber abgelehnt wurden, je mit Datum und Grund, damit sie nicht erneut vorgeschlagen werden.*
