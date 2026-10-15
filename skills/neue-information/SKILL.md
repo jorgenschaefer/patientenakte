@@ -51,11 +51,11 @@ bleiben bis Schritt 7 absichtlich ohne Commit; sie zeigst du nicht erneut.
 ## Einarbeiten
 
 6. **BEURTEILUNG.md prüfen:** Welche Einträge betreffen die neuen Angaben,
-   auch unter „Beobachten“? Erledigte und überholte werden gelöscht; ein
-   Ergebnis, das noch nicht in `unterlagen/` steht, kommt wie in Schritt 3
-   nach `historie.md`. Abgelehnte, die sonst weiter gelten würden, kommen mit
-   Datum und Grund nach „Abgelehnt“. Betroffene werden angepasst und neu
-   datiert.
+   auch unter „Einschätzungen“ und „Beobachten“? Erledigte und überholte
+   werden gelöscht; ein Ergebnis, das noch nicht in `unterlagen/` steht,
+   kommt wie in Schritt 3 nach `historie.md`. Abgelehnte, die sonst weiter
+   gelten würden, kommen mit Datum und Grund nach „Abgelehnt“. Betroffene
+   werden angepasst und neu datiert.
    Neue Fragen belegst du mit dem Skill `leitlinie`.
 7. **Committen:** die neuen Unterlagen und `BEURTEILUNG.md` in einem Commit.
 8. **AKTE.md** mit dem Skill `akte-aktualisieren` nachziehen.

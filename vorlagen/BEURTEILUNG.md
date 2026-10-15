@@ -12,6 +12,10 @@
 
 *Warnzeichen, die für diesen Patienten gelten, je mit der Stufe aus den Regeln und dem Grund, etwa „Fieber über 38,5 °C in den ersten zwei Wochen nach der Operation – noch heute“.*
 
+## Einschätzungen
+
+*Was in jeder Beratung gilt, ohne dass etwas zu erledigen ist: was zu meiden oder zu beachten ist, wie Befunde bei diesem Patienten zu deuten sind, vermutete Ursachen. Je mit Datum, Thema und Kennzeichnung, etwa „NSAR meiden – wegen Magengeschwür – Leitlinie: …“. Ändert eine neue Angabe die Grundlage, wird der Eintrag geprüft; überholte werden gelöscht.*
+
 ## Beobachten
 
 *Was im Verlauf verfolgt wird, je mit Datum, Grund mit Kennzeichnung, Datei in `unterlagen/` und Spalten, etwa „Schlaf – `unterlagen/schlaf.csv` (Datum, Stunden, Qualität 1–5, Bemerkung) – wegen Durchschlafstörung, Modell“. Beobachtungen werden nur zu diesen Themen aufgenommen. Ein Thema kommt erst dazu, wenn der Benutzer zustimmt; ist der Grund erledigt, wird es gelöscht.*
