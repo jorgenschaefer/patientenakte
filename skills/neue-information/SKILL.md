@@ -24,10 +24,17 @@ description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborw
 
    Dann committen.
 4. **AKTE.md** mit dem Skill `akte-aktualisieren` nachziehen.
-5. **BEURTEILUNG.md prüfen:** Welche Einträge betrifft die Änderung, auch
+5. **Medikation prüfen,** wenn ein Mittel neu hinzukommt oder sich Dosis
+   oder Schema ändern: mit dem Skill `leitlinie` die Fachinformation lesen,
+   Abschnitt 4.3 (Gegenanzeigen) und 4.5 (Wechselwirkungen). Abgleichen mit
+   `AKTE.md`, wie unter „Evidenz“ in `regeln.md` beschrieben, auch gegen
+   Bedarfsmedikation und Nahrungsergänzung. Dem Benutzer das Ergebnis
+   sagen, auch wenn nichts dagegen spricht.
+6. **BEURTEILUNG.md prüfen:** Welche Einträge betrifft die Änderung, auch
    unter „Beobachten“? Erledigte und überholte kommen mit Datum und Ergebnis
    nach „Erledigt“, betroffene werden angepasst und neu datiert. Neue Fragen
-   belegst du mit dem Skill `leitlinie`. Committen.
-6. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
+   belegst du mit dem Skill `leitlinie`. Was die Prüfung der Medikation
+   ergeben hat, kommt unter „Offen“ oder „Warnzeichen“. Committen.
+7. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
    nächsten Schritten ändert. Verschiebt sich die Reihenfolge deutlich, den
    Skill `naechste-schritte` ausführen.
