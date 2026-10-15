@@ -126,7 +126,7 @@ Script. Jede Akte ist ein eigenes, privates Git-Repo:
 ```
 AKTE.md          aktueller Stand aus unterlagen/, nur Fakten mit Quelle
 BEURTEILUNG.md   Empfehlungen und Einschätzungen des Modells, mit Quelle
-unterlagen/      Befunde als PDF, anamnese.md, historie.md, Messreihen als CSV
+unterlagen/      Befunde als PDF oder Foto, anamnese.md, historie.md, Messreihen als CSV
 literatur/       Leitlinien und Studien als PDF und Textfassung
 ```
 

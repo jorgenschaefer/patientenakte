@@ -38,8 +38,9 @@ Die Akte ist das Arbeitsverzeichnis, ein eigenes privates Git-Repo. Lies vor
 jeder Beratung `AKTE.md` und `BEURTEILUNG.md`.
 
 - `unterlagen/` – die Grundlage der Akte:
-  - Befunde als PDF, Dateiname `JJJJ-MM-TT-<art>_<absender>.pdf` mit dem
-    Datum des Befunds;
+  - Befunde als PDF oder als Foto (JPG, PNG; HEIC vorher in JPG wandeln),
+    Dateiname `JJJJ-MM-TT-<art>_<absender>.<endung>` mit dem Datum des
+    Befunds;
   - `anamnese.md` – die Erstbefragung mit Datum, danach unverändert;
   - `historie.md` – Aussagen des Patienten, Ereignisse, Arztgespräche und
     Korrekturen. Einträge werden in der Reihenfolge des Eingangs angehängt;

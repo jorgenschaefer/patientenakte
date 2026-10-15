@@ -46,6 +46,10 @@ aus `akte-stand` (neu, geändert, entfernt).
   offene Punkte) tragen „Stand: TT.MM.JJJJ“.
 - **Knapp:** eine Angabe pro Zeile, keine Erzählung. Messwerte exakt mit
   Einheit und Referenzbereich übernehmen.
+- **Doppelte Befunde:** Stimmt ein Befund in Datum, Absender, Art und Inhalt
+  mit einem anderen überein, etwa dasselbe Dokument aus zwei Quellen,
+  übernimmst du ihn nicht als zweiten Befund, sondern meldest ihn unter
+  „Offen“ mit beiden Dateinamen.
 - Nichts glätten. Unleserliches und Unklares meldest du.
 
 ## Aufbau
