@@ -27,6 +27,12 @@ description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborw
    Erledigte und überholte kommen mit Datum und Ergebnis nach „Erledigt“,
    betroffene werden angepasst und neu datiert. Neue Fragen belegst du mit dem
    Skill `leitlinie`. Committen.
-6. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
+6. **Sperrliste:** Bringt die Angabe einen neuen Namen einer Praxis, eines
+   Arztes oder einer Klinik, eine markante Diagnose oder ein Medikament, schlag
+   vor, den Begriff in die Sperrliste aufzunehmen
+   (`~/.config/patientenakte/sperrliste`, ein Begriff pro Zeile). Sie hält
+   diese Begriffe aus dem öffentlichen Plugin-Repo fern. Erst nach Zustimmung
+   anhängen.
+7. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
    nächsten Schritten ändert. Verschiebt sich die Reihenfolge deutlich, den
    Skill `naechste-schritte` ausführen.
