@@ -67,6 +67,22 @@ Erstbefragung.
 Ein Remote für die Akte nur privat anlegen, etwa mit
 `gh repo create akte-<name> --private --source .`.
 
+### Neue Befunde und Angaben
+
+Einen neuen Befund, etwa einen MRT-Befund als PDF, gibt man Claude im
+Gespräch: Pfad nennen oder Datei in den Prompt ziehen, dazu, was es ist.
+Claude liest ihn, fragt nach, was zur Einordnung fehlt, legt ihn mit Datum,
+Art und Absender im Namen in `unterlagen/` ab, zieht `AKTE.md` und
+`BEURTEILUNG.md` nach und sagt, was sich an den nächsten Schritten ändert.
+Jeder Schritt wird ein Commit in der Akte.
+
+Ebenso im Gespräch mitteilen lassen sich Beschwerden, Ergebnisse eines
+Arztgesprächs, Änderungen der Medikation und Messwerte. Claude zeigt den
+Eintrag für `unterlagen/historie.md` vorher zur Bestätigung.
+
+Liegen beim Start einer Sitzung neue Dateien in `unterlagen/`, spricht
+Claude sie von sich aus an.
+
 ### Mit einer Arbeitskopie des Plugins
 
 Wer das Plugin während einer Beratung verbessern will, fügt statt des
