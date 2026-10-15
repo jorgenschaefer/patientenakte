@@ -43,8 +43,10 @@ Den Rang einer Leitlinie haben je nach Fachgebiet auch:
      nicht heran, unter „Nicht gespeichert“ mit Grund und Fundort eintragen
      und die Aussage als aus Sekundärquellen gekennzeichnet verwenden.
 4. Die Aussage zur Frage in der Textfassung nachlesen, im ganzen Abschnitt,
-   nicht nur an der Fundstelle. Empfehlungsnummer, Empfehlungsgrad,
-   Evidenzniveau und Konsensstärke festhalten.
+   nicht nur an der Fundstelle. Für den Eintrag in `BEURTEILUNG.md`
+   Empfehlungsnummer, Empfehlungsgrad, Evidenzniveau und Konsensstärke
+   festhalten; ohne Empfehlungsnummer, etwa bei Fachinformationen und
+   Studien, den Abschnitt oder die Seite.
 5. Eine neue Quelle im Abschnitt „Quellen“ von `BEURTEILUNG.md` eintragen:
    Kurzname, Registernummer, Version, Gültigkeit, Prüfdatum, lokale Datei.
    Was nur aus Sekundärquellen oder Auszügen stammt, als solches

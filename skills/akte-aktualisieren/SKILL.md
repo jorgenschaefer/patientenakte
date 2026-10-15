@@ -24,7 +24,8 @@ description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach
    stehen dort die Prüfsummen der Unterlagen, die der Subagent gelesen hat;
    was später in `unterlagen/` dazukommt, meldet `akte-stand` beim nächsten
    Mal.
-4. Dem Benutzer die Änderungen zeigen: `git diff AKTE.md`, inhaltlich
+4. Neue oder geänderte Messwerte und Dosierungen liest du vorher selbst an
+   der genannten Quelle nach. Dem Benutzer die Änderungen zeigen: `git diff AKTE.md`, inhaltlich
    zusammengefasst, dazu die Widersprüche und Unklarheiten, die der Subagent
    meldet. Sag ihm, was sein Ok bestätigt: dass `AKTE.md` die Unterlagen
    richtig wiedergibt. Ist eine Unterlage selbst falsch, spricht das nicht
