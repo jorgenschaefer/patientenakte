@@ -1,0 +1,14 @@
+{
+  "name": "patientenakte",
+  "description": "Das Plugin patientenakte aus diesem Repo.",
+  "owner": {
+    "name": "Jorgen Schaefer"
+  },
+  "plugins": [
+    {
+      "name": "patientenakte",
+      "source": "./",
+      "description": "Medizinische Beratung auf Grundlage einer persönlichen Patientenakte in einem Git-Repo, nach aktuellen Leitlinien."
+    }
+  ]
+}

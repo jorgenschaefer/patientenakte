@@ -38,15 +38,33 @@ Das Plugin im Einzelnen:
 
 ## Benutzung
 
-Das Plugin aus einer Arbeitskopie laden und in der Akte starten:
+Nur benutzen:
+
+```
+/plugin install patientenakte --marketplace jorgenschaefer/patientenakte
+```
+
+Wer das Plugin während einer Beratung verbessern will, bindet eine
+Arbeitskopie als lokalen Marketplace ein. Claude Code lädt das Plugin dann
+direkt aus der Arbeitskopie, Änderungen greifen nach `/reload-plugins`:
 
 ```bash
 git clone https://github.com/jorgenschaefer/patientenakte ~/Projects/patientenakte
-alias akte='claude --plugin-dir ~/Projects/patientenakte --add-dir ~/Projects/patientenakte'
-cd ~/Projects/patientenakte-<name> && akte
+claude plugin marketplace add ~/Projects/patientenakte
 ```
 
-`--add-dir` erlaubt Claude, das Plugin während einer Beratung zu verbessern.
+In der Akte, in `.claude/settings.local.json`:
+
+```json
+{
+  "enabledPlugins": { "patientenakte@patientenakte": true },
+  "permissions": {
+    "additionalDirectories": ["/home/<benutzer>/Projects/patientenakte"]
+  }
+}
+```
+
+`additionalDirectories` erlaubt Claude, in die Arbeitskopie zu schreiben.
 Eine neue Akte legt der Skill `neue-akte` an („leg eine neue Akte an“).
 
 Die Regeln sind auf Deutsch und auf das deutsche Gesundheitswesen
