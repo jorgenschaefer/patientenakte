@@ -31,23 +31,30 @@ in `historie.md`.
 ## Schema
 
 - **Stammdaten:** Name, gewünschte Anrede, Geburtsdatum, Geschlecht, Größe,
-  Gewicht mit Datum, Krankenkasse, Vorsorgevollmacht und Patientenverfügung
+  Gewicht mit Datum, Krankenkasse, Vorsorgevollmacht und Patientenverfügung,
+  Grad der Behinderung (GdB), Pflegegrad
 - **Aktuelle Beschwerden:** was, seit wann, Verlauf, was hilft, was
   verschlimmert
 - **Vorerkrankungen und Diagnosen** mit Jahr und behandelnder Praxis
-- **Operationen und Krankenhausaufenthalte**
+- **Operationen, Krankenhaus- und Reha-Aufenthalte**
 - **Medikamente**, auch Bedarfsmedikation und Nahrungsergänzung: Dosis,
   Schema, seit wann, verordnet von
 - **Allergien und Unverträglichkeiten**
 - **Impfungen** laut Impfpass
+- **Bisherige Vorsorge:** Früherkennungsuntersuchungen und Check-up mit
+  Datum und Ergebnis
 - **Vegetative Anamnese:** Appetit, Durst, Gewichtsverlauf, Stuhlgang,
   Wasserlassen, Schlaf, Nachtschweiß, Fieber
+- **Gynäkologische Anamnese**, wo zutreffend: Schwangerschaften und
+  Geburten, mögliche oder bestehende Schwangerschaft, Verhütung, Wechseljahre
 - **Genussmittel:** Rauchen, Alkohol, Sonstiges
 - **Familienanamnese**
 - **Sozial- und Berufsanamnese:** Beruf, Belastungen, Arbeitsfähigkeit,
-  Wohnsituation
-- **Sport und Bewegung:** früher und jetzt, Ziele
+  Wohnsituation, Hilfsmittel
+- **Sport und Bewegung:** früher und jetzt
 - **Behandelnde Ärzte und Therapeuten** mit Kontaktdaten
+- **Ziele und Vorlieben:** was der Patient erreichen oder vermeiden möchte,
+  auch im Sport, etwa „möchte eine Operation vermeiden“
 
 ## Format
 

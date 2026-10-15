@@ -47,10 +47,11 @@ Gesundheitsdaten. Ein Remote für die Akte nur privat anlegen, etwa mit
 In der Akte `claude` starten und etwas schreiben, ein „Hallo“ genügt. Claude
 stellt sich vor, legt `BEURTEILUNG.md`, `literatur/` und `unterlagen/` an und
 beginnt mit der Erstbefragung: Stammdaten, Beschwerden, Vorerkrankungen,
-Medikamente, Allergien, Impfungen, Lebensumstände, Sport und die
-behandelnden Ärzte. Claude fragt nacheinander und zeigt jeden Abschnitt, bevor
-er in `unterlagen/anamnese.md` eingetragen wird. Was man nicht weiß, wird als
-„unbekannt“ vermerkt; was man nicht sagen will, bleibt weg.
+Medikamente, Allergien, Impfungen und Vorsorge, Lebensumstände, Sport, die
+behandelnden Ärzte und die eigenen Ziele. Claude fragt nacheinander und zeigt
+jeden Abschnitt, bevor er in `unterlagen/anamnese.md` eingetragen wird. Was
+man nicht weiß, wird als „unbekannt“ vermerkt; was man nicht sagen will,
+bleibt weg.
 
 Vorhandene Befunde kann man vorher nach `unterlagen/` legen. Claude übernimmt
 daraus, was schon drinsteht, und fragt dann weniger.

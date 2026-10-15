@@ -53,14 +53,17 @@ aus `akte-stand` (neu, geändert, entfernt).
 *Aktueller Stand aus unterlagen/. Nur Fakten mit Quelle; Bewertungen stehen in BEURTEILUNG.md.*
 
 ## Stammdaten
+## Ziele und Vorlieben             was der Patient erreichen oder vermeiden möchte
 ## Behandelnde Ärzte und Therapeuten
 ## Diagnosen und Nebenbefunde      je mit Beginn und letztem relevanten Befund
 ## Medikation
 ### Aktuell                        Wirkstoff, Präparat, Dosis, Schema, verordnet von, Fristen
 ### Früher                         Wirkstoff, Zeitraum, Grund für das Ende
 ## Allergien und Unverträglichkeiten
+## Gynäkologie und Schwangerschaft
 ## Impfungen und Immunstatus
-## Lebensumstände                  Beruf, Genussmittel, Sport, Familienanamnese
+## Vorsorge                        Früherkennung und Check-up mit Datum und Ergebnis
+## Lebensumstände                  Beruf, Wohnsituation, Hilfsmittel, Genussmittel, Sport, Familienanamnese
 ## Messwerte                       Tabelle: Wert | Referenz | Verlauf; Messreihen zusammengefasst mit Verweis auf die CSV
 ## Verlauf                         wichtige Ereignisse, je eine Zeile, chronologisch
 ## Offen                           ärztlich veranlasst oder vom Patienten geplant, noch nicht erledigt; Termine
