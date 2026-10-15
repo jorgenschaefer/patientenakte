@@ -7,7 +7,7 @@ description: Erstellt eine Themenliste für einen bevorstehenden Arzt- oder Phys
 
 ## Vorher
 
-1. Datum, Praxis und Anlass erfragen, falls nicht bekannt. `bin/akte-stand`
+1. Datum, Praxis und Anlass erfragen, falls nicht bekannt. `akte-stand`
    ausführen; meldet es Änderungen, zuerst den Skill `akte-aktualisieren`.
 2. Aus `AKTE.md` und `BEURTEILUNG.md` sammeln, was in diese Praxis gehört,
    dazu Offenes anderer Praxen, das sich hier miterledigen lässt.

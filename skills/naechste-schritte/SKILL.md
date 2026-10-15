@@ -5,7 +5,7 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
 
 # Nächste Schritte
 
-1. `bin/akte-stand` ausführen; meldet es Änderungen, zuerst den Skill
+1. `akte-stand` ausführen; meldet es Änderungen, zuerst den Skill
    `akte-aktualisieren` ausführen.
 2. Nach veralteten Ständen fragen, die für die Reihenfolge zählen: Hat ein
    Termin stattgefunden, liegt ein Ergebnis vor, hat eine Therapie begonnen?

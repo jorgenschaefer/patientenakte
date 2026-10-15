@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Spielt regeln.md zu Beginn jeder Sitzung als Kontext ein, mit dem Ort des
+# Plugins, damit Claude das Gerüst dort ändern kann.
+set -euo pipefail
+printf 'Regeln des Plugins patientenakte. Plugin-Verzeichnis: %s\n\n' "$CLAUDE_PLUGIN_ROOT"
+cat "$CLAUDE_PLUGIN_ROOT/regeln.md"

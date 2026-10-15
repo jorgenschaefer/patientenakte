@@ -12,7 +12,7 @@ falsch ist, fehlt ihnen.
 
 Der Auftrag nennt die Zieldatei (sonst `AKTE.md`), ob du schrittweise oder
 vollständig neu baust, und bei schrittweisem Bau die Dateien mit ihrem Status
-aus `bin/akte-stand` (neu, geändert, entfernt).
+aus `akte-stand` (neu, geändert, entfernt).
 
 - **Schrittweise:** Zieldatei lesen, dann jede gemeldete Datei vollständig
   lesen und einarbeiten. Bei geänderten Textdateien zeigt `git diff`, was neu
@@ -21,7 +21,7 @@ aus `bin/akte-stand` (neu, geändert, entfernt).
   dann die Befunde nach Datum, dann `historie.md` und die Messreihen.
 - PDFs liest du mit dem Read-Tool; scheitert das, mit `pdftotext -layout`.
 - Den Abschnitt „Grundlage“ mit den Prüfsummen fasst du nicht an, ihn schreibt
-  `bin/akte-stand --aktualisieren`.
+  `akte-stand --aktualisieren`.
 
 ## Regeln
 
@@ -65,7 +65,7 @@ aus `bin/akte-stand` (neu, geändert, entfernt).
 ## Messwerte                       Tabelle: Wert | Referenz | Verlauf; Messreihen zusammengefasst mit Verweis auf die CSV
 ## Verlauf                         wichtige Ereignisse, je eine Zeile, chronologisch
 ## Offen                           ärztlich veranlasst oder vom Patienten geplant, noch nicht erledigt; Termine
-## Grundlage                       Prüfsummen, von bin/akte-stand
+## Grundlage                       Prüfsummen, von akte-stand
 ```
 
 Abschnitte ohne Inhalt lässt du weg.

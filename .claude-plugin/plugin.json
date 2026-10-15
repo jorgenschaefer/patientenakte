@@ -1,0 +1,7 @@
+{
+  "name": "patientenakte",
+  "version": "0.1.0",
+  "description": "Medizinische Beratung auf Grundlage einer persönlichen Patientenakte in einem Git-Repo, nach aktuellen Leitlinien.",
+  "author": { "name": "Jorgen Schaefer" },
+  "license": "GPL-3.0-or-later"
+}
