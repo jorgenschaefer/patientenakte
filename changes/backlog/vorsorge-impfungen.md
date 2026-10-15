@@ -8,8 +8,10 @@ utility: L
 `skills/naechste-schritte/SKILL.md:13-14` sammelt nur, was in `AKTE.md` und
 `BEURTEILUNG.md` schon offen ist. Fällige Früherkennungsuntersuchungen, der
 Check-up oder fehlende Impfungen tauchen nur auf, wenn sie dort jemand
-eingetragen hat. Die Anamnese erfasst Impfungen (`skills/anamnese/SKILL.md:42`),
-aber kein Skill gleicht sie mit dem STIKO-Impfkalender ab.
+eingetragen hat. Die Anamnese erfasst Impfungen und bisherige Vorsorge
+(`skills/anamnese/SKILL.md:43-45`), und `AKTE.md` hat Abschnitte für beides
+(`agents/akte.md:64-65`). Kein Skill gleicht sie aber mit dem
+STIKO-Impfkalender und den Früherkennungsuntersuchungen ab.
 
 Idee aus der Überprüfung: Alter und Geschlecht mit den
 Früherkennungsuntersuchungen des G-BA, dem Check-up und dem STIKO-Impfkalender
