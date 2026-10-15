@@ -15,8 +15,10 @@ vollständig neu baust, und bei schrittweisem Bau die Dateien mit ihrem Status
 aus `akte-stand` (neu, geändert, entfernt).
 
 - **Schrittweise:** jede gemeldete Datei vollständig lesen. Bei geänderten
-  Textdateien zeigt `git diff`, was neu ist. Bei entfernten Dateien Angaben
-  streichen, die nur auf ihnen beruhen.
+  Textdateien zeigt `git diff <commit> -- <datei>`, was neu ist; den
+  Commit nennt `akte-stand`. Fehlt er oder ist der Diff leer, die Datei gegen
+  `AKTE.md` abgleichen.
+  Bei entfernten Dateien Angaben streichen, die nur auf ihnen beruhen.
 - **Vollständig:** alle Dateien in `unterlagen/` lesen: zuerst `anamnese.md`,
   dann die Befunde nach Datum, dann `historie.md` und die Messreihen.
 - Den Abschnitt „Grundlage“ mit den Prüfsummen fasst du nicht an, ihn schreibt

@@ -3,7 +3,9 @@
 #
 # Arbeitet im aktuellen Verzeichnis, das die Akte sein muss.
 #
-#   akte-stand                  listet neue, geänderte und entfernte Dateien
+#   akte-stand                  listet neue, geänderte und entfernte Dateien,
+#                               davor den Commit, mit dem die Prüfsummen
+#                               zuletzt committet wurden
 #   akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in AKTE.md
 set -euo pipefail
 
@@ -26,6 +28,13 @@ gespeichert() {
   [[ -f $akte ]] || return 0
   awk -v a="$anfang" -v e="$ende" \
     '$0 == a { drin = 1; next } $0 == e { drin = 0 } drin && /^[0-9a-f]{64}  /' "$akte"
+}
+
+# Der letzte Commit, der Prüfsummenzeilen in AKTE.md geändert hat; leer ohne
+# Git oder ohne solchen Commit. Von dort zeigt `git diff`, was in einer
+# geänderten Unterlage seit dem letzten Bau neu ist.
+eingearbeitet() {
+  git log -1 --format=%h -G '^[0-9a-f]{64}  ' -- "$akte" 2>/dev/null || true
 }
 
 vergleichen() {
@@ -66,6 +75,8 @@ case "${1:-}" in
     if [[ -z $ergebnis ]]; then
       echo "AKTE.md ist auf dem Stand von $verzeichnis/."
     else
+      commit=$(eingearbeitet)
+      [[ -z $commit ]] || echo "Eingearbeitet bis Commit $commit."
       echo "$ergebnis"
     fi
     ;;
