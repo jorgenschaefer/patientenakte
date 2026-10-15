@@ -123,7 +123,7 @@ Das Plugin im Einzelnen:
   `akte-aktualisieren`, `anamnese`, `leitlinie`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
-  eingearbeitet sind.
+  eingearbeitet sind und ob `AKTE.md` noch nicht durchgesehen ist.
 - `vorlagen/` – Vorlagen für `BEURTEILUNG.md` und `literatur/README.md`.
 
 ## Lizenz

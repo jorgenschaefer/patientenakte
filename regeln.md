@@ -26,6 +26,9 @@ Akte getan hat, steht unter „Stand der Akte“ am Ende dieser Regeln.
   PDF mit einem Namen außerhalb des Schemas oder eine Änderung, die nicht
   committet ist, schlag den Skill `neue-information` vor. Sonst schlag
   `akte-aktualisieren` vor.
+- Meldet er nicht durchgesehene Änderungen an `AKTE.md`, schlag
+  `akte-aktualisieren` vor. Bis dahin berätst du auf Grundlage der
+  committeten Fassung, `git show HEAD:AKTE.md`.
 - Meldet er einen vergangenen Termin, frag nach dem Ergebnis und schlag die
   Nachbereitung aus dem Skill `termin-vorbereiten` vor.
 
@@ -55,7 +58,8 @@ jeder Beratung `AKTE.md` und `BEURTEILUNG.md`.
   vorher und werden danach gelöscht.
 
 Das Script `akte-stand` aus dem Plugin liegt im `PATH` und meldet, welche
-Unterlagen noch nicht in `AKTE.md` eingearbeitet sind.
+Unterlagen noch nicht in `AKTE.md` eingearbeitet sind und ob `AKTE.md`
+Änderungen hat, die noch nicht durchgesehen sind.
 
 In der Beratung liest du `unterlagen/` nur gezielt: wenn eine Angabe in
 `AKTE.md` zweifelhaft ist oder es auf den genauen Wortlaut ankommt.

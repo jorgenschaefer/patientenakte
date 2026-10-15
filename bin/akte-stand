@@ -5,7 +5,8 @@
 #
 #   akte-stand                  listet neue, geänderte und entfernte Dateien,
 #                               davor den Commit, mit dem die Prüfsummen
-#                               zuletzt committet wurden
+#                               zuletzt committet wurden; meldet, wenn AKTE.md
+#                               nicht committete Änderungen hat
 #   akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in AKTE.md
 set -euo pipefail
 
@@ -35,6 +36,12 @@ gespeichert() {
 # geänderten Unterlage seit dem letzten Bau neu ist.
 eingearbeitet() {
   git log -1 --format=%h -G '^[0-9a-f]{64}  ' -- "$akte" 2>/dev/null || true
+}
+
+# AKTE.md wird erst nach dem Durchsehen committet (Skill akte-aktualisieren),
+# nicht committete Änderungen sind also nicht durchgesehen.
+nicht_durchgesehen() {
+  [[ -f $akte && -n $(git status --porcelain -- "$akte" 2>/dev/null) ]]
 }
 
 vergleichen() {
@@ -72,12 +79,19 @@ aktualisieren() {
 case "${1:-}" in
   "")
     ergebnis=$(vergleichen)
-    if [[ -z $ergebnis ]]; then
-      echo "AKTE.md ist auf dem Stand von $verzeichnis/."
-    else
-      commit=$(eingearbeitet)
+    offen=
+    if nicht_durchgesehen; then
+      offen=1
+      echo "AKTE.md hat Änderungen, die nicht committet und noch nicht durchgesehen sind."
+    fi
+    if [[ -n $ergebnis ]]; then
+      # Ein nicht committeter Bau hat schon Teile dieses Diffs eingearbeitet.
+      commit=
+      [[ -n $offen ]] || commit=$(eingearbeitet)
       [[ -z $commit ]] || echo "Eingearbeitet bis Commit $commit."
       echo "$ergebnis"
+    elif [[ -z $offen ]]; then
+      echo "AKTE.md ist auf dem Stand von $verzeichnis/."
     fi
     ;;
   --aktualisieren) aktualisieren ;;
