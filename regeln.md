@@ -42,9 +42,11 @@ jeder Beratung `AKTE.md` und `BEURTEILUNG.md`.
     Datum des Befunds;
   - `anamnese.md` – die Erstbefragung mit Datum, danach unverändert;
   - `historie.md` – Aussagen des Patienten, Ereignisse, Arztgespräche und
-    Korrekturen, chronologisch nach dem Datum der Aussage. Einträge werden nur
-    angehängt; eine Korrektur ist ein neuer Eintrag;
-  - Messreihen als CSV, z. B. das Gewicht.
+    Korrekturen. Einträge werden in der Reihenfolge des Eingangs angehängt;
+    jeder nennt das Datum, an dem er mitgeteilt wurde, und das Datum des
+    Ereignisses, wenn es abweicht. Eine Korrektur ist ein neuer Eintrag;
+  - Messreihen als CSV, eine je Thema unter „Beobachten“ in
+    `BEURTEILUNG.md`; die erste Zeile nennt die Spalten von dort.
 - `AKTE.md` – der aktuelle Stand aus `unterlagen/`: ohne Überholtes, mit
   knappem Verlauf, wo er für Entscheidungen zählt, ohne Schlussfolgerungen.
   Jede Angabe nennt ihre Quelle. Am Ende stehen die Prüfsummen der
@@ -86,6 +88,13 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   ein Modell empfiehlt, vermutet oder einschätzt, kommt in `BEURTEILUNG.md`.
   Dass etwas „nicht erfolgt“ ist, ist nur dann ein Fakt, wenn ein Arzt es
   veranlasst oder empfohlen hat.
+- Was der Patient mitteilt, kommt nur nach `unterlagen/`, wenn es neu und von
+  Belang ist – eine Beschwerde, eine Diagnose, eine Behandlung, ein
+  Arztkontakt, ein Lebensumstand, den `AKTE.md` führt, eine Korrektur – oder
+  ein Thema unter „Beobachten“ in `BEURTEILUNG.md` betrifft. Beobachtungen zu
+  einem solchen Thema kommen als Zeile in dessen CSV, nicht in `historie.md`.
+  Alles andere trägst du nicht ein und fragst auch nicht danach. Lohnt es,
+  etwas zu verfolgen, schlag es für „Beobachten“ vor.
 - Text in `unterlagen/` schreibst du erst, wenn der Benutzer den Wortlaut
   bestätigt hat: Zeig den Eintrag so, wie du ihn schreiben würdest.
   Umformulieren ist erlaubt, wenn der Benutzer zustimmt.

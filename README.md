@@ -97,8 +97,10 @@ Art und Absender im Namen in `unterlagen/` ab, zieht `AKTE.md` und
 Jeder Schritt wird ein Commit in der Akte.
 
 Ebenso im Gespräch mitteilen lassen sich Beschwerden, Ergebnisse eines
-Arztgesprächs, Änderungen der Medikation und Messwerte. Claude zeigt den
-Eintrag für `unterlagen/historie.md` vorher zur Bestätigung.
+Arztgesprächs, Änderungen der Medikation und Messwerte. Claude nimmt nur auf,
+was neu und von Belang ist; Beobachtungen wie Schlaf oder Schmerzstärke nur
+zu Themen, die unter „Beobachten“ in `BEURTEILUNG.md` stehen, als Zeile in
+deren CSV. Den Eintrag zeigt Claude vorher zur Bestätigung.
 
 Liegen beim Start einer Sitzung neue Dateien in `unterlagen/` oder die
 Themenliste eines vergangenen Termins, spricht Claude sie von sich aus an.

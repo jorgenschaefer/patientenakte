@@ -1,13 +1,16 @@
 ---
 name: neue-information
-description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborwert, ein Arztgespräch, eine neue oder veränderte Beschwerde, eine Änderung der Medikation, eine Korrektur. Benutzen, sobald der Benutzer etwas über seinen Zustand oder seine Behandlung mitteilt, das noch nicht in AKTE.md steht.
+description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborwert, ein Arztgespräch, eine neue oder veränderte Beschwerde, eine Änderung der Medikation, eine Korrektur, eine Beobachtung zu einem Thema unter „Beobachten“ in BEURTEILUNG.md. Benutzen, sobald der Benutzer etwas über seinen Zustand oder seine Behandlung mitteilt, das noch nicht in AKTE.md steht und neu und von Belang ist oder ein beobachtetes Thema betrifft.
 ---
 
 # Neue Information
 
-1. **Nachfragen**, was zur Einordnung fehlt: Datum, wer was gesagt oder
+1. **Prüfen, ob es hineingehört,** nach der Regel in `regeln.md`: neu und
+   von Belang, oder ein Thema unter „Beobachten“ in `BEURTEILUNG.md`. Sonst
+   endet der Skill hier, ohne Eintrag und ohne Frage danach.
+2. **Nachfragen**, was zur Einordnung fehlt: Datum, wer was gesagt oder
    verordnet hat, seit wann, wie stark.
-2. **Ablegen:**
+3. **Ablegen:**
    - **Befund als Datei:** lesen, dann ablegen als
      `unterlagen/JJJJ-MM-TT-<art>_<absender>.pdf` mit dem Datum des Befunds,
      nicht des Eingangs.
@@ -15,14 +18,16 @@ description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborw
      `unterlagen/historie.md` formulieren und zeigen; erst nach Bestätigung
      des Wortlauts anhängen. Eine Korrektur nennt den Eintrag, den sie
      korrigiert; bestehende Einträge bleiben unverändert.
-   - **Messwerte:** an die passende CSV in `unterlagen/` anhängen.
+   - **Beobachtungen und Messwerte:** die Zeile für die CSV des Themas aus
+     „Beobachten“ zeigen; erst nach Bestätigung anhängen. Fehlt die Datei,
+     sie mit den Spalten von dort als erster Zeile anlegen.
 
    Dann committen.
-3. **AKTE.md** mit dem Skill `akte-aktualisieren` nachziehen.
-4. **BEURTEILUNG.md prüfen:** Welche Einträge betrifft die Änderung?
-   Erledigte und überholte kommen mit Datum und Ergebnis nach „Erledigt“,
-   betroffene werden angepasst und neu datiert. Neue Fragen belegst du mit dem
-   Skill `leitlinie`. Committen.
-5. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
+4. **AKTE.md** mit dem Skill `akte-aktualisieren` nachziehen.
+5. **BEURTEILUNG.md prüfen:** Welche Einträge betrifft die Änderung, auch
+   unter „Beobachten“? Erledigte und überholte kommen mit Datum und Ergebnis
+   nach „Erledigt“, betroffene werden angepasst und neu datiert. Neue Fragen
+   belegst du mit dem Skill `leitlinie`. Committen.
+6. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
    nächsten Schritten ändert. Verschiebt sich die Reihenfolge deutlich, den
    Skill `naechste-schritte` ausführen.
