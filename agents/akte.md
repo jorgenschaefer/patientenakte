@@ -40,7 +40,8 @@ aus `akte-stand` (neu, geändert, entfernt).
   Patient abgesetzt ist.
 - **Quellen:** Jede Angabe endet mit ihrer Quelle in eckigen Klammern: Befunde
   mit dem Dateinamen ohne Endung (`[2025-03-01-labor]`), sonst
-  `[historie TT.MM.JJJJ]` oder `[anamnese]`. Mehrere Quellen mit Semikolon.
+  `[historie TT.MM.JJJJ]` mit dem Datum, an dem der Eintrag mitgeteilt
+  wurde, oder `[anamnese]`. Mehrere Quellen mit Semikolon.
 - **Stand:** Veränderliche Angaben (Medikation, Gewicht, Arbeitsfähigkeit,
   offene Punkte) tragen „Stand: TT.MM.JJJJ“.
 - **Knapp:** eine Angabe pro Zeile, keine Erzählung. Messwerte exakt mit
