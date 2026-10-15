@@ -60,7 +60,7 @@ claude
 ```
 
 `--scope local` trägt das Plugin in `.claude/settings.local.json` der Akte
-ein. In der ersten Sitzung schlägt Claude den Skill `anamnese` vor. Er legt
+ein. In der ersten Sitzung beginnt Claude mit dem Skill `anamnese`. Er legt
 `BEURTEILUNG.md`, `literatur/` und `unterlagen/` an und führt durch die
 Erstbefragung.
 
