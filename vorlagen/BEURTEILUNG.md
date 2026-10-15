@@ -16,6 +16,10 @@
 
 *Was im Verlauf verfolgt wird, je mit Datum, Grund mit Kennzeichnung, Datei in `unterlagen/` und Spalten, etwa „Schlaf – `unterlagen/schlaf.csv` (Datum, Stunden, Qualität 1–5, Bemerkung) – wegen Durchschlafstörung, Modell“. Beobachtungen werden nur zu diesen Themen aufgenommen. Ein Thema kommt erst dazu, wenn der Benutzer zustimmt; ist der Grund erledigt, wird es gelöscht.*
 
+## Vorsorge
+
+*Früherkennung, Impfungen und regelmäßige Kontrollen, je mit Datum, Anlass, wann wieder fällig, Kennzeichnung mit Quelle und Kostenträger, etwa „Hautkrebs-Screening – wegen Alter – wieder fällig ab 2027 – Leitlinie: KFE-RL – Kasse“. Nach der Untersuchung bleibt der Eintrag und bekommt die neue Fälligkeit. Was an anderer Stelle in dieser Datei steht, wird hier nur verwiesen. Darunter, was geprüft wurde und nicht zutrifft, mit Grund, damit es nicht erneut gesucht wird.*
+
 ## Offen
 
 *Empfehlungen, die noch umgesetzt oder mit einem Arzt besprochen werden sollen. Erledigtes und Überholtes wird gelöscht, das Ergebnis steht in `unterlagen/historie.md`; Abgelehntes wandert nach „Abgelehnt“.*

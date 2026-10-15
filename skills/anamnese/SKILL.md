@@ -42,8 +42,9 @@ in `historie.md`.
   Schema, seit wann, verordnet von
 - **Allergien und Unverträglichkeiten**
 - **Impfungen** laut Impfpass
-- **Bisherige Vorsorge:** Früherkennungsuntersuchungen und Check-up mit
-  Datum und Ergebnis
+- **Bisherige Vorsorge:** Früherkennungsuntersuchungen, Check-up, Zahnarzt,
+  Augenarzt, Betriebsarzt und regelmäßige Kontrollen wegen einer
+  Erkrankung, je mit Datum und Ergebnis
 - **Vegetative Anamnese:** Appetit, Durst, Gewichtsverlauf, Stuhlgang,
   Wasserlassen, Schlaf, Nachtschweiß, Fieber
 - **Gynäkologische Anamnese**, wo zutreffend: Schwangerschaften und

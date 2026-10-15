@@ -12,13 +12,8 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
    Antworten über den Skill `neue-information` aufnehmen.
 3. Alles Offene sammeln: „Offen“ in `AKTE.md` (ärztlich veranlasst, Termine),
    „Offen“ in `BEURTEILUNG.md` (Empfehlungen), Fristen aus der Medikation.
-4. Fällige und fehlende Vorsorge mit dem Skill `leitlinie` ermitteln: nach
-   Alter und Geschlecht die Richtlinien des G-BA zu Früherkennung und
-   Check-up und den STIKO-Impfkalender, die Kontrollen aus den Leitlinien
-   der Diagnosen und aus Abschnitt 4.4 der Fachinformation jedes aktuellen
-   Mittels. Abgleichen mit „Vorsorge“ und „Impfungen“ in `AKTE.md`. Was
-   fällig ist oder fehlt und noch nicht unter „Offen“ steht, dort mit Quelle
-   eintragen.
+4. Fällige und fehlende Vorsorge mit dem Skill `vorsorge` ermitteln, ohne
+   dessen Tabelle auszugeben; was fällig ist, wird mit eingeordnet.
 5. Ordnen nach:
    1. **Sicherheit und Fristen:** was vor einem bestimmten Ereignis erledigt
       sein muss, etwa eine Untersuchung vor einem Therapiebeginn, und was

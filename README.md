@@ -79,6 +79,11 @@ Weitere Anliegen:
 - **„Was steht als Nächstes an?“** Claude sammelt alles Offene aus Akte und
   Beurteilung und ordnet es nach Dringlichkeit: diese Woche, die nächsten
   Wochen, später, dazu, was dauerhaft gilt.
+- **„Welche Vorsorge steht bei mir an?“** Claude geht Früherkennung nach
+  Alter und Geschlecht, die Kontrollen aus Diagnosen und Medikamenten,
+  arbeitsmedizinische Vorsorge, Familie und Impfungen durch und gibt eine
+  Tabelle mit Fälligkeit, Quelle und Kostenträger aus, dazu, was geprüft
+  wurde und nicht zutrifft. Fehlt ein letzter Termin, fragt Claude danach.
 - **„Ich habe am Donnerstag einen Termin beim Orthopäden.“** Claude legt eine
   Themenliste `termin-<praxis>-<datum>.md` an: was mitzubringen ist, Fragen
   zum Vorlesen, das Wichtigste zuerst, und eine kurze Zusammenfassung für die
@@ -130,7 +135,7 @@ Das Plugin im Einzelnen:
 - `regeln.md` – die Regeln für die Beratung; ein SessionStart-Hook spielt sie
   mit dem Stand der Akte in jede Sitzung ein.
 - `skills/` – `neue-information`, `naechste-schritte`, `termin-vorbereiten`,
-  `notfallpass`, `akte-aktualisieren`, `anamnese`, `leitlinie`.
+  `notfallpass`, `vorsorge`, `akte-aktualisieren`, `anamnese`, `leitlinie`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
   eingearbeitet sind und ob `AKTE.md` noch nicht durchgesehen ist.

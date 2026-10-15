@@ -65,7 +65,7 @@ aus `akte-stand` (neu, geändert, entfernt).
 ## Allergien und Unverträglichkeiten
 ## Gynäkologie und Schwangerschaft
 ## Impfungen und Immunstatus
-## Vorsorge                        Früherkennung und Check-up mit Datum und Ergebnis
+## Vorsorge                        Früherkennung, Check-up, Zahnarzt, Augenarzt, Betriebsarzt, Kontrollen wegen einer Erkrankung, je mit Datum und Ergebnis
 ## Lebensumstände                  Beruf, Wohnsituation, Hilfsmittel, Genussmittel, Sport, Familienanamnese
 ## Messwerte                       Tabelle: Wert | Referenz | Verlauf; Messreihen zusammengefasst mit Verweis auf die CSV
 ## Verlauf                         wichtige Ereignisse, je eine Zeile, chronologisch
