@@ -59,8 +59,9 @@ Am Ende baut Claude `AKTE.md` aus der Anamnese und den Befunden.
 
 ## Folgegespräche
 
-Jede weitere Sitzung beginnt mit einer Begrüßung. Danach fragt man, was man
-wissen will, in normalen Sätzen; eine Befehlssyntax gibt es nicht.
+Jede weitere Sitzung kann direkt mit einer Frage beginnen, in normalen
+Sätzen; eine Befehlssyntax gibt es nicht. Claude begrüßt einen in der
+Antwort mit Namen.
 
 **Eine Frage**, etwa „Darf ich mit meinem Knie wieder joggen?“, beantwortet
 Claude auf Grundlage von `AKTE.md` und `BEURTEILUNG.md`. Vor einer Empfehlung
