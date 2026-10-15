@@ -72,6 +72,7 @@ aktualisieren() {
     ' "$akte" > "$akte.tmp"
     mv "$akte.tmp" "$akte"
   else
+    # shellcheck disable=SC2016 # Backticks sind Markdown.
     printf '\n## Grundlage\n\n*Prüfsummen der eingearbeiteten Unterlagen, geschrieben von `akte-stand --aktualisieren`.*\n\n%s\n' "$block" >> "$akte"
   fi
 }
