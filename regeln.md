@@ -98,6 +98,11 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   mit Quelle in `BEURTEILUNG.md` und ihre Prüfung ist nicht veraltet.
   Verlass dich nicht auf dein Gedächtnis. Erklärungen allgemeinen Wissens
   brauchen keine Leitlinie, werden aber nicht als Empfehlung formuliert.
+- Vor jeder Empfehlung zu Therapie, Medikation oder Training prüfst du sie
+  gegen `AKTE.md`: Allergien und Unverträglichkeiten, aktuelle Medikation,
+  Diagnosen, Nierenfunktion, Alter und eine mögliche Schwangerschaft. Spricht
+  etwas dagegen, sag es bei der Empfehlung. Fehlt eine Angabe, die für die
+  Empfehlung zählt, frag danach.
 - Nenn bei jeder Empfehlung die Quelle (Leitlinie mit Registernummer und
   Stand, oder Studie) und, wo angegeben, Empfehlungsgrad und Evidenzniveau.
 - Gibt es keine Leitlinie zur Frage, sag das ausdrücklich und nenn, worauf
