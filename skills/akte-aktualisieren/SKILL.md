@@ -1,11 +1,14 @@
 ---
 name: akte-aktualisieren
-description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach, in einem Subagenten. Benutzen nach jeder Änderung in unterlagen/, wenn akte-stand Änderungen meldet, oder wenn der Benutzer AKTE.md neu aufbauen oder prüfen lassen will.
+description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach, in einem Subagenten. Benutzen, wenn der Skill neue-information die gesammelten Angaben einarbeitet, wenn akte-stand Änderungen meldet, oder wenn der Benutzer AKTE.md neu aufbauen oder prüfen lassen will.
 ---
 
 # AKTE.md aktualisieren
 
-1. Die Unterlagen müssen committet sein. Dann `akte-stand` ausführen.
+1. Die Unterlagen müssen committet sein. Sind sie es nicht
+   (`git status unterlagen/`), sie zuerst mit dem Skill `neue-information`
+   einarbeiten; der führt diesen Skill danach selbst aus. Sonst
+   `akte-stand` ausführen.
    Meldet es nichts und ist kein vollständiger Neubau gewünscht, ist
    `AKTE.md` aktuell. Meldet es nicht durchgesehene Änderungen an `AKTE.md`,
    stammen sie aus einem Bau, der nicht bis Schritt 5 kam: Sie gehören in

@@ -96,15 +96,19 @@ Weitere Anliegen:
 Einen neuen Befund, etwa einen MRT-Befund als PDF, gibt man Claude im
 Gespräch: Pfad nennen oder Datei in den Prompt ziehen, dazu, was es ist.
 Claude liest ihn, fragt nach, was zur Einordnung fehlt, legt ihn mit Datum,
-Art und Absender im Namen in `unterlagen/` ab, zieht `AKTE.md` und
-`BEURTEILUNG.md` nach und sagt, was sich an den nächsten Schritten ändert.
-Jeder Schritt wird ein Commit in der Akte.
+Art und Absender im Namen in `unterlagen/` ab und fragt, ob noch etwas
+dazukommt. Erst dann zieht Claude `BEURTEILUNG.md` und `AKTE.md` nach, für
+alle neuen Angaben auf einmal, und sagt, was sich an den nächsten Schritten
+ändert. Die Unterlagen und `BEURTEILUNG.md` kommen in einen Commit,
+`AKTE.md` nach dem Durchsehen in einen zweiten.
 
 Ebenso im Gespräch mitteilen lassen sich Beschwerden, Ergebnisse eines
 Arztgesprächs, Änderungen der Medikation und Messwerte. Claude nimmt nur auf,
 was neu und von Belang ist; Beobachtungen wie Schlaf oder Schmerzstärke nur
 zu Themen, die unter „Beobachten“ in `BEURTEILUNG.md` stehen, als Zeile in
-deren CSV. Den Eintrag zeigt Claude vorher zur Bestätigung.
+deren CSV. Den Eintrag zeigt Claude vorher zur Bestätigung. Ein neues
+Medikament oder eine geänderte Dosis prüft Claude gleich auf Gegenanzeigen
+und Wechselwirkungen, nicht erst beim Nachziehen.
 
 Liegen beim Start einer Sitzung neue Dateien in `unterlagen/` oder die
 Themenliste eines vergangenen Termins, spricht Claude sie von sich aus an.

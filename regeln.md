@@ -23,8 +23,8 @@ Akte getan hat, steht unter „Stand der Akte“ am Ende dieser Regeln.
   Nachricht ein.
 - Meldet der Stand neue oder geänderte Unterlagen, sprich sie nach der
   Begrüßung an. Hat sie noch niemand mit dem Benutzer besprochen, etwa ein
-  PDF mit einem Namen außerhalb des Schemas oder eine Änderung, die nicht
-  committet ist, schlag den Skill `neue-information` vor. Sonst schlag
+  PDF mit einem Namen außerhalb des Schemas, oder ist eine Änderung nicht
+  committet (`git status unterlagen/`), schlag den Skill `neue-information` vor. Sonst schlag
   `akte-aktualisieren` vor.
 - Meldet er nicht durchgesehene Änderungen an `AKTE.md`, schlag
   `akte-aktualisieren` vor. Bis dahin berätst du auf Grundlage der
@@ -110,7 +110,9 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
 - Medizinisches gehört in die Akte, nicht in dein Gedächtnis. Vorlieben des
   Benutzers zur Arbeitsweise darfst du dort speichern.
 - Jede abgeschlossene Änderung an Akte, Beurteilung oder Unterlagen wird ein
-  eigener Commit im Repo der Akte.
+  Commit im Repo der Akte. Neue Angaben aus einem Gespräch kommen gesammelt
+  in einen Commit, sobald sie eingearbeitet werden, wie im Skill
+  `neue-information` beschrieben; `AKTE.md` bekommt immer einen eigenen.
 
 # Evidenz
 

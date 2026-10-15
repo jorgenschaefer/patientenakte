@@ -5,12 +5,27 @@ description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborw
 
 # Neue Information
 
+Jede Angabe nimmst du gleich auf (Schritte 1 bis 5). Eingearbeitet wird
+einmal, wenn der Benutzer nichts mehr hinzuzufügen hat (Schritte 6 bis 10):
+So muss er die Akte nicht nach jeder Angabe neu durchsehen.
+
+Stehen in `unterlagen/` beim Aufruf schon Einträge aus einer früheren
+Sitzung, die nicht committet sind (`git status unterlagen/`), nimmst du sie
+wie neue Angaben auf: Statt einen Eintrag zu formulieren, zeigst du den
+vorhandenen und lässt ihn bestätigen. Weil er noch nicht committet ist,
+darfst du ihn dabei ändern oder entfernen. Die Einträge aus diesem Gespräch
+bleiben bis Schritt 7 absichtlich ohne Commit; sie zeigst du nicht erneut.
+
+## Aufnehmen
+
 1. **Prüfen, ob es hineingehört,** nach der Regel in `regeln.md`: neu und
    von Belang, oder ein Thema unter „Beobachten“ in `BEURTEILUNG.md`. Sonst
-   endet der Skill hier, ohne Eintrag und ohne Frage danach.
+   trägst du es nicht ein und fragst nicht danach. Liegen schon
+   aufgenommene Angaben ohne Commit vor, geht es mit Schritt 5 weiter, sonst
+   endet der Skill hier.
 2. **Nachfragen**, was zur Einordnung fehlt: Datum, wer was gesagt oder
    verordnet hat, seit wann, wie stark.
-3. **Ablegen:**
+3. **Ablegen,** noch ohne Commit:
    - **Befund als Datei:** lesen, dann ablegen als
      `unterlagen/JJJJ-MM-TT-<art>_<absender>.pdf` mit dem Datum des Befunds,
      nicht des Eingangs.
@@ -21,24 +36,30 @@ description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborw
    - **Beobachtungen und Messwerte:** die Zeile für die CSV des Themas aus
      „Beobachten“ zeigen; erst nach Bestätigung anhängen. Fehlt die Datei,
      sie mit den Spalten von dort als erster Zeile anlegen.
-
-   Dann committen.
-4. **AKTE.md** mit dem Skill `akte-aktualisieren` nachziehen.
-5. **Medikation prüfen,** wenn ein Mittel neu hinzukommt oder sich Dosis
+4. **Medikation prüfen,** wenn ein Mittel neu hinzukommt oder sich Dosis
    oder Schema ändern: mit dem Skill `leitlinie` die Fachinformation lesen,
    Abschnitt 4.3 (Gegenanzeigen) und 4.5 (Wechselwirkungen). Abgleichen mit
-   `AKTE.md`, wie unter „Evidenz“ in `regeln.md` beschrieben, auch gegen
-   Bedarfsmedikation und Nahrungsergänzung. Dem Benutzer das Ergebnis
-   sagen, auch wenn nichts dagegen spricht.
-6. **BEURTEILUNG.md prüfen:** Welche Einträge betrifft die Änderung, auch
-   unter „Beobachten“? Erledigte und überholte kommen mit Datum und Ergebnis
-   nach „Erledigt“, betroffene werden angepasst und neu datiert. Neue Fragen
-   belegst du mit dem Skill `leitlinie`. Was die Prüfung der Medikation
-   ergeben hat, kommt unter „Offen“ oder „Warnzeichen“. Committen.
-7. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
+   `AKTE.md` und den übrigen neuen Angaben, wie unter „Evidenz“ in
+   `regeln.md` beschrieben, auch gegen Bedarfsmedikation und
+   Nahrungsergänzung. Dem Benutzer das Ergebnis gleich sagen, auch wenn
+   nichts dagegen spricht. Spricht etwas dagegen, es gleich unter „Offen“
+   oder „Warnzeichen“ in `BEURTEILUNG.md` eintragen, damit es auch bei einer
+   abgebrochenen Sitzung nicht verloren geht.
+5. **Fragen, ob noch etwas dazukommt,** bevor du die Akte nachziehst. Was
+   noch kommt, nimmst du ab Schritt 1 auf.
+
+## Einarbeiten
+
+6. **BEURTEILUNG.md prüfen:** Welche Einträge betreffen die neuen Angaben,
+   auch unter „Beobachten“? Erledigte und überholte kommen mit Datum und
+   Ergebnis nach „Erledigt“, betroffene werden angepasst und neu datiert.
+   Neue Fragen belegst du mit dem Skill `leitlinie`.
+7. **Committen:** die neuen Unterlagen und `BEURTEILUNG.md` in einem Commit.
+8. **AKTE.md** mit dem Skill `akte-aktualisieren` nachziehen.
+9. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
    nächsten Schritten ändert. Verschiebt sich die Reihenfolge deutlich, den
    Skill `naechste-schritte` ausführen.
-8. **Notfallpass:** Betrifft die Änderung Diagnosen, Medikation, Allergien,
-   Implantate oder eine Schwangerschaft, auch beim Absetzen oder Ausheilen,
-   den Skill `notfallpass` ausführen und den Benutzer bitten, den Text im
-   Handy zu ersetzen.
+10. **Notfallpass:** Betrifft eine Angabe Diagnosen, Medikation, Allergien,
+    Implantate oder eine Schwangerschaft, auch beim Absetzen oder Ausheilen,
+    den Skill `notfallpass` ausführen und den Benutzer bitten, den Text im
+    Handy zu ersetzen.

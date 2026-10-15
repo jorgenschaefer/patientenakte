@@ -18,7 +18,7 @@ Medikation nachgezogen wird.
 Schon umgesetzt: Der Skill `notfallpass` gibt alle Mittel mit den übrigen
 Angaben für den Notfall als Text zum Kopieren in den Notfallpass des Handys
 aus, nach jeder Änderung von selbst (`skills/neue-information/SKILL.md`,
-Schritt 8). Was fehlt, ist ein Plan zum Ausdrucken und Vorlegen.
+Schritt 10). Was fehlt, ist ein Plan zum Ausdrucken und Vorlegen.
 
 Idee des Benutzers: ein Script, das aus der Akte einen Plan im offiziellen
 Format als PDF erzeugt. Das Format legt die KBV fest (Anlage 3 zur
