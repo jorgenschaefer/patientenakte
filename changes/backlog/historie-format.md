@@ -10,7 +10,7 @@ Datum der Aussage, und Einträge werden nur angehängt. Erfährt der Benutzer vo
 einem Ereignis erst später, geht nur eins von beiden.
 
 Außerdem zitiert der Agent Einträge als `[historie TT.MM.JJJJ]`
-(`agents/akte.md:42`). Gibt es mehrere Einträge am selben Tag, ist nicht klar,
+(`agents/akte.md:41`). Gibt es mehrere Einträge am selben Tag, ist nicht klar,
 welcher gemeint ist.
 
 Idee aus der Überprüfung: Einträge in der Reihenfolge des Eingangs anhängen,

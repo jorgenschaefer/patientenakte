@@ -9,7 +9,7 @@ utility: L
 jede andere Angabe: aufnehmen, `AKTE.md` nachziehen, `BEURTEILUNG.md` prüfen.
 Kein Schritt prüft Gegenanzeigen und Wechselwirkungen mit den übrigen
 Mitteln, auch nicht mit Bedarfsmedikation und Nahrungsergänzung, die die
-Anamnese erfasst (`skills/anamnese/SKILL.md:42-43`).
+Anamnese erfasst (`skills/anamnese/SKILL.md:39-40`).
 
 Idee aus der Überprüfung: bei jeder Änderung die Fachinformation lesen
 (Abschnitte 4.3 Gegenanzeigen und 4.5 Wechselwirkungen, frei zugänglich etwa

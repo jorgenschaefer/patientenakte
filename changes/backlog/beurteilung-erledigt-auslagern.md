@@ -7,7 +7,7 @@ utility: S
 
 `regeln.md:33-34` lässt vor jeder Beratung `BEURTEILUNG.md` lesen. Der
 Abschnitt „Erledigt“ (`vorlagen/BEURTEILUNG.md:15-17`) nimmt nur zu: Nach
-`skills/neue-information/SKILL.md:26-28` wandert jeder erledigte oder
+`skills/neue-information/SKILL.md:22-24` wandert jeder erledigte oder
 überholte Eintrag dorthin. Bei einer langen Akte kostet das in jeder Sitzung
 Kontext, ohne für die Beratung zu zählen.
 

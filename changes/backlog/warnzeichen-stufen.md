@@ -1,25 +1,23 @@
 ---
-effort: M
-utility: XL
+effort: S
+utility: L
 ---
 
-# Warnzeichen ohne Stufen und ohne Vorgehen, 116117 fehlt
+# Warnzeichen ohne Stufen, 116117 fehlt
 
-Die Prüfung auf Warnzeichen steht in `regeln.md:84`,
-`skills/neue-information/SKILL.md:8-10` und
-`skills/naechste-schritte/SKILL.md:28`, aber nirgends, wie geprüft wird:
-welche Fragen, welche Leitsymptome, welche Stufen. Sie hängt ganz am
-Gedächtnis des Modells, obwohl `regeln.md` sonst verlangt, sich nicht darauf
-zu verlassen.
+`regeln.md:21` und `regeln.md:67` kennen nur zwei Stufen: ärztliche
+Behandlung noch am selben Tag oder Notruf 112. Der ärztliche
+Bereitschaftsdienst 116117 und der Giftnotruf kommen nicht vor, ebenso wenig
+eine Stufe für „in den nächsten Tagen zum Hausarzt“.
 
-Die Regeln kennen nur „ärztliche Behandlung noch am selben Tag“ und den Notruf
-112. Der ärztliche Bereitschaftsdienst 116117 und der Giftnotruf kommen nicht
-vor.
+Die Warnzeichen selbst und gezielte Rückfragen dazu kennt ein Modell auch
+ohne Anweisung. Was fehlt, ist eine feste Abstufung, an der sich die Antwort
+ausrichtet.
 
-Warnzeichen, die für diesen Patienten gelten, werden in `naechste-schritte`
-jedes Mal neu formuliert und nirgends festgehalten.
+Warnzeichen, die für diesen Patienten gelten, werden in
+`skills/naechste-schritte/SKILL.md:27-28` jedes Mal neu formuliert und
+nirgends festgehalten.
 
-Idee aus der Überprüfung: eine Referenz oder ein Skill mit Stufen (112 –
-Notaufnahme oder 116117 – Hausarzt in ein bis drei Tagen – regulärer Termin)
-und gezielten Rückfragen; fallbezogene Warnzeichen in einem eigenen Abschnitt
-von `BEURTEILUNG.md`.
+Idee aus der Überprüfung: Stufen 112 – Notaufnahme oder 116117 – Hausarzt in
+ein bis drei Tagen – regulärer Termin; fallbezogene Warnzeichen in einem
+eigenen Abschnitt von `BEURTEILUNG.md`.

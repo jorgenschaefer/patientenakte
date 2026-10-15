@@ -3,17 +3,18 @@ effort: M
 utility: M
 ---
 
-# Befunde nur als PDF, ohne OCR und ohne Abgleich mit dem Patienten
+# Befunde nur als PDF, Scans ohne Textfassung, keine Erkennung von Duplikaten
 
-`skills/neue-information/SKILL.md:15-17` sieht für Befunde nur
+`skills/neue-information/SKILL.md:11-13` sieht für Befunde nur
 `unterlagen/JJJJ-MM-TT-<art>_<absender>.pdf` vor. Befunde kommen aber oft als
-Handyfoto oder als Scan ohne Textebene. Bei Scans liefert `pdftotext` nichts
-(`agents/akte.md:22`, `skills/leitlinie/SKILL.md:24`), sodass jede spätere
-Suche im Text oder Prüfung gegen die Quelle ins Leere geht.
+Handyfoto.
 
-Beim Ablegen wird auch nicht geprüft,
-- ob Name und Geburtsdatum auf dem Befund zum Patienten der Akte passen,
-- ob dieselbe Datei schon in `unterlagen/` liegt.
+Scans ohne Textebene kann das Read-Tool als Bild lesen, `pdftotext` liefert
+für sie aber nichts (`skills/leitlinie/SKILL.md:23`). Damit geht jede Suche
+im Text und jede maschinelle Prüfung gegen die Quelle ins Leere.
+
+Beim Ablegen wird nicht geprüft, ob dieselbe Datei schon in `unterlagen/`
+liegt.
 
 Idee aus der Überprüfung: Bilder zulassen oder in PDF wandeln, Scans mit OCR
 (z. B. `ocrmypdf`) durchsuchbar machen, Duplikate über die Prüfsumme erkennen.
