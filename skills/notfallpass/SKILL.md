@@ -10,7 +10,9 @@ eine fremde Praxis. Er steht auf dem Sperrbildschirm und soll auf einen
 Handybildschirm passen.
 
 1. `akte-stand` ausführen; meldet es Änderungen, zuerst den Skill
-   `akte-aktualisieren`.
+   `akte-aktualisieren`, und erst weiter, wenn `AKTE.md` committet ist.
+   Gibt der Benutzer das Ok für `AKTE.md` nicht, keinen Notfallpass
+   ausgeben und das sagen.
 2. Aus `AKTE.md` zusammenstellen, nach den Feldern des Notfallpasses, jedes
    als eigener Block zum Kopieren:
    - **Erkrankungen:** Diagnosen, die im Notfall zählen, etwa Diabetes,
@@ -27,9 +29,17 @@ Handybildschirm passen.
      Telefonnummer.
    - **Blutgruppe, Größe, Gewicht,** wenn bekannt.
 
-   Nur, was in `AKTE.md` steht, ohne Quellen in eckigen Klammern. Leere
-   Felder weglassen. Fachbegriffe und gängige Abkürzungen sind erlaubt, die
-   Leser sind Fachleute.
-3. Dazu sagen, welche Felder leer geblieben sind, und dass Notfallkontakte
-   und Organspende im Handy selbst eingetragen werden. Nennt der Benutzer
-   etwas Fehlendes, kommt es über den Skill `neue-information` in die Akte.
+   Nur, was in `AKTE.md` steht, ohne Quellen in eckigen Klammern, und nur
+   die geltenden Angaben, nie was dort als überholt steht. Keine
+   Verneinung, die `AKTE.md` nicht selbst enthält: „keine Allergien“ oder
+   „keine Implantate“ nur, wenn es dort so steht; dass etwas fehlt, heißt
+   nicht, dass es das nicht gibt. Leere Felder weglassen. Fachbegriffe und
+   gängige Abkürzungen sind erlaubt, die Leser sind Fachleute.
+3. Immer alle Felder vollständig ausgeben, auch wenn sich nur eines
+   geändert hat, damit im Handy keine Mischung aus alten und neuen
+   Fassungen entsteht.
+4. Dazu sagen, welche Felder leer geblieben sind; steht im Handy dort
+   noch etwas, soll der Benutzer es leeren. Außerdem sagen, dass
+   Notfallkontakte und Organspende im Handy selbst eingetragen werden.
+   Nennt der Benutzer etwas Fehlendes, kommt es über den Skill
+   `neue-information` in die Akte.
