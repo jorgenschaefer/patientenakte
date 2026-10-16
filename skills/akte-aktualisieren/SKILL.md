@@ -10,9 +10,8 @@ description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach
    einarbeiten; der führt diesen Skill danach selbst aus. Sonst
    `akte-stand` ausführen.
    Meldet es nichts und ist kein vollständiger Neubau gewünscht, ist
-   `AKTE.md` aktuell. Meldet es nicht durchgesehene Änderungen an `AKTE.md`,
-   stammen sie aus einem Bau, der nicht bis Schritt 5 kam: Sie gehören in
-   Schritt 4 mit dazu. Ohne gemeldete Dateien gleich mit Schritt 4 weiter.
+   `AKTE.md` aktuell. Meldet es einen nicht abgeschlossenen Bau, gehören
+   dessen Änderungen an `AKTE.md` in Schritt 4 mit dazu. Ohne gemeldete Dateien gleich mit Schritt 4 weiter.
 2. Den Subagenten `patientenakte:akte` starten. Im Auftrag stehen die
    Ausgabe von `akte-stand` und die Art des Baus:
    - **schrittweise** in `AKTE.md`: der Normalfall;
@@ -41,17 +40,14 @@ description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach
    Bestätigte Funde in `AKTE.md` berichtigst du nach den Regeln des
    Subagenten `akte` (Quelle, Stand). Bestätigte Funde in `BEURTEILUNG.md`
    berichtigst du mit dem Skill `beurteilung-aendern`, Abschnitt
-   „Berichtigung nach der Gegenprüfung von AKTE.md“. Dann dem Benutzer die Änderungen zeigen:
-   `git diff AKTE.md`, inhaltlich zusammengefasst, und die Funde der
-   Gegenprüfung. Die offenen Widersprüche und Unklarheiten, die der
-   Subagent `akte` meldet, stellst du ihm als Fragen; die geklärten nennst
-   du nur kurz mit ihrer Quelle. Sag ihm, was sein Ok bestätigt: dass
-   `AKTE.md` die Unterlagen richtig wiedergibt. Ist eine Unterlage selbst
-   falsch, spricht das nicht gegen das Ok; die Korrektur folgt in Schritt 6.
-   Erkennt der Benutzer etwas als falsch übernommen, berichtigst du es nach
-   den Regeln des Subagenten `akte` und zeigst es vor dem Ok.
-5. Nach dem Ok `AKTE.md` committen. Ohne Ok die Änderungen mit
-   `git restore AKTE.md` verwerfen; war `AKTE.md` neu, sie löschen.
-6. Ist eine Unterlage selbst falsch oder nennt der Benutzer beim Durchsehen
-   Neues, kommt das erst jetzt über den Skill `neue-information` in
-   `unterlagen/`; der zieht `AKTE.md` erneut nach.
+   „Berichtigung nach der Gegenprüfung von AKTE.md“.
+5. `AKTE.md` committen.
+6. Dem Benutzer die Änderungen nennen: den Diff des Commits, inhaltlich
+   zusammengefasst, und die Funde der Gegenprüfung. Die offenen
+   Widersprüche und Unklarheiten, die der Subagent `akte` meldet, stellst du
+   ihm als Fragen; die geklärten nennst du nur kurz mit ihrer Quelle.
+7. Erkennt der Benutzer etwas als falsch übernommen, berichtigst du es nach
+   den Regeln des Subagenten `akte` und gehst ab Schritt 4 weiter, mit der
+   Unterlage, aus der es stammt, als Quelle. Ist eine Unterlage selbst
+   falsch oder nennt der Benutzer Neues, kommt das über den Skill
+   `neue-information` in `unterlagen/`; der zieht `AKTE.md` erneut nach.

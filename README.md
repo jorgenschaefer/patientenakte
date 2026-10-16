@@ -105,7 +105,9 @@ Art und Absender im Namen in `unterlagen/` ab und fragt, ob noch etwas
 dazukommt. Erst dann zieht Claude `BEURTEILUNG.md` und `AKTE.md` nach, für
 alle neuen Angaben auf einmal, und sagt, was sich an den nächsten Schritten
 ändert. Die Unterlagen und `BEURTEILUNG.md` kommen in einen Commit,
-`AKTE.md` nach dem Durchsehen in einen zweiten.
+`AKTE.md` nach der Gegenprüfung in einen zweiten. Was sich an `AKTE.md`
+geändert hat, fasst Claude danach zusammen, und Widersprüche zwischen den
+Unterlagen stellt Claude als Fragen.
 
 Ebenso im Gespräch mitteilen lassen sich Beschwerden, Ergebnisse eines
 Arztgesprächs, Änderungen der Medikation und Messwerte. Claude nimmt nur auf,
@@ -141,7 +143,7 @@ Das Plugin im Einzelnen:
 - `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
   `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
-  eingearbeitet sind und ob `AKTE.md` noch nicht durchgesehen ist.
+  eingearbeitet sind und ob ein Bau von `AKTE.md` nicht abgeschlossen ist.
 - `vorlagen/` – Vorlagen für `BEURTEILUNG.md` und `literatur/README.md`.
 
 ## Lizenz

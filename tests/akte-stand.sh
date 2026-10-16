@@ -14,7 +14,7 @@ trap 'rm -rf "$tmp"' EXIT
 export GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_CEILING_DIRECTORIES=$tmp
 export GIT_AUTHOR_NAME=t GIT_AUTHOR_EMAIL=t@t GIT_COMMITTER_NAME=t GIT_COMMITTER_EMAIL=t@t
 
-nicht_durchgesehen='AKTE.md hat Änderungen, die nicht committet und noch nicht durchgesehen sind.'
+nicht_abgeschlossen='AKTE.md hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist.'
 fehler=0
 
 main() {
@@ -23,7 +23,7 @@ main() {
   auf_dem_stand
   neu_und_entfernt
   pruefsummen_nicht_committet
-  gebaut_nicht_durchgesehen
+  gebaut_nicht_abgeschlossen
   neue_akte_nie_committet
   ohne_git
   exit $fehler
@@ -73,18 +73,18 @@ pruefsummen_nicht_committet() {
   neue_akte
   "$stand" --aktualisieren
   echo zwei >> unterlagen/a.md
-  pruefe "Prüfsummen nicht committet" "$nicht_durchgesehen
+  pruefe "Prüfsummen nicht committet" "$nicht_abgeschlossen
 geändert: unterlagen/a.md" "$("$stand")"
 }
 
-gebaut_nicht_durchgesehen() {
+gebaut_nicht_abgeschlossen() {
   neue_akte
   "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
   echo zwei >> unterlagen/a.md && git commit -qm a2 -- unterlagen/a.md
   "$stand" --aktualisieren
-  pruefe "Gebaut, nicht durchgesehen" "$nicht_durchgesehen" "$("$stand")"
+  pruefe "Gebaut, nicht abgeschlossen" "$nicht_abgeschlossen" "$("$stand")"
   echo drei >> unterlagen/a.md && git commit -qm a3 -- unterlagen/a.md
-  pruefe "Nicht durchgesehen, ohne Commit-Zeile" "$nicht_durchgesehen
+  pruefe "Nicht abgeschlossen, ohne Commit-Zeile" "$nicht_abgeschlossen
 geändert: unterlagen/a.md" "$("$stand")"
 }
 
@@ -94,7 +94,7 @@ neue_akte_nie_committet() {
   mkdir unterlagen && echo eins > unterlagen/a.md
   git add . && git commit -qm unterlagen
   printf '# Akte\n' > AKTE.md && "$stand" --aktualisieren
-  pruefe "Neue AKTE.md, nie committet" "$nicht_durchgesehen" "$("$stand")"
+  pruefe "Neue AKTE.md, nie committet" "$nicht_abgeschlossen" "$("$stand")"
 }
 
 ohne_git() {

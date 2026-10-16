@@ -1,6 +1,6 @@
 ---
 name: gegenpruefung
-description: Prüft eine noch nicht committete Änderung an AKTE.md oder BEURTEILUNG.md in frischem Kontext gegen ihre Quellen und gegen beide Dateien, ohne etwas zu ändern. Wird vor dem Ok für AKTE.md und vor jedem Commit an BEURTEILUNG.md gestartet.
+description: Prüft eine noch nicht committete Änderung an AKTE.md oder BEURTEILUNG.md in frischem Kontext gegen ihre Quellen und gegen beide Dateien, ohne etwas zu ändern. Wird vor jedem Commit an AKTE.md und BEURTEILUNG.md gestartet.
 tools: Read, Bash, Grep, Glob
 ---
 

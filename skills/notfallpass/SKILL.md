@@ -11,8 +11,6 @@ Handybildschirm passen.
 
 1. `akte-stand` ausführen; meldet es Änderungen, zuerst den Skill
    `akte-aktualisieren`, und erst weiter, wenn `AKTE.md` committet ist.
-   Gibt der Benutzer das Ok für `AKTE.md` nicht, keinen Notfallpass
-   ausgeben und das sagen.
 2. Aus `AKTE.md` zusammenstellen, nach den Feldern des Notfallpasses, jedes
    als eigener Block zum Kopieren:
    - **Erkrankungen:** Diagnosen, die im Notfall zählen, etwa Diabetes,

@@ -51,8 +51,7 @@ Schritt 7.
 ## Berichtigung nach der Gegenprüfung von AKTE.md
 
 Meldet die Gegenprüfung einer Änderung an `AKTE.md` bestätigte Funde in
-`BEURTEILUNG.md`, berichtigst du sie gleich. In einen Commit kommt die
-Berichtigung erst, wenn der Benutzer die Funde gesehen hat: Hatte
-`BEURTEILUNG.md` vorher keine Änderungen ohne Commit, committest du sie dann,
-ohne weitere Gegenprüfung; sonst kommt sie mit diesen Änderungen in deren
+`BEURTEILUNG.md`, berichtigst du sie gleich. Hatte `BEURTEILUNG.md` vorher
+keine Änderungen ohne Commit, committest du die Berichtigung gleich, ohne
+weitere Gegenprüfung; sonst kommt sie mit diesen Änderungen in deren
 Commit, später und mit deren Gegenprüfung.

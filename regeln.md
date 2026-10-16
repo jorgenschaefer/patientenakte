@@ -26,7 +26,7 @@ Akte getan hat, steht unter „Stand der Akte“ am Ende dieser Regeln.
   PDF mit einem Namen außerhalb des Schemas, oder ist eine Änderung nicht
   committet (`git status unterlagen/`), schlag den Skill `neue-information` vor. Sonst schlag
   `akte-aktualisieren` vor.
-- Meldet er nicht durchgesehene Änderungen an `AKTE.md`, schlag
+- Meldet er einen nicht abgeschlossenen Bau von `AKTE.md`, schlag
   `akte-aktualisieren` vor. Bis dahin berätst du auf Grundlage der
   committeten Fassung, `git show HEAD:AKTE.md`.
 - Solange Unterlagen, die der Stand als neu oder geändert meldet, nicht in
@@ -64,8 +64,8 @@ jeder Beratung `AKTE.md` und `BEURTEILUNG.md`.
   vorher und werden danach gelöscht.
 
 Das Script `akte-stand` aus dem Plugin liegt im `PATH` und meldet, welche
-Unterlagen noch nicht in `AKTE.md` eingearbeitet sind und ob `AKTE.md`
-Änderungen hat, die noch nicht durchgesehen sind.
+Unterlagen noch nicht in `AKTE.md` eingearbeitet sind und ob ein Bau von
+`AKTE.md` nicht abgeschlossen ist.
 
 In der Beratung liest du `unterlagen/` nur gezielt: wenn eine Angabe in
 `AKTE.md` zweifelhaft ist oder es auf den genauen Wortlaut ankommt.
@@ -143,15 +143,15 @@ Schritt 4 des Skills `akte-aktualisieren`, für `BEURTEILUNG.md` im Skill
 - **Funde:** Jeden Fund liest du an der genannten Fundstelle nach und
   berichtigst die bestätigten. Dem Benutzer nennst du alle Funde: die
   berichtigten mit der Berichtigung, die verworfenen mit Grund, die nicht
-  prüfbaren als ungeprüft mit Grund. Bei `AKTE.md` vor der Bitte um das Ok,
-  bei `BEURTEILUNG.md` vor dem Commit. Danach läuft die Gegenprüfung für
+  prüfbaren als ungeprüft mit Grund. Bei `AKTE.md` mit den Änderungen nach
+  dem Commit, bei `BEURTEILUNG.md` vor dem Commit. Danach läuft die Gegenprüfung für
   diese Änderung nicht noch einmal.
 - **Keine Funde:** Antwortet der Subagent „Keine Funde.“, sagst du das dem
   Benutzer in einem Satz.
 - **Gescheitert:** Bricht der Subagent ab oder gibt er weder Funde noch
   „Keine Funde.“ zurück, sagst du dem Benutzer, dass die Gegenprüfung nicht
-  gelaufen ist, nicht „nichts gefunden“. Dann geht es weiter: bei `AKTE.md`
-  mit der Bitte um das Ok, bei `BEURTEILUNG.md` mit dem Commit.
+  gelaufen ist, nicht „nichts gefunden“. Dann geht es mit dem Commit
+  weiter.
 
 # Evidenz
 

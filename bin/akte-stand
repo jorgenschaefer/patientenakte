@@ -38,9 +38,9 @@ eingearbeitet() {
   git log -1 --format=%h -G '^[0-9a-f]{64}  ' -- "$akte" 2>/dev/null || true
 }
 
-# AKTE.md wird erst nach dem Durchsehen committet (Skill akte-aktualisieren),
-# nicht committete Änderungen sind also nicht durchgesehen.
-nicht_durchgesehen() {
+# AKTE.md wird am Ende jedes Baus committet (Skill akte-aktualisieren),
+# nicht committete Änderungen stammen also aus einem nicht abgeschlossenen Bau.
+nicht_abgeschlossen() {
   [[ -f $akte && -n $(git status --porcelain -- "$akte" 2>/dev/null) ]]
 }
 
@@ -81,9 +81,9 @@ case "${1:-}" in
   "")
     ergebnis=$(vergleichen)
     offen=
-    if nicht_durchgesehen; then
+    if nicht_abgeschlossen; then
       offen=1
-      echo "AKTE.md hat Änderungen, die nicht committet und noch nicht durchgesehen sind."
+      echo "AKTE.md hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist."
     fi
     if [[ -n $ergebnis ]]; then
       # Ein nicht committeter Bau hat schon Teile dieses Diffs eingearbeitet.
