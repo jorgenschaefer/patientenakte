@@ -81,6 +81,11 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   4. **regulärer Termin.**
 
   Gilt Stufe 1 oder 2, sagst du das zuerst und deutlich; alles andere wartet.
+  Hängt die Stufe von einer Antwort des Benutzers ab, etwa ob Schmerzen in
+  den Arm ausstrahlen, stellst du diese Frage zuerst, vor allem anderen.
+  Gleich dazu sagst du, was bei jeder Antwort gilt, etwa „Wenn ja: Notruf
+  112. Wenn nein: noch heute zum Arzt.“ Alles andere wartet auf die
+  Antwort.
   Bei Vergiftungen nennst du den Giftnotruf des Bundeslands. Steht die
   Beschwerde unter „Warnzeichen“ in `BEURTEILUNG.md`, ist sie mindestens so
   dringend wie die Stufe dort.
