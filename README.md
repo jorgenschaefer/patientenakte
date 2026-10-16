@@ -120,7 +120,7 @@ Themenliste eines vergangenen Termins, spricht Claude sie von sich aus an.
 
 ## Aufbau
 
-Das Plugin enthält nur das Gerüst: Regeln, Skills, einen Agenten und ein
+Das Plugin enthält nur das Gerüst: Regeln, Skills, zwei Agenten und ein
 Script. Jede Akte ist ein eigenes, privates Git-Repo:
 
 ```
@@ -137,6 +137,8 @@ Das Plugin im Einzelnen:
 - `skills/` – `neue-information`, `naechste-schritte`, `termin-vorbereiten`,
   `notfallpass`, `vorsorge`, `akte-aktualisieren`, `anamnese`, `leitlinie`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
+- `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
+  `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
   eingearbeitet sind und ob `AKTE.md` noch nicht durchgesehen ist.
 - `vorlagen/` – Vorlagen für `BEURTEILUNG.md` und `literatur/README.md`.

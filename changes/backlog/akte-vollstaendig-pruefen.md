@@ -8,9 +8,8 @@ utility: M
 Es gibt keine Möglichkeit, beide Dateien vollständig zu prüfen, inhaltlich
 und auf das aktuelle Format. Inhaltlich gibt es für `AKTE.md` nur den Bau
 „vollständig zur Kontrolle“ (`skills/akte-aktualisieren/SKILL.md:20`), für
-`BEURTEILUNG.md` nichts. Fehler, die vor einer Gegenprüfung nach Änderungen
-(`gegenpruefung-nach-aenderung.md`) in die Dateien gekommen sind, findet
-niemand.
+`BEURTEILUNG.md` nichts. Fehler, die vor der Gegenprüfung nach Änderungen
+(`agents/gegenpruefung.md`) in die Dateien gekommen sind, findet niemand.
 
 Das Format ändert sich mit dem Plugin, die Akten ziehen aber nicht nach:
 `BEURTEILUNG.md` wird einmal bei der Anamnese aus `vorlagen/BEURTEILUNG.md`

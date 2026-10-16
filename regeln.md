@@ -103,7 +103,10 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   etwas Falsches, weil eine Unterlage falsch ist, kommt die Korrektur in
   `historie.md`.
 - `BEURTEILUNG.md` änderst du frei, wenn eine Information für künftige
-  Gespräche wichtig ist.
+  Gespräche wichtig ist, ohne Ok des Benutzers. Vor jedem Commit, der sie
+  ändert, gleich aus welchem Skill, lässt du die Änderung gegenprüfen (siehe
+  „Gegenprüfung“). Ausgenommen sind der Commit, der sie aus der Vorlage
+  anlegt, und die Berichtigung eines Funds der Gegenprüfung.
 - Veränderliche Angaben tragen ein Stand-Datum. Ist ein Stand veraltet und
   passt er zum Thema, frag nach dem aktuellen Stand. Wie schnell etwas
   veraltet, hängt von der Art ab: ein Physiotherapie-Beginn etwa nach einer
@@ -114,6 +117,35 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   Commit im Repo der Akte. Neue Angaben aus einem Gespräch kommen gesammelt
   in einen Commit, sobald sie eingearbeitet werden, wie im Skill
   `neue-information` beschrieben; `AKTE.md` bekommt immer einen eigenen.
+  Ändert der Commit `AKTE.md` oder `BEURTEILUNG.md`, kommt er erst nach der
+  Gegenprüfung.
+
+# Gegenprüfung
+
+Eine Änderung an `AKTE.md` oder `BEURTEILUNG.md` prüft vor dem Commit der
+Subagent `patientenakte:gegenpruefung` in frischem Kontext: für `AKTE.md` in
+Schritt 4 des Skills `akte-aktualisieren`, für `BEURTEILUNG.md` vor jedem
+Commit, der sie ändert.
+
+- **Auftrag:** die geprüfte Datei und die Quellen der Änderung als Pfade,
+  bei `AKTE.md` mit den Angaben aus Schritt 4 von `akte-aktualisieren`.
+  Den Diff liest der Subagent selbst mit `git diff HEAD -- <datei>`. Bei
+  `BEURTEILUNG.md` sind die Quellen die neuen oder geänderten Unterlagen,
+  die mit ihr in denselben Commit kommen; sind es keine, steht das im
+  Auftrag. Sonst nichts: keine Begründung und keine Überlegung zur
+  Änderung, keine Zusammenfassung, keine weiteren Unterlagen oder Literatur.
+- **Funde:** Jeden Fund liest du an der genannten Fundstelle nach und
+  berichtigst die bestätigten. Dem Benutzer nennst du alle Funde: die
+  berichtigten mit der Berichtigung, die verworfenen mit Grund, die nicht
+  prüfbaren als ungeprüft mit Grund. Bei `AKTE.md` vor der Bitte um das Ok,
+  bei `BEURTEILUNG.md` vor dem Commit. Danach läuft die Gegenprüfung für
+  diese Änderung nicht noch einmal.
+- **Keine Funde:** Antwortet der Subagent „Keine Funde.“, sagst du das dem
+  Benutzer in einem Satz.
+- **Gescheitert:** Bricht der Subagent ab oder gibt er weder Funde noch
+  „Keine Funde.“ zurück, sagst du dem Benutzer, dass die Gegenprüfung nicht
+  gelaufen ist, nicht „nichts gefunden“. Dann geht es weiter: bei `AKTE.md`
+  mit der Bitte um das Ok, bei `BEURTEILUNG.md` mit dem Commit.
 
 # Evidenz
 

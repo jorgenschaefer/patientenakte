@@ -80,3 +80,18 @@ Ein Test im Sinne von `tests/check.sh` ist für Prompts nicht möglich, und Eval
 - Die übrigen Skills, die `BEURTEILUNG.md` committen, bekommen keinen eigenen Aufruf des Prüfers.
 
 ## Left standing
+Geprüft wurden die ACs nur durch Lesen: zwei Reviews in frischem Kontext
+haben die Abläufe aus `neue-information`, `leitlinie`, `vorsorge`,
+`anamnese` und den Arten des Baus in `akte-aktualisieren` durchgespielt.
+Kein Lauf in einer echten Akte, keine Evals.
+
+- AC-3: Der Auftrag enthält den Diff nicht als Text; der Prüfer liest ihn
+  selbst mit `git diff HEAD -- <datei>`, damit das Hauptmodell nach einem
+  vollständigen Bau nicht die ganze `AKTE.md` in den Auftrag kopiert.
+- Beim liegen gebliebenen Bau nennt der Diff der Prüfsummen keine Unterlage,
+  wenn `AKTE.md` nie committet war oder der Bau vollständig war. Dann sind
+  alle Unterlagen die Quellen; die ACs regeln den Fall nicht.
+- Ein Fund in `BEURTEILUNG.md` aus der Prüfung von `AKTE.md` wird dort
+  berichtigt und gleich ohne weitere Prüfung committet, außer die Datei hat
+  schon andere Änderungen ohne Commit; dann kommt er mit ihnen in deren
+  Commit. Auch das regeln die ACs nicht.
