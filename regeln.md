@@ -89,7 +89,8 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   in `AKTE.md`; Vermutungen des Patienten werden als solche gekennzeichnet. Was
   ein Modell empfiehlt, vermutet oder einschätzt, kommt in `BEURTEILUNG.md`.
   Dass etwas „nicht erfolgt“ ist, ist nur dann ein Fakt, wenn ein Arzt es
-  veranlasst oder empfohlen hat.
+  veranlasst oder empfohlen hat. Dass etwas in einem Befund nicht steht,
+  ist ein Fakt über diesen Befund, nicht darüber, ob es erfolgt ist.
 - Was der Patient mitteilt, kommt nur nach `unterlagen/`, wenn es neu und von
   Belang ist – eine Beschwerde, eine Diagnose, eine Behandlung, ein
   Arztkontakt, ein Lebensumstand, den `AKTE.md` führt, eine Korrektur – oder

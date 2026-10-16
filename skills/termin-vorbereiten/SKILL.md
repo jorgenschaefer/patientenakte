@@ -19,7 +19,9 @@ description: Erstellt eine Themenliste für einen bevorstehenden Arzt- oder Phys
      Jede Frage so formuliert, dass man sie vorlesen kann, mit kurzer
      Begründung und Quelle.
    - **Zur Info für die Praxis:** die für diesen Termin wichtigen Befunde,
-     Medikation und Vorgeschichte in wenigen Zeilen.
+     Medikation und Vorgeschichte in wenigen Zeilen. Nur die geltenden
+     Angaben, nie was in `AKTE.md` als überholt steht; Daten wie den Beginn
+     einer Therapie aus `AKTE.md` abschreiben.
 
    Allgemeinverständlich, ohne Abkürzungen, die die Praxis nicht kennt.
 4. Committen.

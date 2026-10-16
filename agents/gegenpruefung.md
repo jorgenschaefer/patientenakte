@@ -62,6 +62,8 @@ Quelle; sie zählen nur, wo die Änderung ihnen widerspricht.
 - eine veränderliche Angabe ohne Stand-Datum;
 - eine Angabe, die eine neue Unterlage überholt hat und die stehen geblieben
   ist;
+- bei einem Widerspruch, der sichtbar bleibt, eine überholte Angabe ohne
+  „überholt“ oder in einer eigenen Zeile statt hinter der geltenden;
 - ein Widerspruch zu einer unveränderten Angabe in `AKTE.md`;
 - ein Eintrag in `BEURTEILUNG.md`, dem eine neue Angabe in `AKTE.md`
   widerspricht.

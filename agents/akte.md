@@ -35,7 +35,12 @@ aus `akte-stand` (neu, geändert, entfernt).
   keine spätere Unterlage, meldest du sie auch in der Rückmeldung unter
   „Offen“, damit der Benutzer klärt, ob sie erledigt ist. Vermutungen des
   Patienten mit „(eigene Vermutung)“ kennzeichnen. Dass etwas nicht erfolgt
-  ist, nur, wenn ein Arzt es veranlasst oder empfohlen hat.
+  ist, nur, wenn ein Arzt es veranlasst oder empfohlen hat. Dass ein
+  veranlasster oder unter „Offen“ geführter Wert oder eine solche
+  Untersuchung in einem Befund fehlt, ist dagegen ein Fakt über diesen
+  Befund, nie „nicht erfolgt“. Der Punkt bleibt mit diesem Vermerk unter
+  „Offen“ stehen, etwa `HbA1c veranlasst [historie 20.02.2025]; nicht
+  enthalten in [2025-03-01-labor]`.
 - **Diagnosesicherheit:** Verdacht, Zustand nach, Ausschluss und
   Verneinungen wie „kein Anhalt für“ wörtlich übernehmen, ebenso Seite,
   Lokalisation und Schweregrad. Aus „V. a. Meniskusriss“ wird nie
@@ -46,7 +51,11 @@ aus `akte-stand` (neu, geändert, entfernt).
 - **Widersprüche:** Es gilt die neuere oder die ausdrücklich korrigierende
   Angabe. Zählt der Widerspruch für die Behandlung, bleibt er mit beiden
   Quellen sichtbar, z. B. wenn ein Befund ein Medikament nennt, das laut
-  Patient abgesetzt ist.
+  Patient abgesetzt ist. Die überholte Angabe steht dann nie als eigene
+  Angabe da, sondern in derselben Zeile hinter der geltenden, ausdrücklich
+  als überholt, etwa `Ramipril abgesetzt am 03.02.2025 [historie
+  03.02.2025]; überholt: im Arztbrief vom 20.01.2025 noch als aktuell
+  [2025-01-20-arztbrief]`.
 - **Quellen:** Jede Angabe endet mit ihrer Quelle in eckigen Klammern: Befunde
   mit dem Dateinamen ohne Endung (`[2025-03-01-labor]`), sonst
   `[historie TT.MM.JJJJ]` mit dem Datum, an dem der Eintrag mitgeteilt
