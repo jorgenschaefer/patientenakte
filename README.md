@@ -135,7 +135,8 @@ Das Plugin im Einzelnen:
 - `regeln.md` – die Regeln für die Beratung; ein SessionStart-Hook spielt sie
   mit dem Stand der Akte in jede Sitzung ein.
 - `skills/` – `neue-information`, `naechste-schritte`, `termin-vorbereiten`,
-  `notfallpass`, `vorsorge`, `akte-aktualisieren`, `anamnese`, `leitlinie`.
+  `notfallpass`, `vorsorge`, `akte-aktualisieren`, `beurteilung-aendern`,
+  `anamnese`, `leitlinie`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
   `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.

@@ -112,11 +112,9 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
 - `AKTE.md` änderst du nur über den Skill `akte-aktualisieren`. Steht dort
   etwas Falsches, weil eine Unterlage falsch ist, kommt die Korrektur in
   `historie.md`.
-- `BEURTEILUNG.md` änderst du frei, wenn eine Information für künftige
-  Gespräche wichtig ist, ohne Ok des Benutzers. Vor jedem Commit, der sie
-  ändert, gleich aus welchem Skill, lässt du die Änderung gegenprüfen (siehe
-  „Gegenprüfung“). Ausgenommen sind der Commit, der sie aus der Vorlage
-  anlegt, und die Berichtigung eines Funds der Gegenprüfung.
+- `BEURTEILUNG.md` änderst du nur über den Skill `beurteilung-aendern`,
+  ohne Ok des Benutzers, wenn eine Information für künftige Gespräche
+  wichtig ist.
 - Veränderliche Angaben tragen ein Stand-Datum. Ist ein Stand veraltet und
   passt er zum Thema, frag nach dem aktuellen Stand. Wie schnell etwas
   veraltet, hängt von der Art ab: ein Physiotherapie-Beginn etwa nach einer
@@ -127,15 +125,13 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   Commit im Repo der Akte. Neue Angaben aus einem Gespräch kommen gesammelt
   in einen Commit, sobald sie eingearbeitet werden, wie im Skill
   `neue-information` beschrieben; `AKTE.md` bekommt immer einen eigenen.
-  Ändert der Commit `AKTE.md` oder `BEURTEILUNG.md`, kommt er erst nach der
-  Gegenprüfung.
 
 # Gegenprüfung
 
 Eine Änderung an `AKTE.md` oder `BEURTEILUNG.md` prüft vor dem Commit der
 Subagent `patientenakte:gegenpruefung` in frischem Kontext: für `AKTE.md` in
-Schritt 4 des Skills `akte-aktualisieren`, für `BEURTEILUNG.md` vor jedem
-Commit, der sie ändert.
+Schritt 4 des Skills `akte-aktualisieren`, für `BEURTEILUNG.md` im Skill
+`beurteilung-aendern`.
 
 - **Auftrag:** die geprüfte Datei und die Quellen der Änderung als Pfade,
   bei `AKTE.md` mit den Angaben aus Schritt 4 von `akte-aktualisieren`.

@@ -36,6 +36,6 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
      mit der Quelle aus `BEURTEILUNG.md` (Kurzname und Empfehlungsnummer);
    - danach, was dauerhaft gilt: Übungen, Ernährung, Alltag und die
      Warnzeichen aus `BEURTEILUNG.md` mit ihrer Stufe. Neue Warnzeichen
-     dort eintragen.
+     mit dem Skill `beurteilung-aendern` eintragen.
 7. Ergibt sich eine neue Empfehlung, mit dem Skill `leitlinie` belegen und
-   in `BEURTEILUNG.md` eintragen.
+   mit dem Skill `beurteilung-aendern` eintragen.

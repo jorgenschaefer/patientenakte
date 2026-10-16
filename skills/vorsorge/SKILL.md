@@ -64,6 +64,5 @@ fragt; was nicht zutrifft, kommt mit Grund unter „geprüft, ohne Ergebnis“.
      was die Quelle sagt und, getrennt, die Übertragung auf den Fall;
    - „geprüft, ohne Ergebnis“: je Zeile, was und warum nicht;
    - welche Termine lange vorher gebucht werden müssen.
-7. Unter „Vorsorge“ in `BEURTEILUNG.md` eintragen, was neu ist oder sich
-   geändert hat, auch „geprüft, ohne Ergebnis“. Was an anderer Stelle in
-   `BEURTEILUNG.md` steht, dort lassen und darauf verweisen. Committen.
+7. Mit dem Skill `beurteilung-aendern` unter „Vorsorge“ eintragen, was neu
+   ist oder sich geändert hat, auch „geprüft, ohne Ergebnis“.

@@ -40,7 +40,8 @@ description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach
 
    Bestätigte Funde in `AKTE.md` berichtigst du nach den Regeln des
    Subagenten `akte` (Quelle, Stand). Bestätigte Funde in `BEURTEILUNG.md`
-   berichtigst du dort. Dann dem Benutzer die Änderungen zeigen:
+   berichtigst du mit dem Skill `beurteilung-aendern`, Abschnitt
+   „Berichtigung nach der Gegenprüfung von AKTE.md“. Dann dem Benutzer die Änderungen zeigen:
    `git diff AKTE.md`, inhaltlich zusammengefasst, und die Funde der
    Gegenprüfung. Die offenen Widersprüche und Unklarheiten, die der
    Subagent `akte` meldet, stellst du ihm als Fragen; die geklärten nennst
@@ -49,12 +50,6 @@ description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach
    falsch, spricht das nicht gegen das Ok; die Korrektur folgt in Schritt 6.
    Erkennt der Benutzer etwas als falsch übernommen, berichtigst du es nach
    den Regeln des Subagenten `akte` und zeigst es vor dem Ok.
-
-   Eine Berichtigung in `BEURTEILUNG.md` kommt erst in einen Commit, wenn
-   der Benutzer die Funde gesehen hat: Hatte `BEURTEILUNG.md` vorher keine
-   Änderungen ohne Commit, committest du sie dann, ohne weitere
-   Gegenprüfung; sonst kommt sie mit diesen Änderungen in deren Commit,
-   später und mit deren Gegenprüfung.
 5. Nach dem Ok `AKTE.md` committen. Ohne Ok die Änderungen mit
    `git restore AKTE.md` verwerfen; war `AKTE.md` neu, sie löschen.
 6. Ist eine Unterlage selbst falsch oder nennt der Benutzer beim Durchsehen

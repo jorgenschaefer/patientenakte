@@ -36,9 +36,9 @@ Den Rang einer Leitlinie haben je nach Fachgebiet auch:
    Gültigkeit nicht prüfen, etwa weil das Register den Abruf sperrt, die
    vorliegende Fassung weiter nutzen, das Prüfdatum nicht anpassen (bei
    einer neuen Quelle keins eintragen), in ihrer Zeile in
-   `literatur/README.md` und unter „Quellen“ in `BEURTEILUNG.md` „nicht
-   prüfbar am TT.MM.JJJJ“ mit Grund vermerken und dem Benutzer sagen, dass
-   die Gültigkeit ungeprüft ist. Ein früherer Vermerk wird dabei ersetzt.
+   `literatur/README.md` „nicht prüfbar am TT.MM.JJJJ“ mit Grund vermerken,
+   ebenso in Schritt 5, und dem Benutzer sagen, dass die Gültigkeit
+   ungeprüft ist. Ein früherer Vermerk wird dabei ersetzt.
 3. Wird die Quelle voraussichtlich wieder gebraucht, speichern:
    - das PDF als `literatur/<herausgeber>-<nummer>-<thema>-<stand>.pdf`
      und daneben die Textfassung mit `pdftotext -layout` als `.txt`;
@@ -53,9 +53,7 @@ Den Rang einer Leitlinie haben je nach Fachgebiet auch:
    Empfehlungsnummer, Empfehlungsgrad, Evidenzniveau und Konsensstärke
    festhalten; ohne Empfehlungsnummer, etwa bei Fachinformationen und
    Studien, den Abschnitt oder die Seite.
-5. Eine neue Quelle im Abschnitt „Quellen“ von `BEURTEILUNG.md` eintragen:
-   Kurzname, Registernummer, Version, Gültigkeit, Prüfdatum, lokale Datei.
-   Was nur aus Sekundärquellen oder Auszügen stammt, als solches
-   kennzeichnen. Nach einer erneuten Prüfung das Prüfdatum dort und in
-   `literatur/README.md` anpassen und einen Vermerk „nicht prüfbar“
-   streichen.
+5. Eine neue oder erneut geprüfte Quelle mit dem Skill `beurteilung-aendern`
+   unter „Quellen“ eintragen. Nach einer erneuten Prüfung auch in
+   `literatur/README.md` das Prüfdatum anpassen und einen Vermerk „nicht
+   prüfbar“ streichen.

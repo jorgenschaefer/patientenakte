@@ -58,22 +58,20 @@ bleibt.
    `AKTE.md` und den übrigen neuen Angaben, wie unter „Evidenz“ in
    `regeln.md` beschrieben, auch gegen Bedarfsmedikation und
    Nahrungsergänzung. Dem Benutzer das Ergebnis gleich sagen, auch wenn
-   nichts dagegen spricht. Spricht etwas dagegen, es gleich unter „Offen“
-   oder „Warnzeichen“ in `BEURTEILUNG.md` eintragen, damit es auch bei einer
-   abgebrochenen Sitzung nicht verloren geht.
+   nichts dagegen spricht. Spricht etwas dagegen, es gleich mit dem Skill
+   `beurteilung-aendern` unter „Offen“ oder „Warnzeichen“ eintragen, damit
+   es auch bei einer abgebrochenen Sitzung nicht verloren geht.
 5. **Fragen, ob noch etwas dazukommt,** bevor du die Akte nachziehst. Was
    noch kommt, nimmst du ab Schritt 1 auf.
 
 ## Einarbeiten
 
-6. **BEURTEILUNG.md prüfen:** Welche Einträge betreffen die neuen Angaben,
-   auch unter „Einschätzungen“ und „Beobachten“? Erledigte und überholte
-   werden gelöscht; ein Ergebnis, das noch nicht in `unterlagen/` steht,
-   kommt wie in Schritt 3 nach `historie.md`. Abgelehnte, die sonst weiter
-   gelten würden, kommen mit Datum und Grund nach „Abgelehnt“. Betroffene
-   werden angepasst und neu datiert.
+6. **BEURTEILUNG.md nachziehen:** die Einträge, die die neuen Angaben
+   betreffen, mit dem Skill `beurteilung-aendern`. Ein Ergebnis, das noch
+   nicht in `unterlagen/` steht, kommt wie in Schritt 3 nach `historie.md`.
    Neue Fragen belegst du mit dem Skill `leitlinie`.
-7. **Committen:** die neuen Unterlagen und `BEURTEILUNG.md` in einem Commit.
+7. **Committen:** mit dem Skill `beurteilung-aendern` abschließen, die neuen
+   Unterlagen im selben Commit.
 8. **AKTE.md** mit dem Skill `akte-aktualisieren` nachziehen.
 9. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
    nächsten Schritten ändert. Verschiebt sich die Reihenfolge deutlich, den
