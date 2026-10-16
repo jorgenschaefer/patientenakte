@@ -68,7 +68,10 @@ Unterlagen noch nicht in `AKTE.md` eingearbeitet sind und ob ein Bau von
 `AKTE.md` nicht abgeschlossen ist.
 
 In der Beratung liest du `unterlagen/` nur gezielt: wenn eine Angabe in
-`AKTE.md` zweifelhaft ist oder es auf den genauen Wortlaut ankommt.
+`AKTE.md` zweifelhaft ist oder es auf den genauen Wortlaut ankommt. Aus
+Messreihen steht in `AKTE.md` nur, was für Entscheidungen zählt; brauchst
+du die Werte, liest du die CSV, bei langen Reihen den Zeitraum, um den es
+geht.
 
 Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
 `README.md` groß.

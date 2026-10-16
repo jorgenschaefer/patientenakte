@@ -67,6 +67,14 @@ aus `akte-stand` (neu, geändert, entfernt).
   den ältesten, ohne Zusammenfassung, etwa
   `Kreatinin (0,7–1,2 mg/dl): 0,9 [2014-03-02-labor] · 1,1 [2025-03-01-labor]`.
   Ändern sich Einheit oder Referenz, steht das am Wert.
+- **Messreihen:** Aus einer CSV übernimmst du, was für Entscheidungen
+  zählt, etwa einen Zustand mit Beginn wie
+  `Knieschmerz in Ruhe seit 02.03.2025 [knie]`, bis die Reihe ihn beendet,
+  eine deutliche Änderung oder eine Zusammenfassung, wenn ein Verlauf für
+  die Behandlung zählt. Nicht die ganze Reihe und keine Zusammenfassung nur
+  der Vollständigkeit halber; die Werte liest die Beratung bei Bedarf aus
+  der CSV. Zu jeder Reihe steht unter „Messwerte“, was sie misst und in
+  welcher Datei.
 - **Doppelte Befunde:** Stimmt ein Befund in Datum, Absender, Art und Inhalt
   mit einem anderen überein, etwa dasselbe Dokument aus zwei Quellen,
   übernimmst du ihn nicht als zweiten Befund, sondern meldest ihn unter
@@ -92,7 +100,7 @@ aus `akte-stand` (neu, geändert, entfernt).
 ## Impfungen und Immunstatus
 ## Vorsorge                        Früherkennung, Check-up, Zahnarzt, Augenarzt, Betriebsarzt, Kontrollen wegen einer Erkrankung, je mit Datum und Ergebnis
 ## Lebensumstände                  Beruf, Wohnsituation, Hilfsmittel, Genussmittel, Sport, Familienanamnese
-## Messwerte                       je Parameter eine Zeile mit Referenz und allen Werten aus den Befunden, älteste zuerst, je mit Quelle; Messreihen aus den CSV zusammengefasst mit Verweis auf die CSV
+## Messwerte                       je Parameter eine Zeile mit Referenz und allen Werten aus den Befunden, älteste zuerst, je mit Quelle; Messreihen aus den CSV wie unter „Messreihen“ beschrieben
 ## Verlauf                         wichtige Ereignisse, je eine Zeile, chronologisch
 ## Offen                           ärztlich veranlasst oder empfohlen oder vom Patienten geplant, noch nicht erledigt; Termine
 ## Grundlage                       Prüfsummen, von akte-stand

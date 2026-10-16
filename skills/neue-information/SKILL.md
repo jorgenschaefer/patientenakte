@@ -16,7 +16,8 @@ darfst du ihn dabei ändern oder entfernen. Die Einträge aus diesem Gespräch
 bleiben bis Schritt 7 absichtlich ohne Commit; sie zeigst du nicht erneut.
 
 Einen neuen Messwert ordnest du, wann immer du ihn kommentierst, gegen die
-Reihe desselben Parameters unter „Messwerte“ in `AKTE.md` ein: frühere Werte
+Reihe desselben Parameters ein, aus Befunden unter „Messwerte“ in `AKTE.md`,
+aus einer Messreihe in deren CSV: frühere Werte
 mit Datum, Differenz zum letzten Wert in Zahlen, ob er gestiegen, gesunken
 oder gleich ist, ob er einen Trend fortsetzt und ob er im Referenzbereich
 bleibt.
