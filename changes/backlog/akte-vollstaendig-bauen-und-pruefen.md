@@ -44,3 +44,26 @@ Dazu aus der Besprechung:
   Angaben.
 - Erst ab einer gewissen Größe aufteilen.
 - Die Gegenprüfung nach einem vollständigen Bau ebenso aufteilen.
+
+## Schrittweiser und vollständiger Bau unterscheiden sich
+
+In einer echten Akte ergab ein vollständiger Neubau über dieselben
+Unterlagen eine merklich andere `AKTE.md` als die bis dahin schrittweise
+gewachsene:
+
+- Ergänzt wurden Angaben, die tagelang gefehlt hatten: Ergebnisse von
+  Vorsorgeuntersuchungen, ein Urinbefund, der Hinweis eines Arztes, ein
+  Mittel im Verlauf abzusetzen, und zwei Widersprüche zwischen Befunden,
+  die vorher niemand gemeldet hatte.
+- Gestrichen wurde der Hinweis, dass ein Befund eine sicherheitsrelevante
+  Voruntersuchung vor einem Therapiebeginn nicht enthält. (Die Regel dazu
+  ist inzwischen klargestellt, `agents/akte.md:37-43`.)
+- Einschränkungen wie „ob mitbestimmt, unbekannt“ fielen bei einem Bau weg.
+- Quellen standen teils als Kürzel statt als Dateiname, teils fehlten sie
+  bei Messwerten.
+
+Was ein Bau übersieht, bleibt beim schrittweisen Bau dauerhaft weg, weil
+dort nur neue und geänderte Dateien gelesen werden (`agents/akte.md:17-21`).
+Idee aus der Bewertung: je Unterlage einen Auszug committen, aus dem
+`AKTE.md` zusammengesetzt wird, damit beide Bauarten auf denselben
+Auszügen beruhen.
