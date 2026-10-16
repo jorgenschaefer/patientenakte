@@ -7,7 +7,7 @@ utility: L
 
 Es gibt keine Möglichkeit, beide Dateien vollständig zu prüfen, inhaltlich
 und auf das aktuelle Format. Inhaltlich gibt es für `AKTE.md` nur den Bau
-„vollständig zur Kontrolle“ (`skills/akte-aktualisieren/SKILL.md:20`), für
+„vollständig zur Kontrolle“ (`skills/akte-aktualisieren/SKILL.md:19`), für
 `BEURTEILUNG.md` nichts. Fehler, die vor der Gegenprüfung nach Änderungen
 (`agents/gegenpruefung.md`) in die Dateien gekommen sind, findet niemand.
 
@@ -23,11 +23,11 @@ nicht beim Start einer Sitzung.
 ## Vollständiger Bau bei großen Beständen
 
 Ein vollständiger Bau betrifft nicht nur die Prüfung, sondern auch die erste
-Verwendung mit einer neuen Akte (`skills/akte-aktualisieren/SKILL.md:19`).
-Heute liest ein einziger Subagent alle Unterlagen (`agents/akte.md:22-23`);
+Verwendung mit einer neuen Akte (`skills/akte-aktualisieren/SKILL.md:18`).
+Heute liest ein einziger Subagent alle Unterlagen (`agents/akte.md:21-22`);
 bei vielen Befunden reicht sein Kontext dafür nicht. Dasselbe gilt für die
 Gegenprüfung danach, die alle Unterlagen vollständig liest
-(`skills/akte-aktualisieren/SKILL.md:33-35`).
+(`skills/akte-aktualisieren/SKILL.md:35-37`).
 
 Idee: mehrere Subagenten, je einer für einen oder mehrere Befunde, die die
 Angaben daraus herausziehen; ein weiterer führt sie zusammen. Nicht je
@@ -57,13 +57,13 @@ gewachsene:
   die vorher niemand gemeldet hatte.
 - Gestrichen wurde der Hinweis, dass ein Befund eine sicherheitsrelevante
   Voruntersuchung vor einem Therapiebeginn nicht enthält. (Die Regel dazu
-  ist inzwischen klargestellt, `agents/akte.md:37-43`.)
+  ist inzwischen klargestellt, `agents/akte.md:37-42`.)
 - Einschränkungen wie „ob mitbestimmt, unbekannt“ fielen bei einem Bau weg.
 - Quellen standen teils als Kürzel statt als Dateiname, teils fehlten sie
   bei Messwerten.
 
 Was ein Bau übersieht, bleibt beim schrittweisen Bau dauerhaft weg, weil
-dort nur neue und geänderte Dateien gelesen werden (`agents/akte.md:17-21`).
+dort nur neue und geänderte Dateien gelesen werden (`agents/akte.md:16-20`).
 Idee aus der Bewertung: je Unterlage einen Auszug committen, aus dem
 `AKTE.md` zusammengesetzt wird, damit beide Bauarten auf denselben
 Auszügen beruhen.
