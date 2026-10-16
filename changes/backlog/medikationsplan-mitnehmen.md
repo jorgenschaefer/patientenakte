@@ -9,7 +9,7 @@ Wird der Benutzer unerwartet gefragt, was er nimmt, hat er keine
 vollständige Liste bei sich und muss sich auf sein Gedächtnis verlassen.
 Zuletzt im Krankenhaus: Der Name eines Präparats fiel ihm nicht ein. In
 `AKTE.md` stehen alle Mittel unter „Medikation → Aktuell“
-(`agents/akte.md:71`), aber nur in der Akte, die er unterwegs nicht dabeihat.
+(`agents/akte.md:80`), aber nur in der Akte, die er unterwegs nicht dabeihat.
 Richtig wäre eine aktuelle, vollständige Liste aller Mittel (verordnet,
 Bedarfsmedikation, Nahrungsergänzung) mit Präparat, Wirkstoff und Dosis, die
 er bei sich tragen und vorzeigen kann und die bei jeder Änderung der
