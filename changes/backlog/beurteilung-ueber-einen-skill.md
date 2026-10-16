@@ -23,3 +23,8 @@ Gegenprüfung und Commit regelt nur `regeln.md` (`:112-116`, `:127-128`,
 Abschnitt „Gegenprüfung“). `vorsorge` und `neue-information` sagen schlicht
 „Committen.“, `leitlinie` und `naechste-schritte` haben keinen
 Commit-Schritt.
+
+Dasselbe gilt für `literatur/`: `leitlinie` legt dort PDFs, Textfassungen
+und `literatur/README.md` ab (`skills/leitlinie/SKILL.md:42-50`), committet
+sie aber nicht. Sie kommen nur zufällig mit, wenn ein späterer Commit sie
+mit einschließt.
