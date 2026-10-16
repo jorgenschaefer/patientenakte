@@ -112,8 +112,8 @@ Arztgesprächs, Änderungen der Medikation und Messwerte. Claude nimmt nur auf,
 was neu und von Belang ist; Beobachtungen wie Schlaf oder Schmerzstärke nur
 zu Themen, die unter „Beobachten“ in `BEURTEILUNG.md` stehen, als Zeile in
 deren CSV. Den Eintrag zeigt Claude vorher zur Bestätigung. Ein neues
-Medikament oder eine geänderte Dosis prüft Claude gleich auf Gegenanzeigen
-und Wechselwirkungen, nicht erst beim Nachziehen.
+Medikament oder eine geänderte Dosis prüft Claude gleich auf Dosierung,
+Gegenanzeigen und Wechselwirkungen, nicht erst beim Nachziehen.
 
 Liegen beim Start einer Sitzung neue Dateien in `unterlagen/` oder die
 Themenliste eines vergangenen Termins, spricht Claude sie von sich aus an.
