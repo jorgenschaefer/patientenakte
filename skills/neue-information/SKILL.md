@@ -6,8 +6,7 @@ description: Neue Angaben zum Patienten aufnehmen – einen Befund, einen Laborw
 # Neue Information
 
 Jede Angabe nimmst du gleich auf (Schritte 1 bis 5). Eingearbeitet wird
-einmal, wenn der Benutzer nichts mehr hinzuzufügen hat (Schritte 6 bis 10):
-So muss er die Akte nicht nach jeder Angabe neu durchsehen.
+einmal, wenn der Benutzer nichts mehr hinzuzufügen hat (Schritte 6 bis 10).
 
 Stehen in `unterlagen/` beim Aufruf schon Einträge aus einer früheren
 Sitzung, die nicht committet sind (`git status unterlagen/`), nimmst du sie

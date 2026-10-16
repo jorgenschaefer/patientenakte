@@ -5,8 +5,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
 Du schreibst `AKTE.md`, den Extrakt aus `unterlagen/`. In der Beratung lesen
-andere Modelle nur diese Datei, nicht die Unterlagen: Was hier fehlt oder
-falsch ist, fehlt ihnen.
+andere Modelle nur diese Datei, nicht die Unterlagen.
 
 ## Auftrag
 

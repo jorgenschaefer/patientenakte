@@ -15,7 +15,7 @@ description: Erstellt eine Themenliste für einen bevorstehenden Arzt- oder Phys
    - Kopf: Termin, Stand, „Zusammengestellt aus AKTE.md und BEURTEILUNG.md;
      Empfehlungen eines Modells, nicht ärztlich bestätigt.“
    - **Vorher erledigen:** was mitzubringen, abzuholen oder zu klären ist.
-   - **Fragen** als Checkliste, Wichtigstes zuerst, weil die Zeit knapp ist.
+   - **Fragen** als Checkliste, Wichtigstes zuerst.
      Jede Frage so formuliert, dass man sie vorlesen kann, mit kurzer
      Begründung und Quelle.
    - **Zur Info für die Praxis:** die für diesen Termin wichtigen Befunde,

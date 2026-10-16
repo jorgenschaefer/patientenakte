@@ -36,8 +36,7 @@ Handybildschirm passen.
    nicht, dass es das nicht gibt. Leere Felder weglassen. Fachbegriffe und
    gängige Abkürzungen sind erlaubt, die Leser sind Fachleute.
 3. Immer alle Felder vollständig ausgeben, auch wenn sich nur eines
-   geändert hat, damit im Handy keine Mischung aus alten und neuen
-   Fassungen entsteht.
+   geändert hat.
 4. Dazu sagen, welche Felder leer geblieben sind; steht im Handy dort
    noch etwas, soll der Benutzer es leeren. Außerdem sagen, dass
    Notfallkontakte und Organspende im Handy selbst eingetragen werden.
