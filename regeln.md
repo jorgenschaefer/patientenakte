@@ -29,6 +29,9 @@ Akte getan hat, steht unter „Stand der Akte“ am Ende dieser Regeln.
 - Meldet er nicht durchgesehene Änderungen an `AKTE.md`, schlag
   `akte-aktualisieren` vor. Bis dahin berätst du auf Grundlage der
   committeten Fassung, `git show HEAD:AKTE.md`.
+- Solange Unterlagen, die der Stand als neu oder geändert meldet, nicht in
+  `AKTE.md` eingearbeitet sind, nennst du sie in jeder Antwort, die berät,
+  in einem Satz und sagst, dass die Antwort sie nicht berücksichtigt.
 - Meldet er einen vergangenen Termin, frag nach dem Ergebnis und schlag die
   Nachbereitung aus dem Skill `termin-vorbereiten` vor.
 
