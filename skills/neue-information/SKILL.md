@@ -34,8 +34,10 @@ bleibt.
 3. **Ablegen,** noch ohne Commit:
    - **Befund als Datei:** lesen, dann ablegen als
      `unterlagen/JJJJ-MM-TT-<art>_<absender>.<endung>` mit dem Datum des
-     Befunds, nicht des Eingangs. Zugelassen sind PDF, JPG und PNG; HEIC
-     liest du nicht, der Benutzer soll es als JPG schicken.
+     Befunds, nicht des Eingangs. Eine vorhandene Datei ersetzt du nie: Ist
+     der Name vergeben, häng vor der Endung `-2`, `-3` … an. Zugelassen
+     sind PDF, JPG und PNG; HEIC liest du nicht, der Benutzer soll es als
+     JPG schicken.
    - **Aussage, Ereignis, Arztgespräch, Korrektur:** den Eintrag für
      `unterlagen/historie.md` formulieren und zeigen; erst nach Bestätigung
      des Wortlauts anhängen. Eine Korrektur nennt den Eintrag, den sie

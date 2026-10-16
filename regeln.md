@@ -40,7 +40,7 @@ jeder Beratung `AKTE.md` und `BEURTEILUNG.md`.
 - `unterlagen/` – die Grundlage der Akte:
   - Befunde als PDF oder als Foto (JPG, PNG; HEIC vorher in JPG wandeln),
     Dateiname `JJJJ-MM-TT-<art>_<absender>.<endung>` mit dem Datum des
-    Befunds;
+    Befunds, bei vergebenem Namen mit `-2`, `-3` … vor der Endung;
   - `anamnese.md` – die Erstbefragung mit Datum, danach unverändert;
   - `historie.md` – Aussagen des Patienten, Ereignisse, Arztgespräche und
     Korrekturen. Einträge werden in der Reihenfolge des Eingangs angehängt;
