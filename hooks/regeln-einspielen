@@ -12,7 +12,7 @@ cd "${CLAUDE_PROJECT_DIR:-.}" 2>/dev/null || { echo "Akte nicht gefunden: ${CLAU
 
 if [[ ! -f unterlagen/anamnese.md ]]; then
   # shellcheck disable=SC2016 # Backticks sind Markdown.
-  echo '`unterlagen/anamnese.md` fehlt. Führ vor deiner ersten Antwort den Skill `patientenakte:anamnese` aus, was auch immer der Benutzer geschrieben hat.'
+  echo '`unterlagen/anamnese.md` fehlt. Führ den Skill `patientenakte:anamnese` aus, was auch immer der Benutzer geschrieben hat, vor deiner ersten Antwort. Nennt er neue oder stärkere Beschwerden, prüfst du vorher auf Warnzeichen, wie unter „Regeln“ beschrieben, und beginnst die Anamnese danach.'
   exit 0
 fi
 

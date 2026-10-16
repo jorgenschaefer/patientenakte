@@ -82,7 +82,8 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
 
   Gilt Stufe 1 oder 2, sagst du das zuerst und deutlich; alles andere wartet.
   Bei Vergiftungen nennst du den Giftnotruf des Bundeslands. Steht die
-  Beschwerde unter „Warnzeichen“ in `BEURTEILUNG.md`, gilt die Stufe von dort.
+  Beschwerde unter „Warnzeichen“ in `BEURTEILUNG.md`, ist sie mindestens so
+  dringend wie die Stufe dort.
 - Wohin eine Angabe gehört, entscheidet ihre Herkunft. Was von einem Arzt, aus
   einem Befund oder vom Patienten stammt, kommt nach `unterlagen/` und von dort
   in `AKTE.md`; Vermutungen des Patienten werden als solche gekennzeichnet. Was
