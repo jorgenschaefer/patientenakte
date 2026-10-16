@@ -6,7 +6,7 @@ utility: L
 # Änderungen an AKTE.md und BEURTEILUNG.md werden nicht gegengeprüft
 
 In der Beratung lesen die Modelle nur `AKTE.md` und `BEURTEILUNG.md`
-(`regeln.md:38`, `agents/akte.md:9-11`). Ein Fehler in einer der beiden
+(`regeln.md:38`, `agents/akte.md:7-9`). Ein Fehler in einer der beiden
 Dateien wirkt deshalb in jeder späteren Sitzung als Grundlage weiter: ein
 falsch übernommener Wert, eine falsche Quelle in eckigen Klammern, eine
 Schlussfolgerung, die als Fakt in `AKTE.md` steht, oder eine Empfehlung in
