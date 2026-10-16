@@ -1,6 +1,6 @@
 ---
 name: leitlinie
-description: Sucht eine Leitlinie, Studie oder Fachinformation zu einer Frage aus Medizin, Physiotherapie, Ernährung oder Sport, prüft ihre Gültigkeit und legt sie in literatur/ ab. Benutzen vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie, Medikation oder Training, die nicht schon mit aktueller Quelle in BEURTEILUNG.md steht, und wenn der Benutzer fragt, was die Leitlinie zu einem Thema sagt.
+description: Sucht eine Leitlinie, Studie oder Fachinformation zu einer Frage aus Medizin, Physiotherapie, Ernährung oder Sport, prüft ihre Gültigkeit und legt sie in literatur/ ab. Benutzen vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie, Medikation, Training oder Vorsorge, die nicht schon mit aktueller Quelle in BEURTEILUNG.md steht, und wenn der Benutzer fragt, was die Leitlinie zu einem Thema sagt.
 ---
 
 # Leitlinie

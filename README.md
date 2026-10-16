@@ -65,10 +65,10 @@ Sätzen; eine Befehlssyntax gibt es nicht.
 
 **Eine Frage**, etwa „Darf ich mit meinem Knie wieder joggen?“, beantwortet
 Claude auf Grundlage von `AKTE.md` und `BEURTEILUNG.md`. Vor einer Empfehlung
-zu Diagnostik, Therapie, Medikation oder Training sucht Claude die passende
-Leitlinie oder Studie, prüft, ob sie noch gilt, und legt sie in `literatur/`
-ab. Die Antwort nennt die Quelle und trennt, was dort steht, von dem, was
-Claude daraus für den eigenen Fall schließt. Bei neuen oder stärkeren
+zu Diagnostik, Therapie, Medikation, Training oder Vorsorge sucht Claude
+die passende Leitlinie oder Studie, prüft, ob sie noch gilt, und legt sie in
+`literatur/` ab. Die Antwort nennt die Quelle und trennt, was dort steht, von
+dem, was Claude daraus für den eigenen Fall schließt. Bei neuen oder stärkeren
 Beschwerden sagt Claude zuerst, wie dringend der Arzt ist: Notruf 112, noch
 heute, in ein bis drei Tagen oder beim nächsten regulären Termin.
 Fehlt für eine Antwort ein aktueller Stand, etwa ein Blutwert von vor einem

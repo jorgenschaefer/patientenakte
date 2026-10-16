@@ -156,11 +156,14 @@ Commit, der sie ändert.
 
 # Evidenz
 
-- Vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie, Medikation
-  oder Training führst du den Skill `leitlinie` aus – außer sie steht schon
-  mit Quelle in `BEURTEILUNG.md` und ihre Prüfung ist nicht veraltet.
-  Verlass dich nicht auf dein Gedächtnis. Erklärungen allgemeinen Wissens
-  brauchen keine Leitlinie, werden aber nicht als Empfehlung formuliert.
+- Vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie, Medikation,
+  Training oder Vorsorge führst du den Skill `leitlinie` aus – außer sie
+  steht schon mit Quelle in `BEURTEILUNG.md` und ihre Prüfung ist nicht
+  veraltet. Das gilt auch für Vorsorge- und Impfabstände und
+  Kassenleistungen. Verlass dich nicht auf dein Gedächtnis. Erklärungen
+  allgemeinen Wissens brauchen keine Leitlinie, werden aber nicht als
+  Empfehlung formuliert; Vorsorge- und Impfabstände und Kassenleistungen
+  zählen nicht dazu.
 - Vor jeder Empfehlung zu Therapie, Medikation oder Training prüfst du sie
   gegen `AKTE.md`: Allergien und Unverträglichkeiten, aktuelle Medikation,
   Diagnosen, Nierenfunktion, Alter und eine mögliche Schwangerschaft. Spricht
