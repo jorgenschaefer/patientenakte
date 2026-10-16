@@ -32,7 +32,13 @@ Den Rang einer Leitlinie haben je nach Fachgebiet auch:
    die letzte Prüfung älter als drei Monate ist, „gültig bis“ vorbei ist oder
    die Quelle neu ist. Gibt es eine neuere, die Dateien ersetzen und
    `literatur/README.md` anpassen. Eine abgelaufene Leitlinie ohne neue
-   Fassung weiter nutzen und als abgelaufen kennzeichnen.
+   Fassung weiter nutzen und als abgelaufen kennzeichnen. Lässt sich die
+   Gültigkeit nicht prüfen, etwa weil das Register den Abruf sperrt, die
+   vorliegende Fassung weiter nutzen, das Prüfdatum nicht anpassen (bei
+   einer neuen Quelle keins eintragen), in ihrer Zeile in
+   `literatur/README.md` und unter „Quellen“ in `BEURTEILUNG.md` „nicht
+   prüfbar am TT.MM.JJJJ“ mit Grund vermerken und dem Benutzer sagen, dass
+   die Gültigkeit ungeprüft ist. Ein früherer Vermerk wird dabei ersetzt.
 3. Wird die Quelle voraussichtlich wieder gebraucht, speichern:
    - das PDF als `literatur/<herausgeber>-<nummer>-<thema>-<stand>.pdf`
      und daneben die Textfassung mit `pdftotext -layout` als `.txt`;
@@ -51,4 +57,5 @@ Den Rang einer Leitlinie haben je nach Fachgebiet auch:
    Kurzname, Registernummer, Version, Gültigkeit, Prüfdatum, lokale Datei.
    Was nur aus Sekundärquellen oder Auszügen stammt, als solches
    kennzeichnen. Nach einer erneuten Prüfung das Prüfdatum dort und in
-   `literatur/README.md` anpassen.
+   `literatur/README.md` anpassen und einen Vermerk „nicht prüfbar“
+   streichen.
