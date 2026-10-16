@@ -26,11 +26,20 @@ aus `akte-stand` (neu, geändert, entfernt).
 
 ## Regeln
 
-- **Nur Fakten:** was in einem Befund steht, was ein Arzt gesagt oder
-  veranlasst hat, was der Patient angibt. Keine Empfehlungen, Bewertungen
-  oder Schlussfolgerungen, auch keine naheliegenden. Vermutungen des Patienten
-  mit „(eigene Vermutung)“ kennzeichnen. Dass etwas nicht erfolgt ist, nur,
-  wenn ein Arzt es veranlasst oder empfohlen hat.
+- **Nur Fakten:** was in einem Befund steht, was ein Arzt gesagt, empfohlen
+  oder veranlasst hat, was der Patient angibt. Keine eigenen Empfehlungen,
+  Bewertungen oder Schlussfolgerungen, auch keine naheliegenden. Die
+  Empfehlung eines Arztes, etwa eine Kontrolle in sechs Monaten, ist ein
+  Fakt und steht mit Quelle unter „Offen“ in `AKTE.md`, bis eine spätere
+  Angabe sie erledigt oder ersetzt. Ist ihre Frist vorbei und erwähnt sie
+  keine spätere Unterlage, meldest du sie auch in der Rückmeldung unter
+  „Offen“, damit der Benutzer klärt, ob sie erledigt ist. Vermutungen des
+  Patienten mit „(eigene Vermutung)“ kennzeichnen. Dass etwas nicht erfolgt
+  ist, nur, wenn ein Arzt es veranlasst oder empfohlen hat.
+- **Diagnosesicherheit:** Verdacht, Zustand nach, Ausschluss und
+  Verneinungen wie „kein Anhalt für“ wörtlich übernehmen, ebenso Seite,
+  Lokalisation und Schweregrad. Aus „V. a. Meniskusriss“ wird nie
+  „Meniskusriss“.
 - **Aktuell:** Was durch eine neuere Angabe ersetzt ist, fällt weg. Verlauf
   bleibt, wo er für Entscheidungen zählt: frühere Therapien mit Zeitraum und
   Grund für das Ende, Messwerte, wichtige Ereignisse.
@@ -66,7 +75,7 @@ aus `akte-stand` (neu, geändert, entfernt).
 ## Stammdaten
 ## Ziele und Vorlieben             was der Patient erreichen oder vermeiden möchte
 ## Behandelnde Ärzte und Therapeuten
-## Diagnosen und Nebenbefunde      je mit Beginn und letztem relevanten Befund
+## Diagnosen und Nebenbefunde      je mit Beginn, letztem relevanten Befund und, wenn eine Unterlage es nennt, seit wann ausgeheilt
 ## Medikation
 ### Aktuell                        Wirkstoff, Präparat, Dosis, Schema, verordnet von, Fristen
 ### Früher                         Wirkstoff, Zeitraum, Grund für das Ende
@@ -77,7 +86,7 @@ aus `akte-stand` (neu, geändert, entfernt).
 ## Lebensumstände                  Beruf, Wohnsituation, Hilfsmittel, Genussmittel, Sport, Familienanamnese
 ## Messwerte                       je Parameter eine Zeile mit Referenz und allen Werten aus den Befunden, älteste zuerst, je mit Quelle; Messreihen aus den CSV zusammengefasst mit Verweis auf die CSV
 ## Verlauf                         wichtige Ereignisse, je eine Zeile, chronologisch
-## Offen                           ärztlich veranlasst oder vom Patienten geplant, noch nicht erledigt; Termine
+## Offen                           ärztlich veranlasst oder empfohlen oder vom Patienten geplant, noch nicht erledigt; Termine
 ## Grundlage                       Prüfsummen, von akte-stand
 ```
 

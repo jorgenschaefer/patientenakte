@@ -50,7 +50,15 @@ Quelle; sie zählen nur, wo die Änderung ihnen widerspricht.
 - ein Wert, eine Einheit oder ein Referenzbereich, der von der Quelle
   abweicht;
 - eine Quelle in eckigen Klammern, in der die Angabe nicht steht;
-- eine Schlussfolgerung, Bewertung oder Empfehlung, die als Fakt dasteht;
+- eine Schlussfolgerung, Bewertung oder Empfehlung, die als Fakt dasteht,
+  ohne dass ein Arzt oder ein Befund sie so sagt, etwa eine Vermutung des
+  Patienten ohne „(eigene Vermutung)“;
+- eine Empfehlung oder Anordnung eines Arztes aus einer Quelle der Änderung,
+  die unter „Offen“ fehlt, obwohl keine spätere Angabe sie erledigt oder
+  ersetzt;
+- eine Diagnosesicherheit (Verdacht, Zustand nach, Ausschluss) oder
+  Verneinung, die von der Quelle abweicht oder fehlt, ebenso Seite,
+  Lokalisation oder Schweregrad;
 - eine veränderliche Angabe ohne Stand-Datum;
 - eine Angabe, die eine neue Unterlage überholt hat und die stehen geblieben
   ist;

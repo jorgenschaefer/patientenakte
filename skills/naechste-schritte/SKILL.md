@@ -10,8 +10,9 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
 2. Nach veralteten Ständen fragen, die für die Reihenfolge zählen: Hat ein
    Termin stattgefunden, liegt ein Ergebnis vor, hat eine Therapie begonnen?
    Antworten über den Skill `neue-information` aufnehmen.
-3. Alles Offene sammeln: „Offen“ in `AKTE.md` (ärztlich veranlasst, Termine),
-   „Offen“ in `BEURTEILUNG.md` (Empfehlungen), Fristen aus der Medikation.
+3. Alles Offene sammeln: „Offen“ in `AKTE.md` (ärztlich veranlasst oder
+   empfohlen, Termine), „Offen“ in `BEURTEILUNG.md` (Empfehlungen des
+   Modells), Fristen aus der Medikation.
 4. Fällige und fehlende Vorsorge mit dem Skill `vorsorge` ermitteln, ohne
    dessen Tabelle auszugeben; was fällig ist, wird mit eingeordnet.
 5. Ordnen nach:
