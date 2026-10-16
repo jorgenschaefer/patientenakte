@@ -13,8 +13,11 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
 3. Alles Offene sammeln: „Offen“ in `AKTE.md` (ärztlich veranlasst oder
    empfohlen, Termine), „Offen“ in `BEURTEILUNG.md` (Empfehlungen des
    Modells), Fristen aus der Medikation.
-4. Fällige und fehlende Vorsorge mit dem Skill `vorsorge` ermitteln, ohne
-   dessen Tabelle auszugeben; was fällig ist, wird mit eingeordnet.
+4. Fällige Vorsorge aus „Vorsorge“ in `BEURTEILUNG.md` übernehmen und mit
+   einordnen, ohne den Skill `vorsorge` auszuführen. Ist der Abschnitt leer
+   oder älter als eine Diagnose oder ein Mittel in `AKTE.md`, das in der
+   Antwort sagen, mit Datum und dem, was seitdem neu ist, und `/vorsorge`
+   vorschlagen.
 5. Ordnen nach:
    1. **Sicherheit und Fristen:** was vor einem bestimmten Ereignis erledigt
       sein muss, etwa eine Untersuchung vor einem Therapiebeginn, und was

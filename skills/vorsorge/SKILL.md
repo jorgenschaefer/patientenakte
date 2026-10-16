@@ -1,6 +1,6 @@
 ---
 name: vorsorge
-description: Stellt den Plan aus Früherkennung, Impfungen und regelmäßigen Kontrollen auf – nach Alter und Geschlecht, Diagnosen, Medikation, Beruf und Familie –, mit Fälligkeit, Quelle und Kostenträger. Benutzen bei Fragen wie „welche Vorsorge steht an“, „welche Vorsorgeuntersuchungen brauche ich“, „was zahlt die Kasse an Früherkennung“, „wann ist der nächste Check-up“, „welche regelmäßigen Kontrollen sollte ich machen“, und aus dem Skill naechste-schritte.
+description: Stellt den Plan aus Früherkennung, Impfungen und regelmäßigen Kontrollen auf – nach Alter und Geschlecht, Diagnosen, Medikation, Beruf und Familie –, mit Fälligkeit, Quelle und Kostenträger. Benutzen bei Fragen wie „welche Vorsorge steht an“, „welche Vorsorgeuntersuchungen brauche ich“, „was zahlt die Kasse an Früherkennung“, „wann ist der nächste Check-up“, „welche regelmäßigen Kontrollen sollte ich machen“.
 ---
 
 # Vorsorge
