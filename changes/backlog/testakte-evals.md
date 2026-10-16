@@ -20,7 +20,7 @@ durch Lesen geprüft. Offen ist:
 - ob sie läuft: nach schrittweisem, vollständigem und liegen gebliebenem
   Bau, und vor jedem Commit an `BEURTEILUNG.md` aus `neue-information`,
   `vorsorge`, `leitlinie`, `naechste-schritte` und der freien Beratung. Dort
-  steht die Regel nur in `regeln.md:106-110`, die Skills sagen schlicht
+  steht die Regel nur in `regeln.md:112-116`, die Skills sagen schlicht
   „Committen.“ (`skills/vorsorge/SKILL.md:69`,
   `skills/neue-information/SKILL.md:75`);
 - ob sie eingebaute Fehler findet: einen falschen Wert, eine fehlende

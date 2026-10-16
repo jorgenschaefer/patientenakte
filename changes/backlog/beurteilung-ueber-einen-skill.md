@@ -14,12 +14,12 @@ Heute schreibt jede Stelle auf ihre eigene Weise hinein:
 - `skills/neue-information/SKILL.md:60-61` (Gegenanzeigen unter „Offen“ oder
   „Warnzeichen“) und `:68-75` (betroffene Einträge anpassen, committen);
 - `skills/vorsorge/SKILL.md:67-69`;
-- `skills/leitlinie/SKILL.md:46-54` (Eintrag und Abschnitt „Quellen“);
+- `skills/leitlinie/SKILL.md:51-61` (Eintrag und Abschnitt „Quellen“);
 - `skills/naechste-schritte/SKILL.md:35-38`;
-- die freie Beratung nach `regeln.md:106-110`;
+- die freie Beratung nach `regeln.md:112-116`;
 - angelegt wird sie aus der Vorlage in `skills/anamnese/SKILL.md:15`.
 
-Gegenprüfung und Commit regelt nur `regeln.md` (`:106-110`, `:121-122`,
+Gegenprüfung und Commit regelt nur `regeln.md` (`:112-116`, `:127-128`,
 Abschnitt „Gegenprüfung“). `vorsorge` und `neue-information` sagen schlicht
 „Committen.“, `leitlinie` und `naechste-schritte` haben keinen
 Commit-Schritt.
