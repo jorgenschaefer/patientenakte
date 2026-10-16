@@ -7,7 +7,7 @@ utility: S
 
 Die Regeln erlauben „zwei, drei zusammengehörige“ Fragen in einem Satz
 (`regeln.md:10-11`), und Text für `unterlagen/` wird erst geschrieben, wenn
-der Benutzer den Wortlaut bestätigt hat (`regeln.md:109-111`). In den
+der Benutzer den Wortlaut bestätigt hat (`regeln.md:112-114`). In den
 echten Beratungen stand beides in derselben Nachricht: Zum Zahnarztbesuch
 fragte das Modell nach der Praxis und nach Befunden, zeigte dazu einen
 Entwurf für `historie.md` und fragte, ob noch etwas dazukommt. Die Antwort,
