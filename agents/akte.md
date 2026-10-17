@@ -59,6 +59,11 @@ aus `akte-stand` (neu, geändert, entfernt).
   mit dem Dateinamen ohne Endung (`[2025-03-01-labor]`), sonst
   `[historie TT.MM.JJJJ]` mit dem Datum, an dem der Eintrag mitgeteilt
   wurde, oder `[anamnese]`. Mehrere Quellen mit Semikolon.
+- **Keine Angabe:** Will der Patient zu einem Punkt nichts sagen, steht das
+  im passenden Abschnitt als „keine Angabe“ mit Quelle, etwa
+  `Pflegegrad: keine Angabe [historie 17.10.2026]`. Eine spätere
+  Angabe zum Punkt ersetzt den Vermerk, eine erneute Ablehnung ersetzt ihn
+  mit ihrer Quelle.
 - **Stand:** Veränderliche Angaben (Medikation, Gewicht, Arbeitsfähigkeit,
   offene Punkte) tragen „Stand: TT.MM.JJJJ“.
 - **Knapp:** eine Angabe pro Zeile, keine Erzählung. Messwerte exakt mit

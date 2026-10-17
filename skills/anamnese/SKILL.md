@@ -23,7 +23,7 @@ in `historie.md`.
    Angaben des Benutzers schon zu den Punkten unten? Daraus Vorschläge
    machen, statt neu zu fragen.
 3. Die Punkte nacheinander abfragen. Was der Benutzer nicht weiß, wird als
-   „unbekannt“ eingetragen; was er nicht sagen will, bleibt weg.
+   „unbekannt“ eingetragen; was er nicht sagen will, als „keine Angabe“.
 4. Jeden Abschnitt so zeigen, wie er eingetragen würde, und erst nach
    Bestätigung übernehmen. Vermutungen des Patienten als solche kennzeichnen.
 5. Datei schreiben, committen, dann den Skill `akte-aktualisieren` ausführen,

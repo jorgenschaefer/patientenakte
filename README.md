@@ -52,7 +52,7 @@ Lebensumstände, Sport, die
 behandelnden Ärzte und die eigenen Ziele. Claude fragt nacheinander und zeigt
 jeden Abschnitt, bevor er in `unterlagen/anamnese.md` eingetragen wird. Was
 man nicht weiß, wird als „unbekannt“ vermerkt; was man nicht sagen will,
-bleibt weg.
+als „keine Angabe“.
 
 Vorhandene Befunde kann man vorher nach `unterlagen/` legen. Claude übernimmt
 daraus, was schon drinsteht, und fragt dann weniger.
