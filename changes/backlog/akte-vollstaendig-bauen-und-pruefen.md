@@ -3,19 +3,19 @@ effort: L
 utility: L
 ---
 
-# AKTE.md vollständig bauen und prüfen
+# AKTE.md gegen die Befunde prüfen und vollständig bauen
 
-Es gibt keine Möglichkeit, beide Dateien vollständig zu prüfen, inhaltlich
-und auf das aktuelle Format. Inhaltlich gibt es für `AKTE.md` nur den Bau
-„vollständig zur Kontrolle“ (`skills/akte-aktualisieren/SKILL.md:19`), für
-`BEURTEILUNG.md` nichts. Fehler, die vor der Gegenprüfung nach Änderungen
+Es gibt keine Möglichkeit, `AKTE.md` und `BEURTEILUNG.md` inhaltlich gegen
+die Befunde zu prüfen. Für `AKTE.md` gibt es nur den Bau „vollständig zur
+Kontrolle“ (`skills/akte-aktualisieren/SKILL.md:19`), für `BEURTEILUNG.md`
+nichts. Fehler, die vor der Gegenprüfung nach Änderungen
 (`agents/gegenpruefung.md`) in die Dateien gekommen sind, findet niemand.
 
-Das Format ändert sich mit dem Plugin, die Akten ziehen aber nicht nach:
-`BEURTEILUNG.md` wird einmal bei der Anamnese aus `vorlagen/BEURTEILUNG.md`
-kopiert (`skills/anamnese/SKILL.md:15`), und `AKTE.md` wird meist
-schrittweise gebaut, sodass ein geänderter Aufbau in `agents/akte.md` nur in
-neue Abschnitte gelangt.
+Was ohne die Befunde geht, das Format nachziehen und `AKTE.md` und
+`BEURTEILUNG.md` gegeneinander prüfen, steht unter „Akte nachziehen und
+ohne Befunde prüfen“ (`changes/backlog/akte-nachziehen-ohne-befunde.md`).
+Hier geht es um die Befunde selbst; in einer echten Akte liegen 12 MB in
+`unterlagen/`.
 
 Die Prüfung soll ein ausdrücklicher Schritt sein, den der Benutzer anstößt,
 nicht beim Start einer Sitzung.
