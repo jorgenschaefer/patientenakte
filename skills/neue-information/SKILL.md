@@ -25,7 +25,9 @@ bleibt.
 ## Aufnehmen
 
 1. **Prüfen, ob es hineingehört,** nach der Regel in `regeln.md`: neu und
-   von Belang, oder ein Thema unter „Beobachten“ in `BEURTEILUNG.md`. Sonst
+   von Belang, oder ein Thema unter „Beobachten“ in `BEURTEILUNG.md`.
+   Antworten auf die Fragen des Skills `akte-pruefen` gehören immer hinein,
+   auch unauffällige und Ablehnungen. Sonst
    trägst du es nicht ein und fragst nicht danach. Liegen schon
    aufgenommene Angaben ohne Commit vor, geht es mit Schritt 5 weiter, sonst
    endet der Skill hier.

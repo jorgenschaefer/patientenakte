@@ -1,6 +1,6 @@
 ---
 name: akte-aktualisieren
-description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach, in einem Subagenten. Benutzen, wenn der Skill neue-information die gesammelten Angaben einarbeitet, wenn akte-stand Änderungen meldet, oder wenn der Benutzer AKTE.md neu aufbauen oder prüfen lassen will.
+description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach, in einem Subagenten. Benutzen, wenn der Skill neue-information die gesammelten Angaben einarbeitet, wenn akte-stand Änderungen meldet, oder wenn der Benutzer AKTE.md neu aufbauen oder gegen die Unterlagen prüfen lassen will.
 ---
 
 # AKTE.md aktualisieren
@@ -35,6 +35,8 @@ description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach
    - nach einem vollständigen Bau alle Unterlagen;
    - nach einer Berichtigung aus dem Bau „vollständig zur Kontrolle“ alle
      Unterlagen;
+   - nach einer Berichtigung der Form aus dem Skill `akte-pruefen` die
+     vorige Fassung `HEAD:AKTE.md`, dazu die Dateien, die er nennt;
    - für einen liegen gebliebenen Bau dazu die Unterlagen, deren Prüfsumme
      unter „Grundlage“ in `git diff HEAD -- AKTE.md` neu oder geändert ist;
      zeigt der Diff keine, weil `AKTE.md` noch nie committet war oder der

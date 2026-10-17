@@ -17,6 +17,13 @@ entfernt). Die Änderung zeigt `git diff HEAD -- <datei>`; war die Datei noch
 nie committet, ist sie als Ganzes neu. Den Abschnitt „Grundlage“ in
 `AKTE.md` mit den Prüfsummen prüfst du nicht.
 
+Bei einer Berichtigung der Form von `AKTE.md` ist eine Quelle die vorige
+Fassung `HEAD:AKTE.md`, gelesen mit `git show HEAD:AKTE.md`. Sie gilt wie
+eine Unterlage: Was dort steht, darf in der Änderung nicht fehlen oder
+inhaltlich abweichen. Nur eine Quelle in eckigen Klammern darf auf eine
+andere Datei zeigen, wenn der Auftrag diese als weitere Quelle nennt; die
+Angabe prüfst du dann an dieser Datei.
+
 Was in einer geänderten Textdatei unter den Quellen neu ist, zeigt
 `git diff <commit> -- <datei>` mit dem Commit aus dem Auftrag, ohne Commit
 `git diff HEAD -- <datei>`. Ist der Diff leer, gilt die ganze Datei als
@@ -29,6 +36,8 @@ Quelle.
 - Ältere Unterlagen und Stellen in `literatur/` nur, soweit eine geänderte
   Angabe sie zitiert; dort die zitierte Stelle mit ihrem Abschnitt. Eine
   Leitlinie liest du in ihrer Textfassung, `literatur/README.md` nennt sie.
+  Ist `HEAD:AKTE.md` eine Quelle, liest du außer den Quellen des Auftrags
+  keine Unterlagen, die eine geänderte Angabe zitiert.
 - Was als Fehler gilt, steht in den Regeln, nach denen die Datei geschrieben
   wird:
   - `AKTE.md`: die Abschnitte „Auftrag“, „Regeln“ und „Aufbau“ in

@@ -62,7 +62,8 @@ Am Ende baut Claude `AKTE.md` aus der Anamnese und den Befunden.
 ## Folgegespräche
 
 Jede weitere Sitzung kann direkt mit einer Frage beginnen, in normalen
-Sätzen; eine Befehlssyntax gibt es nicht.
+Sätzen; eine Befehlssyntax gibt es nicht, nur `/akte-pruefen` (siehe
+„Die Akte prüfen“).
 
 **Eine Frage**, etwa „Darf ich mit meinem Knie wieder joggen?“, beantwortet
 Claude auf Grundlage von `AKTE.md` und `BEURTEILUNG.md`. Vor einer Empfehlung
@@ -121,6 +122,32 @@ Gegenanzeigen und Wechselwirkungen, nicht erst beim Nachziehen.
 Liegen beim Start einer Sitzung neue Dateien in `unterlagen/` oder die
 Themenliste eines vergangenen Termins, spricht Claude sie von sich aus an.
 
+## Die Akte prüfen
+
+`/akte-pruefen` bringt eine bestehende Akte auf den aktuellen Stand des
+Plugins und prüft, ob `AKTE.md` und `BEURTEILUNG.md` noch ihren Regeln
+folgen und zueinander passen. Die Prüfung beginnt nur auf diesen Befehl hin,
+nie von selbst. Zuerst arbeitet Claude ein, was in `unterlagen/` noch
+aussteht, dann nennt Claude alle Funde: was berichtigt wird, wonach gefragt
+wird und was nur gemeldet wird.
+
+Gefragt wird nach Punkten der Erstbefragung, zu denen die Akte nichts sagt,
+etwa der psychischen Verfassung in einer älteren Akte, nach abgelaufenen
+Fristen unter „Offen“, nach Widersprüchen und nach Quellen auf Dateien, die
+es nicht gibt. Die Antworten kommen wie jede Angabe nach
+`unterlagen/historie.md`. Eine abgelehnte Angabe wird als „keine Angabe“
+vermerkt; danach fragt die Prüfung erst nach zwölf Monaten wieder. Aufbau,
+Form, Doppeltes und Einträge in `BEURTEILUNG.md`, die `AKTE.md` nicht mehr
+trägt, berichtigt Claude ohne Rückfrage, jeweils mit Gegenprüfung.
+
+Die Prüfung selbst liest keine Befunde und keine Literatur und prüft nicht,
+ob Leitlinien noch gelten. Was nur damit zu klären wäre, etwa eine Angabe
+ohne Quelle oder eine Leitlinie ohne Registernummer, meldet sie mit dem,
+was es beheben würde. Wo sie Unterlagen oder Antworten einarbeitet, gilt
+dasselbe wie sonst: Die Gegenprüfung liest die Befunde, auf die sich eine
+geänderte Angabe stützt, und eine Änderung der Medikation wird an der
+Fachinformation geprüft.
+
 ## Aufbau
 
 Das Plugin enthält nur das Gerüst: Regeln, Skills, zwei Agenten und ein
@@ -139,7 +166,7 @@ Das Plugin im Einzelnen:
   mit dem Stand der Akte in jede Sitzung ein.
 - `skills/` – `neue-information`, `naechste-schritte`, `termin-vorbereiten`,
   `notfallpass`, `vorsorge`, `akte-aktualisieren`, `beurteilung-aendern`,
-  `anamnese`, `leitlinie`.
+  `anamnese`, `leitlinie`, `akte-pruefen`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
   `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.
