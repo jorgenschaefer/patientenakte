@@ -62,8 +62,8 @@ Am Ende baut Claude `AKTE.md` aus der Anamnese und den Befunden.
 ## Folgegespräche
 
 Jede weitere Sitzung kann direkt mit einer Frage beginnen, in normalen
-Sätzen; eine Befehlssyntax gibt es nicht, nur `/akte-pruefen` (siehe
-„Die Akte prüfen“).
+Sätzen; eine Befehlssyntax gibt es nicht, nur `/einarbeiten` (siehe „Neue
+Befunde und Angaben“) und `/akte-pruefen` (siehe „Die Akte prüfen“).
 
 **Eine Frage**, etwa „Darf ich mit meinem Knie wieder joggen?“, beantwortet
 Claude auf Grundlage von `AKTE.md` und `BEURTEILUNG.md`. Vor einer Empfehlung
@@ -102,34 +102,41 @@ Weitere Anliegen:
 
 Einen neuen Befund, etwa einen MRT-Befund als PDF, gibt man Claude im
 Gespräch: Pfad nennen oder Datei in den Prompt ziehen, dazu, was es ist.
-Claude liest ihn, fragt nach, was zur Einordnung fehlt, legt ihn mit Datum,
-Art und Absender im Namen in `unterlagen/` ab und fragt, ob noch etwas
-dazukommt. Erst dann zieht Claude `BEURTEILUNG.md` und `AKTE.md` nach, für
-alle neuen Angaben auf einmal, und sagt, was sich an den nächsten Schritten
-ändert. Die Unterlagen und `BEURTEILUNG.md` kommen in einen Commit,
-`AKTE.md` nach der Gegenprüfung in einen zweiten. Was sich an `AKTE.md`
-geändert hat, fasst Claude danach zusammen, und Widersprüche zwischen den
-Unterlagen stellt Claude als Fragen.
+Claude liest ihn, fragt nach, was zur Einordnung fehlt, und legt ihn mit
+Datum, Art und Absender im Namen in `unterlagen/` ab.
 
 Ebenso im Gespräch mitteilen lassen sich Beschwerden, Ergebnisse eines
-Arztgesprächs, Änderungen der Medikation und Messwerte. Claude nimmt nur auf,
-was neu und von Belang ist; Beobachtungen wie Schlaf oder Schmerzstärke nur
-zu Themen, die unter „Beobachten“ in `BEURTEILUNG.md` stehen, als Zeile in
-deren CSV. Den Eintrag zeigt Claude vorher zur Bestätigung. Ein neues
-Medikament oder eine geänderte Dosis prüft Claude gleich auf Dosierung,
-Gegenanzeigen und Wechselwirkungen, nicht erst beim Nachziehen.
+Arztgesprächs, Änderungen der Medikation und Messwerte. Claude nimmt nur
+auf, was eine Angabe in `AKTE.md` oder eine künftige Empfehlung ändern
+würde, nicht etwa, dass man ein Rezept heute einlöst; Beobachtungen wie
+Schlaf oder Schmerzstärke nur zu Themen, die unter „Beobachten“ in
+`BEURTEILUNG.md` stehen, als Zeile in deren CSV. Ein neues Medikament oder
+eine geänderte Dosis prüft Claude gleich auf Dosierung, Gegenanzeigen und
+Wechselwirkungen.
 
-Liegen beim Start einer Sitzung neue Dateien in `unterlagen/` oder die
-Themenliste eines vergangenen Termins, spricht Claude sie von sich aus an.
+Im Gespräch bleibt das alles ein Entwurf ohne Commit, und Claude berät
+weiter, ohne den Wortlaut einzeln bestätigen zu lassen. Eingearbeitet wird am Ende des Gesprächs mit
+`/einarbeiten`, was Claude anbietet, wenn man erkennbar Schluss macht;
+was dann noch aussteht, arbeitet Claude beim Start der nächsten Sitzung
+ein, auch neue Dateien in `unterlagen/` und Entwürfe einer
+abgebrochenen Sitzung. Claude zeigt dann alle Einträge auf einmal zur
+Bestätigung, zieht `BEURTEILUNG.md` und `AKTE.md` nach und sagt, was sich an
+den nächsten Schritten ändert. Die Unterlagen und `BEURTEILUNG.md` kommen in
+einen Commit, `AKTE.md` nach der Gegenprüfung in einen zweiten. Was sich an
+`AKTE.md` geändert hat, fasst Claude danach zusammen, und Widersprüche
+zwischen den Unterlagen stellt Claude als Fragen.
+
+Liegt beim Start einer Sitzung die Themenliste eines vergangenen Termins,
+spricht Claude sie von sich aus an.
 
 ## Die Akte prüfen
 
 `/akte-pruefen` bringt eine bestehende Akte auf den aktuellen Stand des
 Plugins und prüft, ob `AKTE.md` und `BEURTEILUNG.md` noch ihren Regeln
 folgen und zueinander passen. Die Prüfung beginnt nur auf diesen Befehl hin,
-nie von selbst. Zuerst arbeitet Claude ein, was in `unterlagen/` noch
-aussteht, dann nennt Claude alle Funde: was berichtigt wird, wonach gefragt
-wird und was nur gemeldet wird.
+nie von selbst. Zuerst arbeitet Claude ein, was noch aussteht, dann nennt
+Claude alle Funde: was berichtigt wird, wonach gefragt wird und was nur
+gemeldet wird.
 
 Gefragt wird nach Punkten der Erstbefragung, zu denen die Akte nichts sagt,
 etwa der psychischen Verfassung in einer älteren Akte, nach abgelaufenen
@@ -164,9 +171,9 @@ Das Plugin im Einzelnen:
 
 - `regeln.md` – die Regeln für die Beratung; ein SessionStart-Hook spielt sie
   mit dem Stand der Akte in jede Sitzung ein.
-- `skills/` – `neue-information`, `naechste-schritte`, `termin-vorbereiten`,
-  `notfallpass`, `vorsorge`, `akte-aktualisieren`, `beurteilung-aendern`,
-  `anamnese`, `leitlinie`, `akte-pruefen`.
+- `skills/` – `neue-information`, `einarbeiten`, `naechste-schritte`,
+  `termin-vorbereiten`, `notfallpass`, `vorsorge`, `akte-aktualisieren`,
+  `beurteilung-aendern`, `anamnese`, `leitlinie`, `akte-pruefen`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
   `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.

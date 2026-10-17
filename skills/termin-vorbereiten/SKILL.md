@@ -7,8 +7,10 @@ description: Erstellt eine Themenliste für einen bevorstehenden Arzt- oder Phys
 
 ## Vorher
 
-1. `akte-stand` ausführen; meldet es Änderungen, zuerst den Skill
-   `akte-aktualisieren`.
+1. `akte-stand` ausführen. Meldet es Unterlagen, die nicht in diesem
+   Gespräch aufgenommen wurden, oder einen nicht abgeschlossenen Bau, zuerst
+   den Skill `einarbeiten` ausführen. Angaben aus diesem Gespräch, die noch
+   nicht eingearbeitet sind, beziehst du mit ein.
 2. Aus `AKTE.md` und `BEURTEILUNG.md` sammeln, was in diese Praxis gehört,
    dazu Offenes anderer Praxen, das sich hier miterledigen lässt.
 3. `termin-<praxis>-<JJJJ-MM-TT>.md` schreiben:
@@ -24,11 +26,11 @@ description: Erstellt eine Themenliste für einen bevorstehenden Arzt- oder Phys
      einer Therapie aus `AKTE.md` abschreiben.
 
    Allgemeinverständlich, ohne Abkürzungen, die die Praxis nicht kennt.
-4. Committen.
+4. Nur die Themenliste committen.
 
 ## Nachher
 
 1. Die Liste Punkt für Punkt durchgehen: Was wurde besprochen, entschieden,
    verordnet?
 2. Die Ergebnisse über den Skill `neue-information` aufnehmen.
-3. Die Themenliste löschen und committen.
+3. Die Themenliste löschen und nur die Löschung committen.

@@ -13,13 +13,8 @@ nicht.
 
 ## Ablauf
 
-1. **Vorher nachziehen:** Hat `unterlagen/` Änderungen ohne Commit
-   (`git status unterlagen/`), sie mit dem Skill `neue-information`
-   einarbeiten. Sonst `akte-stand` ausführen; meldet es Unterlagen oder einen
-   nicht abgeschlossenen Bau, den Skill `akte-aktualisieren` ausführen. Haben
-   danach noch `BEURTEILUNG.md` oder `literatur/` Änderungen ohne Commit,
-   sie mit dem Skill `beurteilung-aendern`, Teil „Abschließen“, committen.
-   Erst danach prüfen.
+1. **Vorher nachziehen:** den Skill `einarbeiten` ausführen. Erst danach
+   prüfen.
 2. **Lesen:** `AKTE.md`, `BEURTEILUNG.md`, `unterlagen/anamnese.md`,
    `unterlagen/historie.md`, die Dateinamen in `unterlagen/` und
    `literatur/`, `literatur/README.md` und die erste Zeile jeder CSV in
@@ -38,12 +33,11 @@ nicht.
 5. **Fragen,** einzeln und im Gesprächston, nicht als Liste. Antworten zum
    Patienten, auch „erledigt“, welche von zwei Angaben gilt oder dass er
    nichts sagen will, nimmst du mit dem Skill `neue-information` auf; eine
-   Ablehnung als Eintrag „möchte zu … keine Angaben machen“. Die nächste
-   Frage zählt dort als „kommt noch etwas dazu“; eingearbeitet wird einmal,
-   nach der letzten Antwort. Nennt der Benutzer zu einer Quelle auf eine
-   fehlende Datei die richtige, berichtigst du die Quelle in Schritt 6, mit
-   dieser Datei als weiterer Quelle der Gegenprüfung. Was unbeantwortet
-   bleibt, ist offen geblieben.
+   Ablehnung als Eintrag „möchte zu … keine Angaben machen“. Nach der
+   letzten Antwort arbeitest du sie mit dem Skill `einarbeiten` ein. Nennt
+   der Benutzer zu einer Quelle auf eine fehlende Datei die richtige,
+   berichtigst du die Quelle in Schritt 6, mit dieser Datei als weiterer
+   Quelle der Gegenprüfung. Was unbeantwortet bleibt, ist offen geblieben.
 6. **`AKTE.md` berichtigen** nach den Regeln des Subagenten `akte`, wie in
    Schritt 7 des Skills `akte-aktualisieren`, und dort ab Schritt 4
    weitergehen, mit `HEAD:AKTE.md` als Quelle. Was die Antworten schon

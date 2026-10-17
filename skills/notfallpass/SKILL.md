@@ -1,6 +1,6 @@
 ---
 name: notfallpass
-description: Gibt den Text für den Notfallpass im Handy aus (Notfallpass auf dem iPhone, Notfallinformationen auf Android) – Erkrankungen, Medikamente, Allergien, Hinweise für den Notfall –, kurz und zum Kopieren. Benutzen, wenn der Benutzer danach fragt, und nach jeder Änderung an Diagnosen, Medikation, Allergien, Implantaten oder Schwangerschaft.
+description: Gibt den Text für den Notfallpass im Handy aus (Notfallpass auf dem iPhone, Notfallinformationen auf Android) – Erkrankungen, Medikamente, Allergien, Hinweise für den Notfall –, kurz und zum Kopieren. Benutzen, wenn der Benutzer danach fragt, und im Skill einarbeiten nach einer Änderung an Diagnosen, Medikation, Allergien, Implantaten oder Schwangerschaft, nicht schon beim Aufnehmen im Gespräch.
 ---
 
 # Notfallpass
@@ -10,7 +10,8 @@ eine fremde Praxis. Er steht auf dem Sperrbildschirm und soll auf einen
 Handybildschirm passen.
 
 1. `akte-stand` ausführen; meldet es Änderungen, zuerst den Skill
-   `akte-aktualisieren`, und erst weiter, wenn `AKTE.md` committet ist.
+   `einarbeiten`, und erst weiter, wenn `AKTE.md` committet ist. Hat der
+   den Notfallpass schon ausgegeben, endet dieser Skill.
 2. Aus `AKTE.md` zusammenstellen, nach den Feldern des Notfallpasses, jedes
    als eigener Block zum Kopieren:
    - **Erkrankungen:** Diagnosen, die im Notfall zählen, etwa Diabetes,
@@ -38,5 +39,5 @@ Handybildschirm passen.
 4. Dazu sagen, welche Felder leer geblieben sind; steht im Handy dort
    noch etwas, soll der Benutzer es leeren. Außerdem sagen, dass
    Notfallkontakte und Organspende im Handy selbst eingetragen werden.
-   Nennt der Benutzer etwas Fehlendes, kommt es über den Skill
-   `neue-information` in die Akte.
+   Nennt der Benutzer etwas Fehlendes, nimmst du es mit dem Skill
+   `neue-information` auf.

@@ -5,8 +5,10 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
 
 # Nächste Schritte
 
-1. `akte-stand` ausführen; meldet es Änderungen, zuerst den Skill
-   `akte-aktualisieren` ausführen.
+1. `akte-stand` ausführen. Meldet es Unterlagen, die nicht in diesem
+   Gespräch aufgenommen wurden, oder einen nicht abgeschlossenen Bau, zuerst
+   den Skill `einarbeiten` ausführen. Angaben aus diesem Gespräch, die noch
+   nicht eingearbeitet sind, beziehst du mit ein.
 2. Nach veralteten Ständen fragen, die für die Reihenfolge zählen: Hat ein
    Termin stattgefunden, liegt ein Ergebnis vor, hat eine Therapie begonnen?
    Antworten über den Skill `neue-information` aufnehmen.

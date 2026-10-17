@@ -10,8 +10,10 @@ Alter ansteht, nicht nur die gesetzliche Früherkennung. Jede Quelle in
 Schritt 3 wird jedes Mal geprüft, auch wenn der Benutzer nur nach einem Teil
 fragt; was nicht zutrifft, kommt mit Grund unter „geprüft, ohne Ergebnis“.
 
-1. `akte-stand` ausführen; meldet es Änderungen, zuerst den Skill
-   `akte-aktualisieren`.
+1. `akte-stand` ausführen. Meldet es Unterlagen, die nicht in diesem
+   Gespräch aufgenommen wurden, oder einen nicht abgeschlossenen Bau, zuerst
+   den Skill `einarbeiten` ausführen. Angaben aus diesem Gespräch, die noch
+   nicht eingearbeitet sind, beziehst du mit ein.
 2. Übernehmen, was schon steht: „Vorsorge“, „Impfungen und Immunstatus“ und
    „Offen“ in `AKTE.md`, „Vorsorge“, „Beobachten“ und „Offen“ in
    `BEURTEILUNG.md`. Was dort mit nicht veralteter Prüfung steht, nicht neu

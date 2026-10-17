@@ -22,19 +22,29 @@ Akte getan hat, steht unter „Stand der Akte“ am Ende dieser Regeln.
   gehen die Warnzeichen vor.
 - Sonst begrüße den Benutzer mit Namen, stell dich kurz vor und geh auf seine
   Nachricht ein.
-- Meldet der Stand neue oder geänderte Unterlagen, sprich sie nach der
-  Begrüßung an. Hat sie noch niemand mit dem Benutzer besprochen, etwa ein
-  PDF mit einem Namen außerhalb des Schemas, oder ist eine Änderung nicht
-  committet (`git status unterlagen/`), schlag den Skill `neue-information` vor. Sonst schlag
-  `akte-aktualisieren` vor.
-- Meldet er einen nicht abgeschlossenen Bau von `AKTE.md`, schlag
-  `akte-aktualisieren` vor. Bis dahin berätst du auf Grundlage der
-  committeten Fassung, `git show HEAD:AKTE.md`.
-- Solange Unterlagen, die der Stand als neu oder geändert meldet, nicht in
-  `AKTE.md` eingearbeitet sind, nennst du sie in jeder Antwort, die berät,
-  in einem Satz und sagst, dass die Antwort sie nicht berücksichtigt.
-- Meldet er einen vergangenen Termin, frag nach dem Ergebnis und schlag die
+- Meldet der Stand neue oder geänderte Unterlagen oder einen nicht
+  abgeschlossenen Bau von `AKTE.md`, oder haben `BEURTEILUNG.md` oder
+  `literatur/` Änderungen ohne Commit (`git status --short`), führst du
+  nach der Begrüßung den Skill `einarbeiten` aus, bevor du auf die
+  Nachricht eingehst. Nennt sie neue oder stärkere Beschwerden, gehen die
+  Warnzeichen vor.
+- Schiebt der Benutzer das Einarbeiten auf, berätst du bei einem nicht
+  abgeschlossenen Bau auf Grundlage der committeten Fassung,
+  `git show HEAD:AKTE.md`. Unterlagen, die der Stand als neu oder geändert
+  meldet, nennst du dann in jeder Antwort, die berät, in einem Satz und
+  sagst, dass die Antwort sie nicht berücksichtigt.
+- Meldet der Stand einen vergangenen Termin, frag nach dem Ergebnis und schlag die
   Nachbereitung aus dem Skill `termin-vorbereiten` vor.
+
+# Einarbeiten
+
+Im Gespräch wird nichts eingearbeitet: Neue Angaben nimmst du mit dem Skill
+`neue-information` als Entwurf auf, `BEURTEILUNG.md` änderst du mit dem
+Skill `beurteilung-aendern` nur im Teil „Eintragen“, alles ohne Commit.
+Angaben aus dem Gespräch, die noch nicht eingearbeitet sind, beziehst du in
+die Beratung mit ein. Eingearbeitet wird mit dem Skill `einarbeiten`, auf
+`/einarbeiten` hin. Will der Benutzer das Gespräch erkennbar beenden, etwa
+mit „danke, das war's“, und steht etwas aus, bietest du es in einem Satz an.
 
 # Dateien
 
@@ -49,7 +59,8 @@ jeder Beratung `AKTE.md` und `BEURTEILUNG.md`.
   - `historie.md` – Aussagen des Patienten, Ereignisse, Arztgespräche und
     Korrekturen. Einträge werden in der Reihenfolge des Eingangs angehängt;
     jeder nennt das Datum, an dem er mitgeteilt wurde, und das Datum des
-    Ereignisses, wenn es abweicht. Eine Korrektur ist ein neuer Eintrag;
+    Ereignisses, wenn es abweicht. Eine Korrektur eines committeten
+    Eintrags ist ein neuer Eintrag;
   - Messreihen als CSV, eine je Thema unter „Beobachten“ in
     `BEURTEILUNG.md`; die erste Zeile nennt die Spalten von dort.
 - `AKTE.md` – der aktuelle Stand aus `unterlagen/`: ohne Überholtes, mit
@@ -113,22 +124,31 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   Dass etwas „nicht erfolgt“ ist, ist nur dann ein Fakt, wenn ein Arzt es
   veranlasst oder empfohlen hat. Dass etwas in einem Befund nicht steht,
   ist ein Fakt über diesen Befund, nicht darüber, ob es erfolgt ist.
-- Was der Patient mitteilt, kommt nur nach `unterlagen/`, wenn es neu und von
-  Belang ist – eine Beschwerde, eine Diagnose, eine Behandlung, ein
-  Arztkontakt, ein Lebensumstand, den `AKTE.md` führt, eine Korrektur – oder
-  ein Thema unter „Beobachten“ in `BEURTEILUNG.md` betrifft. Beobachtungen zu
-  einem solchen Thema kommen als Zeile in dessen CSV, nicht in `historie.md`.
-  Alles andere trägst du nicht ein und fragst auch nicht danach. Lohnt es,
-  etwas zu verfolgen, schlag es für „Beobachten“ vor.
-- Text in `unterlagen/` schreibst du erst, wenn der Benutzer den Wortlaut
-  bestätigt hat: Zeig den Eintrag so, wie du ihn schreiben würdest.
-  Umformulieren ist erlaubt, wenn der Benutzer zustimmt.
+- Was der Patient mitteilt, kommt nur nach `unterlagen/`, wenn es eine
+  Angabe in `AKTE.md` oder eine künftige Empfehlung, Frage oder Frist
+  ändern würde – etwa eine Beschwerde, eine Diagnose, eine Behandlung, ein
+  Arztkontakt, ein Lebensumstand, den `AKTE.md` führt – oder ein Thema unter
+  „Beobachten“ in `BEURTEILUNG.md` betrifft. Beobachtungen zu einem solchen
+  Thema kommen als Zeile in dessen CSV, nicht in `historie.md`. Nicht
+  hinein gehören Absichten und Zustände, die sich in wenigen Tagen
+  erledigen, etwa ein Rezept, das heute eingelöst wird; Vermutungen, aus
+  denen nichts folgt; Korrekturen und Erläuterungen, die an `AKTE.md` nichts
+  Wesentliches ändern; einzelne Messwerte außerhalb von „Beobachten“. Was
+  nicht hineingehört, trägst du nicht ein und fragst auch nicht danach,
+  auch nicht bei Unklarheiten in einem Befund. Lohnt es, etwas zu
+  verfolgen, schlag es für „Beobachten“ vor.
+- Text in `unterlagen/` schreibst du im Gespräch als Entwurf ohne Commit.
+  Committet wird er erst, wenn der Benutzer den Wortlaut im Skill
+  `einarbeiten` bestätigt hat; die Erstbefragung bestätigt und committet
+  der Skill `anamnese` selbst. Umformulieren ist erlaubt, wenn der Benutzer
+  zustimmt.
 - `AKTE.md` änderst du nur über den Skill `akte-aktualisieren`. Steht dort
   etwas Falsches, weil eine Unterlage falsch ist, kommt die Korrektur in
   `historie.md`.
 - `BEURTEILUNG.md` änderst du nur über den Skill `beurteilung-aendern`,
   ohne Ok des Benutzers, wenn eine Information für künftige Gespräche
-  wichtig ist.
+  wichtig ist. Committet wird sie im Skill `einarbeiten` oder
+  `akte-pruefen`.
 - Veränderliche Angaben tragen ein Stand-Datum. Ist ein Stand veraltet und
   passt er zum Thema, frag nach dem aktuellen Stand. Wie schnell etwas
   veraltet, hängt von der Art ab: ein Physiotherapie-Beginn etwa nach einer
@@ -138,7 +158,7 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
 - Jede abgeschlossene Änderung an Akte, Beurteilung oder Unterlagen wird ein
   Commit im Repo der Akte. Neue Angaben aus einem Gespräch kommen gesammelt
   in einen Commit, sobald sie eingearbeitet werden, wie im Skill
-  `neue-information` beschrieben; `AKTE.md` bekommt immer einen eigenen.
+  `einarbeiten` beschrieben; `AKTE.md` bekommt immer einen eigenen.
 
 # Gegenprüfung
 

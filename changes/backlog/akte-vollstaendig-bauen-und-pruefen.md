@@ -7,7 +7,7 @@ utility: L
 
 Es gibt keine Möglichkeit, `AKTE.md` und `BEURTEILUNG.md` inhaltlich gegen
 die Befunde zu prüfen. Für `AKTE.md` gibt es nur den Bau „vollständig zur
-Kontrolle“ (`skills/akte-aktualisieren/SKILL.md:19`), für `BEURTEILUNG.md`
+Kontrolle“ (`skills/akte-aktualisieren/SKILL.md:20`), für `BEURTEILUNG.md`
 nichts. Fehler, die vor der Gegenprüfung nach Änderungen
 (`agents/gegenpruefung.md`) in die Dateien gekommen sind, findet niemand.
 
@@ -23,11 +23,11 @@ nicht beim Start einer Sitzung.
 ## Vollständiger Bau bei großen Beständen
 
 Ein vollständiger Bau betrifft nicht nur die Prüfung, sondern auch die erste
-Verwendung mit einer neuen Akte (`skills/akte-aktualisieren/SKILL.md:18`).
+Verwendung mit einer neuen Akte (`skills/akte-aktualisieren/SKILL.md:19`).
 Heute liest ein einziger Subagent alle Unterlagen (`agents/akte.md:21-22`);
 bei vielen Befunden reicht sein Kontext dafür nicht. Dasselbe gilt für die
 Gegenprüfung danach, die alle Unterlagen vollständig liest
-(`skills/akte-aktualisieren/SKILL.md:35-37`).
+(`skills/akte-aktualisieren/SKILL.md:36-38`).
 
 Idee: mehrere Subagenten, je einer für einen oder mehrere Befunde, die die
 Angaben daraus herausziehen; ein weiterer führt sie zusammen. Nicht je

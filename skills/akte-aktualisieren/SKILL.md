@@ -1,17 +1,18 @@
 ---
 name: akte-aktualisieren
-description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach, in einem Subagenten. Benutzen, wenn der Skill neue-information die gesammelten Angaben einarbeitet, wenn akte-stand Änderungen meldet, oder wenn der Benutzer AKTE.md neu aufbauen oder gegen die Unterlagen prüfen lassen will.
+description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach, in einem Subagenten. Benutzen, wenn der Skill einarbeiten die gesammelten Angaben einarbeitet, wenn akte-stand Änderungen meldet, oder wenn der Benutzer AKTE.md neu aufbauen oder gegen die Unterlagen prüfen lassen will.
 ---
 
 # AKTE.md aktualisieren
 
 1. Die Unterlagen müssen committet sein. Sind sie es nicht
-   (`git status unterlagen/`), sie zuerst mit dem Skill `neue-information`
-   einarbeiten; der führt diesen Skill danach selbst aus. Sonst
+   (`git status unterlagen/`), zuerst den Skill `einarbeiten` ausführen;
+   der führt diesen Skill danach selbst aus. Sonst
    `akte-stand` ausführen.
    Meldet es nichts und ist kein vollständiger Neubau gewünscht, ist
    `AKTE.md` aktuell. Meldet es einen nicht abgeschlossenen Bau, gehören
-   dessen Änderungen an `AKTE.md` in Schritt 4 mit dazu. Ohne gemeldete Dateien gleich mit Schritt 4 weiter.
+   dessen Änderungen an `AKTE.md` in Schritt 4 mit dazu. Ohne gemeldete
+   Dateien gleich mit Schritt 4 weiter.
 2. Den Subagenten `patientenakte:akte` starten. Im Auftrag stehen die
    Ausgabe von `akte-stand` und die Art des Baus:
    - **schrittweise** in `AKTE.md`: der Normalfall;
@@ -50,9 +51,13 @@ description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach
 6. Dem Benutzer die Änderungen nennen: den Diff des Commits, inhaltlich
    zusammengefasst, und die Funde der Gegenprüfung. Die offenen
    Widersprüche und Unklarheiten, die der Subagent `akte` meldet, stellst du
-   ihm als Fragen; die geklärten nennst du nur kurz mit ihrer Quelle.
+   ihm als Fragen, außer solchen, deren Antwort nach der Regel in
+   `regeln.md` nicht in die Unterlagen käme; die geklärten nennst du nur
+   kurz mit ihrer Quelle.
 7. Erkennt der Benutzer etwas als falsch übernommen, berichtigst du es nach
    den Regeln des Subagenten `akte` und gehst ab Schritt 4 weiter, mit der
    Unterlage, aus der es stammt, als Quelle. Ist eine Unterlage selbst
-   falsch oder nennt der Benutzer Neues, kommt das über den Skill
-   `neue-information` in `unterlagen/`; der zieht `AKTE.md` erneut nach.
+   falsch oder nennt der Benutzer Neues, nimmst du es mit dem Skill
+   `neue-information` auf. Wurde `akte-aktualisieren` aus dem Skill
+   `einarbeiten` aufgerufen, geht dieser mit dem neuen Entwurf ab seinem
+   Schritt 3 weiter; sonst führst du den Skill `einarbeiten` aus.

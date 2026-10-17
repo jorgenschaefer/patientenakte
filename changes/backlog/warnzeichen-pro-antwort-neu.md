@@ -7,10 +7,10 @@ utility: L
 
 Warnzeichen mit Stufe soll `BEURTEILUNG.md` führen
 (`vorlagen/BEURTEILUNG.md:11-13`), und eine Beschwerde, die dort steht, ist
-mindestens so dringend wie die Stufe dort (`regeln.md:100-101`). In der
+mindestens so dringend wie die Stufe dort (`regeln.md:111-112`). In der
 Antwort nennt das Modell aber auch Warnzeichen, die dort nicht stehen, und
 erzeugt sie jedes Mal neu, ohne Leitlinie; `naechste-schritte` trägt neue
-nur nachträglich ein (`skills/naechste-schritte/SKILL.md:37-39`).
+nur nachträglich ein (`skills/naechste-schritte/SKILL.md:39-41`).
 
 Zwei Läufe von `naechste-schritte` in echten Beratungen, gut eine Stunde
 auseinander, über dieselbe Akte:

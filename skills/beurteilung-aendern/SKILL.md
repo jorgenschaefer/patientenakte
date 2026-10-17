@@ -1,12 +1,12 @@
 ---
 name: beurteilung-aendern
-description: Trägt Empfehlungen, Einschätzungen, Warnzeichen, Vorsorge, Beobachtungsthemen und Quellen in BEURTEILUNG.md ein, passt betroffene Einträge an und committet die Änderung mit der Literatur nach der Gegenprüfung. Benutzen für jede Änderung an BEURTEILUNG.md, aus jedem Skill und aus der freien Beratung.
+description: Trägt Empfehlungen, Einschätzungen, Warnzeichen, Vorsorge, Beobachtungsthemen und Quellen in BEURTEILUNG.md ein, passt betroffene Einträge an, im Gespräch ohne Commit, und committet die Änderung mit der Literatur nach der Gegenprüfung, wenn der Skill einarbeiten oder akte-pruefen es verlangt. Benutzen für jede Änderung an BEURTEILUNG.md, aus jedem Skill und aus der freien Beratung.
 ---
 
 # BEURTEILUNG.md ändern
 
-Eingetragen wird gleich (Teil „Eintragen“). Committet wird einmal, wenn das
-Anliegen erledigt ist (Teil „Abschließen“).
+Eingetragen wird gleich (Teil „Eintragen“), ohne Commit. Committet wird im
+Skill `einarbeiten` oder `akte-pruefen` (Teil „Abschließen“).
 
 ## Eintragen
 
@@ -35,9 +35,8 @@ Einträge nachzuziehen sind.
 
 ## Abschließen
 
-Am Ende der Antwort, in der `BEURTEILUNG.md` oder `literatur/` geändert
-wurde. Sammelt der Skill `neue-information` noch Angaben, erst in dessen
-Schritt 7.
+Nur auf Aufruf aus dem Skill `einarbeiten` oder `akte-pruefen`, nicht im
+laufenden Gespräch.
 
 1. Committet werden `BEURTEILUNG.md`, `literatur/` und die Unterlagen, die
    der Aufruf nennt. Ist keine davon geändert (`git status --short`), endet
