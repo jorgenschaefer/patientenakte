@@ -96,6 +96,7 @@ aus `akte-stand` (neu, geändert, entfernt).
 ### Aktuell                        Wirkstoff, Präparat, Dosis, Schema, verordnet von, Fristen
 ### Früher                         Wirkstoff, Zeitraum, Grund für das Ende
 ## Allergien und Unverträglichkeiten
+## Psychische Verfassung           Stimmung, Antrieb, Ängste, Belastungen, frühere Psychotherapie, je mit Datum
 ## Gynäkologie und Schwangerschaft
 ## Impfungen und Immunstatus
 ## Vorsorge                        Früherkennung, Check-up, Zahnarzt, Augenarzt, Betriebsarzt, Kontrollen wegen einer Erkrankung, je mit Datum und Ergebnis

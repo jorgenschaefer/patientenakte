@@ -1,6 +1,6 @@
 ---
 name: leitlinie
-description: Sucht eine Leitlinie, Studie oder Fachinformation zu einer Frage aus Medizin, Physiotherapie, Ernährung oder Sport, prüft ihre Gültigkeit und legt sie in literatur/ ab. Benutzen vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie, Medikation, Training oder Vorsorge, die nicht schon mit aktueller Quelle in BEURTEILUNG.md steht, und wenn der Benutzer fragt, was die Leitlinie zu einem Thema sagt.
+description: Sucht eine Leitlinie, Studie oder Fachinformation zu einer Frage aus Medizin, Psychologie und Psychotherapie, Physiotherapie, Ernährung oder Sport, prüft ihre Gültigkeit und legt sie in literatur/ ab. Benutzen vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie, Medikation, Training oder Vorsorge, die nicht schon mit aktueller Quelle in BEURTEILUNG.md steht, und wenn der Benutzer fragt, was die Leitlinie zu einem Thema sagt.
 ---
 
 # Leitlinie
@@ -19,6 +19,9 @@ Den Rang einer Leitlinie haben je nach Fachgebiet auch:
   Gesundheitsuntersuchung (Check-up);
 - **Medikation:** die Fachinformation, für Dosierung, Gegenanzeigen,
   Wechselwirkungen und Kontrolluntersuchungen;
+- **Psychotherapie:** die S3-Leitlinien der AWMF und die Nationalen
+  VersorgungsLeitlinien, etwa zur unipolaren Depression, für Verfahren und
+  Kassenleistungen die Psychotherapie-Richtlinie des G-BA;
 - **Ernährung:** die Referenzwerte und Leitlinien der DGE;
 - **Bewegung und Sport:** die Bewegungsempfehlungen der WHO, die
   Positionspapiere des ACSM und der DGSP;

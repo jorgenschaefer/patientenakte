@@ -47,6 +47,9 @@ in `historie.md`.
   Erkrankung, je mit Datum und Ergebnis
 - **Vegetative Anamnese:** Appetit, Durst, Gewichtsverlauf, Stuhlgang,
   Wasserlassen, Schlaf, Nachtschweiß, Fieber
+- **Psychische Anamnese:** Stimmung, Antrieb, Freude und Interesse, Ängste,
+  Belastungen und wie der Patient damit umgeht, frühere psychische
+  Erkrankungen und Psychotherapie
 - **Gynäkologische Anamnese**, wo zutreffend: Schwangerschaften und
   Geburten, mögliche oder bestehende Schwangerschaft, Verhütung, Wechseljahre
 - **Genussmittel:** Rauchen, Alkohol, Sonstiges
