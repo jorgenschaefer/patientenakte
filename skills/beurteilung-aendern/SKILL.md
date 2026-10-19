@@ -17,9 +17,12 @@ Einträge nachzuziehen sind.
    Überschrift des Abschnitts: Datum vorn, Kennzeichnung, Quelle mit dem
    Kurznamen aus „Quellen“ und Empfehlungsnummer, Empfehlungsgrad,
    Evidenzniveau und Konsensstärke, wo angegeben.
-2. **Ein Eintrag je Thema:** Steht es schon da, den Eintrag anpassen und neu
-   datieren statt einen zweiten anzulegen. Steht es in einem anderen
-   Abschnitt, dort lassen und darauf verweisen.
+2. **Ein Eintrag je Thema:** Steht es schon da, den Eintrag auf dem neuen
+   Stand ganz neu schreiben und neu datieren, statt einen zweiten anzulegen
+   oder Absätze mit „ergänzt“ anzuhängen. Was weiter gilt, bleibt dabei
+   erhalten: Empfehlung, Frist, Dringlichkeit und Quellenangabe mit
+   Empfehlungsnummer, Empfehlungsgrad, Evidenzniveau und Konsensstärke.
+   Steht es in einem anderen Abschnitt, dort lassen und darauf verweisen.
 3. **Betroffene Einträge** in allen Abschnitten, auch unter „Einschätzungen“
    und „Beobachten“: Erledigte und überholte löschen. Abgelehnte, die sonst
    weiter gelten würden, mit Datum und Grund nach „Abgelehnt“. Die übrigen

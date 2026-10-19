@@ -140,12 +140,15 @@ gemeldet wird.
 
 Gefragt wird nach Punkten der Erstbefragung, zu denen die Akte nichts sagt,
 etwa der psychischen Verfassung in einer älteren Akte, nach abgelaufenen
-Fristen unter „Offen“, nach Widersprüchen und nach Quellen auf Dateien, die
-es nicht gibt. Die Antworten kommen wie jede Angabe nach
-`unterlagen/historie.md`. Eine abgelehnte Angabe wird als „keine Angabe“
-vermerkt; danach fragt die Prüfung erst nach zwölf Monaten wieder. Aufbau,
-Form, Doppeltes und Einträge in `BEURTEILUNG.md`, die `AKTE.md` nicht mehr
-trägt, berichtigt Claude ohne Rückfrage, jeweils mit Gegenprüfung.
+Fristen unter „Offen“ in `AKTE.md` und `BEURTEILUNG.md`, nach Widersprüchen
+und nach Quellen auf Dateien, die es nicht gibt. Die Antworten kommen wie
+jede Angabe nach `unterlagen/historie.md`. Eine abgelehnte Angabe wird als
+„keine Angabe“ vermerkt; danach fragt die Prüfung erst nach zwölf Monaten
+wieder. Aufbau, Form, Doppeltes und Einträge in `BEURTEILUNG.md`, die
+`AKTE.md` nicht mehr trägt, berichtigt Claude ohne Rückfrage, jeweils mit
+Gegenprüfung. Zu lange Einträge in `BEURTEILUNG.md` kürzt Claude dabei
+nach den Regeln im Kopf der Datei, ohne eine Aussage zu ändern; in einer
+älteren Akte kommen diese Regeln erst mit der Prüfung in den Kopf.
 
 Die Prüfung selbst liest keine Befunde und keine Literatur und prüft nicht,
 ob Leitlinien noch gelten. Was nur damit zu klären wäre, etwa eine Angabe

@@ -4,6 +4,8 @@
 
 *Kennzeichnung: **Leitlinie** gibt wieder, was eine Leitlinie, Studie oder Fachinformation sagt (mit Quelle und Stand). **Modell** ist die Übertragung auf den Fall oder eine Einschätzung ohne Leitlinie. **Organisatorisch** sind Erledigungen ohne medizinische Bewertung. Gibt es keine Leitlinie, steht das beim Eintrag. Empfehlungen mit Empfehlungsnummer, sonst mit Abschnitt oder Seite, und, wo angegeben, Empfehlungsgrad, Evidenzniveau und Konsensstärke.*
 
+*Knapp: Ein Eintrag steht auf dem aktuellen Stand, mit höchstens einem Absatz je Kennzeichnung. Unter **Leitlinie** steht nur, worauf der Eintrag beruht, unter **Modell** das Ergebnis und der Grund, der es entscheidet, nicht die Herleitung. Werte aus AKTE.md stehen nur da, wo der Eintrag an ihnen hängt, als einzelner Wert mit Datum; eine Reihe nur, wenn er am Verlauf hängt.*
+
 ## Quellen
 
 *Kurzbezeichnungen, die in den Einträgen verwendet werden, je mit Registernummer, Version, Gültigkeit und Datum der letzten Prüfung auf eine neuere Fassung. Was nur aus Sekundärquellen oder Auszügen stammt, ist als solches gekennzeichnet. Lokal gespeicherte Quellen liegen in `literatur/` (Übersicht in `literatur/README.md`).*

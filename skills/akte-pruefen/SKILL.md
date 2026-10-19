@@ -1,6 +1,6 @@
 ---
 name: akte-pruefen
-description: Bringt die Akte auf den Stand des Plugins, ohne Befunde zu lesen. Prüft AKTE.md, BEURTEILUNG.md, anamnese.md und historie.md gegen die Regeln des Plugins, fragt fehlende Punkte der Anamnese, abgelaufene Fristen und Widersprüche nach, berichtigt die Form und löscht oder schränkt Einträge in BEURTEILUNG.md ein, die AKTE.md nicht mehr trägt.
+description: Bringt die Akte auf den Stand des Plugins, ohne Befunde zu lesen. Prüft AKTE.md, BEURTEILUNG.md, anamnese.md und historie.md gegen die Regeln des Plugins, fragt fehlende Punkte der Anamnese, abgelaufene Fristen und Widersprüche nach, berichtigt die Form, kürzt zu lange Einträge in BEURTEILUNG.md und löscht oder schränkt Einträge in BEURTEILUNG.md ein, die AKTE.md nicht mehr trägt.
 disable-model-invocation: true
 ---
 
@@ -43,9 +43,11 @@ nicht.
    weitergehen, mit `HEAD:AKTE.md` als Quelle. Was die Antworten schon
    erledigt haben, entfällt.
 7. **`BEURTEILUNG.md` berichtigen** mit dem Skill `beurteilung-aendern`
-   und abschließen. Die Funde gegen `AKTE.md` prüfst du vorher gegen die
-   nachgezogene `AKTE.md` erneut. Der Auftrag an die Gegenprüfung nennt
-   keine Quellen.
+   und abschließen; ein gekürzter Eintrag behält dabei sein Datum, weil
+   Kürzen kein Prüfen ist. Die Funde gegen `AKTE.md` prüfst du vorher gegen
+   die nachgezogene `AKTE.md` erneut. Der Auftrag an die Gegenprüfung nennt
+   keine Quellen; hast du Einträge gekürzt, nennt er `HEAD:BEURTEILUNG.md`
+   als Quelle.
 8. **Abschließen:** `AKTE.md`, `BEURTEILUNG.md`, `unterlagen/` und
    `literatur/` sind committet, und `akte-stand` meldet nichts. Dann fasst du
    zusammen: was berichtigt wurde, die Funde der Gegenprüfungen, was offen
@@ -63,7 +65,8 @@ nicht.
   Abschnitte des Schemas mit „wo zutreffend“ nur, wo sie zutreffen;
 - „keine Angabe“, deren Vermerk älter als 12 Monate ist; jüngere zählen wie
   eine Angabe;
-- ein Punkt unter „Offen“ in `AKTE.md` mit abgelaufener Frist;
+- ein Punkt unter „Offen“ in `AKTE.md` oder `BEURTEILUNG.md` mit
+  abgelaufener Frist;
 - zwei Angaben in `AKTE.md`, die sich widersprechen, außer wenn eine davon
   als überholt gekennzeichnet ist;
 - eine Quelle in `AKTE.md` auf eine Datei, die es in `unterlagen/` nicht
@@ -93,7 +96,9 @@ nicht.
   Abschnitt der Vorlage; ein Eintrag ohne Datum vorn oder ohne
   Kennzeichnung; ein Kurzname, der unter „Quellen“ fehlt, nachgetragen
   mit dem, was `literatur/README.md` zu ihm nennt, der Rest wie oben nur
-  gemeldet; ein Thema in zwei Einträgen.
+  gemeldet; ein Thema in zwei Einträgen; ein Eintrag, der nicht so knapp
+  ist, wie der Kopf der Vorlage verlangt, gekürzt, mit seinem bisherigen
+  Datum.
 - `BEURTEILUNG.md` gegen `AKTE.md`: Ein Eintrag, dessen Grundlage `AKTE.md`
   nicht mehr trägt, und ein Punkt unter „Offen“, der laut `AKTE.md`
   erledigt ist, werden gelöscht. Ein Eintrag, der Allergien, Medikation oder
@@ -103,5 +108,8 @@ nicht.
 Eine Berichtigung der Form ändert keine Angabe inhaltlich: keinen Wert,
 keine Einheit, keinen Referenzbereich, keine Diagnosesicherheit und nicht,
 worauf eine Quelle zeigt, außer bei einer Quelle, zu der der Benutzer in
-Schritt 5 die richtige Datei genannt hat. Ginge es nicht ohne, meldest du
+Schritt 5 die richtige Datei genannt hat. Beim Kürzen bleiben jede
+Empfehlung, Frist, Dringlichkeit, Einschätzung und Quellenangabe erhalten;
+gestrichen wird nur, was der Kopf der Vorlage ausschließt oder was im selben
+Eintrag ein späterer Absatz ersetzt hat. Ginge es nicht ohne, meldest du
 den Fund nur.

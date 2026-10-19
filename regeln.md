@@ -172,8 +172,10 @@ Schritt 4 des Skills `akte-aktualisieren`, für `BEURTEILUNG.md` im Skill
   Den Diff liest der Subagent selbst mit `git diff HEAD -- <datei>`. Bei
   `BEURTEILUNG.md` sind die Quellen die neuen oder geänderten Unterlagen,
   die mit ihr in denselben Commit kommen; sind es keine, steht das im
-  Auftrag. Sonst nichts: keine Begründung und keine Überlegung zur
-  Änderung, keine Zusammenfassung, keine weiteren Unterlagen oder Literatur.
+  Auftrag. Bei einer Kürzung im Skill `akte-pruefen` kommt
+  `HEAD:BEURTEILUNG.md` dazu. Sonst nichts: keine Begründung und keine
+  Überlegung zur Änderung, keine Zusammenfassung, keine weiteren Unterlagen
+  oder Literatur.
 - **Funde:** Jeden Fund liest du an der genannten Fundstelle nach und
   berichtigst die bestätigten. Dem Benutzer nennst du alle Funde: die
   berichtigten mit der Berichtigung, die verworfenen mit Grund, die nicht
