@@ -26,15 +26,24 @@ Angabe prüfst du dann an dieser Datei.
 
 Bei einer Kürzung von `BEURTEILUNG.md` ist eine Quelle die vorige Fassung
 `HEAD:BEURTEILUNG.md`, gelesen mit `git show HEAD:BEURTEILUNG.md`. Keine
-Empfehlung, Frist, Dringlichkeit, Einschätzung oder Quellenangabe darf in
-der Änderung fehlen oder inhaltlich abweichen. Kein Fund sind: gestrichene
-Zitate, Herleitungen und Werte aus `AKTE.md`, soweit der Kopf der Datei sie
-ausschließt; was im selben Eintrag ein späterer Absatz ersetzt hat; ein
-gelöschter oder eingeschränkter Eintrag, den `AKTE.md` nicht mehr trägt oder
-dem sie widerspricht; ein gelöschter Punkt unter „Offen“, den `AKTE.md` als
-erledigt führt. Einen gekürzten Eintrag mit der Kennzeichnung **Leitlinie**
-prüfst du gegen die vorige Fassung, nicht gegen die Literatur; nicht
-prüfbar ist er deshalb nicht.
+Empfehlung des Eintrags selbst (was der Patient tun oder ansprechen soll),
+Frist, Dringlichkeit oder Einschätzung darf in der Änderung fehlen oder
+inhaltlich abweichen, und keine verbliebene Aussage unter **Leitlinie**
+ihre Quellenangabe verlieren. Ein gekürzter Eintrag trägt vorn das
+späteste Datum, das er in der vorigen Fassung trug; eine Frist, die dort
+von einem Datum aus zählte, steht als dasselbe Datum da. Kein Fund sind:
+
+- was der Kopf der Datei ausschließt: Hintergrund und Empfehlungen einer
+  Leitlinie, auf denen der Eintrag nicht beruht, Herleitungen unter
+  **Modell**, Werte aus `AKTE.md`, an denen der Eintrag nicht hängt;
+- was im selben Eintrag ein späterer Absatz ersetzt hat;
+- ein gelöschter oder eingeschränkter Eintrag, den `AKTE.md` nicht mehr
+  trägt oder dem sie widerspricht;
+- ein gelöschter Punkt unter „Offen“, den `AKTE.md` als erledigt führt.
+
+Einen gekürzten Eintrag mit der Kennzeichnung **Leitlinie** prüfst du gegen
+die vorige Fassung, nicht gegen die Literatur; nicht prüfbar ist er
+deshalb nicht.
 
 Was in einer geänderten Textdatei unter den Quellen neu ist, zeigt
 `git diff <commit> -- <datei>` mit dem Commit aus dem Auftrag, ohne Commit
@@ -98,9 +107,10 @@ Quelle; sie zählen nur, wo die Änderung ihnen widerspricht.
   Diagnosen;
 - ein bestehender Eintrag, den eine neue Angabe betrifft und der nicht
   angepasst wurde;
-- eine Empfehlung, Frist, Dringlichkeit oder Quellenangabe mit
-  Empfehlungsnummer und Graden, die in einem neu geschriebenen Eintrag
-  fehlt, ohne dass eine neue Angabe oder Quelle sie erledigt oder überholt.
+- in einem neu geschriebenen Eintrag eine fehlende Empfehlung des
+  Eintrags, Frist oder Dringlichkeit, oder eine verbliebene Aussage unter
+  **Leitlinie** ohne Quellenangabe mit Empfehlungsnummer und Graden, ohne
+  dass eine neue Angabe oder Quelle sie erledigt oder überholt.
 
 `AKTE.md` ist beim Prüfen von `BEURTEILUNG.md` oft noch nicht nachgezogen.
 Weicht eine Quelle der Änderung von `AKTE.md` ab, gilt die Quelle; die
