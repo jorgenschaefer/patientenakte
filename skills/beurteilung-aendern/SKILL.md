@@ -18,14 +18,10 @@ Einträge nachzuziehen sind.
    Kurznamen aus „Quellen“ und Empfehlungsnummer, Empfehlungsgrad,
    Evidenzniveau und Konsensstärke, wo angegeben.
 2. **Ein Eintrag je Thema:** Steht es schon da, den Eintrag auf dem neuen
-   Stand ganz neu schreiben und neu datieren, statt einen zweiten anzulegen
-   oder Absätze mit „ergänzt“ anzuhängen. Was weiter gilt, bleibt dabei
-   erhalten: die Empfehlung des Eintrags, also was der Patient tun oder
-   ansprechen soll, Frist und Dringlichkeit, und zu jeder Aussage unter
-   **Leitlinie**, die bleibt, die Quellenangabe mit Empfehlungsnummer,
-   Empfehlungsgrad, Evidenzniveau und Konsensstärke. Eine Frist, die von
-   einem Datum aus zählt, etwa „in vier Wochen“, schreibst du als Datum.
-   Steht es in einem anderen Abschnitt, dort lassen und darauf verweisen.
+   Stand neu schreiben, nach „Knapp“ im Kopf der Vorlage
+   `${CLAUDE_PLUGIN_ROOT}/vorlagen/BEURTEILUNG.md`, und neu datieren, statt
+   einen zweiten anzulegen oder etwas anzuhängen. Steht es in einem
+   anderen Abschnitt, dort lassen und darauf verweisen.
 3. **Betroffene Einträge** in allen Abschnitten, auch unter „Einschätzungen“
    und „Beobachten“: Erledigte und überholte löschen. Abgelehnte, die sonst
    weiter gelten würden, mit Datum und Grund nach „Abgelehnt“. Die übrigen

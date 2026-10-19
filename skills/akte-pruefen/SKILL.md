@@ -1,6 +1,6 @@
 ---
 name: akte-pruefen
-description: Bringt die Akte auf den Stand des Plugins, ohne Befunde zu lesen. Prüft AKTE.md, BEURTEILUNG.md, anamnese.md und historie.md gegen die Regeln des Plugins, fragt fehlende Punkte der Anamnese, abgelaufene Fristen und Widersprüche nach, berichtigt die Form, kürzt zu lange Einträge in BEURTEILUNG.md und löscht oder schränkt Einträge in BEURTEILUNG.md ein, die AKTE.md nicht mehr trägt.
+description: Bringt die Akte auf den Stand des Plugins, ohne Befunde zu lesen. Prüft AKTE.md, BEURTEILUNG.md, anamnese.md und historie.md gegen die Regeln des Plugins, fragt fehlende Punkte der Anamnese, abgelaufene Fristen und Widersprüche nach, berichtigt die Form, löscht oder schränkt Einträge in BEURTEILUNG.md ein, die AKTE.md nicht mehr trägt, und kürzt BEURTEILUNG.md auf das, was eine künftige Beratung braucht.
 disable-model-invocation: true
 ---
 
@@ -29,9 +29,7 @@ nicht.
    Gruppen: was du berichtigst, je mit dem, was mit dem Fund geschieht;
    wonach du fragen wirst; was du nur meldest, je mit dem, was ihn beheben
    würde, etwa der Skill `leitlinie` oder ein Blick in einen bestimmten
-   Befund. Die Kürzungen nennst du gesammelt, je Abschnitt mit der Zahl der
-   Einträge, dazu die Größe von `BEURTEILUNG.md` in KB zu Beginn der
-   Prüfung. Danach fragst du und berichtigst ohne weitere Rückfrage.
+   Befund. Danach fragst du und berichtigst ohne weitere Rückfrage.
 5. **Fragen,** einzeln und im Gesprächston, nicht als Liste. Antworten zum
    Patienten, auch „erledigt“, welche von zwei Angaben gilt oder dass er
    nichts sagen will, nimmst du mit dem Skill `neue-information` auf; eine
@@ -44,20 +42,31 @@ nicht.
    Schritt 7 des Skills `akte-aktualisieren`, und dort ab Schritt 4
    weitergehen, mit `HEAD:AKTE.md` als Quelle. Was die Antworten schon
    erledigt haben, entfällt.
-7. **`BEURTEILUNG.md` berichtigen** mit dem Skill `beurteilung-aendern`
-   und abschließen. Gekürzt wird Abschnitt für Abschnitt; jeden Eintrag,
-   den du kürzt, schreibst du ganz neu, die übrigen bleiben, wie sie sind.
-   Ein gekürzter Eintrag bekommt vorn das späteste Datum, das er bisher
-   trug, vorn oder in einem Vermerk, kein neues, weil Kürzen kein Prüfen
-   ist. Die Funde gegen `AKTE.md` prüfst du vorher gegen die nachgezogene
-   `AKTE.md` erneut. Der Auftrag an die Gegenprüfung nennt keine Quellen;
-   hast du Einträge gekürzt, nennt er `HEAD:BEURTEILUNG.md` als Quelle.
-8. **Abschließen:** `AKTE.md`, `BEURTEILUNG.md`, `unterlagen/` und
+7. **`BEURTEILUNG.md` berichtigen** mit dem Skill `beurteilung-aendern`.
+   Die Funde gegen `AKTE.md` prüfst du vorher gegen die nachgezogene
+   `AKTE.md` erneut.
+8. **`BEURTEILUNG.md` kürzen.** Ziel: Dort steht nur, was eine künftige
+   Beratung braucht, wie unter „Knapp“ im Kopf der Vorlage.
+   1. Jeden Eintrag lesen und fragen: Was davon braucht eine künftige
+      Beratung?
+   2. Steht mehr da, den Eintrag neu schreiben: die Empfehlung oder
+      Einschätzung, Fristen als Datum, die Dringlichkeit, die Grundlage aus
+      der Leitlinie in einem Satz je Empfehlung mit Nummer und Graden,
+      unter **Modell** der entscheidende Grund, dazu, was der Hinweis unter
+      der Überschrift des Abschnitts verlangt. Vorn steht das späteste
+      Datum, an dem der Eintrag geschrieben oder geprüft wurde; ein neues
+      bekommt er nicht, denn Kürzen ist kein Prüfen.
+   3. Eine Quelle, die kein Eintrag mehr zitiert, aus „Quellen“ streichen.
+
+   Dann mit dem Skill `beurteilung-aendern` abschließen. Der Auftrag an die
+   Gegenprüfung nennt keine Quellen; hast du gekürzt, nennt er
+   `HEAD:BEURTEILUNG.md` als Quelle.
+9. **Abschließen:** `AKTE.md`, `BEURTEILUNG.md`, `unterlagen/` und
    `literatur/` sind committet, und `akte-stand` meldet nichts. Dann fasst du
    zusammen: was berichtigt wurde, die Funde der Gegenprüfungen, was offen
-   geblieben ist, darunter alles nur Gemeldete, und die Commits mit Hash und
-   Titel, bei Kürzungen mit der Größe von `BEURTEILUNG.md` in KB zu Beginn
-   und am Ende. Gab es keine Funde, sagst du das in einem Satz.
+   geblieben ist, darunter alles nur Gemeldete, ob `BEURTEILUNG.md` gekürzt
+   wurde, und die Commits mit Hash und Titel. Gab es keine Funde, sagst du
+   das in einem Satz.
 
 ## Prüfen
 
@@ -102,18 +111,6 @@ nicht.
   Kennzeichnung; ein Kurzname, der unter „Quellen“ fehlt, nachgetragen
   mit dem, was `literatur/README.md` zu ihm nennt, der Rest wie oben nur
   gemeldet; ein Thema in zwei Einträgen.
-- `BEURTEILUNG.md` gegen den Absatz „Knapp“ im Kopf der Vorlage, auch wenn
-  er im Kopf von `BEURTEILUNG.md` noch fehlt: Du gehst jeden Eintrag durch,
-  nicht nur einzelne; „Quellen“ ausgenommen. Gekürzt wird jeder, der
-  dagegen verstößt, etwa mit einer Kennzeichnung, die mehr als einmal
-  vorkommt (`*Leitlinie:*` und `*Leitlinie (ergänzt …):*` sind zwei), mit
-  einem Datum in einer Kennzeichnung oder einem Vermerk „ergänzt“ oder
-  „geprüft“, auch mitten im Absatz, mit einer Reihe von Werten aus
-  `AKTE.md`, die der Eintrag nicht braucht, mit Hintergrund oder mit
-  Empfehlungen einer Leitlinie, auf denen der Eintrag nicht beruht, mit
-  mehr als einem Satz je Empfehlung unter **Leitlinie**, mit einer
-  Herleitung unter **Modell** oder mit einer Frist, die von einem Datum
-  aus zählt; die schreibst du als Datum.
 - `BEURTEILUNG.md` gegen `AKTE.md`: Ein Eintrag, dessen Grundlage `AKTE.md`
   nicht mehr trägt, und ein Punkt unter „Offen“, der laut `AKTE.md`
   erledigt ist, werden gelöscht. Ein Eintrag, der Allergien, Medikation oder
@@ -123,11 +120,5 @@ nicht.
 Eine Berichtigung der Form ändert keine Angabe inhaltlich: keinen Wert,
 keine Einheit, keinen Referenzbereich, keine Diagnosesicherheit und nicht,
 worauf eine Quelle zeigt, außer bei einer Quelle, zu der der Benutzer in
-Schritt 5 die richtige Datei genannt hat. Beim Kürzen bleiben erhalten:
-jede Empfehlung des Eintrags selbst, also was der Patient tun oder
-ansprechen soll, jede Frist, Dringlichkeit und Einschätzung, und zu jeder
-Aussage unter **Leitlinie**, die bleibt, ihre Quellenangabe mit
-Empfehlungsnummer und Graden. Gestrichen wird nur, was der Kopf der
-Vorlage ausschließt oder was im selben Eintrag ein späterer Absatz ersetzt
-hat. Ginge es bei einer anderen Berichtigung nicht ohne inhaltliche
-Änderung, meldest du den Fund nur.
+Schritt 5 die richtige Datei genannt hat. Ginge es nicht ohne, meldest du
+den Fund nur.

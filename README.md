@@ -146,9 +146,8 @@ jede Angabe nach `unterlagen/historie.md`. Eine abgelehnte Angabe wird als
 „keine Angabe“ vermerkt; danach fragt die Prüfung erst nach zwölf Monaten
 wieder. Aufbau, Form, Doppeltes und Einträge in `BEURTEILUNG.md`, die
 `AKTE.md` nicht mehr trägt, berichtigt Claude ohne Rückfrage, jeweils mit
-Gegenprüfung. Zu lange Einträge in `BEURTEILUNG.md` kürzt Claude dabei
-nach den Regeln im Kopf der Datei, ohne eine Aussage zu ändern; in einer
-älteren Akte kommen diese Regeln erst mit der Prüfung in den Kopf.
+Gegenprüfung. Zum Schluss kürzt Claude `BEURTEILUNG.md` auf das, was eine
+künftige Beratung braucht, ohne eine Empfehlung oder Frist zu verlieren.
 
 Die Prüfung selbst liest keine Befunde und keine Literatur und prüft nicht,
 ob Leitlinien noch gelten. Was nur damit zu klären wäre, etwa eine Angabe
