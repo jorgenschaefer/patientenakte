@@ -93,10 +93,10 @@ Weitere Anliegen:
   Ergebnisse auf und löscht sie.
 - **„Was sagt die Leitlinie zu …?“** Claude sucht die Quelle und gibt wieder,
   was sie sagt, mit Empfehlungsgrad und Evidenzniveau.
-- **„Was gehört in meinen Notfallpass?“** Claude gibt Erkrankungen,
-  Medikamente, Allergien und Hinweise für den Notfall als kurzen Text zum
-  Kopieren in den Notfallpass des Handys aus. Nach jeder Änderung daran
-  kommt der Text von selbst.
+- **„Was gehört in meinen Notfallpass?“** Claude gibt für jedes Feld des
+  Notfallpasses auf dem Pixel-Handy einen kurzen Text zum Kopieren aus, von
+  Blutgruppe und Allergien bis zu Medikamenten und medizinischen
+  Informationen. Nach jeder Änderung daran kommt der Text von selbst.
 
 ## Neue Befunde und Angaben
 
