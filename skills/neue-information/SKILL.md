@@ -37,20 +37,3 @@ bleibt.
    - **Beobachtungen und Messwerte:** als Zeile an die CSV des Themas aus
      „Beobachten“ anhängen. Fehlt die Datei, sie mit den Spalten von dort
      als erster Zeile anlegen.
-4. **Medikation prüfen,** wenn ein Mittel neu hinzukommt oder sich Dosis
-   oder Schema ändern: mit dem Subagenten `patientenakte:leitlinie` die
-   Fachinformation lesen lassen, Abschnitt 4.2 (Dosierung, auch bei
-   eingeschränkter Nieren- oder Leberfunktion), 4.3 (Gegenanzeigen), 4.4
-   (Warnhinweise), 4.5 (Wechselwirkungen) und 4.6 (Schwangerschaft und
-   Stillzeit). Weichen Dosis
-   oder Schema von 4.2 ab, etwa täglich statt wöchentlich, frag nach, ob die
-   Angabe stimmt; eine Berichtigung änderst du im Entwurf aus Schritt 3.
-   Stimmt sie oder weiß der Benutzer es nicht, rat
-   ihm, sie vor der nächsten Einnahme mit Arzt oder Apotheke zu klären;
-   nimmt er das Mittel schon so ein und kann das schaden, gilt die
-   Dringlichkeit aus den Regeln wie bei neuen Beschwerden. Abgleichen mit
-   `AKTE.md` und den übrigen neuen Angaben, wie unter „Evidenz“ in
-   `regeln.md` beschrieben, auch gegen Bedarfsmedikation und
-   Nahrungsergänzung. Dem Benutzer das Ergebnis gleich sagen, auch wenn
-   nichts dagegen spricht. Spricht etwas dagegen, es gleich mit dem Skill
-   `beurteilung-aendern` unter „Offen“ oder „Warnzeichen“ eintragen.

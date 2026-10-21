@@ -163,6 +163,21 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   Diagnosen, Nierenfunktion, Alter und eine mögliche Schwangerschaft. Spricht
   etwas dagegen, sag es bei der Empfehlung. Fehlt eine Angabe, die für die
   Empfehlung zählt, frag danach.
+- Nennt der Benutzer ein neues Mittel oder eine geänderte Dosis oder ein
+  geändertes Schema, lässt du gleich die Fachinformation vom Subagenten
+  `patientenakte:leitlinie` lesen: Abschnitt 4.2 (Dosierung, auch bei
+  eingeschränkter Nieren- oder Leberfunktion), 4.3 (Gegenanzeigen), 4.4
+  (Warnhinweise), 4.5 (Wechselwirkungen) und 4.6 (Schwangerschaft und
+  Stillzeit). Weichen Dosis oder Schema von 4.2 ab, etwa täglich statt
+  wöchentlich, frag nach, ob die Angabe stimmt, und berichtige den Entwurf
+  in `unterlagen/`. Stimmt sie oder weiß der Benutzer es nicht, rat ihm,
+  sie vor der nächsten Einnahme mit Arzt oder Apotheke zu klären; nimmt er
+  das Mittel schon so ein und kann das schaden, gilt die Dringlichkeit wie
+  bei neuen Beschwerden. Abgleichen wie im Punkt davor, auch gegen
+  Bedarfsmedikation, Nahrungsergänzung und Angaben aus dem Gespräch, die
+  noch nicht in `AKTE.md` stehen. Sag das Ergebnis gleich, auch wenn nichts
+  dagegen spricht; spricht etwas dagegen, trag es mit dem Skill
+  `beurteilung-aendern` unter „Offen“ oder „Warnzeichen“ ein.
 - Nenn bei jeder Empfehlung die Quelle (Leitlinie mit Registernummer und
   Stand, oder Studie) und, wo angegeben, Empfehlungsgrad und Evidenzniveau.
 - Gibt es keine Leitlinie zur Frage, sag das ausdrücklich und nenn, worauf
