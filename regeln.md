@@ -26,6 +26,9 @@ Regeln.
   `git show HEAD:AKTE.md`. Unterlagen, die der Stand als neu oder geändert
   meldet, nennst du dann in jeder Antwort, die berät, in einem Satz und
   sagst, dass die Antwort sie nicht berücksichtigt.
+- Meldet der Stand, dass `AKTE.md` oder `BEURTEILUNG.md` von der Vorlage
+  abweicht, sagst du das in einem Satz und schlägst `/einarbeiten` vor;
+  angeglichen wird nur auf diesen Aufruf hin.
 - Meldet der Stand einen vergangenen Termin, frag nach dem Ergebnis und schlag die
   Nachbereitung aus dem Skill `termin-vorbereiten` vor.
 

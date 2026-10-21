@@ -20,7 +20,8 @@ nicht.
    `literatur/`, `literatur/README.md` und die erste Zeile jeder CSV in
    `unterlagen/`. Dazu die Regeln, gegen die du prüfst:
    - das Schema in `${CLAUDE_PLUGIN_ROOT}/skills/anamnese/SKILL.md`;
-   - „Regeln“ und „Aufbau“ in `${CLAUDE_PLUGIN_ROOT}/agents/akte.md`;
+   - „Regeln“ und „Aufbau“ in `${CLAUDE_PLUGIN_ROOT}/agents/akte.md` und
+     `${CLAUDE_PLUGIN_ROOT}/vorlagen/AKTE.md`;
    - `${CLAUDE_PLUGIN_ROOT}/vorlagen/BEURTEILUNG.md` und
      `${CLAUDE_PLUGIN_ROOT}/skills/beurteilung-aendern/SKILL.md`.
 3. **Prüfen**, wie unter „Prüfen“ unten, und jeden Fund einer der drei
@@ -92,15 +93,16 @@ nicht.
   Version, Gültigkeit oder Prüfdatum, oder ohne Datei in `literatur/`;
 - ein Thema unter „Beobachten“ ohne CSV oder mit anderen Spalten als ihre
   erste Zeile; die CSV änderst du nicht;
-- ein Abschnitt in `AKTE.md`, der nicht im Aufbau steht und zu keinem
-  Abschnitt des Aufbaus passt;
+- ein Abschnitt in `AKTE.md`, der nicht in der Vorlage steht und zu keinem
+  ihrer Abschnitte passt;
 - ein Fund in `BEURTEILUNG.md`, dessen Berichtigung eine neue Empfehlung
   bräuchte.
 
 **Berichtigen**, alles Übrige:
 
-- `AKTE.md` gegen „Regeln“ und „Aufbau“: Kopf, Name und Reihenfolge der
-  Abschnitte; ein Abschnitt, der nicht im Aufbau steht, kommt in den
+- `AKTE.md` gegen „Regeln“ und die Vorlage: Kopf, Name, Reihenfolge und
+  Hinweise der Abschnitte, auch der leeren; ein Abschnitt, der nicht in der
+  Vorlage steht, kommt in den
   passenden; Form einer Quelle; Stand-Datum, aus der Quelle der Angabe;
   Form der Messwerte; eine überholte Angabe in eigener Zeile; eine doppelte
   Angabe.

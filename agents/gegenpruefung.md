@@ -55,7 +55,8 @@ Quelle.
 - Was als Fehler gilt, steht in den Regeln, nach denen die Datei geschrieben
   wird:
   - `AKTE.md`: die Abschnitte „Auftrag“, „Regeln“ und „Aufbau“ in
-    `${CLAUDE_PLUGIN_ROOT}/agents/akte.md`;
+    `${CLAUDE_PLUGIN_ROOT}/agents/akte.md` und die Vorlage
+    `${CLAUDE_PLUGIN_ROOT}/vorlagen/AKTE.md`;
   - `BEURTEILUNG.md`: der Kopf der Datei mit den Hinweisen unter jeder
     Überschrift und der Abschnitt „Evidenz“ in `${CLAUDE_PLUGIN_ROOT}/regeln.md`.
 

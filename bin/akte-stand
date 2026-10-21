@@ -8,12 +8,15 @@
 #                               zuletzt committet wurden; meldet, wenn AKTE.md
 #                               nicht committete Änderungen hat
 #   akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in AKTE.md
+#   akte-stand --vorlage        meldet, ob AKTE.md und BEURTEILUNG.md im Gerüst
+#                               von ihrer Vorlage in vorlagen/ abweichen
 set -euo pipefail
 
 akte=AKTE.md
 verzeichnis=unterlagen
 anfang='<!-- akte-stand: Anfang -->'
 ende='<!-- akte-stand: Ende -->'
+vorlagen=$(dirname "$(readlink -f "$0")")/../vorlagen
 
 if [[ ! -f $akte && ! -d $verzeichnis ]]; then
   echo "$PWD ist keine Akte: weder $akte noch $verzeichnis/ gefunden." >&2
@@ -77,6 +80,27 @@ aktualisieren() {
   fi
 }
 
+# Das Gerüst einer Datei: die Überschriften und die kursiven Hinweise, die
+# direkt unter einer Überschrift stehen.
+geruest() {
+  awk '
+    /^#+ / { print; hinweis = 1; next }
+    /^[[:space:]]*$/ { next }
+    hinweis && /^\*[^*].*\*$/ { print; next }
+    { hinweis = 0 }
+  ' "$1"
+}
+
+vorlage_pruefen() {
+  local datei
+  for datei in "$akte" BEURTEILUNG.md; do
+    [[ -f $datei ]] || continue
+    if ! cmp -s <(geruest "$vorlagen/$datei") <(geruest "$datei"); then
+      echo "$datei weicht von der Vorlage ab."
+    fi
+  done
+}
+
 case "${1:-}" in
   "")
     ergebnis=$(vergleichen)
@@ -96,5 +120,6 @@ case "${1:-}" in
     fi
     ;;
   --aktualisieren) aktualisieren ;;
-  *) echo "Aufruf: $0 [--aktualisieren]" >&2; exit 2 ;;
+  --vorlage) vorlage_pruefen ;;
+  *) echo "Aufruf: $0 [--aktualisieren | --vorlage]" >&2; exit 2 ;;
 esac

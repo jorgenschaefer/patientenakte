@@ -196,8 +196,10 @@ Das Plugin im Einzelnen:
 - `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
   `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
-  eingearbeitet sind und ob ein Bau von `AKTE.md` nicht abgeschlossen ist.
-- `vorlagen/` – Vorlagen für `BEURTEILUNG.md` und `literatur/README.md`.
+  eingearbeitet sind, ob ein Bau von `AKTE.md` nicht abgeschlossen ist und
+  ob `AKTE.md` und `BEURTEILUNG.md` von ihrer Vorlage abweichen.
+- `vorlagen/` – Vorlagen für `AKTE.md`, `BEURTEILUNG.md` und
+  `literatur/README.md`.
 
 ## Lizenz
 

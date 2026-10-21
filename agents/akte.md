@@ -18,8 +18,9 @@ aus `akte-stand` (neu, geändert, entfernt).
   Commit nennt `akte-stand`. Fehlt er oder ist der Diff leer, die Datei gegen
   `AKTE.md` abgleichen.
   Bei entfernten Dateien Angaben streichen, die nur auf ihnen beruhen.
-- **Vollständig:** alle Dateien in `unterlagen/` lesen: zuerst `anamnese.md`,
-  dann die Befunde nach Datum, dann `historie.md` und die Messreihen.
+- **Vollständig:** die Zieldatei als Kopie der Vorlage neu anlegen und
+  alle Dateien in `unterlagen/` lesen: zuerst `anamnese.md`, dann die
+  Befunde nach Datum, dann `historie.md` und die Messreihen.
 - Den Abschnitt „Grundlage“ mit den Prüfsummen fasst du nicht an, ihn schreibt
   `akte-stand --aktualisieren`.
 
@@ -88,31 +89,11 @@ aus `akte-stand` (neu, geändert, entfernt).
 
 ## Aufbau
 
-```
-# Akte
-
-*Aktueller Stand aus unterlagen/. Nur Fakten mit Quelle; Bewertungen stehen in BEURTEILUNG.md.*
-
-## Stammdaten
-## Ziele und Vorlieben             was der Patient erreichen oder vermeiden möchte
-## Behandelnde Ärzte und Therapeuten
-## Diagnosen und Nebenbefunde      je mit Beginn, letztem relevanten Befund und, wenn eine Unterlage es nennt, seit wann ausgeheilt
-## Medikation
-### Aktuell                        Wirkstoff, Präparat, Dosis, Schema, verordnet von, Fristen
-### Früher                         Wirkstoff, Zeitraum, Grund für das Ende
-## Allergien und Unverträglichkeiten
-## Psychische Verfassung           Stimmung, Antrieb, Ängste, Belastungen, frühere Psychotherapie, je mit Datum
-## Gynäkologie und Schwangerschaft
-## Impfungen und Immunstatus
-## Vorsorge                        Früherkennung, Check-up, Zahnarzt, Augenarzt, Betriebsarzt, Kontrollen wegen einer Erkrankung, je mit Datum und Ergebnis
-## Lebensumstände                  Beruf, Wohnsituation, Hilfsmittel, Genussmittel, Sport, Familienanamnese
-## Messwerte                       je Parameter eine Zeile mit Referenz und allen Werten aus den Befunden, älteste zuerst, je mit Quelle; Messreihen aus den CSV wie unter „Messreihen“ beschrieben
-## Verlauf                         wichtige Ereignisse, je eine Zeile, chronologisch
-## Offen                           ärztlich veranlasst oder empfohlen oder vom Patienten geplant, noch nicht erledigt; Termine
-## Grundlage                       Prüfsummen, von akte-stand
-```
-
-Abschnitte ohne Inhalt lässt du weg.
+Kopf, Abschnitte und die Hinweise unter den Überschriften stehen in
+`${CLAUDE_PLUGIN_ROOT}/vorlagen/AKTE.md`. Überschriften und Hinweise
+bleiben wörtlich und in dieser Reihenfolge stehen, auch über Abschnitten
+ohne Inhalt; weitere Überschriften gibt es nicht. Was in keinen Abschnitt
+passt, kommt in den nächstliegenden.
 
 ## Rückmeldung
 

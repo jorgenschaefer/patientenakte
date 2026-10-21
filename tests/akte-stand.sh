@@ -5,7 +5,8 @@
 #   tests/akte-stand.sh
 set -uo pipefail
 
-stand=$(cd "$(dirname "$0")/.." && pwd)/bin/akte-stand
+wurzel=$(cd "$(dirname "$0")/.." && pwd)
+stand=$wurzel/bin/akte-stand
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
@@ -26,6 +27,8 @@ main() {
   gebaut_nicht_abgeschlossen
   neue_akte_nie_committet
   ohne_git
+  vorlage_eingehalten
+  vorlage_abweichend
   exit $fehler
 }
 
@@ -103,6 +106,33 @@ ohne_git() {
   printf '# Akte\n' > AKTE.md && "$stand" --aktualisieren
   echo zwei >> unterlagen/a.md
   pruefe "Ohne Git" "geändert: unterlagen/a.md" "$("$stand" 2>&1)"
+}
+
+vorlage_eingehalten() {
+  neues_verzeichnis
+  cp "$wurzel/vorlagen/AKTE.md" "$wurzel/vorlagen/BEURTEILUNG.md" .
+  mkdir unterlagen && echo eins > unterlagen/a.md
+  "$stand" --aktualisieren
+  sed -i '/^## Allergien/a\
+\
+- Penicillin: Exanthem [anamnese]' AKTE.md
+  sed -i '/^## Warnzeichen/,/^## /{/^\*/a\
+\
+- 01.01.2026 – Fieber über 39 °C – noch heute
+}' BEURTEILUNG.md
+  pruefe "Vorlage eingehalten" "" "$("$stand" --vorlage)"
+}
+
+vorlage_abweichend() {
+  neues_verzeichnis
+  printf '# Akte\n\n## Stammdaten\n' > AKTE.md
+  sed '/^## Abgelehnt/,$d' "$wurzel/vorlagen/BEURTEILUNG.md" > BEURTEILUNG.md
+  pruefe "Vorlage nicht eingehalten" "AKTE.md weicht von der Vorlage ab.
+BEURTEILUNG.md weicht von der Vorlage ab." "$("$stand" --vorlage)"
+  cp "$wurzel/vorlagen/AKTE.md" .
+  sed -i 's/^\*Was der Patient erreichen.*/*Was er will.*/' AKTE.md
+  rm BEURTEILUNG.md
+  pruefe "Hinweis geändert, BEURTEILUNG.md fehlt" "AKTE.md weicht von der Vorlage ab." "$("$stand" --vorlage)"
 }
 
 # Eine Akte mit einer Unterlage und einer AKTE.md ohne Prüfsummen, beide
