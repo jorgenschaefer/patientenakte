@@ -81,6 +81,12 @@ Weitere Anliegen:
 - **„Was steht als Nächstes an?“** Claude sammelt alles Offene aus Akte und
   Beurteilung und ordnet es nach Dringlichkeit: diese Woche, die nächsten
   Wochen, später, dazu, was dauerhaft gilt.
+- **„Ich habe seit drei Tagen Kopfschmerzen, was kann das sein?“** Claude
+  prüft zuerst auf Warnzeichen, fragt dann nach den Beschwerden, legt ein
+  Leitsymptom fest und geht die möglichen Ursachen durch, die gefährlichen
+  zuerst. Am Ende stehen eine Verdachtsdiagnose, was der Arzt untersuchen
+  sollte, wie dringend das ist und bei welchen Veränderungen man früher
+  gehen muss.
 - **„Welche Vorsorge steht bei mir an?“** Claude geht Früherkennung nach
   Alter und Geschlecht, die Kontrollen aus Diagnosen und Medikamenten,
   arbeitsmedizinische Vorsorge, Familie und Impfungen durch und gibt eine
@@ -174,8 +180,9 @@ Das Plugin im Einzelnen:
 - `regeln.md` – die Regeln für die Beratung; ein SessionStart-Hook spielt sie
   mit dem Stand der Akte in jede Sitzung ein.
 - `skills/` – `neue-information`, `einarbeiten`, `naechste-schritte`,
-  `termin-vorbereiten`, `notfallpass`, `vorsorge`, `akte-aktualisieren`,
-  `beurteilung-aendern`, `anamnese`, `leitlinie`, `akte-pruefen`.
+  `diagnose`, `termin-vorbereiten`, `notfallpass`, `vorsorge`,
+  `akte-aktualisieren`, `beurteilung-aendern`, `anamnese`, `leitlinie`,
+  `akte-pruefen`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
   `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.
