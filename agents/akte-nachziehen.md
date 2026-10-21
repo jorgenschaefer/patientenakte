@@ -1,5 +1,5 @@
 ---
-name: einarbeitung
+name: akte-nachziehen
 description: Arbeitet bestätigte Unterlagen in die Akte ein und macht alle Commits – Unterlagen, dann AKTE.md mit dem Subagenten akte, dann BEURTEILUNG.md und literatur/, je mit Gegenprüfung –, gleicht die Dateien auf Wunsch an ihre Vorlagen an, baut AKTE.md neu oder prüft die Akte. Nur aus dem Skill einarbeiten starten, nie direkt: Bestätigung und Fragen an den Benutzer übernimmt der Skill.
 ---
 

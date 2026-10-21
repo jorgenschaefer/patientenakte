@@ -18,7 +18,7 @@ Dazu die Gegenprüfung (`agents/gegenpruefung.md`), bei ihrer Abnahme nur
 durch Lesen geprüft. Offen ist:
 
 - ob sie läuft: nach schrittweisem, vollständigem und liegen gebliebenem
-  Bau, und vor jedem Commit an `BEURTEILUNG.md` (`agents/einarbeitung.md`,
+  Bau, und vor jedem Commit an `BEURTEILUNG.md` (`agents/akte-nachziehen.md`,
   Schritt 5);
 - ob sie eingebaute Fehler findet: einen falschen Wert, eine fehlende
   Angabe, eine Schlussfolgerung als Fakt, einen falschen Empfehlungsgrad,

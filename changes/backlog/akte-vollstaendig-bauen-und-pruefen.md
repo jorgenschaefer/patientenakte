@@ -7,13 +7,14 @@ utility: L
 
 Es gibt keine Möglichkeit, `AKTE.md` und `BEURTEILUNG.md` inhaltlich gegen
 die Befunde zu prüfen. Für `AKTE.md` gibt es nur den Bau „vollständig zur
-Kontrolle“ (`agents/einarbeitung.md:25-26`, `agents/einarbeitung.md:46-49`),
-für `BEURTEILUNG.md` nichts. Fehler, die vor der Gegenprüfung nach Änderungen
-(`agents/gegenpruefung.md`) in die Dateien gekommen sind, findet niemand.
+Kontrolle“ (`agents/akte-nachziehen.md:25-26`,
+`agents/akte-nachziehen.md:46-49`), für `BEURTEILUNG.md` nichts. Fehler,
+die vor der Gegenprüfung nach Änderungen (`agents/gegenpruefung.md`) in
+die Dateien gekommen sind, findet niemand.
 
 Was ohne die Befunde geht, das Format nachziehen und `AKTE.md` und
 `BEURTEILUNG.md` gegeneinander prüfen, leistet die Prüfung im Subagenten
-`einarbeitung` (`agents/einarbeitung.md:113`).
+`akte-nachziehen` (`agents/akte-nachziehen.md:113`).
 Hier geht es um die Befunde selbst; in einer echten Akte liegen 12 MB in
 `unterlagen/`.
 
@@ -25,14 +26,14 @@ nicht beim Start einer Sitzung.
 Ein vollständiger Bau betrifft nicht nur die Prüfung, sondern auch die erste
 Verwendung mit einer neuen Akte und jede Akte, deren `AKTE.md` von der
 Vorlage abweicht: Das erste `/einarbeiten` dort baut sie vollständig neu
-(`agents/einarbeitung.md:20-21`, `agents/einarbeitung.md:42-45`). Nach
+(`agents/akte-nachziehen.md:20-21`, `agents/akte-nachziehen.md:42-45`). Nach
 jeder Änderung an `vorlagen/AKTE.md` trifft das alle bestehenden Akten.
 Heute liest ein einziger Subagent alle Unterlagen (`agents/akte.md:21-23`);
 bei vielen Befunden reicht sein Kontext dafür nicht. Dasselbe gilt für die
 Gegenprüfung danach, die alle Unterlagen vollständig liest
-(`agents/einarbeitung.md:59-60`).
+(`agents/akte-nachziehen.md:59-60`).
 
-Seit der Subagent `einarbeitung` selbst Subagenten startet, ist der Weg
+Seit der Subagent `akte-nachziehen` selbst Subagenten startet, ist der Weg
 unten möglich: Er kann mehrere Subagenten für die Auszüge und einen für
 das Zusammenführen starten, ohne dass das Gespräch etwas davon sieht.
 Subagenten dürfen bis zu drei Ebenen unter dem Gespräch liegen; die

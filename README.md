@@ -194,7 +194,7 @@ Das Plugin im Einzelnen:
   Gültigkeit, legt sie in `literatur/` ab und gibt zurück, was sie sagt.
 - `agents/vorsorge-recherche.md` – stellt den Vorsorgeplan auf und gibt zurück,
   wonach der Benutzer gefragt werden muss.
-- `agents/einarbeitung.md` – arbeitet Unterlagen ein, lässt gegenprüfen,
+- `agents/akte-nachziehen.md` – arbeitet Unterlagen ein, lässt gegenprüfen,
   committet; gleicht an die Vorlagen an und prüft die Akte.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder

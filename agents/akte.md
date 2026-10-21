@@ -1,6 +1,6 @@
 ---
 name: akte
-description: Schreibt AKTE.md aus den Dateien in unterlagen/ – schrittweise für neue und geänderte Dateien oder vollständig neu. Wird vom Subagenten einarbeitung gestartet.
+description: Schreibt AKTE.md aus den Dateien in unterlagen/ – schrittweise für neue und geänderte Dateien oder vollständig neu. Wird vom Subagenten akte-nachziehen gestartet.
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 

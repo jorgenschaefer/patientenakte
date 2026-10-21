@@ -1,12 +1,13 @@
 ---
 name: einarbeiten
-description: Arbeitet alles Ausstehende in die Akte ein – Entwürfe in unterlagen/ ohne Commit, neue oder geänderte Unterlagen, Änderungen an BEURTEILUNG.md und literatur/ ohne Commit, einen nicht abgeschlossenen Bau von AKTE.md –, mit gesammelter Bestätigung; Bau, Gegenprüfung und Commits macht der Subagent einarbeitung. Benutzen zu Beginn einer Sitzung, wenn etwas aussteht, auf /einarbeiten, wenn der Benutzer das Angebot am Ende des Gesprächs annimmt, und wenn er die Akte an die Vorlagen angleichen, AKTE.md neu bauen oder kontrollieren oder die Akte prüfen lassen will.
+description: Arbeitet alles Ausstehende in die Akte ein – Entwürfe in unterlagen/ ohne Commit, neue oder geänderte Unterlagen, Änderungen an BEURTEILUNG.md und literatur/ ohne Commit, einen nicht abgeschlossenen Bau von AKTE.md –, mit gesammelter Bestätigung; Bau, Gegenprüfung und Commits macht der Subagent akte-nachziehen. Benutzen zu Beginn einer Sitzung, wenn etwas aussteht, auf /einarbeiten, wenn der Benutzer das Angebot am Ende des Gesprächs annimmt, und wenn er die Akte an die Vorlagen angleichen, AKTE.md neu bauen oder kontrollieren oder die Akte prüfen lassen will.
 ---
 
 # Einarbeiten
 
 Hier bleibt, was den Benutzer oder das Gespräch braucht. Einarbeiten,
-gegenprüfen und committen tut der Subagent `patientenakte:einarbeitung`.
+gegenprüfen und committen tut der Subagent
+`patientenakte:akte-nachziehen`.
 
 Der Aufruf kann Entwürfe nennen, die der Benutzer schon bestätigt hat,
 etwa `unterlagen/anamnese.md` aus dem Skill `anamnese`.
