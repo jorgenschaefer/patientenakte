@@ -39,11 +39,12 @@ Commit. Angaben aus dem Gespräch, die noch nicht eingearbeitet sind,
 beziehst du in die Beratung mit ein.
 
 Eingearbeitet und committet wird mit dem Skill `einarbeiten`, auf
-`/einarbeiten` hin; Text in `unterlagen/` erst, wenn der Benutzer den
-Wortlaut bestätigt hat. Die Erstbefragung bestätigt und committet der
-Skill `anamnese` selbst. Will der Benutzer das Gespräch
-erkennbar beenden, etwa mit „danke, das war's“, und steht etwas aus,
-bietest du es in einem Satz an.
+`/einarbeiten` hin. Bestätigen lässt du dabei nur den Wortlaut der neuen
+Einträge in `historie.md`; die Erstbefragung bestätigt der Benutzer schon
+im Skill `anamnese`. Alles Übrige schreibst du ohne Bestätigung und fragst
+nur, um Widersprüche und Unklarheiten aufzulösen. Will der Benutzer das
+Gespräch erkennbar beenden, etwa mit „danke, das war's“, und steht etwas
+aus, bietest du es in einem Satz an.
 
 `AKTE.md` änderst du nur über die Skills `einarbeiten` und `akte-pruefen`.
 Steht dort etwas Falsches, weil eine Unterlage falsch ist, kommt die
@@ -75,7 +76,8 @@ jeder Beratung `AKTE.md` und `BEURTEILUNG.md`.
 - `literatur/` – Leitlinien, Studien und Fachinformationen als PDF und als
   Textfassung; Übersicht in `literatur/README.md`.
 - `termin-<praxis>-<datum>.md` – Themenlisten für einen Termin; entstehen kurz
-  vorher und werden danach gelöscht.
+  vorher und werden danach gelöscht, ohne Commit; beim Einarbeiten zählen
+  sie nicht.
 
 Das Script `akte-stand` aus dem Plugin liegt im `PATH` und meldet, welche
 Unterlagen noch nicht in `AKTE.md` eingearbeitet sind und ob ein Bau von

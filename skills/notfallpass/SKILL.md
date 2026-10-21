@@ -1,6 +1,6 @@
 ---
 name: notfallpass
-description: Gibt den Text für den Notfallpass auf dem Pixel-Handy aus, Feld für Feld – Blutgruppe, Allergien, Medikamente, medizinische Informationen und die übrigen Felder –, kurz und zum Kopieren. Benutzen, wenn der Benutzer danach fragt, und im Skill einarbeiten nach einer Änderung an Diagnosen, Medikation, Allergien, Implantaten oder Schwangerschaft, nicht schon beim Aufnehmen im Gespräch.
+description: Gibt den Text für den Notfallpass auf dem Pixel-Handy aus, Feld für Feld – Blutgruppe, Allergien, Medikamente, medizinische Informationen und die übrigen Felder –, kurz und zum Kopieren. Benutzen, wenn der Benutzer danach fragt, etwa nachdem der Skill einarbeiten es angeboten hat.
 ---
 
 # Notfallpass
@@ -9,10 +9,7 @@ Wer den Notfallpass liest, hat keine Zeit: Rettungsdienst, Notaufnahme,
 eine fremde Praxis. Er steht auf dem Sperrbildschirm und soll auf einen
 Handybildschirm passen.
 
-1. `akte-stand` ausführen; meldet es Änderungen, zuerst den Skill
-   `einarbeiten`, und erst weiter, wenn `AKTE.md` committet ist. Hat der
-   den Notfallpass schon ausgegeben, endet dieser Skill.
-2. Aus `AKTE.md` zusammenstellen, nach den Feldern des Notfallpasses auf
+1. Aus `AKTE.md` zusammenstellen, nach den Feldern des Notfallpasses auf
    dem Pixel und in deren Reihenfolge, jedes als eigener Block zum
    Kopieren:
    - **Name**
@@ -41,9 +38,9 @@ Handybildschirm passen.
    „keine Implantate“ nur, wenn es dort so steht; dass etwas fehlt, heißt
    nicht, dass es das nicht gibt. Leere Felder weglassen. Fachbegriffe und
    gängige Abkürzungen sind erlaubt, die Leser sind Fachleute.
-3. Immer alle Felder vollständig ausgeben, auch wenn sich nur eines
+2. Immer alle Felder vollständig ausgeben, auch wenn sich nur eines
    geändert hat.
-4. Dazu sagen, welche Felder leer geblieben sind; steht im Handy dort
+3. Dazu sagen, welche Felder leer geblieben sind; steht im Handy dort
    noch etwas, soll der Benutzer es prüfen und leeren, wenn es nicht mehr
    gilt. Außerdem sagen, dass Notfallkontakte im Handy selbst eingetragen
    werden.

@@ -7,18 +7,14 @@ description: Stellt den Plan aus Früherkennung, Impfungen und regelmäßigen Ko
 
 Vorsorge heißt hier alles, was ohne akuten Anlass regelmäßig oder ab einem
 Alter ansteht, nicht nur die gesetzliche Früherkennung. Jede Quelle in
-Schritt 3 wird jedes Mal geprüft, auch wenn der Benutzer nur nach einem Teil
+Schritt 2 wird jedes Mal geprüft, auch wenn der Benutzer nur nach einem Teil
 fragt; was nicht zutrifft, kommt mit Grund unter „geprüft, ohne Ergebnis“.
 
-1. `akte-stand` ausführen. Meldet es Unterlagen, die nicht in diesem
-   Gespräch aufgenommen wurden, oder einen nicht abgeschlossenen Bau, zuerst
-   den Skill `einarbeiten` ausführen. Angaben aus diesem Gespräch, die noch
-   nicht eingearbeitet sind, beziehst du mit ein.
-2. Übernehmen, was schon steht: „Vorsorge“, „Impfungen und Immunstatus“ und
+1. Übernehmen, was schon steht: „Vorsorge“, „Impfungen und Immunstatus“ und
    „Offen“ in `AKTE.md`, „Vorsorge“, „Beobachten“ und „Offen“ in
    `BEURTEILUNG.md`. Was dort mit nicht veralteter Prüfung steht, nicht neu
    suchen.
-3. Die übrigen Quellen mit dem Skill `leitlinie` prüfen:
+2. Die übrigen Quellen mit dem Skill `leitlinie` prüfen:
    1. **Alter und Geschlecht:** die Richtlinien des G-BA zu
       Gesundheitsuntersuchung, Krebsfrüherkennung, organisierten
       Früherkennungsprogrammen und Ultraschallscreening; die zahnärztliche
@@ -53,7 +49,7 @@ fragt; was nicht zutrifft, kommt mit Grund unter „geprüft, ohne Ergebnis“.
       danach fragen.
 
    Gesetze und Kassenregeln im Normtext lesen.
-4. Beim Prüfen:
+3. Beim Prüfen:
    - **Fälligkeit aus dem Wortlaut** der Quelle berechnen; viele
      Richtlinien rechnen in Kalenderjahren, nicht ab Datum.
    - **Krankheitsbezogene Kontrollen** ersetzen oder verkürzen oft die
@@ -72,10 +68,10 @@ fragt; was nicht zutrifft, kommt mit Grund unter „geprüft, ohne Ergebnis“.
      anders als die Leitlinie, beides nennen.
    - **Hängt ein Intervall an einem Befund,** es daraus bestimmen; ändert
      ein Befund aus der Akte es nicht, das ausdrücklich sagen.
-5. Fehlt für eine zutreffende Untersuchung der letzte Termin, danach fragen,
+4. Fehlt für eine zutreffende Untersuchung der letzte Termin, danach fragen,
    zusammengehörige in einem Satz, wie in `regeln.md` beschrieben, und die
    Antworten über den Skill `neue-information` aufnehmen.
-6. Antworten:
+5. Antworten:
    - eine Tabelle: Untersuchung, Anlass (Alter, Diagnose, Mittel, Beruf),
      zuletzt laut Akte, wieder fällig, Quelle (Kurzname, Empfehlungsnummer,
      Grad), Kostenträger (Kasse, Arbeitgeber, Selbstzahler); Überfälliges
@@ -84,5 +80,5 @@ fragt; was nicht zutrifft, kommt mit Grund unter „geprüft, ohne Ergebnis“.
      was die Quelle sagt und, getrennt, die Übertragung auf den Fall;
    - „geprüft, ohne Ergebnis“: je Zeile, was und warum nicht;
    - welche Termine lange vorher gebucht werden müssen.
-7. Mit dem Skill `beurteilung-aendern` unter „Vorsorge“ eintragen, was neu
+6. Mit dem Skill `beurteilung-aendern` unter „Vorsorge“ eintragen, was neu
    ist oder sich geändert hat, auch „geprüft, ohne Ergebnis“.

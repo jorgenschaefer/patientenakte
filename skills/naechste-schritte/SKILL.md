@@ -5,22 +5,18 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
 
 # Nächste Schritte
 
-1. `akte-stand` ausführen. Meldet es Unterlagen, die nicht in diesem
-   Gespräch aufgenommen wurden, oder einen nicht abgeschlossenen Bau, zuerst
-   den Skill `einarbeiten` ausführen. Angaben aus diesem Gespräch, die noch
-   nicht eingearbeitet sind, beziehst du mit ein.
-2. Nach veralteten Ständen fragen, die für die Reihenfolge zählen: Hat ein
+1. Nach veralteten Ständen fragen, die für die Reihenfolge zählen: Hat ein
    Termin stattgefunden, liegt ein Ergebnis vor, hat eine Therapie begonnen?
    Antworten über den Skill `neue-information` aufnehmen.
-3. Alles Offene sammeln: „Offen“ in `AKTE.md` (ärztlich veranlasst oder
+2. Alles Offene sammeln: „Offen“ in `AKTE.md` (ärztlich veranlasst oder
    empfohlen, Termine), „Offen“ in `BEURTEILUNG.md` (Empfehlungen des
    Modells), Fristen aus der Medikation.
-4. Fällige Vorsorge aus „Vorsorge“ in `BEURTEILUNG.md` übernehmen und mit
+3. Fällige Vorsorge aus „Vorsorge“ in `BEURTEILUNG.md` übernehmen und mit
    einordnen, ohne den Skill `vorsorge` auszuführen. Ist der Abschnitt leer
    oder älter als eine Diagnose oder ein Mittel in `AKTE.md`, das in der
    Antwort sagen, mit Datum und dem, was seitdem neu ist, und `/vorsorge`
    vorschlagen.
-5. Ordnen nach:
+4. Ordnen nach:
    1. **Sicherheit und Fristen:** was vor einem bestimmten Ereignis erledigt
       sein muss, etwa eine Untersuchung vor einem Therapiebeginn, und was
       sonst Schaden anrichten kann;
@@ -28,7 +24,7 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
       muss;
    3. **Wirkung:** was den Verlauf am meisten beeinflusst;
    4. **Aufwand:** Kleines, das nebenbei geht, darf vorrücken.
-6. Antworten, geordnet nach Zeit:
+5. Antworten, geordnet nach Zeit:
    - **Jetzt und diese Woche**, **in den nächsten Wochen**, **bis in drei
      Monaten**: was überfällig ist oder in dieser Zeit ansteht. Späteres
      nur, wenn vorher etwas zu tun ist, etwa einen Termin zu buchen; sonst
@@ -39,5 +35,5 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
    - danach, was dauerhaft gilt: Übungen, Ernährung, Alltag und die
      Warnzeichen aus `BEURTEILUNG.md` mit ihrer Stufe. Neue Warnzeichen
      mit dem Skill `beurteilung-aendern` eintragen.
-7. Ergibt sich eine neue Empfehlung, mit dem Skill `leitlinie` belegen und
+6. Ergibt sich eine neue Empfehlung, mit dem Skill `leitlinie` belegen und
    mit dem Skill `beurteilung-aendern` eintragen.

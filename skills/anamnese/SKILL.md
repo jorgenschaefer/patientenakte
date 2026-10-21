@@ -18,7 +18,7 @@ in `historie.md`.
    - das Verzeichnis `unterlagen/`.
 
    Ist das Verzeichnis kein Git-Repo, abbrechen und auf das README des
-   Plugins verweisen. Committen.
+   Plugins verweisen.
 2. Vorhandenes sammeln: Was sagen die Befunde in `unterlagen/` und frühere
    Angaben des Benutzers schon zu den Punkten unten? Daraus Vorschläge
    machen, statt neu zu fragen.
@@ -26,8 +26,9 @@ in `historie.md`.
    „unbekannt“ eingetragen; was er nicht sagen will, als „keine Angabe“.
 4. Jeden Abschnitt so zeigen, wie er eingetragen würde, und erst nach
    Bestätigung übernehmen. Vermutungen des Patienten als solche kennzeichnen.
-5. Datei schreiben, committen, dann den Skill `einarbeiten` ausführen; er
-   baut `AKTE.md` und gibt den Notfallpass aus.
+5. Datei schreiben, dann den Skill `einarbeiten` ausführen, mit
+   `unterlagen/anamnese.md` als schon bestätigt; er committet die neue
+   Akte und baut `AKTE.md`.
 
 ## Schema
 

@@ -6,13 +6,15 @@ description: Arbeitet alles Ausstehende in die Akte ein und macht alle Commits a
 # Einarbeiten
 
 Der Aufruf kann einen Bau von `AKTE.md` nennen, vollständig oder
-vollständig zur Kontrolle, und für Änderungen, die nicht aus Unterlagen
+vollständig zur Kontrolle; für Änderungen, die nicht aus Unterlagen
 stammen, die Quellen der Gegenprüfung, etwa `HEAD:AKTE.md` nach einer
-Berichtigung der Form im Skill `akte-pruefen`.
+Berichtigung der Form im Skill `akte-pruefen`; und Entwürfe, die der
+Benutzer schon bestätigt hat, etwa `unterlagen/anamnese.md` aus dem Skill
+`anamnese`.
 
 Kommen ab Schritt 4 neue Entwürfe oder Einträge in `BEURTEILUNG.md` dazu,
-auch aus den Skills, die die Schritte 8 und 9 ausführen, geht es mit ihnen
-ab Schritt 3 weiter. Die Schritte 8 und 9 laufen am Ende einmal für alles.
+geht es mit ihnen ab Schritt 3 weiter. Schritt 8 läuft am Ende einmal für
+alles.
 
 1. **Sammeln:** `git status --short` und `akte-stand`. Am Ende eines
    Gesprächs dazu das Gespräch selbst: Was nach der Regel in `regeln.md` in
@@ -25,12 +27,13 @@ ab Schritt 3 weiter. Die Schritte 8 und 9 laufen am Ende einmal für alles.
    `neue-information` auf. Gehört sie danach nicht hinein, fragst du, ob du
    sie aus `unterlagen/` entfernen sollst; will der Benutzer sie behalten,
    kommt sie mit in den Commit.
-3. **Bestätigen lassen:** alle Entwürfe auf einmal zeigen, die Einträge in
-   `historie.md` und die Zeilen in CSV-Dateien so, wie sie im Diff zu
-   `HEAD` stehen, die abgelegten Befunde mit Dateinamen. Was nach der Regel
+3. **Wortlaut bestätigen lassen:** die neuen Einträge in `historie.md` auf
+   einmal zeigen, so wie sie im Diff zu `HEAD` stehen. Was nach der Regel
    in `regeln.md` nicht hineingehört, schlägst du zum Streichen vor.
    Änderungen des Benutzers am Wortlaut übernimmst du in den Entwurf;
-   gestrichene Einträge entfernst du.
+   gestrichene Einträge entfernst du. Zeilen in CSV-Dateien, abgelegte
+   Befunde und was der Aufruf als bestätigt nennt, zeigst du nicht; ohne
+   neue Einträge in `historie.md` entfällt der Schritt.
 4. **`BEURTEILUNG.md` nachziehen:** die Einträge, die die neuen Angaben
    betreffen, mit dem Skill `beurteilung-aendern`. Ein Ergebnis, das noch
    nicht in `unterlagen/` steht, kommt wie in Schritt 3 des Skills
@@ -57,10 +60,12 @@ ab Schritt 3 weiter. Die Schritte 8 und 9 laufen am Ende einmal für alles.
    Unterlage, aus der es stammt, als Quelle. Ist eine Unterlage selbst
    falsch oder nennt er Neues, nimmst du es mit dem Skill
    `neue-information` auf und gehst ab Schritt 3 weiter.
-8. **Antworten:** kurz, was sich dadurch an der Einschätzung und an den
-   nächsten Schritten ändert. Verschiebt sich die Reihenfolge deutlich, den
-   Skill `naechste-schritte` ausführen.
-9. **Notfallpass:** Betrifft eine Angabe Diagnosen, Medikation, Allergien,
-   Implantate oder eine Schwangerschaft, auch beim Absetzen oder Ausheilen,
-   oder wurde `AKTE.md` neu angelegt, den Skill `notfallpass` ausführen und
-   den Benutzer bitten, den Text im Handy zu ersetzen.
+8. **Antworten:** kurz, was sich dadurch an der Einschätzung ändert. Dazu
+   je in einem Satz ein Angebot, ohne es auszuführen, wo es zutrifft:
+   - die **nächsten Schritte** zu zeigen, wenn sich ihre Reihenfolge
+     deutlich verschiebt;
+   - die **Vorsorge** zu zeigen, wenn sich Einträge unter „Vorsorge“ in
+     `BEURTEILUNG.md` geändert haben;
+   - den **Notfallpass** zu zeigen, wenn eine Angabe Diagnosen, Medikation,
+     Allergien, Implantate oder eine Schwangerschaft betrifft, auch beim
+     Absetzen oder Ausheilen, oder wenn `AKTE.md` neu angelegt wurde.

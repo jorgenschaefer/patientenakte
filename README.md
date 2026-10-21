@@ -101,7 +101,8 @@ Weitere Anliegen:
 - **„Was gehört in meinen Notfallpass?“** Claude gibt für jedes Feld des
   Notfallpasses auf dem Pixel-Handy einen kurzen Text zum Kopieren aus, von
   Blutgruppe und Allergien bis zu Medikamenten und medizinischen
-  Informationen. Nach jeder Änderung daran kommt der Text von selbst.
+  Informationen. Nach einer Änderung daran bietet Claude den neuen Text
+  an.
 
 ## Neue Befunde und Angaben
 
@@ -120,13 +121,18 @@ eine geänderte Dosis prüft Claude gleich auf Dosierung, Gegenanzeigen und
 Wechselwirkungen.
 
 Im Gespräch bleibt das alles ein Entwurf ohne Commit, und Claude berät
-weiter, ohne den Wortlaut einzeln bestätigen zu lassen. Eingearbeitet wird am Ende des Gesprächs mit
-`/einarbeiten`, was Claude anbietet, wenn man erkennbar Schluss macht;
-was dann noch aussteht, arbeitet Claude beim Start der nächsten Sitzung
-ein, auch neue Dateien in `unterlagen/` und Entwürfe einer
-abgebrochenen Sitzung. Claude zeigt dann alle Einträge auf einmal zur
-Bestätigung, zieht `BEURTEILUNG.md` und `AKTE.md` nach und sagt, was sich an
-den nächsten Schritten ändert. Die Unterlagen und `BEURTEILUNG.md` kommen in
+weiter, ohne den Wortlaut einzeln bestätigen zu lassen. Eingearbeitet wird
+am Ende des Gesprächs mit `/einarbeiten`, was Claude anbietet, wenn man
+erkennbar Schluss macht; was dann noch aussteht, arbeitet Claude beim Start
+der nächsten Sitzung ein, auch neue Dateien in `unterlagen/` und Entwürfe
+einer abgebrochenen Sitzung. Legt man mitten in einer Sitzung eine Datei
+nach `unterlagen/`, ohne sie im Gespräch zu nennen, arbeitet `/einarbeiten`
+sie ein. Claude zeigt dann die neuen Einträge in `historie.md` auf einmal
+zur Bestätigung, denn sie geben die eigenen Aussagen wieder; Messwerte,
+Befunde und Beurteilungen schreibt Claude ohne Rückfrage. Dann zieht Claude
+`BEURTEILUNG.md` und `AKTE.md` nach, sagt, was sich an der Einschätzung
+ändert, und bietet an, die nächsten Schritte, die Vorsorge oder den
+Notfallpass zu zeigen, wenn sie sich geändert haben. Die Unterlagen und `BEURTEILUNG.md` kommen in
 einen Commit, `AKTE.md` nach der Gegenprüfung in einen zweiten. Was sich an
 `AKTE.md` geändert hat, fasst Claude danach zusammen, und Widersprüche
 zwischen den Unterlagen stellt Claude als Fragen.
