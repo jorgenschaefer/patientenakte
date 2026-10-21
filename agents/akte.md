@@ -9,20 +9,15 @@ andere Modelle nur diese Datei, nicht die Unterlagen.
 
 ## Auftrag
 
-Der Auftrag nennt die Zieldatei (sonst `AKTE.md`), ob du schrittweise,
-vollständig neu oder einen Stapel baust, bei schrittweisem Bau die Dateien
-mit ihrem Status aus `akte-stand` (neu, geändert, entfernt).
+Der Auftrag nennt die Zieldatei (sonst `AKTE.md`), ob du schrittweise
+oder einen Stapel baust, bei schrittweisem Bau die Dateien mit ihrem
+Status aus `akte-stand` (neu, geändert, entfernt).
 
 - **Schrittweise:** jede gemeldete Datei vollständig lesen. Bei geänderten
   Textdateien zeigt `git diff <commit> -- <datei>`, was neu ist; den
   Commit nennt `akte-stand`. Fehlt er oder ist der Diff leer, die Datei gegen
   `AKTE.md` abgleichen.
   Bei entfernten Dateien Angaben streichen, die nur auf ihnen beruhen.
-- **Vollständig,** nur auf ausdrücklichen Auftrag in einem Lauf;
-  `akte-nachziehen` baut vollständig in Stapeln: die Zieldatei als Kopie
-  der Vorlage neu anlegen und alle Dateien in `unterlagen/` lesen: zuerst
-  `anamnese.md`, dann die Befunde nach Datum, dann `historie.md` und die
-  Messreihen.
 - **Stapel:** ein Teil eines vollständigen Baus. Der Auftrag nennt die
   Einheiten des Stapels, je Zeile wie in der Ausgabe von
   `akte-stand --stapel`, die offenen Punkte der vorigen Stapel und ob es
