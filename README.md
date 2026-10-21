@@ -190,8 +190,9 @@ Das Plugin im Einzelnen:
 - `skills/` – `neue-information`, `einarbeiten`, `naechste-schritte`,
   `diagnose`, `termin-vorbereiten`, `notfallpass`, `vorsorge`,
   `anamnese`.
-- `agents/leitlinie.md` – sucht eine Leitlinie oder Studie, prüft ihre
-  Gültigkeit, legt sie in `literatur/` ab und gibt zurück, was sie sagt.
+- `agents/leitlinien-recherche.md` – sucht eine Leitlinie oder Studie,
+  prüft ihre Gültigkeit, legt sie in `literatur/` ab und gibt zurück, was
+  sie sagt.
 - `agents/vorsorge-recherche.md` – stellt den Vorsorgeplan auf und gibt zurück,
   wonach der Benutzer gefragt werden muss.
 - `agents/akte-nachziehen.md` – arbeitet Unterlagen ein, lässt gegenprüfen,

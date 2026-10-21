@@ -6,7 +6,7 @@ Lokal gespeicherte Leitlinien, Empfehlungen und Fachinformationen, auf die sich
 
 Die gespeicherte Fassung ersetzt das Nachschlagen des Inhalts, nicht die
 Prüfung auf eine neuere Version; wann neu geprüft wird, steht im Subagenten
-`leitlinie` des Plugins.
+`leitlinien-recherche` des Plugins.
 
 | Datei | Quelle | Version / Stand | Gültig bis | Abgerufen | Geprüft | Herkunft |
 |---|---|---|---|---|---|---|

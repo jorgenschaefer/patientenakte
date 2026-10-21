@@ -23,8 +23,9 @@ ohne Ergebnis“.
    „Offen“ in `AKTE.md`, „Vorsorge“, „Beobachten“ und „Offen“ in
    `BEURTEILUNG.md`. Was dort mit nicht veralteter Prüfung steht, nicht neu
    suchen.
-2. Die übrigen Quellen mit dem Subagenten `patientenakte:leitlinie` prüfen
-   lassen, zusammengehörige Fragen in einem Auftrag:
+2. Die übrigen Quellen mit dem Subagenten
+   `patientenakte:leitlinien-recherche` prüfen lassen, zusammengehörige
+   Fragen in einem Auftrag:
    1. **Alter und Geschlecht:** die Richtlinien des G-BA zu
       Gesundheitsuntersuchung, Krebsfrüherkennung, organisierten
       Früherkennungsprogrammen und Ultraschallscreening; die zahnärztliche
@@ -96,6 +97,6 @@ ohne Ergebnis“.
 - **Fragen:** je zutreffender Untersuchung ohne letzten Termin eine Frage
   danach, zusammengehörige zusammengefasst; dazu, was sonst nur der
   Benutzer beantworten kann, etwa die Krankenkasse;
-- was die Subagenten `leitlinie` nicht prüfen oder nicht herunterladen
-  konnten, mit Fundort;
+- was die Subagenten `leitlinien-recherche` nicht prüfen oder nicht
+  herunterladen konnten, mit Fundort;
 - die Dateien, die du geändert hast.

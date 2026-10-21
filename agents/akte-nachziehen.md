@@ -80,8 +80,9 @@ dazu nennen:
    - mit „Prüfung“ im Auftrag: was die Prüfung in `BEURTEILUNG.md` zu
      berichtigen fand, danach die Kürzung.
 
-   Eine neue Frage belegst du mit dem Subagenten `patientenakte:leitlinie`.
-   Ist `BEURTEILUNG.md` danach gegenüber `HEAD` geändert, gegenprüfen,
+   Eine neue Frage belegst du mit dem Subagenten
+   `patientenakte:leitlinien-recherche`. Ist `BEURTEILUNG.md` danach
+   gegenüber `HEAD` geändert, gegenprüfen,
    außer sie ist eben aus der Vorlage angelegt oder nur an die Vorlage
    angeglichen. Quellen sind die Unterlagen aus Schritt 2, nach einer
    Kürzung dazu `HEAD:BEURTEILUNG.md`; sind es keine, steht das im Auftrag
@@ -138,7 +139,7 @@ von drei Gruppen.
   gibt.
 
 **Nur melden,** je mit dem, was den Fund beheben würde, etwa der Subagent
-`leitlinie` oder ein Blick in einen bestimmten Befund:
+`leitlinien-recherche` oder ein Blick in einen bestimmten Befund:
 
 - eine Angabe in `AKTE.md` ohne Quelle;
 - eine Quelle unter „Quellen“ in `BEURTEILUNG.md` ohne Registernummer,
@@ -192,8 +193,8 @@ Quelle, die kein Eintrag mehr zitiert, aus „Quellen“ streichen.
   Widersprüche kurz mit ihrer Quelle.
 - **Nur gemeldet:** die Funde der Prüfung aus dieser Gruppe.
 - **Für `unterlagen/`:** Angaben, die dorthin gehören und noch fehlen.
-- **Nicht gespeichert:** Quellen, die der Subagent `leitlinie` nicht
-  herunterladen konnte, mit Fundort.
+- **Nicht gespeichert:** Quellen, die der Subagent `leitlinien-recherche`
+  nicht herunterladen konnte, mit Fundort.
 - **Folgen:** ob sich Diagnosen, Medikation, Allergien, Implantate oder
   eine Schwangerschaft geändert haben, auch durch Absetzen oder Ausheilen,
   ob `AKTE.md` neu angelegt wurde, ob sich Einträge unter „Vorsorge“

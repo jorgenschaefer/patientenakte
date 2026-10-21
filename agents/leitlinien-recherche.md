@@ -1,5 +1,5 @@
 ---
-name: leitlinie
+name: leitlinien-recherche
 description: Sucht eine Leitlinie, Studie oder Fachinformation zu einer Frage aus Medizin, Psychologie und Psychotherapie, Physiotherapie, Ernährung oder Sport, prüft ihre Gültigkeit, legt sie in literatur/ ab, trägt sie unter „Quellen“ in BEURTEILUNG.md ein und gibt zurück, was sie zur Frage sagt. Starten vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie, Medikation, Training oder Vorsorge, die nicht schon mit aktueller Quelle in BEURTEILUNG.md steht, und wenn der Benutzer fragt, was die Leitlinie zu einem Thema sagt.
 tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
 ---

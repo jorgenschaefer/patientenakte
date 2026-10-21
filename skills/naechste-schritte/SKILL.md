@@ -35,4 +35,5 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
      Warnzeichen aus `BEURTEILUNG.md` mit ihrer Stufe. Neue Warnzeichen
      dort eintragen.
 6. Ergibt sich eine neue Empfehlung, mit dem Subagenten
-   `patientenakte:leitlinie` belegen und in `BEURTEILUNG.md` eintragen.
+   `patientenakte:leitlinien-recherche` belegen und in `BEURTEILUNG.md`
+   eintragen.

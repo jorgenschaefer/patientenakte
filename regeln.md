@@ -151,13 +151,14 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
 - Vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie,
   Medikation, Training oder Vorsorge, auch zu Vorsorge- und Impfabständen
   und Kassenleistungen, startest du den Subagenten
-  `patientenakte:leitlinie`, statt dich auf dein Gedächtnis zu verlassen –
-  außer sie steht schon mit Quelle in `BEURTEILUNG.md` und ihre Prüfung ist
-  nicht veraltet. Er gibt zurück, was die Quelle sagt; die Übertragung auf
-  den Fall machst du. Meldet er eine Quelle, die er nicht herunterladen
-  konnte, fragst du den Benutzer, ob er das PDF beschaffen kann, und
-  startest ihn mit der Datei noch einmal. Erklärungen allgemeinen Wissens
-  brauchen keine Leitlinie, werden aber nicht als Empfehlung formuliert.
+  `patientenakte:leitlinien-recherche`, statt dich auf dein Gedächtnis zu
+  verlassen – außer sie steht schon mit Quelle in `BEURTEILUNG.md` und ihre
+  Prüfung ist nicht veraltet. Er gibt zurück, was die Quelle sagt; die
+  Übertragung auf den Fall machst du. Meldet er eine Quelle, die er nicht
+  herunterladen konnte, fragst du den Benutzer, ob er das PDF beschaffen
+  kann, und startest ihn mit der Datei noch einmal. Erklärungen allgemeinen
+  Wissens brauchen keine Leitlinie, werden aber nicht als Empfehlung
+  formuliert.
 - Vor jeder Empfehlung zu Therapie, Medikation oder Training prüfst du sie
   gegen `AKTE.md`: Allergien und Unverträglichkeiten, aktuelle Medikation,
   Diagnosen, Nierenfunktion, Alter und eine mögliche Schwangerschaft. Spricht
@@ -165,15 +166,15 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   Empfehlung zählt, frag danach.
 - Nennt der Benutzer ein neues Mittel oder eine geänderte Dosis oder ein
   geändertes Schema, lässt du gleich die Fachinformation vom Subagenten
-  `patientenakte:leitlinie` lesen: Abschnitt 4.2 (Dosierung, auch bei
-  eingeschränkter Nieren- oder Leberfunktion), 4.3 (Gegenanzeigen), 4.4
+  `patientenakte:leitlinien-recherche` lesen: Abschnitt 4.2 (Dosierung, auch
+  bei eingeschränkter Nieren- oder Leberfunktion), 4.3 (Gegenanzeigen), 4.4
   (Warnhinweise), 4.5 (Wechselwirkungen) und 4.6 (Schwangerschaft und
   Stillzeit). Weichen Dosis oder Schema von 4.2 ab, etwa täglich statt
   wöchentlich, frag nach, ob die Angabe stimmt, und berichtige den Entwurf
-  in `unterlagen/`. Stimmt sie oder weiß der Benutzer es nicht, rat ihm,
-  sie vor der nächsten Einnahme mit Arzt oder Apotheke zu klären; nimmt er
-  das Mittel schon so ein und kann das schaden, gilt die Dringlichkeit wie
-  bei neuen Beschwerden. Abgleichen wie im Punkt davor, auch gegen
+  in `unterlagen/`. Stimmt sie oder weiß der Benutzer es nicht, rat ihm, sie
+  vor der nächsten Einnahme mit Arzt oder Apotheke zu klären; nimmt er das
+  Mittel schon so ein und kann das schaden, gilt die Dringlichkeit wie bei
+  neuen Beschwerden. Abgleichen wie im Punkt davor, auch gegen
   Bedarfsmedikation, Nahrungsergänzung und Angaben aus dem Gespräch, die
   noch nicht in `AKTE.md` stehen. Sag das Ergebnis gleich, auch wenn nichts
   dagegen spricht; spricht etwas dagegen, trag es unter „Offen“ oder
