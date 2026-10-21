@@ -115,8 +115,12 @@ Einheit an der Fundstelle eines Funds, einen Teil von `historie.md` mit
 2. **Beginn:** `rm -rf .git/akte-bau && mkdir .git/akte-bau`, dann
    `${CLAUDE_PLUGIN_ROOT}/vorlagen/AKTE.md` nach
    `.git/akte-bau/stapel-0.md` kopieren. Braucht ein liegen gebliebener
-   Bau den vollständigen Bau und ist `AKTE.md` committet,
-   `git checkout HEAD -- AKTE.md`.
+   Bau den vollständigen Bau und ist `AKTE.md` committet, sicherst du
+   seine Änderungen mit
+   `git diff HEAD -- AKTE.md > .git/akte-bau/liegengebliebener-bau.diff`
+   und setzt `AKTE.md` mit `git checkout HEAD -- AKTE.md` zurück. Eine
+   Berichtigung, die vor dem Commit abgebrochen ist, sieht genauso aus;
+   deshalb steht der Diff in der Rückmeldung.
 3. **Je Stapel N** der Reihe nach:
    1. `.git/akte-bau/stapel-<N-1>.md` nach `.git/akte-bau/stapel-<N>.md`
       kopieren und den Subagenten `patientenakte:akte` starten: Art
@@ -271,9 +275,12 @@ Quelle, die kein Eintrag mehr zitiert, aus „Quellen“ streichen.
   Wiederherstellungen oder Berichtigungen und die verworfenen Funde mit
   Grund, oder dass er nicht gelaufen ist; die PDFs, deren Seitenzahl
   `akte-stand --stapel` nicht bestimmen konnte, und dass `historie.md`
-  keine Datumsüberschriften hat, wenn es das meldet. Ist der vollständige
-  Bau oder die Kontrolle nicht gelaufen, steht das hier mit der Meldung
-  von `akte-stand`.
+  keine Datumsüberschriften hat, wenn es das meldet. Wurde ein liegen
+  gebliebener Bau zurückgesetzt, steht hier, dass seine Änderungen an
+  `AKTE.md` verworfen sind, mit dem Diff aus
+  `.git/akte-bau/liegengebliebener-bau.diff` im Wortlaut. Ist der
+  vollständige Bau oder die Kontrolle nicht gelaufen, steht das hier mit
+  der Meldung von `akte-stand`.
 - **Fragen:** die offenen Widersprüche und Unklarheiten, die der Subagent
   `akte` meldet, außer solchen, deren Antwort nach `regeln.md` nicht in
   die Unterlagen käme; nach einem Bau in Stapeln davon nur die nach dem
