@@ -20,8 +20,13 @@ Nie in einer echten Akte: Akten enthalten Gesundheitsdaten.
 
    ```bash
    cd <akte> && claude -p --plugin-dir <plugin> \
-     --permission-mode bypassPermissions "/einarbeiten"
+     --permission-mode auto "/einarbeiten"
    ```
+
+   Der Auto-Modus lehnt `git checkout HEAD -- AKTE.md` ab, mit dem ein
+   liegen gebliebener Bau zurückgesetzt wird, auch mit `--allowedTools`.
+   Diesen Fall in einer interaktiven Sitzung prüfen und das Zurücksetzen
+   dort freigeben.
 
    Der Hook `regeln-einspielen` spielt den Stand ein. Der erste Aufruf baut
    `AKTE.md` vollständig, weil sie fehlt; ein zweiter mit
