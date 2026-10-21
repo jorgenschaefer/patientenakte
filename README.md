@@ -160,7 +160,8 @@ neu“.
 
 Neubau und Kontrolle laufen in Stapeln, deren Höchstzahl an Seiten oben
 in `bin/akte-stand` steht, die Unterlagen in der Reihenfolge ihres Datums;
-nur eine größere Unterlage bildet einen größeren Stapel für sich. Claude sagt vorher, in wie vielen.
+nur eine größere Unterlage bildet einen größeren Stapel für sich. Claude
+sagt vorher, in wie vielen.
 Jeder Stapel wird in eine Zwischenfassung unter `.git/akte-bau/`
 eingearbeitet, beim Neubau gegen seine Unterlagen gegengeprüft. Danach
 gleicht Claude die neue Fassung je Stapel mit der bisherigen `AKTE.md` ab.

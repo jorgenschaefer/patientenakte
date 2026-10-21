@@ -56,12 +56,12 @@ etwa `unterlagen/anamnese.md` aus dem Skill `anamnese`.
    `BEURTEILUNG.md` geändert hat, alle Funde der Gegenprüfungen, was nur
    gemeldet ist, die geklärten Widersprüche kurz mit ihrer Quelle. Ist eine
    Gegenprüfung nicht gelaufen, sagst du das. Nach einem Bau in Stapeln
-   dazu, was die Rückmeldung darüber sagt: die Zahl der Stapel, aus dem
-   Abgleich die Wiederherstellungen oder Berichtigungen und die
-   verworfenen Funde mit Grund, ob der vollständige Bau oder die
-   Kontrolle nicht gelaufen ist, mit der Meldung von `akte-stand`, welche
-   PDFs keine bestimmbare Seitenzahl haben und ob `historie.md` keine
-   Datumsüberschriften hat. Die Fragen stellst du, wie in `regeln.md`
+   dazu, was die Rückmeldung darüber sagt: die Zahl der Stapel; aus dem
+   Abgleich die Wiederherstellungen oder Berichtigungen, die verworfenen
+   Funde mit Grund und die Stapel, für die er nicht gelaufen ist; ob der
+   vollständige Bau oder die Kontrolle nicht gelaufen ist, mit der Meldung
+   von `akte-stand`; welche PDFs keine bestimmbare Seitenzahl haben und ob
+   `historie.md` keine Datumsüberschriften hat. Die Fragen stellst du, wie in `regeln.md`
    beschrieben.
    - Antworten, auch auf die Fragen der Prüfung, und die Angaben, die
      laut Rückmeldung nach `unterlagen/` gehören, nimmst du mit dem Skill
