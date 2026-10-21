@@ -104,9 +104,9 @@ dazu nennen:
 Bau vorher ab, ist sie wie vorher. Die Zwischenfassungen liegen in
 `.git/akte-bau/` und werden nie committet. Wie die Unterlagen auf Stapel
 verteilt werden, bestimmt allein `akte-stand --stapel`; auch ein einzelner
-Stapel läuft diesen Weg. Du selbst liest keine Unterlage außer einer
-Einheit an der Fundstelle eines Funds, einen Teil von `historie.md` mit
-`akte-stand --einheit "<zeile>"`: Die Unterlagen lesen die Subagenten.
+Stapel läuft diesen Weg. Die Unterlagen lesen die Subagenten; du selbst
+liest nur die Einheit, auf die ein Fund zeigt, an seiner Fundstelle.
+Einen Teil von `historie.md` liest du mit `akte-stand --einheit "<zeile>"`.
 
 1. **Stapel:** `akte-stand --stapel`. Bricht es ab, läuft kein
    vollständiger Bau: `AKTE.md` bleibt, wie sie ist, die Rückmeldung sagt
@@ -117,10 +117,12 @@ Einheit an der Fundstelle eines Funds, einen Teil von `historie.md` mit
    `.git/akte-bau/stapel-0.md` kopieren. Braucht ein liegen gebliebener
    Bau den vollständigen Bau und ist `AKTE.md` committet, sicherst du
    seine Änderungen mit
-   `git diff HEAD -- AKTE.md > .git/akte-bau/liegengebliebener-bau.diff`
-   und setzt `AKTE.md` mit `git checkout HEAD -- AKTE.md` zurück. Eine
-   Berichtigung, die vor dem Commit abgebrochen ist, sieht genauso aus;
-   deshalb steht der Diff in der Rückmeldung.
+   `git diff HEAD -- AKTE.md > .git/akte-bau/liegengebliebener-bau.diff`,
+   liest die Datei und setzt `AKTE.md` mit `git checkout HEAD -- AKTE.md`
+   zurück. Eine Berichtigung, die vor dem Commit abgebrochen ist, sieht
+   genauso aus; deshalb gibst du den Diff in der Rückmeldung wieder.
+   Bricht der Bau danach ab, bleibt die Datei liegen, bis der nächste Bau
+   das Verzeichnis leert.
 3. **Je Stapel N** der Reihe nach:
    1. `.git/akte-bau/stapel-<N-1>.md` nach `.git/akte-bau/stapel-<N>.md`
       kopieren und den Subagenten `patientenakte:akte` starten: Art
@@ -160,6 +162,7 @@ Einheit an der Fundstelle eines Funds, einen Teil von `historie.md` mit
 Die zweite Fassung entsteht wie unter „Vollständiger Bau“, Schritte 1
 bis 3, aber ohne Gegenprüfung je Stapel; bricht `akte-stand --stapel` ab,
 läuft keine Kontrolle. `AKTE.md` ist dabei committet und ohne Änderung.
+Auch hier lesen die Unterlagen nur die Subagenten, wie dort beschrieben.
 Danach je Stapel ein Abgleich wie dort in Schritt 4, in beide Richtungen.
 Jede Abweichung ist ein möglicher Fehler einer der beiden Fassungen: Du
 liest sie an der Fundstelle in der Einheit nach und berichtigst
@@ -277,9 +280,9 @@ Quelle, die kein Eintrag mehr zitiert, aus „Quellen“ streichen.
   `akte-stand --stapel` nicht bestimmen konnte, und dass `historie.md`
   keine Datumsüberschriften hat, wenn es das meldet. Wurde ein liegen
   gebliebener Bau zurückgesetzt, steht hier, dass seine Änderungen an
-  `AKTE.md` verworfen sind, mit dem Diff aus
-  `.git/akte-bau/liegengebliebener-bau.diff` im Wortlaut. Ist der
-  vollständige Bau oder die Kontrolle nicht gelaufen, steht das hier mit
+  `AKTE.md` verworfen sind, mit dem Diff, den du unter „Vollständiger
+  Bau“ in Schritt 2 gelesen hast, im Wortlaut. Ist der vollständige Bau
+  oder die Kontrolle nicht gelaufen, steht das hier mit
   der Meldung von `akte-stand`.
 - **Fragen:** die offenen Widersprüche und Unklarheiten, die der Subagent
   `akte` meldet, außer solchen, deren Antwort nach `regeln.md` nicht in
