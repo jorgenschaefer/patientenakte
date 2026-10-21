@@ -192,7 +192,7 @@ Das Plugin im Einzelnen:
   `anamnese`.
 - `agents/leitlinie.md` – sucht eine Leitlinie oder Studie, prüft ihre
   Gültigkeit, legt sie in `literatur/` ab und gibt zurück, was sie sagt.
-- `agents/vorsorge.md` – stellt den Vorsorgeplan auf und gibt zurück,
+- `agents/vorsorge-recherche.md` – stellt den Vorsorgeplan auf und gibt zurück,
   wonach der Benutzer gefragt werden muss.
 - `agents/einarbeitung.md` – arbeitet Unterlagen ein, lässt gegenprüfen,
   committet; gleicht an die Vorlagen an und prüft die Akte.

@@ -5,9 +5,9 @@ description: Stellt den Plan aus Früherkennung, Impfungen und regelmäßigen Ko
 
 # Vorsorge
 
-Den Plan stellt der Subagent `patientenakte:vorsorge` auf; er sucht die
-Quellen und trägt ihn unter „Vorsorge“ in `BEURTEILUNG.md` ein. Hier
-bleibt, was den Benutzer braucht.
+Den Plan stellt der Subagent `patientenakte:vorsorge-recherche` auf; er
+sucht die Quellen und trägt ihn unter „Vorsorge“ in `BEURTEILUNG.md` ein.
+Hier bleibt, was den Benutzer braucht.
 
 1. Den Subagenten starten. Der Auftrag nennt Angaben aus diesem Gespräch,
    die für die Vorsorge zählen und noch nicht in `AKTE.md` stehen, etwa

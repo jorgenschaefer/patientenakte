@@ -1,6 +1,6 @@
 ---
-name: vorsorge
-description: Stellt den Plan aus Früherkennung, Impfungen und regelmäßigen Kontrollen auf – nach Alter und Geschlecht, Diagnosen, Medikation, Beruf und Familie –, mit Fälligkeit, Quelle und Kostenträger, trägt ihn unter „Vorsorge“ in BEURTEILUNG.md ein und gibt ihn mit den Fragen zu fehlenden Terminen zurück. Wird vom Skill vorsorge gestartet.
+name: vorsorge-recherche
+description: Stellt den Plan aus Früherkennung, Impfungen und regelmäßigen Kontrollen auf – nach Alter und Geschlecht, Diagnosen, Medikation, Beruf und Familie –, mit Fälligkeit, Quelle und Kostenträger, trägt ihn unter „Vorsorge“ in BEURTEILUNG.md ein und gibt ihn mit den Fragen zu fehlenden Terminen zurück. Nur aus dem Skill vorsorge starten, nie direkt: Die Fragen an den Benutzer stellt der Skill.
 ---
 
 Du stellst den Vorsorgeplan des Patienten auf. Vorsorge heißt hier alles,
