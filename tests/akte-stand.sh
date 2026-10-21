@@ -381,9 +381,11 @@ unterlagen/2026-01-02-b.pdf
 unterlagen/2026-01-03-c.md" "$(bin/akte-stand --stapel)"
   pruefe "Die Grenzen stehen sonst nirgends" "seiten_je_stapel=20
 zeichen_je_seite=10000" "$(grep -Ew '20|10000|10\.000' "$stand")"
+  # -z liest jede Datei als eine Zeile, so zählt auch eine Zahl am
+  # Zeilenende; fehlt ein Pfad, steht grep's Meldung in der Ausgabe.
   pruefe "Die Grenzen stehen nicht in den Texten des Plugins" "" \
-    "$(grep -rEn '(^|[^0-9])20 Seiten|10\.?000 Zeichen' "$wurzel"/README.md \
-      "$wurzel"/regeln.md "$wurzel"/agents "$wurzel"/skills)"
+    "$(grep -rEzo '(^|[^0-9])20\s+Seiten|10\.?000\s+Zeichen' "$wurzel"/README.md \
+      "$wurzel"/regeln.md "$wurzel"/agents "$wurzel"/skills 2>&1 | tr '\0' '\n')"
 }
 
 # Eine Akte mit einer Unterlage und einer AKTE.md ohne Prüfsummen, beide
