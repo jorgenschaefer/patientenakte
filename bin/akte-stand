@@ -12,7 +12,8 @@
 #                               von ihrer Vorlage in vorlagen/ abweichen
 #   akte-stand --stapel         teilt die Unterlagen in der Reihenfolge ihres
 #                               Datums in Stapel für einen Bau von AKTE.md;
-#                               braucht pdfinfo aus poppler-utils
+#                               braucht pdfinfo aus poppler-utils, wenn
+#                               unter den Unterlagen ein PDF ist
 set -euo pipefail
 
 akte=AKTE.md
@@ -110,7 +111,7 @@ vorlage_pruefen() {
 # Eine Zeile je Stapel und darunter seine Einheiten, Stapel durch eine
 # Leerzeile getrennt. Die Agenten lesen dieses Format.
 stapel() {
-  if ! command -v pdfinfo > /dev/null; then
+  if [[ -n $(pdfs) ]] && ! command -v pdfinfo > /dev/null; then
     echo "akte-stand --stapel braucht pdfinfo, um die Seiten der PDFs zu zählen; poppler-utils installieren, etwa mit \`apt install poppler-utils\`." >&2
     exit 1
   fi
@@ -120,6 +121,11 @@ stapel() {
   [[ ! -f $historie ]] || tage=$(historie_tage)
   einheiten "$tage" | sort -t $'\t' -k1,1 |
     stapel_schneiden "$([[ -f $historie && -z $tage ]] && echo 1)"
+}
+
+pdfs() {
+  [[ -d $verzeichnis ]] || return 0
+  find "$verzeichnis" -type f -iname '*.pdf' ! -name '.*'
 }
 
 # Je Einheit eine Zeile: Sortierschlüssel, Gewicht in Zeichen (eine Seite

@@ -42,6 +42,7 @@ main() {
   stapel_seitenzahl_unbekannt
   stapel_historie_ohne_ueberschrift
   stapel_ohne_pdfinfo
+  stapel_ohne_pdf_ohne_pdfinfo
   stapel_grenzen_einstellbar
   exit $fehler
 }
@@ -348,18 +349,38 @@ historie.md ohne Datumsüberschriften." "$("$stand" --stapel)"
 
 stapel_ohne_pdfinfo() {
   neues_verzeichnis
-  mkdir unterlagen bin
+  mkdir unterlagen
   echo 1 > unterlagen/a.md
-  # Ein PATH mit allem, was akte-stand braucht, außer pdfinfo.
-  local befehl
-  for befehl in awk basename bash dirname env find git readlink sort tail tr wc; do
-    ln -s "$(command -v "$befehl")" bin/
-  done
+  pdf unterlagen/2026-01-01-b.PDF 1
+  ohne_pdfinfo
   local ausgabe code
   ausgabe=$(PATH=$PWD/bin "$stand" --stapel 2>&1 >/dev/null)
   code=$?
   pruefe "Ohne pdfinfo Exit-Code 1" 1 "$code"
   pruefe "Ohne pdfinfo nennt die Meldung poppler-utils" 1 "$(grep -c poppler-utils <<< "$ausgabe")"
+}
+
+stapel_ohne_pdf_ohne_pdfinfo() {
+  neues_verzeichnis
+  mkdir unterlagen
+  echo 1 > unterlagen/a.md
+  ohne_pdfinfo
+  local ausgabe code
+  ausgabe=$(PATH=$PWD/bin "$stand" --stapel 2>&1)
+  code=$?
+  pruefe "Ohne PDF läuft --stapel ohne pdfinfo" "0
+Stapel 1 (1 Seiten)
+unterlagen/a.md" "$code
+$ausgabe"
+}
+
+# Legt bin/ mit allem an, was akte-stand braucht, außer pdfinfo; für PATH.
+ohne_pdfinfo() {
+  mkdir bin
+  local befehl
+  for befehl in awk basename bash dirname env find git readlink sort tail tr wc; do
+    ln -s "$(command -v "$befehl")" bin/
+  done
 }
 
 # Mit 2 Seiten je Stapel und 100 Zeichen je Seite: a hat 2 Seiten, b und c
