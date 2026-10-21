@@ -28,5 +28,4 @@ description: Erstellt eine Themenliste für einen bevorstehenden Arzt- oder Phys
 
 1. Die Liste Punkt für Punkt durchgehen: Was wurde besprochen, entschieden,
    verordnet?
-2. Die Ergebnisse über den Skill `neue-information` aufnehmen.
-3. Die Themenliste löschen.
+2. Die Themenliste löschen.

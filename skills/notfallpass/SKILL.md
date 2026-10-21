@@ -44,5 +44,3 @@ Handybildschirm passen.
    noch etwas, soll der Benutzer es prüfen und leeren, wenn es nicht mehr
    gilt. Außerdem sagen, dass Notfallkontakte im Handy selbst eingetragen
    werden.
-   Nennt der Benutzer etwas Fehlendes, nimmst du es mit dem Skill
-   `neue-information` auf.

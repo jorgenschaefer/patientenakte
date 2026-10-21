@@ -31,8 +31,7 @@ Bildgebung, wird in Schritt 5 eine Empfehlung.
    Wunsch und nur so weit, wie es dem Arzt hilft, etwa was mitzunehmen
    ist. Ergibt eine spätere Antwort ein Warnzeichen, gilt dasselbe
    sofort.
-2. **Beschwerden erfragen.** Die Beschwerde nimmst du mit dem Skill
-   `neue-information` als Entwurf auf.
+2. **Beschwerden erfragen.**
    - **Bei jeder Beschwerde:** seit wann, plötzlich oder allmählich, Verlauf
      (gleichbleibend, zunehmend, in Schüben), wie oft und wie lange,
      Auslöser, was bessert und was verschlimmert, was schon versucht wurde

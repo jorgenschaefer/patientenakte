@@ -7,7 +7,6 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
 
 1. Nach veralteten Ständen fragen, die für die Reihenfolge zählen: Hat ein
    Termin stattgefunden, liegt ein Ergebnis vor, hat eine Therapie begonnen?
-   Antworten über den Skill `neue-information` aufnehmen.
 2. Alles Offene sammeln: „Offen“ in `AKTE.md` (ärztlich veranlasst oder
    empfohlen, Termine), „Offen“ in `BEURTEILUNG.md` (Empfehlungen des
    Modells), Fristen aus der Medikation.

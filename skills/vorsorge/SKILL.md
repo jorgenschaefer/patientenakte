@@ -14,9 +14,8 @@ bleibt, was den Benutzer braucht.
    Entwürfe in `unterlagen/` ohne Commit, und, wenn der Benutzer nur nach
    einem Teil gefragt hat, diesen Teil.
 2. Die Fragen aus seiner Rückmeldung stellen, wie in `regeln.md`
-   beschrieben, und die Antworten mit dem Skill `neue-information`
-   aufnehmen. Danach den Subagenten noch einmal starten, mit den Antworten
-   im Auftrag; weiß der Benutzer keine Antwort, entfällt das.
+   beschrieben. Danach den Subagenten noch einmal starten, mit den
+   Antworten im Auftrag; weiß der Benutzer keine Antwort, entfällt das.
 3. Antworten mit der Tabelle und den Erläuterungen aus der Rückmeldung.
    Eine Quelle, die er nicht herunterladen konnte, behandelst du wie unter
    „Evidenz“ in `regeln.md` beschrieben.
