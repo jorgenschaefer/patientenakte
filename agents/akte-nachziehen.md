@@ -268,9 +268,9 @@ Quelle, die kein Eintrag mehr zitiert, aus „Quellen“ streichen.
   Bau oder die Kontrolle nicht gelaufen, steht das hier mit der Meldung
   von `akte-stand`.
 - **Fragen:** die offenen Widersprüche und Unklarheiten, die der Subagent
-  `akte` meldet, nach einem Bau in Stapeln die nach dem letzten Stapel
-  noch offenen Punkte, außer solchen, deren Antwort nach `regeln.md` nicht in die
-  Unterlagen käme, und die Fragen der Prüfung. Dazu die geklärten
+  `akte` meldet, nach einem Bau in Stapeln stattdessen nur die nach dem
+  letzten Stapel noch offenen Punkte, außer solchen, deren Antwort nach
+  `regeln.md` nicht in die Unterlagen käme, und die Fragen der Prüfung. Dazu die geklärten
   Widersprüche kurz mit ihrer Quelle.
 - **Nur gemeldet:** die Funde der Prüfung aus dieser Gruppe.
 - **Für `unterlagen/`:** Angaben, die dorthin gehören und noch fehlen.

@@ -56,7 +56,9 @@ etwa `unterlagen/anamnese.md` aus dem Skill `anamnese`.
    `BEURTEILUNG.md` geändert hat, alle Funde der Gegenprüfungen, was nur
    gemeldet ist, die geklärten Widersprüche kurz mit ihrer Quelle. Ist eine
    Gegenprüfung nicht gelaufen, sagst du das. Nach einem Bau in Stapeln
-   dazu, was die Rückmeldung darüber sagt: ob der vollständige Bau oder die
+   dazu, was die Rückmeldung darüber sagt: die Zahl der Stapel, aus dem
+   Abgleich die Wiederherstellungen oder Berichtigungen und die
+   verworfenen Funde mit Grund, ob der vollständige Bau oder die
    Kontrolle nicht gelaufen ist, mit der Meldung von `akte-stand`, welche
    PDFs keine bestimmbare Seitenzahl haben und ob `historie.md` keine
    Datumsüberschriften hat. Die Fragen stellst du, wie in `regeln.md`

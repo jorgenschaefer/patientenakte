@@ -72,7 +72,9 @@ Quelle, die kein Eintrag mehr zitiert. Gekürzte Aussagen unter
 Was in einer geänderten Textdatei unter den Quellen neu ist, zeigt
 `git diff <commit> -- <datei>` mit dem Commit aus dem Auftrag, ohne Commit
 `git diff HEAD -- <datei>`. Ist der Diff leer, gilt die ganze Datei als
-Quelle.
+Quelle. Bei einer Vorfassung als Pfad und beim Abgleich gilt beides
+nicht: Quelle ist jede Einheit ganz, von `historie.md` nur ihre
+Abschnitte.
 
 ## Lesen
 

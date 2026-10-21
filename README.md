@@ -254,10 +254,13 @@ steht in ihrem Kopf.
   - `akte-nachziehen` – committet die Unterlagen, zieht `AKTE.md` und
     danach `BEURTEILUNG.md` nach, lässt beide gegenprüfen und committet
     sie; gleicht auf Wunsch an die Vorlagen an und prüft die Akte;
-  - `akte` – baut `AKTE.md` aus `unterlagen/`;
+  - `akte` – baut `AKTE.md` aus `unterlagen/`, schrittweise oder einen
+    Stapel eines vollständigen Baus;
   - `aenderung-gegenpruefen` – prüft eine Änderung an `AKTE.md` oder
     `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide
-    Dateien.
+    Dateien, eine Zwischenfassung eines Baus in Stapeln gegen die
+    Unterlagen ihres Stapels; gleicht nach Neubau und Kontrolle je Stapel
+    mit der bisherigen `AKTE.md` ab.
 
 ### Ablauf
 
