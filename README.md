@@ -181,8 +181,8 @@ Das Plugin im Einzelnen:
   mit dem Stand der Akte in jede Sitzung ein.
 - `skills/` – `neue-information`, `einarbeiten`, `naechste-schritte`,
   `diagnose`, `termin-vorbereiten`, `notfallpass`, `vorsorge`,
-  `akte-aktualisieren`, `beurteilung-aendern`, `anamnese`, `leitlinie`,
-  `akte-pruefen`.
+  `akte-aktualisieren`, `beurteilung-aendern`, `gegenpruefen`, `anamnese`,
+  `leitlinie`, `akte-pruefen`.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
   `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.

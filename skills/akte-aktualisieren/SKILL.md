@@ -28,9 +28,8 @@ description: Baut AKTE.md aus neuen oder geänderten Dateien in unterlagen/ nach
    (`git status --short AKTE.md` ist leer), endet der Skill hier. Hat sich
    nur der Abschnitt „Grundlage“ geändert, etwa nach neuen Zeilen in einer
    Messreihe, committest du `AKTE.md` ohne Gegenprüfung, und der Skill
-   endet. Sonst zuerst den Subagenten `patientenakte:gegenpruefung`
-   starten, wie unter „Gegenprüfung“ in `regeln.md` beschrieben. Quellen
-   der Änderung sind:
+   endet. Sonst zuerst mit dem Skill `gegenpruefen` gegenprüfen lassen.
+   Quellen der Änderung sind:
    - nach einem schrittweisen Bau die gemeldeten Dateien mit ihrem Status
      und dem Commit aus `akte-stand`;
    - nach einem vollständigen Bau alle Unterlagen;

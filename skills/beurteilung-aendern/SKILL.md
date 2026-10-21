@@ -43,9 +43,9 @@ laufenden Gespräch.
 1. Committet werden `BEURTEILUNG.md`, `literatur/` und die Unterlagen, die
    der Aufruf nennt. Ist keine davon geändert (`git status --short`), endet
    der Skill.
-2. Ist `BEURTEILUNG.md` geändert, die Änderung gegenprüfen lassen, wie unter
-   „Gegenprüfung“ in `regeln.md` beschrieben. Ausgenommen sind der Commit,
-   der sie aus der Vorlage anlegt, und die Berichtigung eines Funds der
+2. Ist `BEURTEILUNG.md` geändert, die Änderung mit dem Skill
+   `gegenpruefen` gegenprüfen lassen. Ausgenommen sind der Commit, der sie
+   aus der Vorlage anlegt, und die Berichtigung eines Funds der
    Gegenprüfung.
 3. Diese Dateien in einem Commit committen.
 

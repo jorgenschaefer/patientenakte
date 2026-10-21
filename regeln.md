@@ -52,9 +52,8 @@ Die Akte ist das Arbeitsverzeichnis, ein eigenes privates Git-Repo. Lies vor
 jeder Beratung `AKTE.md` und `BEURTEILUNG.md`.
 
 - `unterlagen/` – die Grundlage der Akte:
-  - Befunde als PDF oder als Foto (JPG, PNG; HEIC vorher in JPG wandeln),
-    Dateiname `JJJJ-MM-TT-<art>_<absender>.<endung>` mit dem Datum des
-    Befunds, bei vergebenem Namen mit `-2`, `-3` … vor der Endung;
+  - Befunde als PDF oder Foto, benannt nach dem Datum des Befunds, wie im
+    Skill `neue-information` beschrieben;
   - `anamnese.md` – die Erstbefragung mit Datum, danach unverändert;
   - `historie.md` – Aussagen des Patienten, Ereignisse, Arztgespräche und
     Korrekturen. Einträge werden in der Reihenfolge des Eingangs angehängt;
@@ -110,13 +109,6 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   die psychiatrische Klinik; nenn dazu die Telefonseelsorge, rund um die
   Uhr unter 0800 111 0 111. Steht die Beschwerde unter „Warnzeichen“ in
   `BEURTEILUNG.md`, ist sie mindestens so dringend wie die Stufe dort.
-- Bei Beschwerden, die psychisch mitbedingt sein können, etwa Erschöpfung,
-  Schlafstörungen, Schmerzen ohne passenden Befund, Magen-Darm- oder
-  Herzbeschwerden, nennst du eine psychische Mitursache als eine
-  Möglichkeit neben den körperlichen, ohne sie zu unterstellen, und
-  beziehst die psychische Verfassung aus `AKTE.md` ein. Spricht etwas
-  dafür, schlag eine Abklärung vor: beim Hausarzt, in der
-  psychotherapeutischen Sprechstunde oder beim Psychiater.
 - Wohin eine Angabe gehört, entscheidet ihre Herkunft. Was von einem Arzt, aus
   einem Befund oder vom Patienten stammt, kommt nach `unterlagen/` und von dort
   in `AKTE.md`; Vermutungen des Patienten werden als solche gekennzeichnet. Was
@@ -159,35 +151,6 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   Commit im Repo der Akte. Neue Angaben aus einem Gespräch kommen gesammelt
   in einen Commit, sobald sie eingearbeitet werden, wie im Skill
   `einarbeiten` beschrieben; `AKTE.md` bekommt immer einen eigenen.
-
-# Gegenprüfung
-
-Eine Änderung an `AKTE.md` oder `BEURTEILUNG.md` prüft vor dem Commit der
-Subagent `patientenakte:gegenpruefung` in frischem Kontext: für `AKTE.md` in
-Schritt 4 des Skills `akte-aktualisieren`, für `BEURTEILUNG.md` im Skill
-`beurteilung-aendern`.
-
-- **Auftrag:** die geprüfte Datei und die Quellen der Änderung als Pfade,
-  bei `AKTE.md` mit den Angaben aus Schritt 4 von `akte-aktualisieren`.
-  Den Diff liest der Subagent selbst mit `git diff HEAD -- <datei>`. Bei
-  `BEURTEILUNG.md` sind die Quellen die neuen oder geänderten Unterlagen,
-  die mit ihr in denselben Commit kommen; sind es keine, steht das im
-  Auftrag. Bei einer Kürzung im Skill `akte-pruefen` kommt
-  `HEAD:BEURTEILUNG.md` dazu. Sonst nichts: keine Begründung und keine
-  Überlegung zur Änderung, keine Zusammenfassung, keine weiteren Unterlagen
-  oder Literatur.
-- **Funde:** Jeden Fund liest du an der genannten Fundstelle nach und
-  berichtigst die bestätigten. Dem Benutzer nennst du alle Funde: die
-  berichtigten mit der Berichtigung, die verworfenen mit Grund, die nicht
-  prüfbaren als ungeprüft mit Grund. Bei `AKTE.md` mit den Änderungen nach
-  dem Commit, bei `BEURTEILUNG.md` vor dem Commit. Danach läuft die Gegenprüfung für
-  diese Änderung nicht noch einmal.
-- **Keine Funde:** Antwortet der Subagent „Keine Funde.“, sagst du das dem
-  Benutzer in einem Satz.
-- **Gescheitert:** Bricht der Subagent ab oder gibt er weder Funde noch
-  „Keine Funde.“ zurück, sagst du dem Benutzer, dass die Gegenprüfung nicht
-  gelaufen ist, nicht „nichts gefunden“. Dann geht es mit dem Commit
-  weiter.
 
 # Evidenz
 

@@ -72,7 +72,14 @@ Bildgebung, wird in Schritt 5 eine Empfehlung.
      häufigsten ist.
    - **Leicht übersehen:** Nebenwirkungen der Medikation aus `AKTE.md`,
      Stoffwechsel und Hormone, etwa Schilddrüse, Diabetes, Mangelzustände,
-     psychische Ursachen nach `regeln.md`, Folgen bekannter Diagnosen.
+     psychische Ursachen, Folgen bekannter Diagnosen.
+
+   Eine psychische Mitursache nennst du, etwa bei Erschöpfung,
+   Schlafstörungen, Schmerzen ohne passenden Befund, Magen-Darm- oder
+   Herzbeschwerden, als Möglichkeit neben den körperlichen, ohne sie zu
+   unterstellen. Spricht etwas dafür, schlag in Schritt 5 eine Abklärung
+   vor: beim Hausarzt, in der psychotherapeutischen Sprechstunde oder beim
+   Psychiater.
 
    Die Begleitsymptome bestimmen hier nicht, was auf die Liste kommt,
    sondern in Schritt 4, wie wahrscheinlich es ist.
