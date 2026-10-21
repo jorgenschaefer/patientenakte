@@ -190,6 +190,8 @@ Das Plugin im Einzelnen:
   `akte-pruefen`.
 - `agents/leitlinie.md` – sucht eine Leitlinie oder Studie, prüft ihre
   Gültigkeit, legt sie in `literatur/` ab und gibt zurück, was sie sagt.
+- `agents/vorsorge.md` – stellt den Vorsorgeplan auf und gibt zurück,
+  wonach der Benutzer gefragt werden muss.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
   `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.
