@@ -7,13 +7,13 @@ utility: L
 
 Es gibt keine Möglichkeit, `AKTE.md` und `BEURTEILUNG.md` inhaltlich gegen
 die Befunde zu prüfen. Für `AKTE.md` gibt es nur den Bau „vollständig zur
-Kontrolle“ (`skills/akte-aktualisieren/SKILL.md:20`), für `BEURTEILUNG.md`
-nichts. Fehler, die vor der Gegenprüfung nach Änderungen
+Kontrolle“ (`agents/einarbeitung.md:25-26`, `agents/einarbeitung.md:46-49`),
+für `BEURTEILUNG.md` nichts. Fehler, die vor der Gegenprüfung nach Änderungen
 (`agents/gegenpruefung.md`) in die Dateien gekommen sind, findet niemand.
 
 Was ohne die Befunde geht, das Format nachziehen und `AKTE.md` und
-`BEURTEILUNG.md` gegeneinander prüfen, steht unter „Akte nachziehen und
-ohne Befunde prüfen“ (`changes/backlog/akte-nachziehen-ohne-befunde.md`).
+`BEURTEILUNG.md` gegeneinander prüfen, leistet die Prüfung im Subagenten
+`einarbeitung` (`agents/einarbeitung.md:113`).
 Hier geht es um die Befunde selbst; in einer echten Akte liegen 12 MB in
 `unterlagen/`.
 
@@ -23,11 +23,20 @@ nicht beim Start einer Sitzung.
 ## Vollständiger Bau bei großen Beständen
 
 Ein vollständiger Bau betrifft nicht nur die Prüfung, sondern auch die erste
-Verwendung mit einer neuen Akte (`skills/akte-aktualisieren/SKILL.md:19`).
-Heute liest ein einziger Subagent alle Unterlagen (`agents/akte.md:21-22`);
+Verwendung mit einer neuen Akte und jede Akte, deren `AKTE.md` von der
+Vorlage abweicht: Das erste `/einarbeiten` dort baut sie vollständig neu
+(`agents/einarbeitung.md:20-21`, `agents/einarbeitung.md:42-45`). Nach
+jeder Änderung an `vorlagen/AKTE.md` trifft das alle bestehenden Akten.
+Heute liest ein einziger Subagent alle Unterlagen (`agents/akte.md:21-23`);
 bei vielen Befunden reicht sein Kontext dafür nicht. Dasselbe gilt für die
 Gegenprüfung danach, die alle Unterlagen vollständig liest
-(`skills/akte-aktualisieren/SKILL.md:36-38`).
+(`agents/einarbeitung.md:59-60`).
+
+Seit der Subagent `einarbeitung` selbst Subagenten startet, ist der Weg
+unten möglich: Er kann mehrere Subagenten für die Auszüge und einen für
+das Zusammenführen starten, ohne dass das Gespräch etwas davon sieht.
+Subagenten dürfen bis zu drei Ebenen unter dem Gespräch liegen; die
+Auszüge lägen auf Ebene 2 wie heute `akte`.
 
 Idee: mehrere Subagenten, je einer für einen oder mehrere Befunde, die die
 Angaben daraus herausziehen; ein weiterer führt sie zusammen. Nicht je
@@ -57,7 +66,7 @@ gewachsene:
   die vorher niemand gemeldet hatte.
 - Gestrichen wurde der Hinweis, dass ein Befund eine sicherheitsrelevante
   Voruntersuchung vor einem Therapiebeginn nicht enthält. (Die Regel dazu
-  ist inzwischen klargestellt, `agents/akte.md:37-42`.)
+  ist inzwischen klargestellt, `agents/akte.md:38-44`.)
 - Einschränkungen wie „ob mitbestimmt, unbekannt“ fielen bei einem Bau weg.
 - Quellen standen teils als Kürzel statt als Dateiname, teils fehlten sie
   bei Messwerten.
