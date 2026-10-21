@@ -31,9 +31,9 @@ in `historie.md`.
 
 ## Schema
 
-- **Stammdaten:** Name, gewünschte Anrede, Geburtsdatum, Geschlecht, Größe,
-  Gewicht mit Datum, Krankenkasse, Vorsorgevollmacht und Patientenverfügung,
-  Grad der Behinderung (GdB), Pflegegrad
+- **Stammdaten:** Name, Geburtsdatum, Geschlecht, Größe, Gewicht mit Datum,
+  Krankenkasse, Vorsorgevollmacht und Patientenverfügung, Grad der
+  Behinderung (GdB), Pflegegrad
 - **Aktuelle Beschwerden:** was, seit wann, Verlauf, was hilft, was
   verschlimmert
 - **Vorerkrankungen und Diagnosen** mit Jahr und behandelnder Praxis

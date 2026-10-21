@@ -45,8 +45,7 @@ Gesundheitsdaten. Ein Remote für die Akte nur privat anlegen, etwa mit
 ## Das erste Gespräch
 
 In der Akte `claude` starten und etwas schreiben, ein „Hallo“ genügt. Claude
-stellt sich vor, legt `BEURTEILUNG.md`, `literatur/` und `unterlagen/` an und
-beginnt mit der Erstbefragung: Stammdaten, Beschwerden, Vorerkrankungen,
+legt `BEURTEILUNG.md`, `literatur/` und `unterlagen/` an und beginnt mit der Erstbefragung: Stammdaten, Beschwerden, Vorerkrankungen,
 Medikamente, Allergien, Impfungen und Vorsorge, psychische Verfassung,
 Lebensumstände, Sport, die
 behandelnden Ärzte und die eigenen Ziele. Claude fragt nacheinander und zeigt
