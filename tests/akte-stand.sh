@@ -381,6 +381,9 @@ unterlagen/2026-01-02-b.pdf
 unterlagen/2026-01-03-c.md" "$(bin/akte-stand --stapel)"
   pruefe "Die Grenzen stehen sonst nirgends" "seiten_je_stapel=20
 zeichen_je_seite=10000" "$(grep -Ew '20|10000|10\.000' "$stand")"
+  pruefe "Die Grenzen stehen nicht in den Texten des Plugins" "" \
+    "$(grep -rEn '(^|[^0-9])20 Seiten|10\.?000 Zeichen' "$wurzel"/README.md \
+      "$wurzel"/regeln.md "$wurzel"/agents "$wurzel"/skills)"
 }
 
 # Eine Akte mit einer Unterlage und einer AKTE.md ohne Prüfsummen, beide
