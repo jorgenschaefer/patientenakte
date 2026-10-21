@@ -99,7 +99,9 @@ dazu nennen:
 Bau vorher ab, ist sie wie vorher. Die Zwischenfassungen liegen in
 `.git/akte-bau/` und werden nie committet. Wie die Unterlagen auf Stapel
 verteilt werden, bestimmt allein `akte-stand --stapel`; auch ein einzelner
-Stapel läuft diesen Weg.
+Stapel läuft diesen Weg. Du selbst liest keine Unterlage außer einer
+Einheit an der Fundstelle eines Funds, einen Teil von `historie.md` mit
+`akte-stand --einheit "<zeile>"`: Die Unterlagen lesen die Subagenten.
 
 1. **Stapel:** `akte-stand --stapel`. Bricht es ab, läuft kein
    vollständiger Bau: `AKTE.md` bleibt, wie sie ist, die Rückmeldung sagt
