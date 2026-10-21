@@ -198,7 +198,7 @@ Das Plugin im Einzelnen:
 - `agents/akte-nachziehen.md` – arbeitet Unterlagen ein, lässt gegenprüfen,
   committet; gleicht an die Vorlagen an und prüft die Akte.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
-- `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
+- `agents/aenderung-gegenpruefen.md` – prüft eine Änderung an `AKTE.md` oder
   `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
   eingearbeitet sind, ob ein Bau von `AKTE.md` nicht abgeschlossen ist und

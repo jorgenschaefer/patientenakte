@@ -9,8 +9,9 @@ Es gibt keine Möglichkeit, `AKTE.md` und `BEURTEILUNG.md` inhaltlich gegen
 die Befunde zu prüfen. Für `AKTE.md` gibt es nur den Bau „vollständig zur
 Kontrolle“ (`agents/akte-nachziehen.md:25-26`,
 `agents/akte-nachziehen.md:46-49`), für `BEURTEILUNG.md` nichts. Fehler,
-die vor der Gegenprüfung nach Änderungen (`agents/gegenpruefung.md`) in
-die Dateien gekommen sind, findet niemand.
+die vor der Gegenprüfung nach Änderungen
+(`agents/aenderung-gegenpruefen.md`) in die Dateien gekommen sind, findet
+niemand.
 
 Was ohne die Befunde geht, das Format nachziehen und `AKTE.md` und
 `BEURTEILUNG.md` gegeneinander prüfen, leistet die Prüfung im Subagenten

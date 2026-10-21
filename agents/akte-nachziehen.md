@@ -92,8 +92,8 @@ dazu nennen:
 
 ## Gegenprüfung
 
-Der Subagent `patientenakte:gegenpruefung` prüft eine Änderung in frischem
-Kontext.
+Der Subagent `patientenakte:aenderung-gegenpruefen` prüft eine Änderung
+in frischem Kontext.
 
 - **Auftrag:** die geprüfte Datei und die Quellen der Änderung als Pfade.
   Den Diff liest er selbst mit `git diff HEAD -- <datei>`. Sonst nichts:

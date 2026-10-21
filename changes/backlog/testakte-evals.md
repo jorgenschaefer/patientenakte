@@ -14,8 +14,8 @@ Idee aus der Überprüfung: eine Beispielakte mit einem erfundenen Patienten im
 Repo, Evals mit `claude plugin eval` für die Kernabläufe (neuer Befund,
 Warnzeichen, Termin).
 
-Dazu die Gegenprüfung (`agents/gegenpruefung.md`), bei ihrer Abnahme nur
-durch Lesen geprüft. Offen ist:
+Dazu die Gegenprüfung (`agents/aenderung-gegenpruefen.md`), bei ihrer
+Abnahme nur durch Lesen geprüft. Offen ist:
 
 - ob sie läuft: nach schrittweisem, vollständigem und liegen gebliebenem
   Bau, und vor jedem Commit an `BEURTEILUNG.md` (`agents/akte-nachziehen.md`,
@@ -25,6 +25,8 @@ durch Lesen geprüft. Offen ist:
   einen Widerspruch zu einer Allergie;
 - ob der Prüfer `agents/akte.md` und `regeln.md` überhaupt findet: Er
   kennt sie nur über `${CLAUDE_PLUGIN_ROOT}` im Text des Agenten
-  (`agents/gegenpruefung.md:35,37`). Laut Doku ersetzt Claude Code die
-  Variable dort, laut Berichten anderer bei Subagenten nicht immer;
-- was der Benutzer erfährt, wenn sie scheitert (`regeln.md`, „Gescheitert“).
+  (`agents/aenderung-gegenpruefen.md:58-61`). Laut Doku ersetzt Claude
+  Code die Variable dort, laut Berichten anderer bei Subagenten nicht
+  immer;
+- was der Benutzer erfährt, wenn sie scheitert
+  (`agents/akte-nachziehen.md:109`, „Gescheitert“).

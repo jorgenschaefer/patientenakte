@@ -24,4 +24,4 @@ dort die meisten Fehler aus den echten Beratungen standen:
 
 Ein Hindernis: Viele Aussagen stützen sich auf Quellen, die nicht lokal
 vorliegen, und sind dann für einen Prüfer nicht prüfbar
-(`agents/gegenpruefung.md`, „nicht prüfbar“).
+(`agents/aenderung-gegenpruefen.md`, „nicht prüfbar“).

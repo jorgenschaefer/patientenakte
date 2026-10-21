@@ -1,5 +1,5 @@
 ---
-name: gegenpruefung
+name: aenderung-gegenpruefen
 description: Prüft eine noch nicht committete Änderung an AKTE.md oder BEURTEILUNG.md in frischem Kontext gegen ihre Quellen und gegen beide Dateien, ohne etwas zu ändern. Wird vor jedem Commit an AKTE.md und BEURTEILUNG.md gestartet.
 tools: Read, Bash, Grep, Glob
 ---
