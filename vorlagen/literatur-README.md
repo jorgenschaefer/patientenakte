@@ -5,8 +5,8 @@ Lokal gespeicherte Leitlinien, Empfehlungen und Fachinformationen, auf die sich
 (`pdftotext -layout`) zum Durchsuchen.
 
 Die gespeicherte Fassung ersetzt das Nachschlagen des Inhalts, nicht die
-Prüfung auf eine neuere Version; wann neu geprüft wird, steht im Skill
-`leitlinie`.
+Prüfung auf eine neuere Version; wann neu geprüft wird, steht im Subagenten
+`leitlinie` des Plugins.
 
 | Datei | Quelle | Version / Stand | Gültig bis | Abgerufen | Geprüft | Herkunft |
 |---|---|---|---|---|---|---|

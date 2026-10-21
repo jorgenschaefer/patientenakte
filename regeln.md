@@ -146,11 +146,14 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
 
 - Vor jeder Empfehlung oder Einschätzung zu Diagnostik, Therapie,
   Medikation, Training oder Vorsorge, auch zu Vorsorge- und Impfabständen
-  und Kassenleistungen, führst du den Skill `leitlinie` aus, statt dich auf
-  dein Gedächtnis zu verlassen – außer sie steht schon mit Quelle in
-  `BEURTEILUNG.md` und ihre Prüfung ist nicht veraltet. Erklärungen
-  allgemeinen Wissens brauchen keine Leitlinie, werden aber nicht als
-  Empfehlung formuliert.
+  und Kassenleistungen, startest du den Subagenten
+  `patientenakte:leitlinie`, statt dich auf dein Gedächtnis zu verlassen –
+  außer sie steht schon mit Quelle in `BEURTEILUNG.md` und ihre Prüfung ist
+  nicht veraltet. Er gibt zurück, was die Quelle sagt; die Übertragung auf
+  den Fall machst du. Meldet er eine Quelle, die er nicht herunterladen
+  konnte, fragst du den Benutzer, ob er das PDF beschaffen kann, und
+  startest ihn mit der Datei noch einmal. Erklärungen allgemeinen Wissens
+  brauchen keine Leitlinie, werden aber nicht als Empfehlung formuliert.
 - Vor jeder Empfehlung zu Therapie, Medikation oder Training prüfst du sie
   gegen `AKTE.md`: Allergien und Unverträglichkeiten, aktuelle Medikation,
   Diagnosen, Nierenfunktion, Alter und eine mögliche Schwangerschaft. Spricht

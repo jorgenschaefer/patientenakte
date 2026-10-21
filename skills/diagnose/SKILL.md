@@ -60,10 +60,11 @@ Bildgebung, wird in Schritt 5 eine Empfehlung.
    getrennt durch. Die übrigen sind Begleitsymptome. Nenn dem Benutzer
    das Leitsymptom und die Begleitsymptome in einem Satz.
 3. **Differentialdiagnosen** vom Leitsymptom aus, breit, auch was
-   zunächst unwahrscheinlich klingt. Vorher mit dem Skill `leitlinie` die
-   Leitlinie zum Leitsymptom suchen, etwa die DEGAM-Leitlinien zu
-   Brustschmerz, Müdigkeit, Husten, Halsschmerzen oder akutem Schwindel,
-   sonst die zum Organ oder zur vermuteten Krankheit; ihre Liste der
+   zunächst unwahrscheinlich klingt. Vorher mit dem Subagenten
+   `patientenakte:leitlinie` die Leitlinie zum Leitsymptom suchen lassen,
+   etwa die DEGAM-Leitlinien zu Brustschmerz, Müdigkeit, Husten,
+   Halsschmerzen oder akutem Schwindel, sonst die zum Organ oder zur
+   vermuteten Krankheit; ihre Liste der
    Ursachen und Warnzeichen übernimmst du. Ordne in drei Gruppen:
    - **Nicht übersehen:** Ursachen mit abwendbar gefährlichem Verlauf,
      auch wenn sie selten sind, etwa Herzinfarkt, Lungenembolie,

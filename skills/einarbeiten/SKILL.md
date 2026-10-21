@@ -38,7 +38,8 @@ alles.
    betreffen, mit dem Skill `beurteilung-aendern`. Ein Ergebnis, das noch
    nicht in `unterlagen/` steht, kommt wie in Schritt 3 des Skills
    `neue-information` nach `historie.md` und wird bestätigt wie in
-   Schritt 3 hier. Neue Fragen belegst du mit dem Skill `leitlinie`.
+   Schritt 3 hier. Neue Fragen belegst du mit dem Subagenten
+   `patientenakte:leitlinie`.
 5. **Unterlagen und Beurteilung committen:** Ist `BEURTEILUNG.md` geändert,
    außer beim Anlegen aus der Vorlage, die Änderung mit dem Skill
    `gegenpruefen` gegenprüfen lassen; Quellen sind die neuen Unterlagen

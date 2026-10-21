@@ -35,5 +35,6 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
    - danach, was dauerhaft gilt: Übungen, Ernährung, Alltag und die
      Warnzeichen aus `BEURTEILUNG.md` mit ihrer Stufe. Neue Warnzeichen
      mit dem Skill `beurteilung-aendern` eintragen.
-6. Ergibt sich eine neue Empfehlung, mit dem Skill `leitlinie` belegen und
+6. Ergibt sich eine neue Empfehlung, mit dem Subagenten
+   `patientenakte:leitlinie` belegen und
    mit dem Skill `beurteilung-aendern` eintragen.

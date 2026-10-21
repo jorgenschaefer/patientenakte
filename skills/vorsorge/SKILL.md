@@ -14,7 +14,7 @@ fragt; was nicht zutrifft, kommt mit Grund unter „geprüft, ohne Ergebnis“.
    „Offen“ in `AKTE.md`, „Vorsorge“, „Beobachten“ und „Offen“ in
    `BEURTEILUNG.md`. Was dort mit nicht veralteter Prüfung steht, nicht neu
    suchen.
-2. Die übrigen Quellen mit dem Skill `leitlinie` prüfen:
+2. Die übrigen Quellen mit dem Subagenten `patientenakte:leitlinie` prüfen:
    1. **Alter und Geschlecht:** die Richtlinien des G-BA zu
       Gesundheitsuntersuchung, Krebsfrüherkennung, organisierten
       Früherkennungsprogrammen und Ultraschallscreening; die zahnärztliche

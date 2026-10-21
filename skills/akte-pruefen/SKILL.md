@@ -28,7 +28,7 @@ nicht.
 4. **Funde nennen,** bevor sich eine Datei ändert, getrennt nach den drei
    Gruppen: was du berichtigst, je mit dem, was mit dem Fund geschieht;
    wonach du fragen wirst; was du nur meldest, je mit dem, was ihn beheben
-   würde, etwa der Skill `leitlinie` oder ein Blick in einen bestimmten
+   würde, etwa der Subagent `patientenakte:leitlinie` oder ein Blick in einen bestimmten
    Befund. Danach fragst du und berichtigst ohne weitere Rückfrage.
 5. **Fragen,** einzeln und im Gesprächston, nicht als Liste. Antworten zum
    Patienten, auch „erledigt“, welche von zwei Angaben gilt oder dass er
