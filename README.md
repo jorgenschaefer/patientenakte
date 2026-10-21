@@ -119,6 +119,8 @@ Schlaf oder Schmerzstärke nur zu Themen, die unter „Beobachten“ in
 `BEURTEILUNG.md` stehen, als Zeile in deren CSV. Ein neues Medikament oder
 eine geänderte Dosis prüft Claude gleich auf Dosierung, Gegenanzeigen und
 Wechselwirkungen.
+Lehnt man eine Empfehlung ab, kommt das mit Grund nach `historie.md`, und
+Claude schlägt sie nicht erneut vor.
 
 Im Gespräch bleibt das alles ein Entwurf ohne Commit, und Claude berät
 weiter, ohne den Wortlaut einzeln bestätigen zu lassen. Eingearbeitet wird
@@ -173,38 +175,111 @@ was es beheben würde.
 
 ## Aufbau
 
-Das Plugin enthält nur das Gerüst: Regeln, Skills, Agenten und ein
-Script. Jede Akte ist ein eigenes, privates Git-Repo:
+Das Plugin enthält nur das Gerüst: Regeln, Skills, Agenten, ein Script und
+Vorlagen. Jede Akte ist ein eigenes, privates Git-Repo:
 
 ```
 AKTE.md          aktueller Stand aus unterlagen/, nur Fakten mit Quelle
-BEURTEILUNG.md   Empfehlungen und Einschätzungen des Modells, mit Quelle
+BEURTEILUNG.md   was ein Modell aus AKTE.md und literatur/ schließt, mit Quelle
 unterlagen/      Befunde als PDF oder Foto, anamnese.md, historie.md, Messreihen als CSV
-literatur/       Leitlinien und Studien als PDF und Textfassung
+literatur/       Leitlinien, Studien und Fachinformationen als PDF und Textfassung
+termin-*.md      Themenliste für einen Termin, wird danach gelöscht
 ```
 
-Das Plugin im Einzelnen:
+### Fakten und Beurteilung
 
-- `regeln.md` – die Regeln für die Beratung; ein SessionStart-Hook spielt sie
-  mit dem Stand der Akte in jede Sitzung ein.
-- `skills/` – `neue-information`, `einarbeiten`, `naechste-schritte`,
-  `diagnose`, `termin-vorbereiten`, `notfallpass`, `vorsorge`,
-  `anamnese`.
-- `agents/leitlinien-recherche.md` – sucht eine Leitlinie oder Studie,
-  prüft ihre Gültigkeit, legt sie in `literatur/` ab und gibt zurück, was
-  sie sagt.
-- `agents/vorsorge-recherche.md` – stellt den Vorsorgeplan auf und gibt zurück,
-  wonach der Benutzer gefragt werden muss.
-- `agents/akte-nachziehen.md` – arbeitet Unterlagen ein, lässt gegenprüfen,
-  committet; gleicht an die Vorlagen an und prüft die Akte.
-- `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
-- `agents/aenderung-gegenpruefen.md` – prüft eine Änderung an `AKTE.md` oder
-  `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.
+Wohin eine Angabe gehört, entscheidet ihre Herkunft. Was von einem Arzt,
+aus einem Befund oder vom Patienten stammt, kommt nach `unterlagen/` und
+von dort in `AKTE.md`, auch dass der Patient eine Empfehlung ablehnt. Jede
+Angabe in `AKTE.md` nennt ihre Quelle; am Ende stehen die Prüfsummen der
+eingearbeiteten Unterlagen.
+
+`BEURTEILUNG.md` enthält, was eine künftige Beratung braucht: was eine
+Quelle aus `literatur/` zum Fall sagt, gekennzeichnet als **Leitlinie**,
+was das Modell daraus für den Fall schließt, gekennzeichnet als **Modell**,
+und was mit dem Benutzer vereinbart ist, etwa welche Themen beobachtet
+werden. Die Abschnitte sind Quellen, Warnzeichen, Einschätzungen,
+Beobachten, Vorsorge, Offen und Abgelehnt. Wie die Datei geändert wird,
+steht in ihrem Kopf.
+
+### Das Plugin
+
+- `regeln.md` – die Regeln für die Beratung: Rolle, Beginn einer Sitzung,
+  Einarbeiten, Dringlichkeit, wohin eine Angabe gehört, und unter „Evidenz“,
+  dass vor jeder Empfehlung eine Quelle geprüft wird.
+- `hooks/regeln-einspielen` – spielt beim Start jeder Sitzung `regeln.md`
+  ein, dazu den Stand der Akte und vergangene Termine; fehlt
+  `unterlagen/anamnese.md`, verlangt er die Erstbefragung.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
   eingearbeitet sind, ob ein Bau von `AKTE.md` nicht abgeschlossen ist und
-  ob `AKTE.md` und `BEURTEILUNG.md` von ihrer Vorlage abweichen.
+  ob `AKTE.md` und `BEURTEILUNG.md` von ihrer Vorlage abweichen; schreibt
+  mit `--aktualisieren` die Prüfsummen.
 - `vorlagen/` – Vorlagen für `AKTE.md`, `BEURTEILUNG.md` und
-  `literatur/README.md`.
+  `literatur/README.md`; sie legen Abschnitte und Hinweise fest.
+- `skills/` – laufen im Gespräch und können den Benutzer fragen:
+  - `anamnese` – Erstbefragung, richtet eine neue Akte ein;
+  - `neue-information` – nimmt eine neue Angabe als Entwurf in
+    `unterlagen/` auf;
+  - `einarbeiten` – sammelt, was aussteht, lässt die neuen Einträge in
+    `historie.md` bestätigen und startet `akte-nachziehen`;
+  - `diagnose` – klärt Beschwerden ab wie in der Sprechstunde;
+  - `naechste-schritte` – was ansteht, nach Dringlichkeit;
+  - `vorsorge` – Vorsorgeplan mit Fälligkeit, Quelle und Kostenträger;
+  - `termin-vorbereiten` – Themenliste vor einem Termin, Auswertung danach;
+  - `notfallpass` – Text für den Notfallpass, Feld für Feld.
+- `agents/` – laufen in eigenem Kontext und erreichen den Benutzer nicht;
+  was nur er beantworten kann, geben sie als Frage zurück:
+  - `leitlinien-recherche` – sucht eine Leitlinie, Studie oder
+    Fachinformation, prüft ihre Gültigkeit, legt sie in `literatur/` ab und
+    gibt zurück, was sie sagt;
+  - `vorsorge-recherche` – stellt den Vorsorgeplan auf;
+  - `akte-nachziehen` – committet die Unterlagen, zieht `AKTE.md` und
+    danach `BEURTEILUNG.md` nach, lässt beide gegenprüfen und committet
+    sie; gleicht auf Wunsch an die Vorlagen an und prüft die Akte;
+  - `akte` – baut `AKTE.md` aus `unterlagen/`;
+  - `aenderung-gegenpruefen` – prüft eine Änderung an `AKTE.md` oder
+    `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide
+    Dateien.
+
+### Ablauf
+
+1. **Beginn einer Sitzung:** Der Hook liefert Regeln und Stand. Steht
+   etwas aus, also neue Unterlagen, Entwürfe ohne Commit oder ein nicht
+   abgeschlossener Bau, läuft zuerst `einarbeiten`.
+2. **Beratung:** auf Grundlage von `AKTE.md` und `BEURTEILUNG.md` und der
+   Angaben aus dem Gespräch, die noch nicht eingearbeitet sind. Vor einer
+   Empfehlung prüft `leitlinien-recherche` die Quelle, außer sie steht schon
+   mit nicht veralteter Prüfung in `BEURTEILUNG.md`.
+3. **Neue Angaben:** `neue-information` legt sie als Entwurf in
+   `unterlagen/` ab; was für künftige Gespräche zählt, trägt Claude in
+   `BEURTEILUNG.md` ein. Beides ohne Commit.
+4. **Einarbeiten:** `einarbeiten` sammelt alles Ausstehende und lässt die
+   neuen Einträge in `historie.md` bestätigen. `akte-nachziehen` macht dann
+   drei Commits: die Unterlagen, `AKTE.md` nach einer Gegenprüfung und
+   `BEURTEILUNG.md`, nachgezogen gegen die neue `AKTE.md` und ebenfalls
+   gegengeprüft. Seine Fragen stellt `einarbeiten`; die Antworten werden
+   aufgenommen und eingearbeitet wie jede neue Angabe.
+
+### Wer wen aufruft
+
+```
+Gespräch                         Subagent, Ebene 1        Subagent, Ebene 2
+einarbeiten ───────────────────▶ akte-nachziehen ──┬───▶ akte
+                                                   ├───▶ aenderung-gegenpruefen
+                                                   └───▶ leitlinien-recherche
+vorsorge ──────────────────────▶ vorsorge-recherche ───▶ leitlinien-recherche
+regeln.md, diagnose,
+naechste-schritte ─────────────▶ leitlinien-recherche
+```
+
+- Nur `akte-nachziehen` committet, und erst nach einer Gegenprüfung; alles
+  andere schreibt Entwürfe.
+- `AKTE.md` schreibt nur der Subagent `akte`. Steht dort etwas Falsches,
+  weil eine Unterlage falsch ist, kommt die Korrektur in `historie.md`.
+- Mit dem Benutzer spricht nur das Gespräch; die Subagenten für Vorsorge
+  und Einarbeiten werden nur aus ihrem Skill gestartet.
+- Rückfragen kommen als Rückmeldung zurück und lösen einen neuen Lauf aus,
+  keinen Aufruf in die Gegenrichtung.
 
 ## Lizenz
 
