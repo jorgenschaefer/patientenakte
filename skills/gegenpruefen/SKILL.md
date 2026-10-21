@@ -1,6 +1,6 @@
 ---
 name: gegenpruefen
-description: Lässt eine Änderung an AKTE.md oder BEURTEILUNG.md vor dem Commit vom Subagenten patientenakte:gegenpruefung in frischem Kontext gegen ihre Quellen prüfen und arbeitet die Funde ab. Benutzen nur aus den Skills akte-aktualisieren und beurteilung-aendern heraus.
+description: Lässt eine Änderung an AKTE.md oder BEURTEILUNG.md vor dem Commit vom Subagenten patientenakte:gegenpruefung in frischem Kontext gegen ihre Quellen prüfen und arbeitet die Funde ab. Benutzen nur aus den Skills einarbeiten und akte-aktualisieren heraus.
 ---
 
 # Gegenprüfen

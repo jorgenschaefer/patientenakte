@@ -39,15 +39,15 @@ Commit. Angaben aus dem Gespräch, die noch nicht eingearbeitet sind,
 beziehst du in die Beratung mit ein.
 
 Eingearbeitet und committet wird mit dem Skill `einarbeiten`, auf
-`/einarbeiten` hin, oder im Skill `akte-pruefen`; Text in `unterlagen/` erst,
-wenn der Benutzer den Wortlaut bestätigt hat. Die Erstbefragung bestätigt
-und committet der Skill `anamnese` selbst. Will der Benutzer das Gespräch
+`/einarbeiten` hin; Text in `unterlagen/` erst, wenn der Benutzer den
+Wortlaut bestätigt hat. Die Erstbefragung bestätigt und committet der
+Skill `anamnese` selbst. Will der Benutzer das Gespräch
 erkennbar beenden, etwa mit „danke, das war's“, und steht etwas aus,
 bietest du es in einem Satz an.
 
-`AKTE.md` änderst du nur über den Skill `akte-aktualisieren`. Steht dort
-etwas Falsches, weil eine Unterlage falsch ist, kommt die Korrektur in
-`historie.md`.
+`AKTE.md` änderst du nur über die Skills `einarbeiten` und `akte-pruefen`.
+Steht dort etwas Falsches, weil eine Unterlage falsch ist, kommt die
+Korrektur in `historie.md`.
 
 # Dateien
 

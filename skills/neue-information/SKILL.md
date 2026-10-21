@@ -52,5 +52,4 @@ bleibt.
    `regeln.md` beschrieben, auch gegen Bedarfsmedikation und
    Nahrungsergänzung. Dem Benutzer das Ergebnis gleich sagen, auch wenn
    nichts dagegen spricht. Spricht etwas dagegen, es gleich mit dem Skill
-   `beurteilung-aendern`, Teil „Eintragen“, unter „Offen“ oder
-   „Warnzeichen“ eintragen.
+   `beurteilung-aendern` unter „Offen“ oder „Warnzeichen“ eintragen.

@@ -21,7 +21,7 @@ nicht.
    `unterlagen/`. Dazu die Regeln, gegen die du prüfst:
    - das Schema in `${CLAUDE_PLUGIN_ROOT}/skills/anamnese/SKILL.md`;
    - „Regeln“ und „Aufbau“ in `${CLAUDE_PLUGIN_ROOT}/agents/akte.md`;
-   - `${CLAUDE_PLUGIN_ROOT}/vorlagen/BEURTEILUNG.md` und „Eintragen“ in
+   - `${CLAUDE_PLUGIN_ROOT}/vorlagen/BEURTEILUNG.md` und
      `${CLAUDE_PLUGIN_ROOT}/skills/beurteilung-aendern/SKILL.md`.
 3. **Prüfen**, wie unter „Prüfen“ unten, und jeden Fund einer der drei
    Gruppen zuordnen.
@@ -36,12 +36,11 @@ nicht.
    Ablehnung als Eintrag „möchte zu … keine Angaben machen“. Nach der
    letzten Antwort arbeitest du sie mit dem Skill `einarbeiten` ein. Nennt
    der Benutzer zu einer Quelle auf eine fehlende Datei die richtige,
-   berichtigst du die Quelle in Schritt 6, mit dieser Datei als weiterer
-   Quelle der Gegenprüfung. Was unbeantwortet bleibt, ist offen geblieben.
-6. **`AKTE.md` berichtigen** nach den Regeln des Subagenten `akte`, wie in
-   Schritt 7 des Skills `akte-aktualisieren`, und dort ab Schritt 4
-   weitergehen, mit `HEAD:AKTE.md` als Quelle. Was die Antworten schon
-   erledigt haben, entfällt.
+   berichtigst du die Quelle in Schritt 6 und nennst diese Datei in
+   Schritt 9 als weitere Quelle. Was unbeantwortet bleibt, ist offen
+   geblieben.
+6. **`AKTE.md` berichtigen** nach den Regeln des Subagenten `akte`. Was die
+   Antworten schon erledigt haben, entfällt.
 7. **`BEURTEILUNG.md` berichtigen** mit dem Skill `beurteilung-aendern`.
    Die Funde gegen `AKTE.md` prüfst du vorher gegen die nachgezogene
    `AKTE.md` erneut.
@@ -57,16 +56,16 @@ nicht.
       Datum, an dem der Eintrag geschrieben oder geprüft wurde; ein neues
       bekommt er nicht, denn Kürzen ist kein Prüfen.
    3. Eine Quelle, die kein Eintrag mehr zitiert, aus „Quellen“ streichen.
-
-   Dann mit dem Skill `beurteilung-aendern` abschließen. Der Auftrag an die
-   Gegenprüfung nennt keine Quellen; hast du gekürzt, nennt er
-   `HEAD:BEURTEILUNG.md` als Quelle.
-9. **Abschließen:** `AKTE.md`, `BEURTEILUNG.md`, `unterlagen/` und
-   `literatur/` sind committet, und `akte-stand` meldet nichts. Dann fasst du
-   zusammen: was berichtigt wurde, die Funde der Gegenprüfungen, was offen
-   geblieben ist, darunter alles nur Gemeldete, ob `BEURTEILUNG.md` gekürzt
-   wurde, und die Commits mit Hash und Titel. Gab es keine Funde, sagst du
-   das in einem Satz.
+9. **Einarbeiten** mit dem Skill `einarbeiten`. Der Aufruf nennt für
+   `AKTE.md`, wenn du sie berichtigt hast, eine Berichtigung mit
+   `HEAD:AKTE.md` und den Dateien aus Schritt 5 als Quellen; für
+   `BEURTEILUNG.md` keine Quellen, nach einer Kürzung `HEAD:BEURTEILUNG.md`.
+10. **Abschließen:** `AKTE.md`, `BEURTEILUNG.md`, `unterlagen/` und
+    `literatur/` sind committet, und `akte-stand` meldet nichts. Dann fasst
+    du zusammen: was berichtigt wurde, die Funde der Gegenprüfungen, was
+    offen geblieben ist, darunter alles nur Gemeldete, ob `BEURTEILUNG.md`
+    gekürzt wurde, und die Commits mit Hash und Titel. Gab es keine Funde,
+    sagst du das in einem Satz.
 
 ## Prüfen
 
@@ -105,8 +104,8 @@ nicht.
   passenden; Form einer Quelle; Stand-Datum, aus der Quelle der Angabe;
   Form der Messwerte; eine überholte Angabe in eigener Zeile; eine doppelte
   Angabe.
-- `BEURTEILUNG.md` gegen die Vorlage und „Eintragen“: Kopf, Hinweise unter
-  den Überschriften und Reihenfolge wie in der Vorlage; ein fehlender
+- `BEURTEILUNG.md` gegen die Vorlage und `beurteilung-aendern`: Kopf,
+  Hinweise unter den Überschriften und Reihenfolge wie in der Vorlage; ein fehlender
   Abschnitt der Vorlage; ein Eintrag ohne Datum vorn oder ohne
   Kennzeichnung; ein Kurzname, der unter „Quellen“ fehlt, nachgetragen
   mit dem, was `literatur/README.md` zu ihm nennt, der Rest wie oben nur

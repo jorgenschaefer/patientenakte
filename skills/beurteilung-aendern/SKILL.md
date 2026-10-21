@@ -1,14 +1,12 @@
 ---
 name: beurteilung-aendern
-description: Trägt Empfehlungen, Einschätzungen, Warnzeichen, Vorsorge, Beobachtungsthemen und Quellen in BEURTEILUNG.md ein, passt betroffene Einträge an, im Gespräch ohne Commit, und committet die Änderung mit der Literatur nach der Gegenprüfung, wenn der Skill einarbeiten oder akte-pruefen es verlangt. Benutzen für jede Änderung an BEURTEILUNG.md, aus jedem Skill und aus der freien Beratung.
+description: Trägt Empfehlungen, Einschätzungen, Warnzeichen, Vorsorge, Beobachtungsthemen und Quellen in BEURTEILUNG.md ein, passt betroffene Einträge an, ohne Commit; committet wird im Skill einarbeiten. Benutzen für jede Änderung an BEURTEILUNG.md, aus jedem Skill und aus der freien Beratung.
 ---
 
 # BEURTEILUNG.md ändern
 
-Eingetragen wird gleich (Teil „Eintragen“), ohne Commit. Committet wird im
-Skill `einarbeiten` oder `akte-pruefen` (Teil „Abschließen“).
-
-## Eintragen
+Eingetragen wird gleich, ohne Commit. Committet wird im Skill
+`einarbeiten`.
 
 Der Aufruf nennt, was hinein soll, oder die neuen Angaben, deren betroffene
 Einträge nachzuziehen sind.
@@ -34,25 +32,3 @@ Einträge nachzuziehen sind.
    streichen. Ließ sich die Gültigkeit nicht prüfen, das Prüfdatum nicht
    anpassen (bei einer neuen Quelle keins eintragen) und „nicht prüfbar am
    TT.MM.JJJJ“ mit Grund vermerken; ein früherer Vermerk wird ersetzt.
-
-## Abschließen
-
-Nur auf Aufruf aus dem Skill `einarbeiten` oder `akte-pruefen`, nicht im
-laufenden Gespräch.
-
-1. Committet werden `BEURTEILUNG.md`, `literatur/` und die Unterlagen, die
-   der Aufruf nennt. Ist keine davon geändert (`git status --short`), endet
-   der Skill.
-2. Ist `BEURTEILUNG.md` geändert, die Änderung mit dem Skill
-   `gegenpruefen` gegenprüfen lassen. Ausgenommen sind der Commit, der sie
-   aus der Vorlage anlegt, und die Berichtigung eines Funds der
-   Gegenprüfung.
-3. Diese Dateien in einem Commit committen.
-
-## Berichtigung nach der Gegenprüfung von AKTE.md
-
-Meldet die Gegenprüfung einer Änderung an `AKTE.md` bestätigte Funde in
-`BEURTEILUNG.md`, berichtigst du sie gleich. Hatte `BEURTEILUNG.md` vorher
-keine Änderungen ohne Commit, committest du die Berichtigung gleich, ohne
-weitere Gegenprüfung; sonst kommt sie mit diesen Änderungen in deren
-Commit, später und mit deren Gegenprüfung.
