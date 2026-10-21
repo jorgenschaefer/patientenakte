@@ -24,7 +24,13 @@ fragt; was nicht zutrifft, kommt mit Grund unter „geprüft, ohne Ergebnis“.
       Früherkennungsprogrammen und Ultraschallscreening; die zahnärztliche
       Untersuchung mit Bonusheft; wo zutreffend Kinder- und
       Jugenduntersuchungen und Schwangerschaftsvorsorge. Dazu die
-      Altersgrenzen der nächsten Jahre.
+      Altersgrenzen der nächsten Jahre. Zu jeder dieser Untersuchungen
+      außerdem, was die Leitlinien zu den Krankheiten, nach denen die
+      Untersuchung sucht, zur Früherkennung bei Menschen ohne diese Diagnose
+      empfehlen. Danach im AWMF-Register nach Leitlinien suchen, die für
+      Alter und Geschlecht eine Untersuchung ohne Anlass empfehlen, die keine
+      Kassenleistung ist, auch nach Leitlinien zu einer Krankheit, die
+      Früherkennung oder Screening nicht im Titel tragen.
    2. **Jede Diagnose und jeder Nebenbefund** aus `AKTE.md`, auch
       Risikozustände wie ein erhöhtes Diabetesrisiko: die Leitlinie der
       Diagnose, in den Kapiteln zu Verlaufskontrolle, Komplikationen,
@@ -39,8 +45,10 @@ fragt; was nicht zutrifft, kommt mit Grund unter „geprüft, ohne Ergebnis“.
    5. **Impfungen:** Standard- und Indikationsimpfungen der STIKO, bei
       Immunsuppression ihre Anwendungshinweise, abgeglichen mit dem
       Impfstatus.
-   6. **Darüber hinaus:** Präventionskurse der Kassen; Selbstzahlerleistungen
-      nur, wenn eine Leitlinie einen Nutzen nennt; Bonusprogramm und
+   6. **Darüber hinaus:** Präventionskurse der Kassen; die
+      Früherkennungsleistungen, die der IGeL-Monitor des Medizinischen
+      Dienstes für Alter und Geschlecht bewertet, mit seiner Bewertung, auch
+      für die Selbstzahlerleistungen aus 1. bis 5.; Bonusprogramm und
       Satzungsleistungen der Krankenkasse aus `AKTE.md`, sonst den Benutzer
       danach fragen.
 
@@ -52,6 +60,16 @@ fragt; was nicht zutrifft, kommt mit Grund unter „geprüft, ohne Ergebnis“.
      allgemeine Früherkennung; dann nur die eine nennen und sagen, dass die
      Kasse sie meist als Krankenbehandlung zahlt.
    - **Widersprechen sich G-BA und Leitlinie,** beides nennen.
+   - **Empfiehlt eine Leitlinie** („soll“, „sollte“ oder „kann“) eine
+     Untersuchung, die keine Kassenleistung ist, oder bewertet der
+     IGeL-Monitor sie positiv oder tendenziell positiv, kommt sie mit
+     Selbstzahler als Kostenträger in die Tabelle. Zahlt die Krankenkasse
+     des Benutzers sie als Satzungsleistung oder im Bonusprogramm, steht
+     dort Kasse, bei einem Zuschuss mit dessen Höhe. Empfiehlt die Leitlinie
+     eine Kassenleistung früher oder öfter, als die Kasse sie zahlt, bleibt
+     die Zeile der Kasse, und nur die übrigen Termine kommen in eine eigene
+     Zeile mit Selbstzahler. Bewertet der IGeL-Monitor eine Untersuchung
+     anders als die Leitlinie, beides nennen.
    - **Hängt ein Intervall an einem Befund,** es daraus bestimmen; ändert
      ein Befund aus der Akte es nicht, das ausdrücklich sagen.
 5. Fehlt für eine zutreffende Untersuchung der letzte Termin, danach fragen,
