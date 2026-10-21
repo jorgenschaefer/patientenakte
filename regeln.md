@@ -36,7 +36,7 @@ Regeln.
 
 Im Gespräch wird nichts eingearbeitet: Neue Angaben nimmst du mit dem Skill
 `neue-information` als Entwurf in `unterlagen/` auf. `BEURTEILUNG.md`
-änderst du mit dem Skill `beurteilung-aendern`, ohne Ok des Benutzers, wenn
+änderst du, wie im Kopf der Datei beschrieben, ohne Ok des Benutzers, wenn
 eine Information für künftige Gespräche wichtig ist. Beides bleibt ohne
 Commit. Angaben aus dem Gespräch, die noch nicht eingearbeitet sind,
 beziehst du in die Beratung mit ein.
@@ -176,8 +176,8 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   bei neuen Beschwerden. Abgleichen wie im Punkt davor, auch gegen
   Bedarfsmedikation, Nahrungsergänzung und Angaben aus dem Gespräch, die
   noch nicht in `AKTE.md` stehen. Sag das Ergebnis gleich, auch wenn nichts
-  dagegen spricht; spricht etwas dagegen, trag es mit dem Skill
-  `beurteilung-aendern` unter „Offen“ oder „Warnzeichen“ ein.
+  dagegen spricht; spricht etwas dagegen, trag es unter „Offen“ oder
+  „Warnzeichen“ in `BEURTEILUNG.md` ein.
 - Nenn bei jeder Empfehlung die Quelle (Leitlinie mit Registernummer und
   Stand, oder Studie) und, wo angegeben, Empfehlungsgrad und Evidenzniveau.
 - Gibt es keine Leitlinie zur Frage, sag das ausdrücklich und nenn, worauf

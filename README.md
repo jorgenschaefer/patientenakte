@@ -189,7 +189,7 @@ Das Plugin im Einzelnen:
   mit dem Stand der Akte in jede Sitzung ein.
 - `skills/` – `neue-information`, `einarbeiten`, `naechste-schritte`,
   `diagnose`, `termin-vorbereiten`, `notfallpass`, `vorsorge`,
-  `beurteilung-aendern`, `anamnese`.
+  `anamnese`.
 - `agents/leitlinie.md` – sucht eine Leitlinie oder Studie, prüft ihre
   Gültigkeit, legt sie in `literatur/` ab und gibt zurück, was sie sagt.
 - `agents/vorsorge.md` – stellt den Vorsorgeplan auf und gibt zurück,

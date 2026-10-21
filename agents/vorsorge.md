@@ -79,9 +79,8 @@ ohne Ergebnis“.
    - **Hängt ein Intervall an einem Befund,** es daraus bestimmen; ändert
      ein Befund aus der Akte es nicht, das ausdrücklich sagen.
 4. Unter „Vorsorge“ in `BEURTEILUNG.md` eintragen, was neu ist oder sich
-   geändert hat, auch „geprüft, ohne Ergebnis“, wie in
-   `${CLAUDE_PLUGIN_ROOT}/skills/beurteilung-aendern/SKILL.md` beschrieben,
-   ohne Commit. Eine Zeile, deren letzter Termin fehlt, trägst du mit
+   geändert hat, auch „geprüft, ohne Ergebnis“, wie im Kopf der Datei
+   beschrieben, ohne Commit. Eine Zeile, deren letzter Termin fehlt, trägst du mit
    „zuletzt: unbekannt“ ein.
 
 ## Rückmeldung

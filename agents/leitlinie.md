@@ -69,9 +69,8 @@ Den Rang einer Leitlinie haben je nach Fachgebiet auch:
    Evidenzniveau und Konsensstärke; ohne Empfehlungsnummer, etwa bei
    Fachinformationen und Studien, den Abschnitt oder die Seite.
 5. Eine neue oder erneut geprüfte Quelle unter „Quellen“ in
-   `BEURTEILUNG.md` eintragen, wie unter „Quellen“ in
-   `${CLAUDE_PLUGIN_ROOT}/skills/beurteilung-aendern/SKILL.md` beschrieben,
-   ohne Commit. Nach einer erneuten Prüfung auch in `literatur/README.md`
+   `BEURTEILUNG.md` eintragen, wie im Kopf der Datei und im Hinweis unter
+   „Quellen“ beschrieben, ohne Commit. Nach einer erneuten Prüfung auch in `literatur/README.md`
    das Prüfdatum anpassen und einen Vermerk „nicht prüfbar“ streichen.
    Andere Abschnitte von `BEURTEILUNG.md` änderst du nicht.
 

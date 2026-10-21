@@ -6,9 +6,11 @@
 
 *Knapp: Hier steht nur, was eine künftige Beratung braucht: was zu tun oder zu beachten ist, bis wann (als Datum), wie dringend und warum, mit Quelle; nicht die Herleitung und nicht der Weg dahin. Ein Eintrag steht auf dem aktuellen Stand, jede Kennzeichnung darin höchstens einmal, unter **Leitlinie** nur, worauf der Eintrag beruht, je Empfehlung ein Satz.*
 
+*Ändern: Ein Eintrag je Thema. Steht das Thema schon da, wird der Eintrag auf dem neuen Stand neu geschrieben und neu datiert, statt einen zweiten anzulegen oder etwas anzuhängen; steht es in einem anderen Abschnitt, bleibt es dort, und hier steht ein Verweis. Betrifft eine neue Angabe Einträge, werden sie in allen Abschnitten nachgezogen: Erledigtes und Überholtes wird gelöscht, Abgelehntes, das sonst weiter gelten würde, kommt mit Datum und Grund nach „Abgelehnt“, das Übrige wird angepasst und neu datiert. Geändert wird ohne Ok des Benutzers und ohne Commit; committet wird beim Einarbeiten.*
+
 ## Quellen
 
-*Kurzbezeichnungen, die in den Einträgen verwendet werden, je mit Registernummer, Version, Gültigkeit und Datum der letzten Prüfung auf eine neuere Fassung. Was nur aus Sekundärquellen oder Auszügen stammt, ist als solches gekennzeichnet. Lokal gespeicherte Quellen liegen in `literatur/` (Übersicht in `literatur/README.md`).*
+*Kurzbezeichnungen, die in den Einträgen verwendet werden, je mit Registernummer, Version, Gültigkeit und Datum der letzten Prüfung auf eine neuere Fassung. Was nur aus Sekundärquellen oder Auszügen stammt, ist als solches gekennzeichnet. Lokal gespeicherte Quellen liegen in `literatur/` (Übersicht in `literatur/README.md`). Nach einer erneuten Prüfung wird das Prüfdatum angepasst und ein Vermerk „nicht prüfbar“ gestrichen. Lässt sich die Gültigkeit nicht prüfen, bleibt das Prüfdatum, bei einer neuen Quelle steht keins, und dazu kommt „nicht prüfbar am TT.MM.JJJJ“ mit Grund, anstelle eines früheren Vermerks.*
 
 ## Warnzeichen
 

@@ -113,8 +113,7 @@ Bildgebung, wird in Schritt 5 eine Empfehlung.
    Trenn dabei, was die Leitlinie sagt, und deine Übertragung auf den
    Fall. Es bleibt eine Verdachtsdiagnose eines Modells, keine ärztliche
    Diagnose; sag das einmal, ohne es zu wiederholen.
-6. **Eintragen** mit dem Skill `beurteilung-aendern`: die
-   Verdachtsdiagnose unter „Einschätzungen“, die Warnzeichen des
+6. **Eintragen** in `BEURTEILUNG.md`: die Verdachtsdiagnose unter „Einschätzungen“, die Warnzeichen des
    Sicherheitsnetzes unter „Warnzeichen“, die empfohlene ärztliche
    Abklärung mit Frist unter „Offen“. Lohnt es, die Beschwerde zu
    verfolgen, etwa Schmerzstärke oder Blutdruck, schlag ein Thema für

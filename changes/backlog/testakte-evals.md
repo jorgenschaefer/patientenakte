@@ -18,8 +18,8 @@ Dazu die Gegenprüfung (`agents/gegenpruefung.md`), bei ihrer Abnahme nur
 durch Lesen geprüft. Offen ist:
 
 - ob sie läuft: nach schrittweisem, vollständigem und liegen gebliebenem
-  Bau, und vor jedem Commit an `BEURTEILUNG.md`, der über den Skill
-  `beurteilung-aendern` geht (`skills/beurteilung-aendern/SKILL.md:41-48`);
+  Bau, und vor jedem Commit an `BEURTEILUNG.md` (`agents/einarbeitung.md`,
+  Schritt 5);
 - ob sie eingebaute Fehler findet: einen falschen Wert, eine fehlende
   Angabe, eine Schlussfolgerung als Fakt, einen falschen Empfehlungsgrad,
   einen Widerspruch zu einer Allergie;

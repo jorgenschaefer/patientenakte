@@ -70,8 +70,8 @@ dazu nennen:
    Berichtigungen an `AKTE.md` gegenprüfen mit `HEAD:AKTE.md` als Quelle,
    dazu mit der Unterlage, wenn eine Quelle in eckigen Klammern nun auf sie
    zeigt; dann `AKTE.md` allein committen.
-5. **`BEURTEILUNG.md` nachziehen** gegen die neue `AKTE.md`, wie in
-   `${CLAUDE_PLUGIN_ROOT}/skills/beurteilung-aendern/SKILL.md` beschrieben:
+5. **`BEURTEILUNG.md` nachziehen** gegen die neue `AKTE.md`, wie im Kopf
+   der Datei beschrieben:
    - die Einträge, die die neuen Unterlagen betreffen;
    - die Funde zu `BEURTEILUNG.md` aus den Gegenprüfungen von `AKTE.md`;
    - mit „Angleichen“ im Auftrag: Kopf, Hinweise unter den Überschriften
@@ -153,7 +153,7 @@ von drei Gruppen.
 - `AKTE.md` gegen „Regeln“ in `${CLAUDE_PLUGIN_ROOT}/agents/akte.md`: Form
   einer Quelle; Stand-Datum, aus der Quelle der Angabe; Form der
   Messwerte; eine überholte Angabe in eigener Zeile; eine doppelte Angabe.
-- `BEURTEILUNG.md` gegen die Vorlage und `beurteilung-aendern`: ein
+- `BEURTEILUNG.md` gegen die Vorlage: ein
   Eintrag ohne Datum vorn oder ohne Kennzeichnung; ein Kurzname, der unter
   „Quellen“ fehlt, nachgetragen mit dem, was `literatur/README.md` zu ihm
   nennt, der Rest wie oben nur gemeldet; ein Thema in zwei Einträgen.
