@@ -29,11 +29,16 @@ bleibt.
      der Name vergeben, häng vor der Endung `-2`, `-3` … an. Zugelassen
      sind PDF, JPG und PNG; HEIC liest du nicht, der Benutzer soll es als
      JPG schicken.
-   - **Aussage, Ereignis, Arztgespräch, Korrektur:** als Eintrag an
-     `unterlagen/historie.md` anhängen. Ändert oder ergänzt der Benutzer
-     einen Entwurf, änderst du den Entwurf. Eine Korrektur eines
-     committeten Eintrags ist ein neuer Eintrag und nennt den, den sie
-     korrigiert; committete Einträge bleiben unverändert.
+   - **Aussage, Ereignis, Arztgespräch, Korrektur:** als Eintrag in
+     `unterlagen/historie.md` unter die Überschrift `## TT.MM.JJJJ` mit
+     dem Datum der Mitteilung, also dem heutigen, auch wenn das Ereignis
+     früher war. Gibt es die Überschrift schon, kommt der Eintrag ans Ende
+     ihres Abschnitts; sonst hängst du sie mit dem Eintrag ans Ende der
+     Datei an. Einträge ohne solche Überschrift bleiben, wie sie sind.
+     Ändert oder ergänzt der Benutzer einen Entwurf, änderst du den
+     Entwurf. Eine Korrektur eines committeten Eintrags ist ein neuer
+     Eintrag und nennt den, den sie korrigiert; committete Einträge bleiben
+     unverändert.
    - **Beobachtungen und Messwerte:** als Zeile an die CSV des Themas aus
      „Beobachten“ anhängen. Fehlt die Datei, sie mit den Spalten von dort
      als erster Zeile anlegen.

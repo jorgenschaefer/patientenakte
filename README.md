@@ -15,6 +15,10 @@ ausgerichtet: AWMF-Leitlinien, Nationale VersorgungsLeitlinien, STIKO.
 
 ## Installation
 
+Das Plugin braucht `pdfinfo` aus poppler-utils, um die Seiten der Befunde
+zu zählen, ebenso `tests/check.sh`; unter Debian und Ubuntu mit
+`sudo apt install poppler-utils`.
+
 Das Plugin wird nie global aktiviert, sondern nur in den Akten. Sonst
 spielt es seine Regeln in jede Sitzung ein, auch in solche, die mit keiner
 Akte zu tun haben.
@@ -213,7 +217,9 @@ steht in ihrem Kopf.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
   eingearbeitet sind, ob ein Bau von `AKTE.md` nicht abgeschlossen ist und
   ob `AKTE.md` und `BEURTEILUNG.md` von ihrer Vorlage abweichen; schreibt
-  mit `--aktualisieren` die Prüfsummen.
+  mit `--aktualisieren` die Prüfsummen; teilt mit `--stapel` die
+  Unterlagen in der Reihenfolge ihres Datums nach Seitenzahl in Stapel für
+  einen Bau von `AKTE.md`.
 - `vorlagen/` – Vorlagen für `AKTE.md`, `BEURTEILUNG.md` und
   `literatur/README.md`; sie legen Abschnitte und Hinweise fest.
 - `skills/` – laufen im Gespräch und können den Benutzer fragen:

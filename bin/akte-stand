@@ -10,10 +10,16 @@
 #   akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in AKTE.md
 #   akte-stand --vorlage        meldet, ob AKTE.md und BEURTEILUNG.md im Gerüst
 #                               von ihrer Vorlage in vorlagen/ abweichen
+#   akte-stand --stapel         teilt die Unterlagen in der Reihenfolge ihres
+#                               Datums in Stapel für einen Bau von AKTE.md;
+#                               braucht pdfinfo aus poppler-utils
 set -euo pipefail
 
 akte=AKTE.md
+seiten_je_stapel=20
+zeichen_je_seite=10000
 verzeichnis=unterlagen
+historie=$verzeichnis/historie.md
 anfang='<!-- akte-stand: Anfang -->'
 ende='<!-- akte-stand: Ende -->'
 vorlagen=$(dirname "$(readlink -f "$0")")/../vorlagen
@@ -101,6 +107,169 @@ vorlage_pruefen() {
   done
 }
 
+# Eine Zeile je Stapel und darunter seine Einheiten, Stapel durch eine
+# Leerzeile getrennt. Die Agenten lesen dieses Format.
+stapel() {
+  if ! command -v pdfinfo > /dev/null; then
+    echo "akte-stand --stapel braucht pdfinfo, um die Seiten der PDFs zu zählen; poppler-utils installieren, etwa mit \`apt install poppler-utils\`." >&2
+    exit 1
+  fi
+  # Seiten zählen Zeichen, nicht Bytes, gleich welche Sprache eingestellt ist.
+  local -x LC_ALL=C.UTF-8
+  local tage=''
+  [[ ! -f $historie ]] || tage=$(historie_tage)
+  einheiten "$tage" | sort -t $'\t' -k1,1 |
+    stapel_schneiden "$([[ -f $historie && -z $tage ]] && echo 1)"
+}
+
+# Je Einheit eine Zeile: Sortierschlüssel, Gewicht in Zeichen (eine Seite
+# zählt zeichen_je_seite, ? ohne bestimmbare Seitenzahl) und der Eintrag,
+# wie er in der Ausgabe steht. Erhält die Tage aus historie_tage().
+einheiten() {
+  [[ -d $verzeichnis ]] || return 0
+  local pfad
+  while IFS= read -r -d '' pfad; do
+    if [[ $pfad == "$historie" && -n $1 ]]; then
+      echo "$1"
+      continue
+    fi
+    printf '%s\t%s\t%s\n' "$(sortierschluessel "$pfad")" "$(gewicht "$pfad")" "$pfad"
+  done < <(find "$verzeichnis" -type f ! -name '.*' -print0)
+}
+
+# Je Tag in historie.md eine Einheit wie in einheiten(), gewogen mit seinen
+# Zeichen ohne Aufrunden. Mehrere Überschriften mit demselben Datum sind ein
+# Tag; der Text vor der ersten Überschrift gehört zum frühesten Tag. Ohne
+# Überschrift keine Ausgabe.
+historie_tage() {
+  local zeile tag='' vorab=0
+  local -A zeichen=()
+  while IFS= read -r zeile || [[ -n $zeile ]]; do
+    if [[ $zeile =~ ^'## '([0-9]{2})\.([0-9]{2})\.([0-9]{4})[[:space:]]*$ ]]; then
+      tag=${BASH_REMATCH[3]}${BASH_REMATCH[2]}${BASH_REMATCH[1]}
+    fi
+    if [[ -z $tag ]]; then
+      vorab=$((vorab + ${#zeile} + 1))
+    else
+      zeichen[$tag]=$((${zeichen[$tag]:-0} + ${#zeile} + 1))
+    fi
+  done < "$historie"
+  ((${#zeichen[@]})) || return 0
+  local erster=''
+  for tag in "${!zeichen[@]}"; do
+    [[ -n $erster && $erster < $tag ]] || erster=$tag
+  done
+  zeichen[$erster]=$((zeichen[$erster] + vorab))
+  for tag in "${!zeichen[@]}"; do
+    printf '0 %s 2 %s\t%s\t%s %s.%s.%s\n' "$tag" "$historie" "${zeichen[$tag]}" \
+      "$historie" "${tag:6:2}" "${tag:4:2}" "${tag:0:4}"
+  done
+}
+
+# Erst die datierten Einheiten nach Datum, bei gleichem Datum Befunde vor
+# anamnese.md vor historie.md; dann die Dateien ohne Datum, dann die CSVs.
+sortierschluessel() {
+  local datum
+  if [[ $1 == *.csv ]]; then
+    echo "2 $1"
+  elif [[ $(basename "$1") =~ ^([0-9]{4})-([0-9]{2})-([0-9]{2}) ]]; then
+    echo "0 ${BASH_REMATCH[1]}${BASH_REMATCH[2]}${BASH_REMATCH[3]} 0 $1"
+  elif [[ $1 == "$verzeichnis/anamnese.md" ]] && datum=$(anamnese_datum) && [[ -n $datum ]]; then
+    echo "0 $datum 1 $1"
+  else
+    echo "1 $1"
+  fi
+}
+
+# Das letzte Datum in der Kopfzeile von anamnese.md als JJJJMMTT, ohne
+# Datum dort das ihres ersten Commits; leer ohne beides.
+anamnese_datum() {
+  local datum
+  datum=$(kopfzeilen_datum)
+  [[ -n $datum ]] ||
+    datum=$({ git log --diff-filter=A --format=%as -- "$verzeichnis/anamnese.md" 2>/dev/null || true; } | tail -1 | tr -d -)
+  echo "$datum"
+}
+
+# Die Kopfzeile ist die erste Zeile unter dem Titel, wenn sie kursiv ist.
+kopfzeilen_datum() {
+  awk '
+    !titel { titel = /^# /; next }
+    /^[[:space:]]*$/ { next }
+    !/^\*[^*]/ { exit }
+    {
+      while (match($0, /[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9]/)) {
+        datum = substr($0, RSTART, RLENGTH)
+        $0 = substr($0, RSTART + RLENGTH)
+      }
+      if (datum) print substr(datum, 7, 4) substr(datum, 4, 2) substr(datum, 1, 2)
+      exit
+    }
+  ' "$verzeichnis/anamnese.md"
+}
+
+gewicht() {
+  local seiten
+  case "${1,,}" in
+    *.pdf)
+      seiten=$({ pdfinfo "$1" 2>/dev/null || true; } | awk '$1 == "Pages:" { print $2 }')
+      if [[ $seiten =~ ^[0-9]+$ ]]; then
+        echo $((seiten * zeichen_je_seite))
+      else
+        echo '?'
+      fi
+      ;;
+    *.jpg | *.jpeg | *.png) echo "$zeichen_je_seite" ;;
+    *) echo $((($(wc -m < "$1") + zeichen_je_seite - 1) / zeichen_je_seite * zeichen_je_seite)) ;;
+  esac
+}
+
+# Eine Einheit kommt in den laufenden Stapel, solange er damit höchstens
+# seiten_je_stapel Seiten hat; aufgerundet wird erst die Summe des Stapels.
+# Ein PDF ohne Seitenzahl bildet einen Stapel für sich. Danach die Hinweise:
+# PDFs ohne Seitenzahl und, wenn $1 gesetzt ist, historie.md ohne
+# Datumsüberschriften.
+stapel_schneiden() {
+  awk -F '\t' -v grenze=$((seiten_je_stapel * zeichen_je_seite)) \
+      -v zeichen_je_seite="$zeichen_je_seite" -v historie="$historie" \
+      -v ohne_ueberschriften="$1" '
+    $2 == "?" {
+      abschliessen()
+      zeilen[++n] = $3; bis[n] = ""; summe = "?"
+      abschliessen()
+      unbekannt[++u] = $3
+      next
+    }
+    n && summe + $2 > grenze { abschliessen() }
+    { summe += $2 }
+    # Aufeinander folgende Tage aus historie.md stehen auf einer Zeile.
+    index($3, historie " ") == 1 && n && bis[n] {
+      bis[n] = substr($3, length(historie) + 2)
+      next
+    }
+    index($3, historie " ") == 1 {
+      zeilen[++n] = historie
+      von[n] = bis[n] = substr($3, length(historie) + 2)
+      next
+    }
+    { zeilen[++n] = $3; bis[n] = "" }
+    END {
+      abschliessen()
+      if (u || ohne_ueberschriften) print ""
+      for (i = 1; i <= u; i++) print "Seitenzahl unbekannt: " unbekannt[i]
+      if (ohne_ueberschriften) print "historie.md ohne Datumsüberschriften."
+    }
+
+    function abschliessen(  i) {
+      if (!n) return
+      if (stapel) print ""
+      printf "Stapel %d (%s Seiten)\n", ++stapel, summe == "?" ? "?" : int((summe + zeichen_je_seite - 1) / zeichen_je_seite)
+      for (i = 1; i <= n; i++) print zeilen[i] (bis[i] ? " " von[i] "–" bis[i] : "")
+      n = summe = 0
+    }
+  '
+}
+
 case "${1:-}" in
   "")
     ergebnis=$(vergleichen)
@@ -121,5 +290,6 @@ case "${1:-}" in
     ;;
   --aktualisieren) aktualisieren ;;
   --vorlage) vorlage_pruefen ;;
-  *) echo "Aufruf: $0 [--aktualisieren | --vorlage]" >&2; exit 2 ;;
+  --stapel) stapel ;;
+  *) echo "Aufruf: $0 [--aktualisieren | --vorlage | --stapel]" >&2; exit 2 ;;
 esac

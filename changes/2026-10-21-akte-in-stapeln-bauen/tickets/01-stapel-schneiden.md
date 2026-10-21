@@ -3,8 +3,8 @@ criteria:  CRITERIA.md
 closes:    AC-3, AC-14, AC-15
 advances:  AC-1, AC-2, AC-13, AC-19
 after:
-status:    ready
-attempts:  0
+status:    done
+attempts:  1
 ---
 
 ## Build
@@ -62,3 +62,30 @@ Die README-Teile dieses Tickets: die Beschreibung von `bin/akte-stand` unter „
 - Bestehende Einträge in `historie.md` ohne Überschrift werden nicht umgeschrieben.
 
 ## Left standing
+
+**Fixes after the last review** (no reviewer saw them):
+- The test `stapel_anamnese_ohne_kopfzeile` now puts the bold date line directly under the title. This answers round 2's should-fix that nothing pinned the rule "the header line must be italic". Loosening that rule now fails the test.
+- The README and the `pdfinfo` error message no longer say `brew install poppler`. This answers round 2's should-fix (round 1 rated it a nit): `--stapel` needs bash ≥ 4 (`local -A`, `${1,,}`) and the `C.UTF-8` locale, so stock macOS cannot run it. `--stapel` is still not portable to macOS; the existing script already relies on GNU tools there (`sha256sum`, `xargs -r`).
+- The paragraph in `skills/neue-information/SKILL.md` is reflowed (round 2 nit).
+
+**Not proven by an automated test:** AC-14 is only a rule in `skills/neue-information/SKILL.md`: the date heading of the message, and an entry going under a heading that already exists. I checked it by reading the text. No test drives a session through the skill.
+
+**Decisions that would be costly to reverse** (ticket 02 reads this output):
+- An unreadable PDF's batch header is `Stapel N (? Seiten)`. The wire format only says `S Seiten`, and there is no number to give.
+- The header always says `Seiten`, even for 1 (`Stapel 2 (1 Seiten)`), exactly as the wire format has it.
+- The notes (`Seitenzahl unbekannt: …`, `historie.md ohne Datumsüberschriften.`) are separated from the last batch by a blank line.
+- The date range uses an en dash `–`.
+- **Text before the first heading** belongs to the earliest day, not to the first heading in the file. The two are the same when `historie.md` is in order. This matches ticket 02's reading ("a line whose range begins with the first day").
+- **Several headings with the same date** are one day, i.e. one unit. So a range never stands for two separate units.
+- **The header line of `anamnese.md`** is the first non-empty line after the `# ` title, if it is italic (`*…`, not `**`). The date of its first commit comes from `git log --diff-filter=A`, author date. With neither a header date nor a commit, `anamnese.md` sits with the files that have no date.
+- **CSVs always come last**, even with a date in the name.
+- **What counts as what:**
+  - An image is `.jpg`/`.jpeg`/`.png`, in any case.
+  - A PDF is `.pdf` in any case.
+  - Every other file counts as text, by characters.
+  - A day in `historie.md` counts its heading and line endings, so its days add up to the file.
+- `--stapel` sets `LC_ALL=C.UTF-8` so that it counts characters, not bytes. It needs that locale and bash ≥ 4.
+
+**Departure from a nudge:** the nudge says tests do not override `seiten_je_stapel`/`zeichen_je_seite`. `stapel_grenzen_einstellbar` (AC-15) does: it rewrites both in a copy of the script with `sed`, because AC-15 is about changing exactly that place. All other tests use real sizes, as the nudge says.
+
+**Names not taken from a glossary** (the project has no `UBIQUITOUS_LANGUAGE.md`; identifiers are German, like the rest of `bin/akte-stand`, not English as the coding standard asks): `stapel`, `einheiten`, `historie_tage`, `sortierschluessel`, `gewicht`, `anamnese_datum`, `kopfzeilen_datum`, `stapel_schneiden`, and the variable `historie`. `seiten_je_stapel` and `zeichen_je_seite` come from the nudge.

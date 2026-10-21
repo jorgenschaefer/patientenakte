@@ -29,6 +29,19 @@ main() {
   ohne_git
   vorlage_eingehalten
   vorlage_abweichend
+  stapel_einer
+  stapel_geschnitten
+  stapel_bilder
+  stapel_reihenfolge
+  stapel_anamnese_ohne_datum
+  stapel_anamnese_ohne_kopfzeile
+  stapel_historie_tage
+  stapel_historie_anteilig
+  stapel_historie_vorab
+  stapel_seitenzahl_unbekannt
+  stapel_historie_ohne_ueberschrift
+  stapel_ohne_pdfinfo
+  stapel_grenzen_einstellbar
   exit $fehler
 }
 
@@ -135,6 +148,231 @@ BEURTEILUNG.md weicht von der Vorlage ab." "$("$stand" --vorlage)"
   pruefe "Hinweis geändert, BEURTEILUNG.md fehlt" "AKTE.md weicht von der Vorlage ab." "$("$stand" --vorlage)"
 }
 
+stapel_einer() {
+  neues_verzeichnis
+  mkdir unterlagen
+  pdf unterlagen/2026-02-01-labor_hausarzt.pdf 3
+  echo Bild > unterlagen/2026-01-15-roentgen_klinik.jpg
+  echo Brief > unterlagen/2026-03-01-brief_klinik.md
+  pruefe "Ein Stapel" "Stapel 1 (5 Seiten)
+unterlagen/2026-01-15-roentgen_klinik.jpg
+unterlagen/2026-02-01-labor_hausarzt.pdf
+unterlagen/2026-03-01-brief_klinik.md" "$("$stand" --stapel)"
+}
+
+stapel_geschnitten() {
+  neues_verzeichnis
+  mkdir unterlagen
+  pdf unterlagen/2026-01-01-a.pdf 15
+  pdf unterlagen/2026-01-02-b.pdf 5
+  pdf unterlagen/2026-01-03-c.pdf 1
+  pdf unterlagen/2026-01-04-d.pdf 25
+  zeichen 10001 > unterlagen/2026-01-05-e.md
+  zeichen 10000 ä > unterlagen/2026-01-06-f.md
+  pruefe "Bis 20 Seiten in einem Stapel, eine Einheit darüber für sich" "Stapel 1 (20 Seiten)
+unterlagen/2026-01-01-a.pdf
+unterlagen/2026-01-02-b.pdf
+
+Stapel 2 (1 Seiten)
+unterlagen/2026-01-03-c.pdf
+
+Stapel 3 (25 Seiten)
+unterlagen/2026-01-04-d.pdf
+
+Stapel 4 (3 Seiten)
+unterlagen/2026-01-05-e.md
+unterlagen/2026-01-06-f.md" "$("$stand" --stapel)"
+  pruefe "Zeichen, nicht Bytes, auch ohne UTF-8 in der Umgebung" "Stapel 1 (1 Seiten)
+unterlagen/2026-01-06-f.md" "$(rm unterlagen/2026-01-0[1-5]* && LC_ALL=C "$stand" --stapel)"
+  pruefe "Zeichen, nicht Bytes, ohne LC_ALL" "Stapel 1 (1 Seiten)
+unterlagen/2026-01-06-f.md" "$(env -u LC_ALL LC_CTYPE=C "$stand" --stapel)"
+}
+
+stapel_bilder() {
+  neues_verzeichnis
+  mkdir unterlagen
+  zeichen 30000 > unterlagen/2026-01-01-foto.png
+  zeichen 30000 > unterlagen/2026-01-02-foto.JPEG
+  pruefe "Ein Bild ist eine Seite" "Stapel 1 (2 Seiten)
+unterlagen/2026-01-01-foto.png
+unterlagen/2026-01-02-foto.JPEG" "$("$stand" --stapel)"
+}
+
+stapel_reihenfolge() {
+  neues_verzeichnis
+  mkdir unterlagen
+  echo 1 > unterlagen/gewicht.csv
+  echo 1 > unterlagen/arztbrief.md
+  echo 1 > unterlagen/2026-03-01-labor_hausarzt.md
+  echo 1 > unterlagen/2026-01-01-labor_hausarzt.md
+  printf '# Anamnese\n\n*Erstbefragung vom 01.02.2026, ergänzt am 01.03.2026. Spätere Angaben stehen in historie.md.*\n\nGeboren am 01.01.1970.\n' > unterlagen/anamnese.md
+  pruefe "Reihenfolge nach Datum, dann ohne Datum, dann CSV" "Stapel 1 (5 Seiten)
+unterlagen/2026-01-01-labor_hausarzt.md
+unterlagen/2026-03-01-labor_hausarzt.md
+unterlagen/anamnese.md
+unterlagen/arztbrief.md
+unterlagen/gewicht.csv" "$("$stand" --stapel)"
+}
+
+stapel_anamnese_ohne_datum() {
+  neues_verzeichnis
+  git init -q
+  mkdir unterlagen
+  echo 1 > unterlagen/2026-02-01-labor_hausarzt.md
+  echo 1 > unterlagen/2026-03-01-labor_hausarzt.md
+  echo 1 > unterlagen/arztbrief.md
+  printf '# Anamnese\n\n*Erstbefragung, vom Benutzer bestätigt.*\n\nSeit 01.01.2020 Asthma.\n' > unterlagen/anamnese.md
+  pruefe "anamnese.md ohne Datum und ohne Commit" "Stapel 1 (4 Seiten)
+unterlagen/2026-02-01-labor_hausarzt.md
+unterlagen/2026-03-01-labor_hausarzt.md
+unterlagen/anamnese.md
+unterlagen/arztbrief.md" "$("$stand" --stapel)"
+  git add . && GIT_AUTHOR_DATE='2026-02-15T12:00:00' git commit -qm start
+  echo 2 >> unterlagen/anamnese.md && git commit -qam später
+  pruefe "anamnese.md ohne Datum nach ihrem ersten Commit" "Stapel 1 (4 Seiten)
+unterlagen/2026-02-01-labor_hausarzt.md
+unterlagen/anamnese.md
+unterlagen/2026-03-01-labor_hausarzt.md
+unterlagen/arztbrief.md" "$("$stand" --stapel)"
+}
+
+stapel_anamnese_ohne_kopfzeile() {
+  neues_verzeichnis
+  mkdir unterlagen
+  echo 1 > unterlagen/2026-01-01-labor_hausarzt.md
+  printf '# Anamnese\n\n**Geburtsdatum:** 01.01.1970\n' > unterlagen/anamnese.md
+  pruefe "Eine fette Zeile unter dem Titel ist keine Kopfzeile" "Stapel 1 (2 Seiten)
+unterlagen/2026-01-01-labor_hausarzt.md
+unterlagen/anamnese.md" "$("$stand" --stapel)"
+}
+
+stapel_historie_tage() {
+  neues_verzeichnis
+  mkdir unterlagen
+  echo 1 > unterlagen/2026-01-03-labor_hausarzt.md
+  echo 1 > unterlagen/2026-01-05-labor_hausarzt.md
+  printf '# Anamnese\n\n*Erstbefragung vom 05.01.2026.*\n' > unterlagen/anamnese.md
+  printf '# Historie\n\nVorab.\n\n## 05.01.2026\n\nA\n\n## 02.01.2026\n\nB\n\n## 05.01.2026\n\nC\n\n## 10.01.2026\n\nD\n' > unterlagen/historie.md
+  pruefe "Tage in historie.md nach Datum, aufeinander folgende auf einer Zeile" "Stapel 1 (4 Seiten)
+unterlagen/historie.md 02.01.2026–02.01.2026
+unterlagen/2026-01-03-labor_hausarzt.md
+unterlagen/2026-01-05-labor_hausarzt.md
+unterlagen/anamnese.md
+unterlagen/historie.md 05.01.2026–10.01.2026" "$("$stand" --stapel)"
+}
+
+# Ein Tag zählt anteilig: drei Tage zu 0,6 Seiten passen zu 18 Seiten in
+# einen Stapel, der vierte nicht mehr.
+stapel_historie_anteilig() {
+  neues_verzeichnis
+  mkdir unterlagen
+  pdf unterlagen/2026-01-01-ct_klinik.pdf 18
+  local tag
+  for tag in 01 02 03 04; do
+    # 14 Zeichen Überschrift, 5985 Zeichen Text, ein Zeilenende: 6000
+    printf '## %s.02.2026\n%s\n' "$tag" "$(zeichen 5985 ü)"
+  done > unterlagen/historie.md
+  pruefe "Tage in historie.md zählen anteilig" "Stapel 1 (20 Seiten)
+unterlagen/2026-01-01-ct_klinik.pdf
+unterlagen/historie.md 01.02.2026–03.02.2026
+
+Stapel 2 (1 Seiten)
+unterlagen/historie.md 04.02.2026–04.02.2026" "$("$stand" --stapel)"
+}
+
+# Der Text vor der ersten Überschrift zählt zum frühesten Tag, 05.01., nicht
+# zum ersten in der Datei: mit ihm passt der Tag nicht mehr zum CT.
+stapel_historie_vorab() {
+  neues_verzeichnis
+  mkdir unterlagen
+  pdf unterlagen/2026-01-07-ct_klinik.pdf 19
+  printf '%s\n## 10.01.2026\nA\n## 05.01.2026\nB\n' "$(zeichen 15000)" > unterlagen/historie.md
+  pruefe "Text vor der ersten Überschrift zählt zum frühesten Tag" "Stapel 1 (2 Seiten)
+unterlagen/historie.md 05.01.2026–05.01.2026
+
+Stapel 2 (20 Seiten)
+unterlagen/2026-01-07-ct_klinik.pdf
+unterlagen/historie.md 10.01.2026–10.01.2026" "$("$stand" --stapel)"
+}
+
+stapel_seitenzahl_unbekannt() {
+  neues_verzeichnis
+  mkdir unterlagen
+  echo 1 > unterlagen/2026-01-01-a.md
+  echo kaputt > unterlagen/2026-01-02-b.pdf
+  echo 1 > unterlagen/2026-01-03-c.md
+  echo kaputt > unterlagen/scan.PDF
+  pruefe "PDF ohne Seitenzahl als eigener Stapel" "Stapel 1 (1 Seiten)
+unterlagen/2026-01-01-a.md
+
+Stapel 2 (? Seiten)
+unterlagen/2026-01-02-b.pdf
+
+Stapel 3 (1 Seiten)
+unterlagen/2026-01-03-c.md
+
+Stapel 4 (? Seiten)
+unterlagen/scan.PDF
+
+Seitenzahl unbekannt: unterlagen/2026-01-02-b.pdf
+Seitenzahl unbekannt: unterlagen/scan.PDF" "$("$stand" --stapel)"
+}
+
+stapel_historie_ohne_ueberschrift() {
+  neues_verzeichnis
+  mkdir unterlagen
+  echo 1 > unterlagen/2026-01-01-a.md
+  echo 1 > unterlagen/arztbrief.md
+  echo 1 > unterlagen/zahnarzt.md
+  echo 1 > unterlagen/gewicht.csv
+  printf '# Historie\n\n12.03.2026: Husten.\n### 13.03.2026\n' > unterlagen/historie.md
+  pruefe "historie.md ohne Datumsüberschrift bei den Dateien ohne Datum" "Stapel 1 (5 Seiten)
+unterlagen/2026-01-01-a.md
+unterlagen/arztbrief.md
+unterlagen/historie.md
+unterlagen/zahnarzt.md
+unterlagen/gewicht.csv
+
+historie.md ohne Datumsüberschriften." "$("$stand" --stapel)"
+}
+
+stapel_ohne_pdfinfo() {
+  neues_verzeichnis
+  mkdir unterlagen bin
+  echo 1 > unterlagen/a.md
+  # Ein PATH mit allem, was akte-stand braucht, außer pdfinfo.
+  local befehl
+  for befehl in awk basename bash dirname env find git readlink sort tail tr wc; do
+    ln -s "$(command -v "$befehl")" bin/
+  done
+  local ausgabe code
+  ausgabe=$(PATH=$PWD/bin "$stand" --stapel 2>&1 >/dev/null)
+  code=$?
+  pruefe "Ohne pdfinfo Exit-Code 1" 1 "$code"
+  pruefe "Ohne pdfinfo nennt die Meldung poppler-utils" 1 "$(grep -c poppler-utils <<< "$ausgabe")"
+}
+
+# Mit 2 Seiten je Stapel und 100 Zeichen je Seite: a hat 2 Seiten, b und c
+# je eine.
+stapel_grenzen_einstellbar() {
+  neues_verzeichnis
+  mkdir unterlagen bin
+  sed -e 's/^seiten_je_stapel=20$/seiten_je_stapel=2/' \
+    -e 's/^zeichen_je_seite=10000$/zeichen_je_seite=100/' "$stand" > bin/akte-stand
+  chmod +x bin/akte-stand
+  zeichen 150 > unterlagen/2026-01-01-a.md
+  pdf unterlagen/2026-01-02-b.pdf 1
+  echo 1 > unterlagen/2026-01-03-c.md
+  pruefe "Grenzen an einer Stelle einstellbar" "Stapel 1 (2 Seiten)
+unterlagen/2026-01-01-a.md
+
+Stapel 2 (2 Seiten)
+unterlagen/2026-01-02-b.pdf
+unterlagen/2026-01-03-c.md" "$(bin/akte-stand --stapel)"
+  pruefe "Die Grenzen stehen sonst nirgends" "seiten_je_stapel=20
+zeichen_je_seite=10000" "$(grep -Ew '20|10000|10\.000' "$stand")"
+}
+
 # Eine Akte mit einer Unterlage und einer AKTE.md ohne Prüfsummen, beide
 # committet.
 neue_akte() {
@@ -143,6 +381,26 @@ neue_akte() {
   mkdir unterlagen && echo eins > unterlagen/a.md
   printf '# Akte\n' > AKTE.md
   git add . && git commit -qm start
+}
+
+zeichen() { # Anzahl, Zeichen (x ohne Angabe)
+  local zeile
+  printf -v zeile '%*s' "$1" ''
+  printf '%s' "${zeile// /${2:-x}}"
+}
+
+pdf() { # Pfad, Seiten
+  local i
+  {
+    printf '%%PDF-1.4\n1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n'
+    printf '2 0 obj<</Type/Pages/Count %d/Kids[' "$2"
+    for ((i = 3; i < $2 + 3; i++)); do printf '%d 0 R ' "$i"; done
+    printf ']>>endobj\n'
+    for ((i = 3; i < $2 + 3; i++)); do
+      printf '%d 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 9 9]>>endobj\n' "$i"
+    done
+    printf 'trailer<</Root 1 0 R>>\n%%%%EOF\n'
+  } > "$1"
 }
 
 neues_verzeichnis() {
