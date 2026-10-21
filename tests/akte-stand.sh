@@ -44,6 +44,10 @@ main() {
   stapel_ohne_pdfinfo
   stapel_ohne_pdf_ohne_pdfinfo
   stapel_grenzen_einstellbar
+  einheit_tage
+  einheit_vorab
+  einheit_falscher_aufruf
+  einheit_ohne_historie
   exit $fehler
 }
 
@@ -407,6 +411,62 @@ zeichen_je_seite=10000" "$(grep -Ew '20|10000|10\.000' "$stand")"
   pruefe "Die Grenzen stehen nicht in den Texten des Plugins" "" \
     "$(grep -rEzo '(^|[^0-9])20\s+Seiten|10\.?000\s+Zeichen' "$wurzel"/README.md \
       "$wurzel"/regeln.md "$wurzel"/agents "$wurzel"/skills 2>&1 | tr '\0' '\n')"
+}
+
+# Abschnitte mit demselben Datum gehören zusammen, auch wenn ein anderer
+# dazwischen steht; der Text vor der ersten Überschrift gehört zum
+# frühesten Tag, 02.01., und fehlt hier.
+einheit_tage() {
+  historie_mit_tagen
+  pruefe "Einheit: nur die Abschnitte im Zeitraum" "## 05.01.2026
+
+A
+
+## 05.01.2026
+
+C
+
+## 10.01.2026
+
+D" "$("$stand" --einheit "unterlagen/historie.md 05.01.2026–10.01.2026")"
+}
+
+einheit_vorab() {
+  historie_mit_tagen
+  pruefe "Einheit ab dem frühesten Tag mit dem Text davor" "# Historie
+
+Vorab.
+
+## 02.01.2026
+
+B" "$("$stand" --einheit "unterlagen/historie.md 02.01.2026–02.01.2026")"
+}
+
+einheit_falscher_aufruf() {
+  historie_mit_tagen
+  local ausgabe code
+  ausgabe=$("$stand" --einheit unterlagen/anamnese.md 2>&1)
+  code=$?
+  pruefe "Einheit ohne Zeitraum: Exit-Code 2 und Meldung" "2
+akte-stand --einheit nimmt einen Teil von unterlagen/historie.md, wie --stapel ihn ausgibt, etwa \"unterlagen/historie.md 03.02.2025–17.06.2025\"; bekommen: unterlagen/anamnese.md" "$code
+$ausgabe"
+}
+
+einheit_ohne_historie() {
+  neues_verzeichnis
+  mkdir unterlagen
+  local ausgabe code
+  ausgabe=$("$stand" --einheit "unterlagen/historie.md 02.01.2026–02.01.2026" 2>&1)
+  code=$?
+  pruefe "Einheit ohne historie.md: Exit-Code 1 und Meldung" "1
+unterlagen/historie.md gibt es nicht." "$code
+$ausgabe"
+}
+
+historie_mit_tagen() {
+  neues_verzeichnis
+  mkdir unterlagen
+  printf '# Historie\n\nVorab.\n\n## 05.01.2026\n\nA\n\n## 02.01.2026\n\nB\n\n## 05.01.2026\n\nC\n\n## 10.01.2026\n\nD\n' > unterlagen/historie.md
 }
 
 # Eine Akte mit einer Unterlage und einer AKTE.md ohne Prüfsummen, beide

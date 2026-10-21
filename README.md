@@ -232,7 +232,8 @@ steht in ihrem Kopf.
   ob `AKTE.md` und `BEURTEILUNG.md` von ihrer Vorlage abweichen; schreibt
   mit `--aktualisieren` die Prüfsummen; teilt mit `--stapel` die
   Unterlagen in der Reihenfolge ihres Datums nach Seitenzahl in Stapel für
-  einen Bau von `AKTE.md`.
+  einen Bau von `AKTE.md`; gibt mit `--einheit` einen Teil von
+  `historie.md` aus, wie ihn `--stapel` nennt.
 - `vorlagen/` – Vorlagen für `AKTE.md`, `BEURTEILUNG.md` und
   `literatur/README.md`; sie legen Abschnitte und Hinweise fest.
 - `skills/` – laufen im Gespräch und können den Benutzer fragen:

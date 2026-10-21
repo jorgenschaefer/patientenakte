@@ -14,6 +14,8 @@
 #                               Datums in Stapel für einen Bau von AKTE.md;
 #                               braucht pdfinfo aus poppler-utils, wenn
 #                               unter den Unterlagen ein PDF ist
+#   akte-stand --einheit <zeile>  gibt einen Teil von historie.md aus, wie
+#                               --stapel ihn als Zeile ausgibt
 set -euo pipefail
 
 akte=AKTE.md
@@ -21,6 +23,8 @@ seiten_je_stapel=20
 zeichen_je_seite=10000
 verzeichnis=unterlagen
 historie=$verzeichnis/historie.md
+# Eine Überschrift über einem Tag in historie.md, mit dem Datum in drei Gruppen.
+ueberschrift='^## ([0-9]{2})\.([0-9]{2})\.([0-9]{4})[[:space:]]*$'
 anfang='<!-- akte-stand: Anfang -->'
 ende='<!-- akte-stand: Ende -->'
 vorlagen=$(dirname "$(readlink -f "$0")")/../vorlagen
@@ -143,6 +147,33 @@ einheiten() {
   done < <(find "$verzeichnis" -type f ! -name '.*' -print0)
 }
 
+# Die Abschnitte von historie.md mit einem Datum im Zeitraum der Zeile, in
+# der Reihenfolge der Datei; beginnt er mit dem frühesten Tag, auch der Text
+# vor der ersten Überschrift, wie ihn historie_tage() zählt.
+einheit() {
+  local muster='^'$historie' ([0-9]{2})\.([0-9]{2})\.([0-9]{4})–([0-9]{2})\.([0-9]{2})\.([0-9]{4})$'
+  if [[ ! $1 =~ $muster ]]; then
+    echo "akte-stand --einheit nimmt einen Teil von $historie, wie --stapel ihn ausgibt, etwa \"$historie 03.02.2025–17.06.2025\"; bekommen: $1" >&2
+    exit 2
+  fi
+  if [[ ! -f $historie ]]; then
+    echo "$historie gibt es nicht." >&2
+    exit 1
+  fi
+  local von=${BASH_REMATCH[3]}${BASH_REMATCH[2]}${BASH_REMATCH[1]}
+  local bis=${BASH_REMATCH[6]}${BASH_REMATCH[5]}${BASH_REMATCH[4]}
+  local erster zeile tag=''
+  erster=$(historie_tage | sort | head -1 | cut -d ' ' -f 2)
+  while IFS= read -r zeile || [[ -n $zeile ]]; do
+    if [[ $zeile =~ $ueberschrift ]]; then
+      tag=${BASH_REMATCH[3]}${BASH_REMATCH[2]}${BASH_REMATCH[1]}
+    fi
+    if [[ -z $tag && $von == "$erster" ]] || [[ -n $tag && ! $tag < $von && ! $tag > $bis ]]; then
+      printf '%s\n' "$zeile"
+    fi
+  done < "$historie"
+}
+
 # Je Tag in historie.md eine Einheit wie in einheiten(), gewogen mit seinen
 # Zeichen ohne Aufrunden. Mehrere Überschriften mit demselben Datum sind ein
 # Tag; der Text vor der ersten Überschrift gehört zum frühesten Tag. Ohne
@@ -151,7 +182,7 @@ historie_tage() {
   local zeile tag='' vorab=0
   local -A zeichen=()
   while IFS= read -r zeile || [[ -n $zeile ]]; do
-    if [[ $zeile =~ ^'## '([0-9]{2})\.([0-9]{2})\.([0-9]{4})[[:space:]]*$ ]]; then
+    if [[ $zeile =~ $ueberschrift ]]; then
       tag=${BASH_REMATCH[3]}${BASH_REMATCH[2]}${BASH_REMATCH[1]}
     fi
     if [[ -z $tag ]]; then
@@ -297,5 +328,6 @@ case "${1:-}" in
   --aktualisieren) aktualisieren ;;
   --vorlage) vorlage_pruefen ;;
   --stapel) stapel ;;
-  *) echo "Aufruf: $0 [--aktualisieren | --vorlage | --stapel]" >&2; exit 2 ;;
+  --einheit) einheit "${2:-}" ;;
+  *) echo "Aufruf: $0 [--aktualisieren | --vorlage | --stapel | --einheit <zeile>]" >&2; exit 2 ;;
 esac

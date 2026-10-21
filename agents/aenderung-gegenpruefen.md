@@ -25,10 +25,11 @@ Einheiten eines Stapels, je Zeile wie in der Ausgabe von
 `akte-stand --stapel`; was eine Einheit ist und welche Quelle in eckigen
 Klammern zu ihr gehört, steht unter „Stapel“ in
 `${CLAUDE_PLUGIN_ROOT}/agents/akte.md`. Von `historie.md` liest du nur die
-Abschnitte ihrer Einheiten. Du liest keine Unterlage außer den Einheiten,
-auch keine, die eine geänderte Angabe zitiert, und weder `BEURTEILUNG.md`
-noch `AKTE.md`, und prüfst nicht gegen `BEURTEILUNG.md`; wo unten
-`AKTE.md` steht, gilt die geprüfte Datei.
+Abschnitte ihrer Einheiten, mit `akte-stand --einheit "<zeile>"`, nie die
+ganze Datei. Du liest keine Unterlage außer den Einheiten, auch keine,
+die eine geänderte Angabe zitiert, und weder `BEURTEILUNG.md` noch
+`AKTE.md`, und prüfst nicht gegen `BEURTEILUNG.md`; wo unten `AKTE.md`
+steht, gilt die geprüfte Datei.
 
 Nennt der Auftrag für `AKTE.md` keine Quellen, prüfst du nur, ob ein
 Eintrag in `BEURTEILUNG.md` einer Angabe in `AKTE.md` widerspricht, die
