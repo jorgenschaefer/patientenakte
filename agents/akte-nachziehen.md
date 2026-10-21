@@ -115,12 +115,18 @@ Einen Teil von `historie.md` liest du mit `akte-stand --einheit "<zeile>"`.
 2. **Beginn:** `rm -rf .git/akte-bau && mkdir .git/akte-bau`, dann
    `${CLAUDE_PLUGIN_ROOT}/vorlagen/AKTE.md` nach
    `.git/akte-bau/stapel-0.md` kopieren. Braucht ein liegen gebliebener
-   Bau den vollständigen Bau und ist `AKTE.md` committet, sicherst du
-   seine Änderungen mit
-   `git diff HEAD -- AKTE.md > .git/akte-bau/liegengebliebener-bau.diff`,
-   liest die Datei und setzt `AKTE.md` mit `git checkout HEAD -- AKTE.md`
-   zurück. Eine Berichtigung, die vor dem Commit abgebrochen ist, sieht
-   genauso aus; deshalb gibst du den Diff in der Rückmeldung wieder.
+   Bau den vollständigen Bau und ist `AKTE.md` committet, verwirfst du
+   seine Änderungen, aber erst nach diesen Schritten:
+   1. `git diff HEAD -- AKTE.md > .git/akte-bau/liegengebliebener-bau.diff`
+      und `git diff --numstat HEAD -- AKTE.md`, das die hinzugefügten und
+      entfernten Zeilen zählt.
+   2. Ändert er höchstens 20 Zeilen, liest du die Datei: Eine
+      Berichtigung, die vor dem Commit abgebrochen ist, sieht aus wie ein
+      liegen gebliebener Bau, und ihr Diff kommt in die Rückmeldung.
+      Ändert er mehr, war es ein abgebrochener vollständiger Bau, den der
+      Neubau aus den Unterlagen ersetzt.
+   3. `git checkout HEAD -- AKTE.md`.
+
    Bricht der Bau danach ab, bleibt die Datei liegen, bis der nächste Bau
    das Verzeichnis leert.
 3. **Je Stapel N** der Reihe nach:
@@ -281,7 +287,9 @@ Quelle, die kein Eintrag mehr zitiert, aus „Quellen“ streichen.
   keine Datumsüberschriften hat, wenn es das meldet. Wurde ein liegen
   gebliebener Bau zurückgesetzt, steht hier, dass seine Änderungen an
   `AKTE.md` verworfen sind, mit dem Diff, den du unter „Vollständiger
-  Bau“ in Schritt 2 gelesen hast, im Wortlaut. Ist der vollständige Bau
+  Bau“ in Schritt 2 gelesen hast, im Wortlaut; ändert er mehr als 20
+  Zeilen, stattdessen, dass ein vollständiger Bau abgebrochen war und neu
+  begonnen wurde. Ist der vollständige Bau
   oder die Kontrolle nicht gelaufen, steht das hier mit
   der Meldung von `akte-stand`.
 - **Fragen:** die offenen Widersprüche und Unklarheiten, die der Subagent
