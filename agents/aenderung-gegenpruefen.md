@@ -24,9 +24,11 @@ Zwischenfassung eines Baus in Stapeln, und die Änderung zeigt
 Einheiten eines Stapels, je Zeile wie in der Ausgabe von
 `akte-stand --stapel`; was eine Einheit ist und welche Quelle in eckigen
 Klammern zu ihr gehört, steht unter „Stapel“ in
-`${CLAUDE_PLUGIN_ROOT}/agents/akte.md`. Von `historie.md` liest du nur die
-Abschnitte ihrer Einheiten, mit `akte-stand --einheit "<zeile>"`, nie die
-ganze Datei. Du liest keine Unterlage außer den Einheiten, auch keine,
+`${CLAUDE_PLUGIN_ROOT}/agents/akte.md`. Ist eine Einheit ein Teil von
+`historie.md` mit Zeitraum, liest du ihn mit
+`akte-stand --einheit "<zeile>"`, nie die ganze Datei; steht
+`unterlagen/historie.md` ohne Zeitraum da, ist die ganze Datei die
+Einheit. Du liest keine Unterlage außer den Einheiten, auch keine,
 die eine geänderte Angabe zitiert, und weder `BEURTEILUNG.md` noch
 `AKTE.md`, und prüfst nicht gegen `BEURTEILUNG.md`; wo unten `AKTE.md`
 steht, gilt die geprüfte Datei.

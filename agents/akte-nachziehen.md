@@ -119,7 +119,7 @@ Einen Teil von `historie.md` liest du mit `akte-stand --einheit "<zeile>"`.
    seine Änderungen, aber erst nach diesen Schritten:
    1. `git diff HEAD -- AKTE.md > .git/akte-bau/liegengebliebener-bau.diff`
       und `git diff --numstat HEAD -- AKTE.md`, das die hinzugefügten und
-      entfernten Zeilen zählt.
+      entfernten Zeilen zählt; geändert sind beide zusammen.
    2. Ändert er höchstens 20 Zeilen, liest du die Datei: Eine
       Berichtigung, die vor dem Commit abgebrochen ist, sieht aus wie ein
       liegen gebliebener Bau, und ihr Diff kommt in die Rückmeldung.

@@ -61,8 +61,8 @@ etwa `unterlagen/anamnese.md` aus dem Skill `anamnese`.
    Funde mit Grund und die Stapel, für die er nicht gelaufen ist; ob der
    vollständige Bau oder die Kontrolle nicht gelaufen ist, mit der Meldung
    von `akte-stand`; welche PDFs keine bestimmbare Seitenzahl haben und ob
-   `historie.md` keine Datumsüberschriften hat. Hat er nicht committete
-   Änderungen an `AKTE.md` verworfen, zeigst du ihren Diff und fragst, ob
+   `historie.md` keine Datumsüberschriften hat. Gibt sie verworfene
+   Änderungen an `AKTE.md` als Diff wieder, zeigst du ihn und fragst, ob
    etwas davon eine Angabe ist, die in die Unterlagen gehört. Die Fragen
    stellst du, wie in `regeln.md` beschrieben.
    - Antworten, auch auf die Fragen der Prüfung, und die Angaben, die

@@ -32,7 +32,8 @@ Status aus `akte-stand` (neu, geändert, entfernt).
     den Überschriften `## TT.MM.JJJJ` mit einem Datum in diesem Zeitraum,
     wie sie `akte-stand --einheit "<zeile>"` mit der Zeile aus dem Auftrag
     ausgibt. So liest du einen Teil von `historie.md`, nie die ganze
-    Datei. Eine Quelle `[historie TT.MM.JJJJ]` gehört zu der
+    Datei; steht `unterlagen/historie.md` ohne Zeitraum da, ist die ganze
+    Datei die Einheit. Eine Quelle `[historie TT.MM.JJJJ]` gehört zu der
     Einheit, deren Abschnitte den Eintrag mit diesem Datum enthalten.
   - Die offenen Punkte der vorigen Stapel, die eine Einheit klärt oder
     erledigt, nennst du in der Rückmeldung unter „Geklärt“. Abgelaufene
