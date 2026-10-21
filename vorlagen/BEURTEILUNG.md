@@ -1,12 +1,12 @@
 # Beurteilung
 
-*Empfehlungen, Einschätzungen und Vermutungen eines Modells, nicht ärztlich bestätigt. Jeder Eintrag beginnt mit dem Datum, an dem er geschrieben oder zuletzt geprüft wurde. Fakten stehen in AKTE.md.*
+*Empfehlungen, Einschätzungen und Vermutungen eines Modells, nicht ärztlich bestätigt, und was mit dem Benutzer für die Beratung vereinbart ist. Jeder Eintrag beginnt mit dem Datum, an dem er geschrieben oder zuletzt geprüft wurde. Fakten stehen in AKTE.md.*
 
 *Kennzeichnung: **Leitlinie** gibt wieder, was eine Leitlinie, Studie oder Fachinformation sagt (mit Quelle und Stand). **Modell** ist die Übertragung auf den Fall oder eine Einschätzung ohne Leitlinie. **Organisatorisch** sind Erledigungen ohne medizinische Bewertung. Gibt es keine Leitlinie, steht das beim Eintrag. Empfehlungen mit Empfehlungsnummer, sonst mit Abschnitt oder Seite, und, wo angegeben, Empfehlungsgrad, Evidenzniveau und Konsensstärke.*
 
 *Knapp: Hier steht nur, was eine künftige Beratung braucht: was zu tun oder zu beachten ist, bis wann (als Datum), wie dringend und warum, mit Quelle; nicht die Herleitung und nicht der Weg dahin. Ein Eintrag steht auf dem aktuellen Stand, jede Kennzeichnung darin höchstens einmal, unter **Leitlinie** nur, worauf der Eintrag beruht, je Empfehlung ein Satz.*
 
-*Ändern: Ein Eintrag je Thema. Steht das Thema schon da, wird der Eintrag auf dem neuen Stand neu geschrieben und neu datiert, statt einen zweiten anzulegen oder etwas anzuhängen; steht es in einem anderen Abschnitt, bleibt es dort, und hier steht ein Verweis. Betrifft eine neue Angabe Einträge, werden sie in allen Abschnitten nachgezogen: Erledigtes und Überholtes wird gelöscht, Abgelehntes, das sonst weiter gelten würde, kommt mit Datum und Grund nach „Abgelehnt“, das Übrige wird angepasst und neu datiert. Geändert wird ohne Ok des Benutzers und ohne Commit; committet wird beim Einarbeiten.*
+*Ändern: Ein Eintrag je Thema. Steht das Thema schon da, wird der Eintrag auf dem neuen Stand neu geschrieben und neu datiert, statt einen zweiten anzulegen oder etwas anzuhängen; steht es in einem anderen Abschnitt, bleibt es dort, und hier steht ein Verweis. Betrifft eine neue Angabe Einträge, werden sie in allen Abschnitten nachgezogen: Erledigtes und Überholtes wird gelöscht, Abgelehntes, das sonst weiter gelten würde, kommt nach „Abgelehnt“, die Ablehnung selbst als Angabe des Patienten nach `unterlagen/historie.md`, das Übrige wird angepasst und neu datiert. Geändert wird ohne Ok des Benutzers und ohne Commit; committet wird beim Einarbeiten.*
 
 ## Quellen
 
@@ -34,4 +34,4 @@
 
 ## Abgelehnt
 
-*Empfehlungen, die weiter gelten würden, aber abgelehnt wurden, je mit Datum und Grund, damit sie nicht erneut vorgeschlagen werden.*
+*Empfehlungen, die weiter gelten würden, aber abgelehnt wurden, je mit Datum, Grund in einem Satz und dem Eintrag in `unterlagen/historie.md` als Quelle, etwa „[historie TT.MM.JJJJ]“, damit sie nicht erneut vorgeschlagen werden.*

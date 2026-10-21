@@ -126,6 +126,9 @@ Dateinamen sind klein geschrieben, nur `AKTE.md`, `BEURTEILUNG.md` und
   Dass etwas „nicht erfolgt“ ist, ist nur dann ein Fakt, wenn ein Arzt es
   veranlasst oder empfohlen hat. Dass etwas in einem Befund nicht steht,
   ist ein Fakt über diesen Befund, nicht darüber, ob es erfolgt ist.
+  Lehnt der Patient eine Empfehlung ab, ist das seine Angabe: Sie kommt mit
+  Grund nach `unterlagen/historie.md`, die Empfehlung in `BEURTEILUNG.md`
+  nach „Abgelehnt“.
 - Was der Patient mitteilt, kommt nur nach `unterlagen/`, wenn es eine
   Angabe in `AKTE.md` oder eine künftige Empfehlung, Frage oder Frist
   ändern würde – etwa eine Beschwerde, eine Diagnose, eine Behandlung, ein
