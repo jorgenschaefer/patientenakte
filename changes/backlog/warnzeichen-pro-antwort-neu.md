@@ -6,11 +6,11 @@ utility: L
 # Warnzeichen entstehen in jeder Antwort neu
 
 Warnzeichen mit Stufe soll `BEURTEILUNG.md` führen
-(`vorlagen/BEURTEILUNG.md:11-13`), und eine Beschwerde, die dort steht, ist
-mindestens so dringend wie die Stufe dort (`regeln.md:111-112`). In der
+(`vorlagen/BEURTEILUNG.md:15-17`), und eine Beschwerde, die dort steht, ist
+mindestens so dringend wie die Stufe dort (`regeln.md:120-121`). In der
 Antwort nennt das Modell aber auch Warnzeichen, die dort nicht stehen, und
 erzeugt sie jedes Mal neu, ohne Leitlinie; `naechste-schritte` trägt neue
-nur nachträglich ein (`skills/naechste-schritte/SKILL.md:39-41`).
+nur nachträglich ein (`skills/naechste-schritte/SKILL.md:35-36`).
 
 Zwei Läufe von `naechste-schritte` in echten Beratungen, gut eine Stunde
 auseinander, über dieselbe Akte:
