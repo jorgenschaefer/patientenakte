@@ -48,6 +48,7 @@ main() {
   einheit_vorab
   einheit_falscher_aufruf
   einheit_ohne_historie
+  einheit_ohne_abschnitt
   exit $fehler
 }
 
@@ -460,6 +461,17 @@ einheit_ohne_historie() {
   code=$?
   pruefe "Einheit ohne historie.md: Exit-Code 1 und Meldung" "1
 unterlagen/historie.md gibt es nicht." "$code
+$ausgabe"
+}
+
+# 03.01. liegt zwischen zwei Tagen, keiner fällt in den Zeitraum.
+einheit_ohne_abschnitt() {
+  historie_mit_tagen
+  local ausgabe code
+  ausgabe=$("$stand" --einheit "unterlagen/historie.md 03.01.2026–04.01.2026" 2>&1)
+  code=$?
+  pruefe "Einheit ohne Abschnitt im Zeitraum: Exit-Code 1 und Meldung" "1
+unterlagen/historie.md hat keinen Abschnitt vom 03.01.2026 bis 04.01.2026." "$code
 $ausgabe"
 }
 

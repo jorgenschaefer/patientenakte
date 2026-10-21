@@ -162,16 +162,24 @@ einheit() {
   fi
   local von=${BASH_REMATCH[3]}${BASH_REMATCH[2]}${BASH_REMATCH[1]}
   local bis=${BASH_REMATCH[6]}${BASH_REMATCH[5]}${BASH_REMATCH[4]}
-  local erster zeile tag=''
+  local erster zeile tag='' ausgabe='' gefunden=''
   erster=$(historie_tage | sort | head -1 | cut -d ' ' -f 2)
   while IFS= read -r zeile || [[ -n $zeile ]]; do
     if [[ $zeile =~ $ueberschrift ]]; then
       tag=${BASH_REMATCH[3]}${BASH_REMATCH[2]}${BASH_REMATCH[1]}
     fi
-    if [[ -z $tag && $von == "$erster" ]] || [[ -n $tag && ! $tag < $von && ! $tag > $bis ]]; then
-      printf '%s\n' "$zeile"
+    if [[ -n $tag && ! $tag < $von && ! $tag > $bis ]]; then
+      gefunden=1
+      ausgabe+=$zeile$'\n'
+    elif [[ -z $tag && $von == "$erster" ]]; then
+      ausgabe+=$zeile$'\n'
     fi
   done < "$historie"
+  if [[ -z $gefunden ]]; then
+    echo "$historie hat keinen Abschnitt vom ${von:6:2}.${von:4:2}.${von:0:4} bis ${bis:6:2}.${bis:4:2}.${bis:0:4}." >&2
+    exit 1
+  fi
+  printf '%s' "$ausgabe"
 }
 
 # Je Tag in historie.md eine Einheit wie in einheiten(), gewogen mit seinen
