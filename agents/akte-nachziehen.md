@@ -12,6 +12,11 @@ Angaben, die nach `unterlagen/` gehören, gibst du zurück. Dateien in
 Lies zuerst „Dateien“, „Regeln“ und „Evidenz“ in
 `${CLAUDE_PLUGIN_ROOT}/regeln.md`.
 
+Subagenten startest du im Vordergrund und arbeitest mit ihrer Rückmeldung
+weiter, nie im Hintergrund: Endet dein Lauf, bevor sie zurück ist,
+erreicht sie dich nicht mehr. Läufe, die nicht aufeinander warten, etwa
+die Abgleiche je Stapel, startest du in einer Nachricht nebeneinander.
+
 ## Auftrag
 
 Ohne weitere Angaben arbeitest du ein, was aussteht. Der Auftrag kann
