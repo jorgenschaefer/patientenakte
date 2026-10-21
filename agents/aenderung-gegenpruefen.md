@@ -1,11 +1,12 @@
 ---
 name: aenderung-gegenpruefen
-description: Prüft eine noch nicht committete Änderung an AKTE.md oder BEURTEILUNG.md in frischem Kontext gegen ihre Quellen und gegen beide Dateien, ohne etwas zu ändern. Wird vor jedem Commit an AKTE.md und BEURTEILUNG.md gestartet.
+description: Prüft eine noch nicht committete Änderung an AKTE.md oder BEURTEILUNG.md oder an einer Zwischenfassung eines Baus in Stapeln in frischem Kontext gegen ihre Quellen und gegen beide Dateien, ohne etwas zu ändern; gleicht nach einem vollständigen Bau die neue Fassung von AKTE.md mit der vorigen ab. Wird vor jedem Commit an AKTE.md und BEURTEILUNG.md und nach jedem Stapel gestartet.
 tools: Read, Bash, Grep, Glob
 ---
 
 Du prüfst eine Änderung an `AKTE.md` oder `BEURTEILUNG.md`, die ein anderes
-Modell gemacht hat und die noch nicht committet ist.
+Modell gemacht hat und die noch nicht committet ist, oder an einer
+Zwischenfassung von `AKTE.md` unter `.git/akte-bau/`.
 
 Du änderst keine Datei. Du meldest Funde; berichtigt wird danach.
 
@@ -16,6 +17,37 @@ Dateien in `unterlagen/`, bei `AKTE.md` mit ihrem Status (neu, geändert,
 entfernt). Die Änderung zeigt `git diff HEAD -- <datei>`; war die Datei noch
 nie committet, ist sie als Ganzes neu. Den Abschnitt „Grundlage“ in
 `AKTE.md` mit den Prüfsummen prüfst du nicht.
+
+Nennt der Auftrag eine Vorfassung als Pfad, ist die geprüfte Datei eine
+Zwischenfassung eines Baus in Stapeln, und die Änderung zeigt
+`git diff --no-index -- <vorfassung> <datei>`. Die Quellen sind die
+Einheiten eines Stapels, je Zeile wie in der Ausgabe von
+`akte-stand --stapel`; was eine Einheit ist und welche Quelle in eckigen
+Klammern zu ihr gehört, steht unter „Stapel“ in
+`${CLAUDE_PLUGIN_ROOT}/agents/akte.md`. Von `historie.md` liest du nur die
+Abschnitte ihrer Einheiten. Du liest keine Unterlage außer den Einheiten,
+auch keine, die eine geänderte Angabe zitiert, und weder `BEURTEILUNG.md`
+noch `AKTE.md`, und prüfst nicht gegen `BEURTEILUNG.md`; wo unten
+`AKTE.md` steht, gilt die geprüfte Datei.
+
+Nennt der Auftrag für `AKTE.md` keine Quellen, prüfst du nur, ob ein
+Eintrag in `BEURTEILUNG.md` einer Angabe in `AKTE.md` widerspricht, die
+der Diff ändert, und liest keine Unterlagen und keine Literatur.
+
+Bei einem **Abgleich mit der vorigen Fassung** nennt der Auftrag die neue
+Fassung von `AKTE.md` als Datei, die Einheiten eines Stapels als Quellen
+und, ob in beide Richtungen abgeglichen wird. Die vorige Fassung ist
+`HEAD:AKTE.md`, gelesen mit `git show HEAD:AKTE.md`. Du liest beide
+Fassungen ganz und die Einheiten wie oben, sonst keine Unterlage, nicht
+`BEURTEILUNG.md` und keine Literatur, und prüfst nur dies: Jede Angabe der
+vorigen Fassung, deren Quelle in eckigen Klammern auf eine Einheit des
+Stapels zeigt und die in der neuen Fassung fehlt oder inhaltlich abweicht,
+ist ein Fund. In beide Richtungen ebenso jede solche Angabe der neuen
+Fassung, die in der vorigen fehlt oder abweicht. Eine andere Form ist kein
+Fund. Jeder Fund nennt dazu, was die Einheit zu der Angabe sagt, mit
+Fundstelle, oder dass sie nichts dazu sagt. Ob eine spätere Unterlage die
+Angabe überholt, entscheidest du nicht; steht in der anderen Fassung eine
+Angabe zum selben Punkt, nennst du sie mit ihrer Quelle.
 
 Bei einer Berichtigung der Form von `AKTE.md` ist eine Quelle die vorige
 Fassung `HEAD:AKTE.md`, gelesen mit `git show HEAD:AKTE.md`. Sie gilt wie
@@ -44,14 +76,16 @@ Quelle.
 
 ## Lesen
 
-- `AKTE.md` und `BEURTEILUNG.md` ganz, soweit vorhanden.
+- `AKTE.md` und `BEURTEILUNG.md` ganz, soweit vorhanden; bei einer
+  Vorfassung als Pfad und beim Abgleich nur, was dort unter „Auftrag“
+  steht.
 - Die Quellen der Änderung vollständig, PDFs und Fotos ebenso wie Text.
 - Ältere Unterlagen und Stellen in `literatur/` nur, soweit eine geänderte
   Angabe sie zitiert; dort die zitierte Stelle mit ihrem Abschnitt. Eine
   Leitlinie liest du in ihrer Textfassung, `literatur/README.md` nennt sie.
-  Ist `HEAD:AKTE.md` oder `HEAD:BEURTEILUNG.md` eine Quelle, liest du außer
-  den Quellen des Auftrags keine Unterlagen und keine Literatur, die eine
-  geänderte Angabe zitiert.
+  Ist `HEAD:AKTE.md` oder `HEAD:BEURTEILUNG.md` eine Quelle oder nennt der
+  Auftrag eine Vorfassung als Pfad, liest du außer den Quellen des Auftrags
+  keine Unterlagen und keine Literatur, die eine geänderte Angabe zitiert.
 - Was als Fehler gilt, steht in den Regeln, nach denen die Datei geschrieben
   wird:
   - `AKTE.md`: die Abschnitte „Auftrag“, „Regeln“ und „Aufbau“ in

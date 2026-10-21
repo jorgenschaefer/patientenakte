@@ -158,6 +158,18 @@ Ebenso auf Wunsch baut Claude `AKTE.md` neu oder zur Kontrolle ein zweites
 Mal und vergleicht beide Fassungen, etwa mit „/einarbeiten und bau die Akte
 neu“.
 
+Neubau und Kontrolle laufen in Stapeln von höchstens 20 Seiten, die
+Unterlagen in der Reihenfolge ihres Datums; nur eine größere Unterlage
+bildet einen größeren Stapel für sich. Claude sagt vorher, in wie vielen.
+Jeder Stapel wird in eine Zwischenfassung unter `.git/akte-bau/`
+eingearbeitet, beim Neubau gegen seine Unterlagen gegengeprüft. Danach
+gleicht Claude die neue Fassung je Stapel mit der bisherigen `AKTE.md` ab.
+Beim Neubau stellt Claude wieder her, was verloren ging und keine
+Unterlage überholt, und ersetzt dann `AKTE.md`; bei der Kontrolle
+berichtigt Claude in `AKTE.md`, was sich an der Unterlage bestätigt.
+Bricht der Bau ab, bleibt `AKTE.md`, wie sie war, und er beginnt beim
+nächsten Mal von vorn.
+
 Mit „/einarbeiten und prüf die Akte“ prüft Claude außerdem, ob `AKTE.md`
 und `BEURTEILUNG.md` noch ihren Regeln folgen und zueinander passen. Die
 Prüfung beginnt nur auf Wunsch, nie von selbst. Gefragt wird nach Punkten

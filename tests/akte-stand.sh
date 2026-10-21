@@ -26,6 +26,7 @@ main() {
   pruefsummen_nicht_committet
   gebaut_nicht_abgeschlossen
   neue_akte_nie_committet
+  bau_in_stapeln_abgebrochen
   ohne_git
   vorlage_eingehalten
   vorlage_abweichend
@@ -111,6 +112,15 @@ neue_akte_nie_committet() {
   git add . && git commit -qm unterlagen
   printf '# Akte\n' > AKTE.md && "$stand" --aktualisieren
   pruefe "Neue AKTE.md, nie committet" "$nicht_abgeschlossen" "$("$stand")"
+}
+
+bau_in_stapeln_abgebrochen() {
+  neue_akte
+  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  mkdir .git/akte-bau && printf '# Akte\nZwischenfassung\n' > .git/akte-bau/stapel-1.md
+  pruefe "Zwischenfassungen unter .git/akte-bau/ sind kein offener Bau" \
+    "AKTE.md ist auf dem Stand von unterlagen/." "$("$stand")"
+  pruefe "Zwischenfassungen stehen nicht in git status" "" "$(git status --porcelain)"
 }
 
 ohne_git() {

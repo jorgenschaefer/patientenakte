@@ -3,8 +3,8 @@ criteria:  CRITERIA.md
 closes:    AC-1, AC-2, AC-4, AC-5, AC-6, AC-7, AC-8, AC-9, AC-10, AC-11, AC-12, AC-13, AC-16, AC-17, AC-18, AC-19, AC-20, AC-21
 advances:
 after:     01-stapel-schneiden
-status:    ready
-attempts:  0
+status:    done
+attempts:  1
 ---
 
 ## Build
@@ -82,3 +82,38 @@ Heute: `agents/akte-nachziehen.md` Schritt 3 startet für „vollständig“ den
 - Den Kontext von `akte-nachziehen` selbst begrenzen; er wächst mit den Rückmeldungen je Stapel, die kurz sind.
 
 ## Left standing
+
+**Fixes after the last review** (two rounds were held; no reviewer saw these):
+- `skills/einarbeiten/SKILL.md` step 5 now passes on to the user what the build reply says about the batches: that the full build or Kontrolle did not run, with the `akte-stand` message, PDFs without a page count, and `historie.md` without date headings. Answers round 2 should-fix 1: AC-13 and AC-19 reached only the skill, never the user.
+- The README paragraph in "Die Akte prüfen" now separates Neubau (a cross-check per batch, then AKTE.md is replaced) from Kontrolle (no cross-check per batch; AKTE.md is corrected where the source confirms it). Answers round 2 should-fix 2. The line wrapping is fixed too (round 2 nit 3).
+- The Kontrolle bullet in `agents/akte-nachziehen.md` step 3.1 now says "statt der Schritte 3.2 bis 3.4". It also builds in full when there is no committed AKTE.md, or when a stalled build needs a full build. The Kontrolle section states that AKTE.md is committed and unchanged. Answers round 2 nits 1 and 2.
+
+**Not proven by an automated test.** The only test is `bau_in_stapeln_abgebrochen` in `tests/akte-stand.sh`. It shows that `.git/akte-bau/` is neither reported as an unfinished build nor listed in `git status` (the `akte-stand` half of AC-7). It passed at once, because git never lists `.git/`. Everything else is agent prose: AC-1, 2, 4–6, the rest of AC-7, and 8–13, 16–21. No harness drives a session (backlog `testakte-evals`). It was checked by reading and by live runs that the reviewers made on a fictional test record with small batch limits (`.claude/skills/run/neue-testakte --klein`, 3 batches):
+- **Full build with AKTE.md missing:**
+  - A cross-check after each batch, against the previous version and only that batch's files, with corrections made before the next batch.
+  - No comparison with the previous version, since there was none.
+  - A single check against BEURTEILUNG.md, one commit, and `.git/akte-bau` removed.
+- **Rebuild ("bau die Akte neu"):** three comparisons against `HEAD:AKTE.md` found five real losses, which the batch cross-checks had missed, and restored them with their sources (AC-17, AC-18).
+- **Kontrolle with a planted error** (LDL 162 changed to 126): batches without cross-checks; a comparison in both directions found and corrected the error; then the check against BEURTEILUNG.md and the commit (AC-9, AC-20).
+- **AC-10:** the sentence "in 3 Stapeln" was seen before the build in the round 2 runs.
+- **Never run:**
+  - the abort without `pdfinfo` (AC-19 on the agent side);
+  - a stalled build (AC-21);
+  - a PDF without a page count, or a `historie.md` without headings (the AC-13 reply);
+  - the fixes after the last review.
+- **One slip by the model, in round 2:** the order for the last batch did not say it was the last one, although `akte-nachziehen.md` asks for that. It had no effect there, but it means expired deadlines (AC-12) depend on the model following that instruction.
+
+**Decisions that would be costly to reverse:**
+- **File names in `.git/akte-bau/`:** `stapel-0.md` is the copy of the template, and `stapel-<N>.md` is the version after batch N. The Kontrolle uses the same names. The cross-check reads the change with `git diff --no-index -- <vorfassung> <datei>`.
+- **Order to `aenderung-gegenpruefen`:** "Abgleich mit der vorigen Fassung" may add "in beide Richtungen" (Kontrolle). The previous version is always `HEAD:AKTE.md`; the new version is the last intermediate version.
+- **The check against BEURTEILUNG.md (AC-20)** is a run for AKTE.md with no sources. This is a new case in `aenderung-gegenpruefen.md`: until now every AKTE.md order had sources. Without sources the run checks only for contradictions in BEURTEILUNG.md and reads no source documents.
+- **Corrections from a Kontrolle** count as cross-checked by the comparison that found them, like restorations under AC-18. AC-9 does not say so. The alternative was a cross-check against all source documents, which AC-21 rules out.
+- **A Kontrolle with a pending incremental build** runs that build first, with its cross-check and commit, so that both versions rest on the same source documents.
+- **If `akte-stand --stapel` aborts,** `akte-nachziehen` ends after its reply. The source-document commit has already been made; step 5, BEURTEILUNG.md, no longer runs.
+- **A source in the previous version that points to no batch** (a removed document) is not reported by any comparison, so such an entry drops out of the rebuild without being mentioned.
+
+**Departure from a reviewer finding:** round 1 rated the mode "vollständig" in `agents/akte.md` should-fix and asked for it to be removed, because nothing calls it any more. I kept it, because the technical decision says "bisherige Aufträge bleiben gültig". I took it out of the description (which decides when the agent is picked) and marked it as running only on an explicit order. It is dead code under the coding standard; the developer should decide whether it goes.
+
+**New run skill:** `.claude/skills/run/` (`SKILL.md` and `neue-testakte`), added because the project had no way to run the plugin. It creates a fictional test record under `/tmp`. With `--klein` it also makes a copy of the plugin with 2 pages per batch and 500 characters per page. `tests/check.sh` now runs shellcheck on the script too. This touches the backlog item `testakte-evals`, but adds no evals and no test record in the repo.
+
+**Names not taken from a glossary** (there is none): "Zwischenfassung", "Vorfassung", "Einheit", "Abgleich mit der vorigen Fassung" and "Vollständiger Bau" as section names. "Stapel" (as the order type for `akte`) and "Wiederherstellung" come from the ticket. `stapel-<N>.md` and `neue-testakte` are my own.

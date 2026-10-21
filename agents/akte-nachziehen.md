@@ -37,16 +37,22 @@ dazu nennen:
    `unterlagen/` und entfernte Unterlagen in einem Commit. Ohne solche
    entfällt der Commit.
 3. **`AKTE.md` bauen.** Meldet `akte-stand` einen nicht abgeschlossenen
-   Bau, gehören dessen Änderungen mit dazu.
+   Bau, gehören dessen Änderungen mit dazu. Zeigt `git diff HEAD -- AKTE.md`
+   dabei unter „Grundlage“ keine neue oder geänderte Prüfsumme, weil
+   `AKTE.md` noch nie committet war oder der Bau vollständig war, baust du
+   stattdessen vollständig.
    1. Nach der Art:
-      - **schrittweise**, der Normalfall, und **vollständig**, wenn
-        `AKTE.md` fehlt oder der Auftrag es verlangt: den Subagenten
+      - **schrittweise**, der Normalfall: den Subagenten
         `patientenakte:akte` starten, im Auftrag die Ausgabe von
         `akte-stand` und die Art des Baus;
-      - **Kontrolle:** ebenso, mit einer Zieldatei außerhalb der Akte,
-        etwa aus `mktemp`. Jede Abweichung zwischen ihr und `AKTE.md` ist
-        ein möglicher Fehler einer der beiden Fassungen; prüf sie an der
-        Quelle und berichtige `AKTE.md`;
+      - **vollständig**, wenn `AKTE.md` fehlt, der Auftrag es verlangt
+        oder ein liegen gebliebener Bau es braucht: wie unter
+        „Vollständiger Bau“ unten, statt der Schritte 3.2 bis 3.4 hier;
+      - **Kontrolle:** steht ein schrittweiser Bau aus, zuerst dieser mit
+        den Schritten 3.2 bis 3.4 hier; danach wie unter „Kontrolle“
+        unten, statt der Schritte 3.2 bis 3.4. Gibt es keine committete
+        `AKTE.md` oder braucht ein liegen gebliebener Bau den
+        vollständigen Bau, baust du stattdessen vollständig;
       - **Berichtigung:** `AKTE.md` selbst berichtigen, ohne Subagent.
 
       Berichtigt wird immer nach „Regeln“ und „Aufbau“ in
@@ -56,13 +62,10 @@ dazu nennen:
       im Abschnitt „Grundlage“ geändert. Quellen der Änderung sind:
       - nach einem schrittweisen Bau die gemeldeten Dateien mit ihrem
         Status und dem Commit aus `akte-stand`;
-      - nach einem vollständigen Bau und nach einer Kontrolle alle
-        Unterlagen;
       - nach einer Berichtigung die Unterlage aus dem Auftrag;
       - für einen liegen gebliebenen Bau dazu die Unterlagen, deren
         Prüfsumme unter „Grundlage“ in `git diff HEAD -- AKTE.md` neu oder
-        geändert ist; zeigt der Diff keine, weil `AKTE.md` noch nie
-        committet war oder der Bau vollständig war, alle Unterlagen.
+        geändert ist.
 
       Funde zu `BEURTEILUNG.md` hebst du für Schritt 5 auf.
    4. `AKTE.md` allein committen, wenn sie geändert ist.
@@ -90,13 +93,81 @@ dazu nennen:
    Commit; ist keine von beiden geändert, entfällt er.
 6. **Rückmeldung** wie unten.
 
+## Vollständiger Bau
+
+`AKTE.md` wird in Stapeln neu gebaut und erst am Ende ersetzt; bricht der
+Bau vorher ab, ist sie wie vorher. Die Zwischenfassungen liegen in
+`.git/akte-bau/` und werden nie committet. Wie die Unterlagen auf Stapel
+verteilt werden, bestimmt allein `akte-stand --stapel`; auch ein einzelner
+Stapel läuft diesen Weg.
+
+1. **Stapel:** `akte-stand --stapel`. Bricht es ab, läuft kein
+   vollständiger Bau: `AKTE.md` bleibt, wie sie ist, die Rückmeldung sagt
+   das mit der Meldung von `akte-stand`, und du endest nach der
+   Rückmeldung.
+2. **Beginn:** `rm -rf .git/akte-bau && mkdir .git/akte-bau`, dann
+   `${CLAUDE_PLUGIN_ROOT}/vorlagen/AKTE.md` nach
+   `.git/akte-bau/stapel-0.md` kopieren. Braucht ein liegen gebliebener
+   Bau den vollständigen Bau und ist `AKTE.md` committet,
+   `git checkout HEAD -- AKTE.md`.
+3. **Je Stapel N** der Reihe nach:
+   1. `.git/akte-bau/stapel-<N-1>.md` nach `.git/akte-bau/stapel-<N>.md`
+      kopieren und den Subagenten `patientenakte:akte` starten: Art
+      „Stapel“, Zieldatei `.git/akte-bau/stapel-<N>.md`, die Einheiten des
+      Stapels, wie `akte-stand --stapel` sie ausgibt, die offenen Punkte
+      der vorigen Stapel und ob es der letzte ist.
+   2. Die offenen Punkte nachführen: was er als geklärt oder erledigt
+      meldet, fällt weg, was er unter „Offen“ meldet, kommt dazu.
+   3. Gegenprüfen wie unter „Gegenprüfung“: Datei
+      `.git/akte-bau/stapel-<N>.md`, Vorfassung
+      `.git/akte-bau/stapel-<N-1>.md`, Quellen die Einheiten des Stapels.
+      Die bestätigten Funde berichtigst du in `stapel-<N>.md`, bevor der
+      nächste Stapel beginnt.
+4. **Abgleich mit der vorigen Fassung,** wenn es `HEAD:AKTE.md` gibt: je
+   Stapel ein Lauf von `patientenakte:aenderung-gegenpruefen`, Art
+   „Abgleich mit der vorigen Fassung“, die letzte Zwischenfassung als
+   Datei, die Einheiten des Stapels als Quellen. Jeden Fund liest du an der
+   Fundstelle in der Einheit nach. Trägt die Einheit die Angabe der
+   vorigen Fassung und überholt sie keine Unterlage, etwa eine Angabe der
+   neuen Fassung zum selben Punkt mit späterer Quelle, stellst du sie in
+   der letzten Zwischenfassung mit ihrer Quelle wieder her: wie sie in der
+   vorigen Fassung steht, höchstens in der Form geändert nach „Regeln“ und
+   „Aufbau“ in `${CLAUDE_PLUGIN_ROOT}/agents/akte.md`. Die übrigen Funde
+   verwirfst du mit Grund. Eine Wiederherstellung gilt durch den Abgleich
+   als gegengeprüft.
+5. **Ersetzen:** die letzte Zwischenfassung nach `AKTE.md` kopieren, dann
+   `akte-stand --aktualisieren`.
+6. **Gegen `BEURTEILUNG.md` prüfen,** wenn es sie gibt: ein Lauf von
+   `patientenakte:aenderung-gegenpruefen` für `AKTE.md` ohne Quellen; das
+   steht im Auftrag. Seine Funde hebst du für „`BEURTEILUNG.md`
+   nachziehen“ im Ablauf auf. Gegen alle Unterlagen auf einmal wird nicht
+   geprüft.
+7. **Commit:** `AKTE.md` allein committen, dann `rm -rf .git/akte-bau`.
+
+## Kontrolle
+
+Die zweite Fassung entsteht wie unter „Vollständiger Bau“, Schritte 1
+bis 3, aber ohne Gegenprüfung je Stapel; bricht `akte-stand --stapel` ab,
+läuft keine Kontrolle. `AKTE.md` ist dabei committet und ohne Änderung.
+Danach je Stapel ein Abgleich wie dort in Schritt 4, in beide Richtungen.
+Jede Abweichung ist ein möglicher Fehler einer der beiden Fassungen: Du
+liest sie an der Fundstelle in der Einheit nach und berichtigst
+`AKTE.md`, wo sich die zweite Fassung bestätigt, nach „Regeln“ und „Aufbau“ in
+`${CLAUDE_PLUGIN_ROOT}/agents/akte.md`; die übrigen verwirfst du mit
+Grund. Eine solche Berichtigung gilt durch den Abgleich als gegengeprüft.
+Ist `AKTE.md` geändert, prüfst du sie gegen `BEURTEILUNG.md` wie unter
+„Vollständiger Bau“ in Schritt 6 und committest sie allein. Dann
+`rm -rf .git/akte-bau`.
+
 ## Gegenprüfung
 
 Der Subagent `patientenakte:aenderung-gegenpruefen` prüft eine Änderung
 in frischem Kontext.
 
-- **Auftrag:** die geprüfte Datei und die Quellen der Änderung als Pfade.
-  Den Diff liest er selbst mit `git diff HEAD -- <datei>`. Sonst nichts:
+- **Auftrag:** die geprüfte Datei und die Quellen der Änderung als Pfade,
+  bei einer Zwischenfassung dazu die Vorfassung als Pfad und als Quellen
+  die Einheiten des Stapels, wie `akte-stand --stapel` sie ausgibt. Den
+  Diff liest er selbst. Sonst nichts:
   keine Begründung und keine Überlegung zur Änderung, keine
   Zusammenfassung, keine weiteren Unterlagen oder Literatur.
 - **Funde:** Jeden Fund liest du an der genannten Fundstelle nach und
@@ -187,8 +258,18 @@ Quelle, die kein Eintrag mehr zitiert, aus „Quellen“ streichen.
   und Offenem geändert hat; ob angeglichen oder gekürzt wurde.
 - **Gegenprüfungen:** je Datei alle Funde wie unter „Gegenprüfung“, „Keine
   Funde.“ oder dass sie nicht gelaufen ist.
+- **Bau in Stapeln,** nach einem vollständigen Bau oder einer Kontrolle:
+  die Zahl der Stapel; nach einem vollständigen Bau je Stapel die Funde
+  seiner Gegenprüfung wie oben; je Stapel aus dem Abgleich die
+  Wiederherstellungen oder Berichtigungen und die verworfenen Funde mit
+  Grund, oder dass er nicht gelaufen ist; die PDFs, deren Seitenzahl
+  `akte-stand --stapel` nicht bestimmen konnte, und dass `historie.md`
+  keine Datumsüberschriften hat, wenn es das meldet. Ist der vollständige
+  Bau oder die Kontrolle nicht gelaufen, steht das hier mit der Meldung
+  von `akte-stand`.
 - **Fragen:** die offenen Widersprüche und Unklarheiten, die der Subagent
-  `akte` meldet, außer solchen, deren Antwort nach `regeln.md` nicht in die
+  `akte` meldet, nach einem Bau in Stapeln die nach dem letzten Stapel
+  noch offenen Punkte, außer solchen, deren Antwort nach `regeln.md` nicht in die
   Unterlagen käme, und die Fragen der Prüfung. Dazu die geklärten
   Widersprüche kurz mit ihrer Quelle.
 - **Nur gemeldet:** die Funde der Prüfung aus dieser Gruppe.

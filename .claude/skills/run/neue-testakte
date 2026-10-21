@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+# Legt eine Testakte mit einer erfundenen Patientin in einem neuen
+# temporären Verzeichnis an und gibt ihren Pfad aus. Mit --klein dazu eine
+# Kopie des Plugins mit kleinen Stapelgrenzen, damit schon diese wenigen
+# Unterlagen in mehreren Stapeln gebaut werden; dann zwei Zeilen: Akte und
+# Plugin.
+#
+#   .claude/skills/run/neue-testakte [--klein]
+set -euo pipefail
+
+plugin=$(cd "$(dirname "$0")/../../.." && pwd)
+akte=$(mktemp -d -t testakte-XXXXXX)
+
+if [[ ${1:-} == --klein ]]; then
+  kopie=$(mktemp -d -t testplugin-XXXXXX)
+  cp -r "$plugin/." "$kopie"
+  rm -rf "$kopie/.git"
+  sed -i 's/^seiten_je_stapel=.*/seiten_je_stapel=2/; s/^zeichen_je_seite=.*/zeichen_je_seite=500/' "$kopie/bin/akte-stand"
+  if ! grep -qx 'seiten_je_stapel=2' "$kopie/bin/akte-stand" || ! grep -qx 'zeichen_je_seite=500' "$kopie/bin/akte-stand"; then
+    echo "seiten_je_stapel= oder zeichen_je_seite= nicht in bin/akte-stand gefunden; --klein an die neuen Namen anpassen." >&2
+    exit 1
+  fi
+  plugin=$kopie
+fi
+
+cd "$akte"
+git init -q
+mkdir unterlagen literatur
+cp "$plugin/vorlagen/BEURTEILUNG.md" BEURTEILUNG.md
+cp "$plugin/vorlagen/literatur-README.md" literatur/README.md
+
+cat > unterlagen/anamnese.md <<'ANAMNESE'
+# Anamnese
+
+*Erstbefragung vom 10.01.2025, vom Benutzer bestätigt und danach unverändert. Spätere Angaben stehen in historie.md.*
+
+## Stammdaten
+- Erika Mustermann, geboren 12.08.1971, weiblich
+- Größe 168 cm, Gewicht 74 kg
+
+## Beschwerden
+- Belastungsabhängige Schmerzen im rechten Knie seit Herbst 2024
+
+## Vorerkrankungen
+- Arterielle Hypertonie seit 2019
+
+## Medikamente
+- Ramipril 5 mg 1-0-0
+
+## Allergien
+- Penicillin: Hautausschlag
+
+## Sport
+- Joggen zweimal pro Woche, seit den Knieschmerzen pausiert
+ANAMNESE
+
+cat > unterlagen/2025-02-03-mrt_radiologie-nord.md <<'BEFUND'
+# MRT rechtes Knie, Radiologie Nord, 03.02.2025
+
+Fragestellung: Meniskusläsion?
+
+Befund: Signalanhebung im Hinterhorn des Innenmeniskus mit Kontakt zur
+Unterfläche. Knorpel femorotibial medial Grad II. Kein Gelenkerguss.
+Kreuzbänder intakt.
+
+Beurteilung: V. a. horizontalen Riss im Hinterhorn des Innenmeniskus rechts.
+Chondropathie medial Grad II.
+BEFUND
+
+cat > unterlagen/2025-03-01-labor_hausarzt.md <<'BEFUND'
+# Laborbefund, Hausarztpraxis Dr. Beispiel, 01.03.2025
+
+| Parameter  | Wert | Einheit | Referenz  |
+|------------|------|---------|-----------|
+| Kreatinin  | 0,9  | mg/dl   | 0,5–1,0   |
+| Kalium     | 4,1  | mmol/l  | 3,5–5,1   |
+| LDL        | 162  | mg/dl   | < 116     |
+| HbA1c      | 5,6  | %       | < 5,7     |
+
+Empfehlung: Lipidkontrolle in 6 Monaten.
+BEFUND
+
+cat > unterlagen/historie.md <<'HISTORIE'
+# Historie
+
+## 20.02.2025
+
+- Orthopäde Dr. Muster: Physiotherapie 6× verordnet, Joggen vorerst nicht.
+
+## 15.04.2025
+
+- Ramipril auf 10 mg erhöht durch Hausarzt, Blutdruck zu Hause um 150/95.
+
+## 02.10.2025
+
+- Lipidkontrolle beim Hausarzt erledigt, Befund folgt per Post.
+- Knie nach Physiotherapie fast beschwerdefrei, wieder leichtes Joggen.
+HISTORIE
+
+git add . && git commit -qm "Testakte angelegt"
+echo "$akte"
+[[ ${1:-} != --klein ]] || echo "$plugin"

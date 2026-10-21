@@ -6,4 +6,4 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 tests/akte-stand.sh
-shellcheck bin/* hooks/regeln-einspielen tests/*.sh
+shellcheck bin/* hooks/regeln-einspielen tests/*.sh .claude/skills/run/neue-testakte

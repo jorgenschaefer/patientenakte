@@ -1,6 +1,6 @@
 ---
 name: akte
-description: Schreibt AKTE.md aus den Dateien in unterlagen/ – schrittweise für neue und geänderte Dateien oder vollständig neu. Wird vom Subagenten akte-nachziehen gestartet.
+description: Schreibt AKTE.md aus den Dateien in unterlagen/ – schrittweise für neue und geänderte Dateien oder einen Stapel eines vollständigen Baus in eine Zwischenfassung. Wird vom Subagenten akte-nachziehen gestartet.
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
@@ -9,18 +9,39 @@ andere Modelle nur diese Datei, nicht die Unterlagen.
 
 ## Auftrag
 
-Der Auftrag nennt die Zieldatei (sonst `AKTE.md`), ob du schrittweise oder
-vollständig neu baust, und bei schrittweisem Bau die Dateien mit ihrem Status
-aus `akte-stand` (neu, geändert, entfernt).
+Der Auftrag nennt die Zieldatei (sonst `AKTE.md`), ob du schrittweise,
+vollständig neu oder einen Stapel baust, bei schrittweisem Bau die Dateien
+mit ihrem Status aus `akte-stand` (neu, geändert, entfernt).
 
 - **Schrittweise:** jede gemeldete Datei vollständig lesen. Bei geänderten
   Textdateien zeigt `git diff <commit> -- <datei>`, was neu ist; den
   Commit nennt `akte-stand`. Fehlt er oder ist der Diff leer, die Datei gegen
   `AKTE.md` abgleichen.
   Bei entfernten Dateien Angaben streichen, die nur auf ihnen beruhen.
-- **Vollständig:** die Zieldatei als Kopie der Vorlage neu anlegen und
-  alle Dateien in `unterlagen/` lesen: zuerst `anamnese.md`, dann die
-  Befunde nach Datum, dann `historie.md` und die Messreihen.
+- **Vollständig,** nur auf ausdrücklichen Auftrag in einem Lauf;
+  `akte-nachziehen` baut vollständig in Stapeln: die Zieldatei als Kopie
+  der Vorlage neu anlegen und alle Dateien in `unterlagen/` lesen: zuerst
+  `anamnese.md`, dann die Befunde nach Datum, dann `historie.md` und die
+  Messreihen.
+- **Stapel:** ein Teil eines vollständigen Baus. Der Auftrag nennt die
+  Einheiten des Stapels, je Zeile wie in der Ausgabe von
+  `akte-stand --stapel`, die offenen Punkte der vorigen Stapel und ob es
+  der letzte Stapel ist. Die Zieldatei ist eine Zwischenfassung unter
+  `.git/akte-bau/` und enthält schon die vorigen Stapel. Du liest sie und
+  jede Einheit vollständig, sonst keine Unterlage und nicht `AKTE.md`, und
+  arbeitest die Einheiten in die Zieldatei ein wie bei einem schrittweisen
+  Bau neue Dateien. Eine Quelle in eckigen Klammern zeigt nur auf eine
+  Einheit dieses Stapels oder eine, die die Zieldatei schon zitiert.
+  - Eine Einheit ist eine Datei oder ein Teil von `historie.md`, etwa
+    `unterlagen/historie.md 03.02.2025–17.06.2025`: die Abschnitte unter
+    den Überschriften `## TT.MM.JJJJ` mit einem Datum in diesem Zeitraum;
+    beginnt er mit dem frühesten Tag der Datei, auch der Text vor der
+    ersten Überschrift. Eine Quelle `[historie TT.MM.JJJJ]` gehört zu der
+    Einheit, deren Abschnitte den Eintrag mit diesem Datum enthalten.
+  - Die offenen Punkte der vorigen Stapel, die eine Einheit klärt oder
+    erledigt, nennst du in der Rückmeldung unter „Geklärt“. Abgelaufene
+    Fristen meldest du nur im letzten Stapel, dann für die ganze
+    Zieldatei: Jede spätere Unterlage ist dann eingearbeitet.
 - Den Abschnitt „Grundlage“ mit den Prüfsummen fasst du nicht an, ihn schreibt
   `akte-stand --aktualisieren`.
 

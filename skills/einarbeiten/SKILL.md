@@ -42,11 +42,25 @@ etwa `unterlagen/anamnese.md` aus dem Skill `anamnese`.
 
    Keine Zusammenfassung des Gesprächs: Was der Subagent wissen muss, steht
    in den Dateien.
+
+   Baut er `AKTE.md` vollständig, sagst du vorher in einem Satz, dass
+   `AKTE.md` vollständig gebaut wird und in wie vielen Stapeln, nach der
+   Zahl der Zeilen `Stapel N` aus `akte-stand --stapel`. Vollständig baut
+   er bei Neubau oder Kontrolle, beim Angleichen, wenn `AKTE.md` von der
+   Vorlage abweicht, wenn `AKTE.md` fehlt und bei einem nicht
+   abgeschlossenen Bau, dessen `git diff HEAD -- AKTE.md` unter
+   „Grundlage“ keine neue oder geänderte Prüfsumme zeigt. Bricht
+   `akte-stand --stapel` ab, entfällt der Satz; das meldet der Subagent,
+   und du sagst es in Schritt 5.
 5. **Änderungen nennen,** aus seiner Rückmeldung: was sich an `AKTE.md` und
    `BEURTEILUNG.md` geändert hat, alle Funde der Gegenprüfungen, was nur
    gemeldet ist, die geklärten Widersprüche kurz mit ihrer Quelle. Ist eine
-   Gegenprüfung nicht gelaufen, sagst du das. Die Fragen stellst du, wie in
-   `regeln.md` beschrieben.
+   Gegenprüfung nicht gelaufen, sagst du das. Nach einem Bau in Stapeln
+   dazu, was die Rückmeldung darüber sagt: ob der vollständige Bau oder die
+   Kontrolle nicht gelaufen ist, mit der Meldung von `akte-stand`, welche
+   PDFs keine bestimmbare Seitenzahl haben und ob `historie.md` keine
+   Datumsüberschriften hat. Die Fragen stellst du, wie in `regeln.md`
+   beschrieben.
    - Antworten, auch auf die Fragen der Prüfung, und die Angaben, die
      laut Rückmeldung nach `unterlagen/` gehören, nimmst du mit dem Skill
      `neue-information` auf. Eine Quelle, die nicht gespeichert werden
