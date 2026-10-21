@@ -62,7 +62,7 @@ Am Ende baut Claude `AKTE.md` aus der Anamnese und den Befunden.
 
 Jede weitere Sitzung kann direkt mit einer Frage beginnen, in normalen
 Sätzen; eine Befehlssyntax gibt es nicht, nur `/einarbeiten` (siehe „Neue
-Befunde und Angaben“) und `/akte-pruefen` (siehe „Die Akte prüfen“).
+Befunde und Angaben“ und „Die Akte prüfen“).
 
 **Eine Frage**, etwa „Darf ich mit meinem Knie wieder joggen?“, beantwortet
 Claude auf Grundlage von `AKTE.md` und `BEURTEILUNG.md`. Vor einer Empfehlung
@@ -129,44 +129,47 @@ einer abgebrochenen Sitzung. Legt man mitten in einer Sitzung eine Datei
 nach `unterlagen/`, ohne sie im Gespräch zu nennen, arbeitet `/einarbeiten`
 sie ein. Claude zeigt dann die neuen Einträge in `historie.md` auf einmal
 zur Bestätigung, denn sie geben die eigenen Aussagen wieder; Messwerte,
-Befunde und Beurteilungen schreibt Claude ohne Rückfrage. Dann zieht Claude
-`BEURTEILUNG.md` und `AKTE.md` nach, sagt, was sich an der Einschätzung
-ändert, und bietet an, die nächsten Schritte, die Vorsorge oder den
-Notfallpass zu zeigen, wenn sie sich geändert haben. Die Unterlagen und `BEURTEILUNG.md` kommen in
-einen Commit, `AKTE.md` nach der Gegenprüfung in einen zweiten. Was sich an
-`AKTE.md` geändert hat, fasst Claude danach zusammen, und Widersprüche
-zwischen den Unterlagen stellt Claude als Fragen.
+Befunde und Beurteilungen schreibt Claude ohne Rückfrage. Den Rest
+erledigt ein Subagent, damit das Gespräch nicht mit den Unterlagen
+vollläuft: Er committet die Unterlagen, zieht `AKTE.md` nach und danach
+`BEURTEILUNG.md` gegen die neue `AKTE.md`, beide nach einer Gegenprüfung
+in frischem Kontext und je in einem eigenen Commit. Claude fasst dann
+zusammen, was sich geändert hat, stellt Widersprüche zwischen den
+Unterlagen als Fragen, sagt, was sich an der Einschätzung ändert, und
+bietet an, die nächsten Schritte, die Vorsorge oder den Notfallpass zu
+zeigen, wenn sie sich geändert haben.
 
 Liegt beim Start einer Sitzung die Themenliste eines vergangenen Termins,
 spricht Claude sie von sich aus an.
 
 ## Die Akte prüfen
 
-`/akte-pruefen` bringt eine bestehende Akte auf den aktuellen Stand des
-Plugins und prüft, ob `AKTE.md` und `BEURTEILUNG.md` noch ihren Regeln
-folgen und zueinander passen. Die Prüfung beginnt nur auf diesen Befehl hin,
-nie von selbst. Zuerst arbeitet Claude ein, was noch aussteht, dann nennt
-Claude alle Funde: was berichtigt wird, wonach gefragt wird und was nur
-gemeldet wird.
+Ändert sich das Plugin, folgen ältere Akten nicht mehr den Vorlagen für
+`AKTE.md` und `BEURTEILUNG.md`. Claude sagt das beim Start einer Sitzung,
+gleicht aber nur auf `/einarbeiten` hin an: `AKTE.md` wird dann aus den
+Unterlagen neu gebaut, `BEURTEILUNG.md` an die Vorlage angepasst.
+Ebenso auf Wunsch baut Claude `AKTE.md` neu oder zur Kontrolle ein zweites
+Mal und vergleicht beide Fassungen, etwa mit „/einarbeiten und bau die Akte
+neu“.
 
-Gefragt wird nach Punkten der Erstbefragung, zu denen die Akte nichts sagt,
-etwa der psychischen Verfassung in einer älteren Akte, nach abgelaufenen
-Fristen unter „Offen“ in `AKTE.md` und `BEURTEILUNG.md`, nach Widersprüchen
-und nach Quellen auf Dateien, die es nicht gibt. Die Antworten kommen wie
-jede Angabe nach `unterlagen/historie.md`. Eine abgelehnte Angabe wird als
-„keine Angabe“ vermerkt; danach fragt die Prüfung erst nach zwölf Monaten
-wieder. Aufbau, Form, Doppeltes und Einträge in `BEURTEILUNG.md`, die
-`AKTE.md` nicht mehr trägt, berichtigt Claude ohne Rückfrage, jeweils mit
-Gegenprüfung. Zum Schluss kürzt Claude `BEURTEILUNG.md` auf das, was eine
-künftige Beratung braucht, ohne eine Empfehlung oder Frist zu verlieren.
+Mit „/einarbeiten und prüf die Akte“ prüft Claude außerdem, ob `AKTE.md`
+und `BEURTEILUNG.md` noch ihren Regeln folgen und zueinander passen. Die
+Prüfung beginnt nur auf Wunsch, nie von selbst. Gefragt wird nach Punkten
+der Erstbefragung, zu denen die Akte nichts sagt, etwa der psychischen
+Verfassung in einer älteren Akte, nach abgelaufenen Fristen unter „Offen“
+in `AKTE.md` und `BEURTEILUNG.md`, nach Widersprüchen und nach Quellen auf
+Dateien, die es nicht gibt. Die Antworten kommen wie jede Angabe nach
+`unterlagen/historie.md`. Eine abgelehnte Angabe wird als „keine Angabe“
+vermerkt; danach fragt die Prüfung erst nach zwölf Monaten wieder. Form,
+Doppeltes und Einträge in `BEURTEILUNG.md`, die `AKTE.md` nicht mehr trägt,
+berichtigt Claude ohne Rückfrage, jeweils mit Gegenprüfung. Zum Schluss
+kürzt Claude `BEURTEILUNG.md` auf das, was eine künftige Beratung braucht,
+ohne eine Empfehlung oder Frist zu verlieren.
 
 Die Prüfung selbst liest keine Befunde und keine Literatur und prüft nicht,
 ob Leitlinien noch gelten. Was nur damit zu klären wäre, etwa eine Angabe
 ohne Quelle oder eine Leitlinie ohne Registernummer, meldet sie mit dem,
-was es beheben würde. Wo sie Unterlagen oder Antworten einarbeitet, gilt
-dasselbe wie sonst: Die Gegenprüfung liest die Befunde, auf die sich eine
-geänderte Angabe stützt, und eine Änderung der Medikation wird an der
-Fachinformation geprüft.
+was es beheben würde.
 
 ## Aufbau
 
@@ -186,12 +189,13 @@ Das Plugin im Einzelnen:
   mit dem Stand der Akte in jede Sitzung ein.
 - `skills/` – `neue-information`, `einarbeiten`, `naechste-schritte`,
   `diagnose`, `termin-vorbereiten`, `notfallpass`, `vorsorge`,
-  `akte-aktualisieren`, `beurteilung-aendern`, `gegenpruefen`, `anamnese`,
-  `akte-pruefen`.
+  `beurteilung-aendern`, `anamnese`.
 - `agents/leitlinie.md` – sucht eine Leitlinie oder Studie, prüft ihre
   Gültigkeit, legt sie in `literatur/` ab und gibt zurück, was sie sagt.
 - `agents/vorsorge.md` – stellt den Vorsorgeplan auf und gibt zurück,
   wonach der Benutzer gefragt werden muss.
+- `agents/einarbeitung.md` – arbeitet Unterlagen ein, lässt gegenprüfen,
+  committet; gleicht an die Vorlagen an und prüft die Akte.
 - `agents/akte.md` – baut `AKTE.md` aus `unterlagen/`.
 - `agents/gegenpruefung.md` – prüft eine Änderung an `AKTE.md` oder
   `BEURTEILUNG.md` vor dem Commit gegen ihre Quellen und gegen beide Dateien.

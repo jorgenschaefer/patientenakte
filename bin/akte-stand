@@ -41,7 +41,7 @@ eingearbeitet() {
   git log -1 --format=%h -G '^[0-9a-f]{64}  ' -- "$akte" 2>/dev/null || true
 }
 
-# AKTE.md wird am Ende jedes Baus committet (Skill akte-aktualisieren),
+# AKTE.md wird am Ende jedes Baus committet (Subagent einarbeitung),
 # nicht committete Änderungen stammen also aus einem nicht abgeschlossenen Bau.
 nicht_abgeschlossen() {
   [[ -f $akte && -n $(git status --porcelain -- "$akte" 2>/dev/null) ]]

@@ -17,9 +17,9 @@ oder gleich ist, ob er einen Trend fortsetzt und ob er im Referenzbereich
 bleibt.
 
 1. **Prüfen, ob es hineingehört,** nach der Regel in `regeln.md`.
-   Antworten auf die Fragen des Skills `akte-pruefen` gehören immer hinein,
-   auch unauffällige und Ablehnungen. Sonst trägst du es nicht ein, fragst
-   nicht danach und der Skill endet.
+   Antworten auf die Fragen einer Prüfung im Skill `einarbeiten` gehören
+   immer hinein, auch unauffällige und Ablehnungen. Sonst trägst du es
+   nicht ein, fragst nicht danach und der Skill endet.
 2. **Nachfragen**, was zur Einordnung fehlt, nur soweit es nach dieser Regel
    zählt: Datum, wer was gesagt oder verordnet hat, seit wann, wie stark.
 3. **Ablegen** als Entwurf, ohne Commit:

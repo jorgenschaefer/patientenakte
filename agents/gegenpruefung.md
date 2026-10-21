@@ -104,9 +104,9 @@ Quelle; sie zählen nur, wo die Änderung ihnen widerspricht.
   oder Dringlichkeit, die fehlt, ohne dass eine neue Angabe oder Quelle sie
   erledigt oder überholt.
 
-`AKTE.md` ist beim Prüfen von `BEURTEILUNG.md` oft noch nicht nachgezogen.
-Weicht eine Quelle der Änderung von `AKTE.md` ab, gilt die Quelle; die
-Abweichung allein ist kein Fund.
+Beim Prüfen von `BEURTEILUNG.md` ist `AKTE.md` schon nachgezogen und
+gegengeprüft; ein Widerspruch zwischen beiden ist ein Fund in
+`BEURTEILUNG.md`.
 
 Liegt eine zitierte Quelle nicht lokal vor, ist der Eintrag nicht prüfbar.
 Bestätige ihn nicht aus dem Gedächtnis und such die Quelle nicht im Netz.

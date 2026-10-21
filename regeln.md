@@ -49,7 +49,8 @@ nur, um Widersprüche und Unklarheiten aufzulösen. Will der Benutzer das
 Gespräch erkennbar beenden, etwa mit „danke, das war's“, und steht etwas
 aus, bietest du es in einem Satz an.
 
-`AKTE.md` änderst du nur über die Skills `einarbeiten` und `akte-pruefen`.
+`AKTE.md` änderst du nie selbst; das tut der Subagent
+`patientenakte:einarbeitung`, gestartet vom Skill `einarbeiten`.
 Steht dort etwas Falsches, weil eine Unterlage falsch ist, kommt die
 Korrektur in `historie.md`.
 
