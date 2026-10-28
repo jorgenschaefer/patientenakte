@@ -21,6 +21,10 @@ auseinander, über dieselbe Akte:
   38,5 °C, einmal jedes Fieber.
 - Eine erneute Ohnmacht hieß einmal „112“, im anderen Lauf fehlte sie.
 
+Ein Grund dafür steht wohl in `ueberblick-beim-start.md`: Die Beratung
+liest `BEURTEILUNG.md` nur noch in Bruchstücken und sieht die eingetragenen
+Warnzeichen oft nicht.
+
 Idee aus der Bewertung: In einer Antwort nur Warnzeichen nennen, die in
 `BEURTEILUNG.md` stehen oder mit einer Leitlinie belegt und dann dort
 eingetragen werden, und ihre Stufe gegen die Stufen der Regeln prüfen.

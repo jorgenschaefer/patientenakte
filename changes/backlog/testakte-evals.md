@@ -26,6 +26,16 @@ Abnahme nur durch Lesen geprüft. Offen ist:
 - was der Benutzer erfährt, wenn sie scheitert
   (`agents/akte-nachziehen.md:109`, „Gescheitert“).
 
+Ergänzt aus der Überprüfung von `AKTE.md` und `BEURTEILUNG.md` am
+29.10.2026: Die echten Beratungen liefern Fragen, an denen sich messen
+lässt, ob eine Änderung an Aufbau und Regeln die Beratung verbessert.
+Fünf, sechs davon allgemein gehalten gegen eine Testakte stellen, die so
+groß und so gebaut ist wie eine echte nach einigen Wochen, einmal mit dem
+alten und einmal mit dem neuen Aufbau. Bewertet wird, ob die Antwort
+berücksichtigt, was in der Akte steht: laufende Medikation, Warnzeichen,
+Abgelehntes. Das betrifft `ueberblick-beim-start.md`,
+`beurteilung-nach-problem.md` und `laengenbudget-statt-knapp.md`.
+
 Geklärt am 21.10.2026 mit Claude Code 2.1.306 und einem Test-Agenten, aus
 dem Gespräch und eine Ebene tiefer aus einem anderen Subagenten gestartet:
 `${CLAUDE_PLUGIN_ROOT}` im Text eines Subagenten wird auf beiden Ebenen
