@@ -345,7 +345,8 @@ Prüfdatum steht in `literatur/README.md`.
 1. **Beginn einer Sitzung:** Die Hooks liefern Regeln und Stand,
    `.claude/CLAUDE.md` den Überblick. Stehen neue Unterlagen, Entwürfe
    ohne Commit oder ein nicht abgeschlossener Bau aus, läuft zuerst
-   `einarbeiten`, außer die Akte hat den bisherigen Aufbau.
+   `einarbeiten`, außer der Überblick fehlt oder die Akte hat den
+   bisherigen Aufbau.
 2. **Beratung:** auf Grundlage des Überblicks, der Kapitel, die die Frage
    berühren, und der Angaben aus dem Gespräch, die noch nicht
    eingearbeitet sind. Vor einer Empfehlung prüft `leitlinien-recherche`

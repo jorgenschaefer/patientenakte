@@ -33,7 +33,8 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
      nur, wenn vorher etwas zu tun ist, etwa einen Termin zu buchen; sonst
      eine Zeile, wie viele Punkte ab wann folgen;
    - jeder Punkt: was zu tun ist, bei wem, bis wann, und in einem Satz warum,
-     mit der Quelle aus dem Kapitel (Kurzname und Empfehlungsnummer);
+     mit der Quelle aus dem Kapitel: der Name der Leitlinie aus
+     `literatur/README.md` und die Empfehlungsnummer;
    - danach, was dauerhaft gilt: Übungen, Ernährung, Alltag und die
      Warnzeichen aus dem Überblick mit ihrer Stufe. Neue Warnzeichen an die
      Beurteilung anhängen.
