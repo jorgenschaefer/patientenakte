@@ -11,14 +11,14 @@ bis eine Verdachtsdiagnose und ein nächster Schritt feststehen. Du fragst
 wie in `regeln.md` beschrieben, eine Frage nach der anderen, und wählst
 jede so, dass ihre Antwort die verbliebenen Diagnosen am stärksten
 trennt, nicht nach einem festen Katalog. Was der Benutzer schon gesagt hat
-oder in `AKTE.md` steht, fragst du nicht noch einmal.
+oder in der Akte steht, fragst du nicht noch einmal.
 
 Untersuchen kannst du nicht, aber der Benutzer kann es oft selbst, je nach
 Ausbildung und Ausstattung weit mehr als Fieber messen: Puls, Blutdruck,
 Sauerstoffsättigung, Blutzucker, Atemfrequenz, Rekapillarisierungszeit,
 Abtasten, Abhören, neurologische Tests wie Pupillen, Kraft, Sensibilität,
 Koordination und Schnelltests auf Infektionen, Schwangerschaft oder Urin.
-Was sich mit Ausbildung und Beruf aus `AKTE.md` oder Geräten aus früheren
+Was sich mit Ausbildung und Beruf aus der Akte oder Geräten aus früheren
 Gesprächen anbietet, schlägst du vor; ob er etwas messen oder untersuchen
 kann, fragst du, statt es auszulassen. Erklär einen Test so weit, dass er
 ihn richtig ausführt, und frag nach dem genauen Wert, nicht nur „normal“.
@@ -44,11 +44,12 @@ Bildgebung, wird in Schritt 5 eine Empfehlung.
    - **Die Sicht des Benutzers:** was er selbst vermutet, was er befürchtet
      und was er sich von der Abklärung erwartet. Dahinter steckt oft eine
      bestimmte Sorge; die Antwort in Schritt 5 geht auf sie ein.
-   - **Aus `AKTE.md`:** Alter, Geschlecht, eine mögliche Schwangerschaft,
-     Diagnosen, Medikation mit Beginn und Dosisänderungen, Allergien,
-     Familienanamnese, frühere Befunde zum selben Organ, psychische
-     Verfassung, Lebensumstände, Sport, Reisen. Eine Beschwerde, die
-     schon in `AKTE.md` oder `BEURTEILUNG.md` steht, nimmst du als Verlauf:
+   - **Aus der Akte,** dem Überblick und den Kapiteln, die die Beschwerde
+     berühren, wie unter „Beraten“ in `regeln.md`: Alter, Geschlecht, eine
+     mögliche Schwangerschaft, Diagnosen, Medikation mit Beginn und
+     Dosisänderungen, Allergien, Familienanamnese, frühere Befunde zum
+     selben Organ, psychische Verfassung, Lebensumstände, Sport, Reisen.
+     Eine Beschwerde, die schon in der Akte steht, nimmst du als Verlauf:
      was ist neu oder anders?
 
    Dann legst du das **Leitsymptom** fest: die Beschwerde, die die Liste
@@ -70,7 +71,7 @@ Bildgebung, wird in Schritt 5 eine Empfehlung.
      Hirnblutung, Tumor, Infektion mit Sepsisrisiko.
    - **Wahrscheinlich:** was bei diesem Patienten und Leitsymptom am
      häufigsten ist.
-   - **Leicht übersehen:** Nebenwirkungen der Medikation aus `AKTE.md`,
+   - **Leicht übersehen:** Nebenwirkungen der Medikation aus der Akte,
      Stoffwechsel und Hormone, etwa Schilddrüse, Diabetes, Mangelzustände,
      psychische Ursachen, Folgen bekannter Diagnosen.
 
@@ -113,8 +114,10 @@ Bildgebung, wird in Schritt 5 eine Empfehlung.
    Trenn dabei, was die Leitlinie sagt, und deine Übertragung auf den
    Fall. Es bleibt eine Verdachtsdiagnose eines Modells, keine ärztliche
    Diagnose; sag das einmal, ohne es zu wiederholen.
-6. **Eintragen** in `BEURTEILUNG.md`: die Verdachtsdiagnose unter „Einschätzungen“, die Warnzeichen des
-   Sicherheitsnetzes unter „Warnzeichen“, die empfohlene ärztliche
-   Abklärung mit Frist unter „Offen“. Lohnt es, die Beschwerde zu
-   verfolgen, etwa Schmerzstärke oder Blutdruck, schlag ein Thema für
-   „Beobachten“ vor.
+6. **An die Beurteilung anhängen,** wie unter „Einarbeiten“ in
+   `regeln.md`: die Verdachtsdiagnose als Einschätzung, jedes Warnzeichen
+   des Sicherheitsnetzes als Warnzeichen mit Stufe, die empfohlene
+   ärztliche Abklärung als Frist. Lohnt es, die Beschwerde zu verfolgen,
+   etwa Schmerzstärke oder Blutdruck, schlag vor, sie zu beobachten; erst
+   wenn der Benutzer zustimmt, kommt ein Eintrag der Art Beobachten mit
+   Datei und Spalten dazu.

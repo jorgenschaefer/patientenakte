@@ -10,13 +10,14 @@ Nie in einer echten Akte: Akten enthalten Gesundheitsdaten.
 1. Testakte anlegen:
    - `.claude/skills/run/neue-testakte` gibt den Pfad einer neuen Akte in
      einem temporären Verzeichnis aus: Anamnese, zwei Befunde als Text,
-     `historie.md` mit drei Tagen, die Beurteilung
+     `historie.md` mit vier Tagen, die Beurteilung
      `unterlagen/beurteilung.md` mit einem Tag und eine erfundene
      Leitlinie in `literatur/`, alles committet; der Baum aus `AKTE.md`
      und `kapitel/` fehlt. Die Beurteilung zitiert die Leitlinie mit
      falschen Graden, und zwei ihrer Einträge sind durch `historie.md`
-     überholt. Ein Neubau sollte beides berichtigen. Das Plugin ist dieses
-     Repo.
+     überholt. Ein Neubau sollte beides berichtigen. Dazu
+     `.claude/CLAUDE.md`, die den Überblick in jede Sitzung bringt. Das
+     Plugin ist dieses Repo.
    - Mit `--klein` gibt es danach eine zweite Zeile aus: eine Kopie des
      Plugins mit 2 Seiten je Stapel und 500 Zeichen je Seite, in der die
      Testakte in fünf Stapeln gebaut wird. Änderungen am Repo danach
@@ -33,8 +34,9 @@ Nie in einer echten Akte: Akten enthalten Gesundheitsdaten.
    Diesen Fall in einer interaktiven Sitzung prüfen und das Zurücksetzen
    dort freigeben.
 
-   Der Hook `regeln-einspielen` spielt den Stand ein. Der erste Aufruf baut
-   den Baum neu, weil `AKTE.md` fehlt; ein zweiter mit
+   Die Hooks `regeln-einspielen` und `stand-einspielen` spielen Regeln und
+   Stand ein. Der erste Aufruf baut den Baum neu, weil `AKTE.md` fehlt; ein
+   zweiter mit
    „/einarbeiten und bau die Akte neu“ baut ihn noch einmal und gleicht mit
    der vorigen Fassung ab, „/einarbeiten und kontrollier die Akte“ macht
    die Kontrolle.
@@ -52,6 +54,11 @@ Nie in einer echten Akte: Akten enthalten Gesundheitsdaten.
      Die Wiedervorstellung aus dem Befund des Nachtrags ist überfällig und
      sollte unter den Fristen stehen, auch wenn der Bau ihr Kapitel nicht
      berührt.
+   - Beraten auf dem Baum, nach dem ersten Bau: `claude -p` mit „Welche
+     Übungen für die Rumpfmuskulatur kann ich ins Training einbauen?“. Die
+     Antwort sollte vom Schmerz in der linken Flanke beim Drehen ausgehen,
+     den keine Suche nach den Wörtern der Frage findet, und vorher in ein,
+     zwei Sätzen sagen, was aus der Akte sie trägt, ohne Namen von Dateien.
    - Teilung eines Kapitels: mit `--klein` in der Kopie des Plugins
      `woerter_kapitel` in `bin/akte-stand` auf etwa 250 senken.
 4. Was geschah, zeigen `git log --stat`, `AKTE.md`, `kapitel/`, das Ende

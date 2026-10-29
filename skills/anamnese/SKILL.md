@@ -11,13 +11,13 @@ in `historie.md`.
 
 ## Ablauf
 
-1. In einer neuen Akte zuerst anlegen, was fehlt:
+1. Ist das Verzeichnis kein Git-Repo, abbrechen und auf das README des
+   Plugins verweisen. Sonst in einer neuen Akte zuerst anlegen, was fehlt:
    - `literatur/README.md` aus
      `${CLAUDE_PLUGIN_ROOT}/vorlagen/literatur-README.md`;
-   - das Verzeichnis `unterlagen/`.
-
-   Ist das Verzeichnis kein Git-Repo, abbrechen und auf das README des
-   Plugins verweisen.
+   - das Verzeichnis `unterlagen/`;
+   - `.claude/CLAUDE.md` aus `${CLAUDE_PLUGIN_ROOT}/vorlagen/claude.md`,
+     gleich committet: Sie bringt den Überblick in jede Sitzung.
 2. Vorhandenes sammeln: Was sagen die Befunde in `unterlagen/` und frühere
    Angaben des Benutzers schon zu den Punkten unten? Daraus Vorschläge
    machen, statt neu zu fragen.

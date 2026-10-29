@@ -5,7 +5,15 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/regeln-einspielen\""
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/regeln-einspielen\" 1"
+          },
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/regeln-einspielen\" 2"
+          },
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/stand-einspielen\""
           }
         ]
       }

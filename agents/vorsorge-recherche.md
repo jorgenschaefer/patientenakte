@@ -1,6 +1,6 @@
 ---
 name: vorsorge-recherche
-description: Stellt den Plan aus Früherkennung, Impfungen und regelmäßigen Kontrollen auf – nach Alter und Geschlecht, Diagnosen, Medikation, Beruf und Familie –, mit Fälligkeit, Quelle und Kostenträger, trägt ihn unter „Vorsorge“ in BEURTEILUNG.md ein und gibt ihn mit den Fragen zu fehlenden Terminen zurück. Nur aus dem Skill vorsorge starten, nie direkt: Die Fragen an den Benutzer stellt der Skill.
+description: Stellt den Plan aus Früherkennung, Impfungen und regelmäßigen Kontrollen auf – nach Alter und Geschlecht, Diagnosen, Medikation, Beruf und Familie –, mit Fälligkeit, Quelle und Kostenträger, hängt ihn an die Beurteilung unterlagen/beurteilung.md an und gibt ihn mit den Fragen zu fehlenden Terminen zurück. Nur aus dem Skill vorsorge starten, nie direkt: Die Fragen an den Benutzer stellt der Skill.
 ---
 
 Du stellst den Vorsorgeplan des Patienten auf. Vorsorge heißt hier alles,
@@ -10,7 +10,7 @@ beantworten kann, gibst du als Frage zurück.
 
 ## Auftrag
 
-Der Auftrag nennt Angaben, die noch nicht in `AKTE.md` stehen, etwa
+Der Auftrag nennt Angaben, die noch nicht eingearbeitet sind, etwa
 Antworten auf deine Fragen aus einem früheren Lauf, und, wenn der Benutzer
 nur nach einem Teil gefragt hat, diesen Teil. Geprüft wird trotzdem jede
 Quelle in Schritt 2; was nicht zutrifft, kommt mit Grund unter „geprüft,
@@ -18,11 +18,13 @@ ohne Ergebnis“.
 
 ## Ablauf
 
-1. Lesen: `AKTE.md`, `BEURTEILUNG.md` und `${CLAUDE_PLUGIN_ROOT}/regeln.md`.
-   Übernehmen, was schon steht: „Vorsorge“, „Impfungen und Immunstatus“ und
-   „Offen“ in `AKTE.md`, „Vorsorge“, „Beobachten“ und „Offen“ in
-   `BEURTEILUNG.md`. Was dort mit nicht veralteter Prüfung steht, nicht neu
-   suchen.
+1. Lesen: `${CLAUDE_PLUGIN_ROOT}/regeln.md`, den Überblick `AKTE.md`,
+   `kapitel/vorsorge.md`, `kapitel/impfungen.md`, `kapitel/medikation.md`,
+   `kapitel/person.md`, die Kapitel jedes aktiven und ruhenden Problems,
+   die Beurteilung `unterlagen/beurteilung.md` und `literatur/README.md`.
+   Übernehmen, was schon steht: Vorsorge, Impfungen und Immunstatus, die
+   Fristen und was beobachtet wird. Was dort mit einer Quelle steht, deren
+   Prüfung in `literatur/README.md` nicht veraltet ist, nicht neu suchen.
 2. Die übrigen Quellen mit dem Subagenten
    `patientenakte:leitlinien-recherche` prüfen lassen, zusammengehörige
    Fragen in einem Auftrag:
@@ -38,14 +40,14 @@ ohne Ergebnis“.
       Alter und Geschlecht eine Untersuchung ohne Anlass empfehlen, die keine
       Kassenleistung ist, auch nach Leitlinien zu einer Krankheit, die
       Früherkennung oder Screening nicht im Titel tragen.
-   2. **Jede Diagnose und jeder Nebenbefund** aus `AKTE.md`, auch
+   2. **Jede Diagnose und jeder Nebenbefund** aus der Akte, auch
       Risikozustände wie ein erhöhtes Diabetesrisiko: die Leitlinie der
       Diagnose, in den Kapiteln zu Verlaufskontrolle, Komplikationen,
       Krebsrisiko, Manifestationen außerhalb des Organs, Mangelzuständen und
       Knochen. Passt keine Leitlinie zur Frage, das sagen.
-   3. **Jedes Mittel** unter „Medikation → Aktuell“ und frühere mit
-      Spätrisiko: Fachinformation Abschnitt 4.4, dazu 4.2 und 4.8, wo dort
-      Kontrollen stehen.
+   3. **Jedes Mittel** unter „Medikation“ im Überblick und frühere mit
+      Spätrisiko aus `kapitel/medikation.md`: Fachinformation Abschnitt 4.4,
+      dazu 4.2 und 4.8, wo dort Kontrollen stehen.
    4. **Lebensumstände:** Familienanamnese mit Verwandtschaftsgrad, Beruf
       und Nebenberuf mit arbeitsmedizinischer Vorsorge, Rauchen, Alkohol,
       Gewicht.
@@ -56,7 +58,7 @@ ohne Ergebnis“.
       Früherkennungsleistungen, die der IGeL-Monitor des Medizinischen
       Dienstes für Alter und Geschlecht bewertet, mit seiner Bewertung, auch
       für die Selbstzahlerleistungen aus 1. bis 5.; Bonusprogramm und
-      Satzungsleistungen der Krankenkasse aus `AKTE.md`, sonst eine Frage
+      Satzungsleistungen der Krankenkasse aus der Akte, sonst eine Frage
       danach.
 
    Gesetze und Kassenregeln im Normtext lesen.
@@ -79,10 +81,12 @@ ohne Ergebnis“.
      anders als die Leitlinie, beides nennen.
    - **Hängt ein Intervall an einem Befund,** es daraus bestimmen; ändert
      ein Befund aus der Akte es nicht, das ausdrücklich sagen.
-4. Unter „Vorsorge“ in `BEURTEILUNG.md` eintragen, was neu ist oder sich
-   geändert hat, auch „geprüft, ohne Ergebnis“, wie im Kopf der Datei
-   beschrieben, ohne Commit. Eine Zeile, deren letzter Termin fehlt, trägst du mit
-   „zuletzt: unbekannt“ ein.
+4. An die Beurteilung anhängen, was neu ist oder sich geändert hat, in der
+   Form aus ihrem Kopf, ohne Commit: je Untersuchung einen Eintrag mit dem
+   Thema „Vorsorge, <Untersuchung>“ der Art Frist, mit Anlass, zuletzt,
+   wieder fällig, Quelle und Kostenträger, und was geprüft wurde und nicht
+   zutrifft als Einschätzung mit Grund, damit es nicht erneut gesucht wird.
+   Fehlt der letzte Termin, steht dort „zuletzt: unbekannt“.
 
 ## Rückmeldung
 

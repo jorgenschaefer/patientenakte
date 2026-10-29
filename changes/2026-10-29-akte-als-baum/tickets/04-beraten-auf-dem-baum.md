@@ -3,8 +3,8 @@ criteria:  CRITERIA.md
 closes:    AC-1, AC-6, AC-7, AC-12, AC-18, AC-19, AC-26, AC-30
 advances:  AC-8
 after:     03-einarbeiten-in-den-baum
-status:    ready
-attempts:  0
+status:    done
+attempts:  1
 ---
 
 ## Build
@@ -64,3 +64,34 @@ Security policy sagt „None.“: Eine neue Berechtigung, etwa in den Einstellun
 - Wie viel Raum Warnzeichen einnehmen (Backlog: `warnzeichen-zu-viel-raum`).
 
 ## Left standing
+
+- **Behoben nach der letzten Prüfung, von niemandem geprüft (AC-12, AC-26):** zwei Should-fix-Funde aus der zweiten Runde, beide in `regeln.md`.
+  - Unter „Beginn einer Sitzung“ widersprachen sich zwei Punkte, wenn der Stand neue Unterlagen und zugleich vorbeigegangene Fristen, eine zu lange Datei oder einen Verweis ins Leere meldet. Jetzt gilt: Neue Unterlagen starten das Einarbeiten, außer der Überblick fehlt. Die übrigen Meldungen werden nur genannt, mit dem Vorschlag `/einarbeiten`, außer das Einarbeiten läuft ohnehin.
+  - Ob ein Eintrag der Art Beobachten die Zustimmung des Benutzers braucht, stand an zwei Stellen verschieden. Jetzt gilt: Einschätzungen, Warnzeichen und Fristen kommen ohne Bestätigung an die Beurteilung. Beobachten schlägt die Beratung vor, weil der Benutzer messen muss, und hängt den Eintrag erst an, wenn er zustimmt; so steht es auch im Skill `diagnose`.
+- **Wie Regeln, Stand und Überblick in den Kontext kommen (AC-1, AC-26):** Claude Code übernimmt die Ausgabe eines Hooks nur bis etwa 10.000 Zeichen ganz. Gemessen mit Claude Code 2.1.312: 9.890 Zeichen kamen ganz an, 10.672 wurden auf 2 KB gekürzt. Die Grenze gilt je Hook. Darum:
+  - `hooks/hooks.json` ruft drei Hooks auf: `regeln-einspielen 1` und `regeln-einspielen 2` geben `regeln.md` in zwei Teilen aus, geteilt vor der Überschrift „# Regeln“, und `stand-einspielen` gibt den Stand aus. Die Reihenfolge der drei ist nicht fest; die Regeln sagen darum nicht mehr „am Ende dieser Regeln“.
+  - Der Check hält fest: Jeder Teil hat höchstens 9.500 Zeichen, beide Teile zusammen sind `regeln.md`, der Stand bleibt mit 100 neuen Unterlagen unter der Grenze, und `hooks.json` ruft alle drei auf. Heute hat Teil 1 etwa 5.400 Zeichen und Teil 2 etwa 6.100; das ist Platz für die Regeln, die Ticket 05 für den bisherigen Aufbau braucht.
+  - Den Überblick bringt `.claude/CLAUDE.md` in der Akte mit der Zeile `@../AKTE.md`. Claude Code lädt so auch einen Überblick von 20.000 Zeichen ganz. Die Vorlage ist `vorlagen/claude.md`; mit dem Namen `CLAUDE.md` würde Claude Code sie bei der Arbeit am Plugin selbst laden. Der Skill `anamnese` legt die Datei an und committet sie gleich, das ist ein Commit außerhalb von `einarbeiten`, aber ohne Gesundheitsdaten. Ticket 05 muss sie bei der Umstellung genauso anlegen.
+  - Der Import gilt ab dem Start einer Sitzung und wird danach nicht neu geladen. Darum liest die Beratung `AKTE.md` nach einem Bau in derselben Sitzung einmal neu. In der zweiten Runde las ein Lauf ihn nicht neu; die Antwort stimmte trotzdem, weil die Rückmeldung des Baus den neuen Stand schon enthielt.
+  - Ein sehr großer erster Import mit etwa 200 neuen Unterlagen würde den Stand über die Grenze bringen und kürzen. Das Einarbeiten ruft `akte-stand` dann ohnehin selbst auf.
+- **Entscheidungen (AC-6, AC-12, AC-26):**
+  - Von selbst startet der Start einer Sitzung das Einarbeiten nur bei neuen, geänderten oder entfernten Unterlagen, einem nicht abgeschlossenen Bau und Änderungen ohne Commit in `unterlagen/` oder `literatur/`. Alle übrigen Meldungen werden genannt, mit dem Vorschlag `/einarbeiten`; die Beschreibung des Skills `einarbeiten` verweist dafür auf `regeln.md`.
+  - Die Beratung hängt jede Einschätzung für den Fall, jedes Warnzeichen und jede Frist noch in derselben Antwort an die Beurteilung an. In der ersten Runde hatte die Bedingung „wenn sie für künftige Gespräche zählen“ das Anhängen ganz ausfallen lassen.
+  - `leitlinien-recherche` trägt Quellen nur noch in `literatur/README.md` ein; ob eine Prüfung veraltet ist, steht dort. `vorsorge-recherche` hängt den Plan als Einträge „Vorsorge, <Untersuchung> – Frist“ an die Beurteilung an. Was geprüft wurde und nicht zutrifft, hängt es als Einschätzung an.
+  - Die Zusammenfassung von `einarbeiten` ist auf Deutsch und nennt keine Scripts oder Subagenten (aus dem Left standing von Ticket 03).
+- **Nicht automatisch geprüft (AC-6, AC-7, AC-12, AC-18, AC-19, AC-26, AC-30; Toward AC-8):** Was die Beratung tut, steht in `regeln.md`, `skills/` und `agents/`; kein Test prüft diesen Text. Geprüft wurde in zwei Runden mit der Testakte nach `.claude/skills/run/SKILL.md`, in etwa 20 Sitzungen:
+  - AC-1: Ohne Werkzeuge nannte eine Sitzung alle Probleme, die Allergie, die Medikation, das Warnzeichen mit Stufe, die Fristen und die Regeln.
+  - AC-6: Bei einem neuen Thema las die Beratung genau die passenden Kapitel, bei einer Folgefrage nicht neu. Fehlte ein Kapitel, sagte sie das und schlug `/einarbeiten` vor, aber in drei Sätzen statt einem. Den Abstieg in Unterkapitel zeigte kein Lauf, weil die Testakte keine hat.
+  - AC-7: Die Antwort begann mit dem, was aus der Akte zählt, ohne Namen von Dateien; einmal in vier Sätzen statt ein, zwei. Ohne Angaben in der Akte sagte sie das. Bei 192/116 mit Kopfschmerz kam der Notruf zuerst.
+  - Toward AC-8: Die Testakte hat jetzt einen Schmerz in der linken Flanke beim Drehen (Historie vom 20.10.2025). Auf die Frage nach Übungen für die Rumpfmuskulatur ging die Antwort von ihm aus, ohne dass er genannt wurde.
+  - AC-12: Entwürfe hatten die Form der Vorlage, ohne Commit und ohne Bestätigung, und `/einarbeiten` committete sie nach der Gegenprüfung.
+  - AC-18: Gelaufen sind `naechste-schritte`, `notfallpass`, `termin-vorbereiten`, `diagnose`, `neue-information` und `einarbeiten`. Nicht gelaufen sind `anamnese` (eine ganze Erstbefragung) und `vorsorge` mit `vorsorge-recherche` und `leitlinien-recherche`, weil die Suche im Netz zu teuer ist; dort ist nur der Text geändert.
+  - AC-26: Ohne Überblick sagte die erste Antwort das und schlug `/einarbeiten` vor, in zwei Sätzen am Ende, nach der Dringlichkeit.
+  - AC-19 und AC-30 sind Wortlaut von `regeln.md`. In keinem Lauf entstand ein Gedächtnis, und nichts wurde außerhalb der Testakten geschrieben.
+- **Gesehen in den Läufen, nicht von diesem Ticket:**
+  - Das Einarbeiten committet die Beurteilung vor der Gegenprüfung des Baums. Einmal fand diese danach eine falsche Seitenzahl in einem neuen Eintrag, der schon committet war (Ticket 03).
+  - Ein zweiter Eintrag am selben Tag kam unter die vorhandene Überschrift, mit eigener Zeile für den Anlass.
+  - Eine Frist ohne Datum, ein Warnzeichen der Stufe 3 mit einem Fall „noch heute“, und ein Wechsel zwischen „du“ und „Sie“ (Backlog: `anrede-wechselt`).
+- **Für Ticket 05:** `regeln.md` beschreibt nur den Baum. Eine Akte im bisherigen Aufbau bekommt bis 05 dieselben Regeln, nur mit der Meldung des Stands, dass sie abweicht.
+- **Namen ohne Glossar:** `stand-einspielen` und `vorlagen/claude.md`.
+- **Blast radius:** Der Start jeder Sitzung in jeder Akte läuft über die drei Hooks. Ein Revert stellt den einen Hook wieder her. Eine schon angelegte `.claude/CLAUDE.md` bleibt dann in der Akte; sie lädt weiter nur den Überblick.

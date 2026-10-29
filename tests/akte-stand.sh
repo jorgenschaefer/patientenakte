@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Tests für bin/akte-stand und für den Stand der Akte, den
-# hooks/regeln-einspielen beim Start einer Sitzung ausgibt. Jeder Fall baut
+# Tests für bin/akte-stand und für das, was hooks/regeln-einspielen und
+# hooks/stand-einspielen beim Start einer Sitzung ausgeben. Jeder Fall baut
 # eine Akte in einem eigenen temporären Verzeichnis, das am Ende gelöscht
 # wird.
 #
@@ -21,6 +21,10 @@ nicht_abgeschlossen='AKTE.md oder kapitel/ hat Änderungen ohne Commit aus einem
 auf_dem_stand='AKTE.md und kapitel/ sind auf dem Stand von unterlagen/.'
 bisheriger_aufbau='Die Akte hat den bisherigen Aufbau mit BEURTEILUNG.md und weicht vom neuen Aufbau aus AKTE.md und kapitel/ ab.'
 bisheriger_aufbau_nicht_abgeschlossen='AKTE.md hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist.'
+# Claude Code übernimmt die Ausgabe eines Hooks nur bis etwa 10.000 Zeichen
+# ganz in den Kontext; längere ersetzt es durch ihre ersten 2 KB und den
+# Pfad einer Datei. Gemessen: 9.890 Zeichen ganz, 10.672 gekürzt.
+grenze_hook=9500
 fehler=0
 
 main() {
@@ -48,6 +52,9 @@ main() {
   start_meldet_baum
   start_meldet_fehlenden_ueberblick
   start_meldet_bisherigen_aufbau
+  start_hooks_eingetragen
+  start_regeln_ganz
+  start_stand_unter_der_grenze
   vorlage_eingehalten
   vorlage_abweichend
   vorlage_fristen_ohne_datum
@@ -373,11 +380,51 @@ start_meldet_bisherigen_aufbau() {
     "$(grep -cxF "$bisheriger_aufbau_nicht_abgeschlossen" <<< "$start")"
 }
 
-# Was der Hook beim Start einer Sitzung in der Akte im aktuellen Verzeichnis
-# unter „Stand der Akte“ ausgibt.
+# Was die Tests unten einzeln aufrufen, ruft Claude Code beim Start auf.
+start_hooks_eingetragen() {
+  # shellcheck disable=SC2016 # Die Befehle stehen so in hooks.json.
+  pruefe "Start: alle Hooks in hooks.json" '"${CLAUDE_PLUGIN_ROOT}/hooks/regeln-einspielen" 1
+"${CLAUDE_PLUGIN_ROOT}/hooks/regeln-einspielen" 2
+"${CLAUDE_PLUGIN_ROOT}/hooks/stand-einspielen"' \
+    "$(python3 -c 'import json, sys
+for h in json.load(open(sys.argv[1]))["hooks"]["SessionStart"][0]["hooks"]:
+    print(h["command"])' "$wurzel/hooks/hooks.json")"
+}
+
+# Die Regeln kommen in zwei Hooks; zusammen ohne ihre Kopfzeilen sind sie
+# regeln.md.
+start_regeln_ganz() {
+  neue_akte
+  local teil1 teil2
+  teil1=$(regeln_teil 1)
+  teil2=$(regeln_teil 2)
+  pruefe "Start: Regeln ganz eingespielt" "" \
+    "$(diff <(regeln_teil 1 | sed 1,2d; regeln_teil 2 | sed 1,2d) "$wurzel/regeln.md")"
+  pruefe "Start: Teil 1 der Regeln unter der Grenze eines Hooks" "höchstens $grenze_hook Zeichen" "$(unter_der_grenze "$teil1")"
+  pruefe "Start: Teil 2 der Regeln unter der Grenze eines Hooks" "höchstens $grenze_hook Zeichen" "$(unter_der_grenze "$teil2")"
+}
+
+regeln_teil() { # Nummer
+  CLAUDE_PLUGIN_ROOT=$wurzel CLAUDE_PROJECT_DIR=$PWD "$wurzel/hooks/regeln-einspielen" "$1"
+}
+
+# Die ersten Unterlagen einer großen Akte, alle auf einmal hinzugefügt.
+start_stand_unter_der_grenze() {
+  neue_akte
+  echo Anamnese > unterlagen/anamnese.md
+  local i
+  for ((i = 1; i <= 100; i++)); do
+    echo "$i" > "unterlagen/2025-01-$(printf '%03d' "$i")-arztbrief_klinik-fuer-orthopaedie.pdf"
+  done
+  pruefe "Start: Stand mit 100 neuen Unterlagen unter der Grenze eines Hooks" "höchstens $grenze_hook Zeichen" \
+    "$(unter_der_grenze "$(CLAUDE_PLUGIN_ROOT=$wurzel CLAUDE_PROJECT_DIR=$PWD "$wurzel/hooks/stand-einspielen")")"
+}
+
+# Was der Hook stand-einspielen beim Start einer Sitzung in der Akte im
+# aktuellen Verzeichnis unter „Stand der Akte“ ausgibt.
 start_der_sitzung() {
-  CLAUDE_PLUGIN_ROOT=$wurzel CLAUDE_PROJECT_DIR=$PWD "$wurzel/hooks/regeln-einspielen" |
-    sed '1,/^# Stand der Akte$/d'
+  CLAUDE_PLUGIN_ROOT=$wurzel CLAUDE_PROJECT_DIR=$PWD "$wurzel/hooks/stand-einspielen" |
+    sed '0,/^# Stand der Akte$/d'
 }
 
 # Ein Baum nach den Vorlagen, mit Inhalt, einem Datum der Fristen, Titeln
@@ -846,6 +893,16 @@ pdf() { # Pfad, Seiten
     done
     printf 'trailer<</Root 1 0 R>>\n%%%%EOF\n'
   } > "$1"
+}
+
+unter_der_grenze() { # Ausgabe eines Hooks
+  local n
+  n=$(LC_ALL=C.UTF-8 wc -m <<< "$1")
+  if ((n <= grenze_hook)); then
+    echo "höchstens $grenze_hook Zeichen"
+  else
+    echo "$n Zeichen"
+  fi
 }
 
 neues_verzeichnis() {

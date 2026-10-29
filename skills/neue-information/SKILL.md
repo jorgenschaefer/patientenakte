@@ -1,6 +1,6 @@
 ---
 name: neue-information
-description: Neue Angaben zum Patienten im Gespräch als Entwurf aufnehmen, ohne Commit – einen Befund, einen Laborwert, ein Arztgespräch, eine neue oder veränderte Beschwerde, eine Änderung der Medikation, eine Korrektur, eine Beobachtung zu einem Thema unter „Beobachten“ in BEURTEILUNG.md. Benutzen, wenn der Benutzer etwas mitteilt, das nach der Regel in regeln.md in die Unterlagen gehört. Eingearbeitet wird später mit dem Skill einarbeiten.
+description: Neue Angaben zum Patienten im Gespräch als Entwurf aufnehmen, ohne Commit – einen Befund, einen Laborwert, ein Arztgespräch, eine neue oder veränderte Beschwerde, eine Änderung der Medikation, eine Korrektur, eine Beobachtung zu einem Thema, das laut Beurteilung beobachtet wird. Benutzen, wenn der Benutzer etwas mitteilt, das nach der Regel in regeln.md in die Unterlagen gehört. Eingearbeitet wird später mit dem Skill einarbeiten.
 ---
 
 # Neue Information
@@ -10,8 +10,8 @@ Wortlaut lässt du hier nicht bestätigen und fragst auch nicht, ob noch etwas
 dazukommt; das geschieht gesammelt im Skill `einarbeiten`.
 
 Einen neuen Messwert ordnest du, wann immer du ihn kommentierst, gegen die
-Reihe desselben Parameters ein, aus Befunden unter „Messwerte“ in `AKTE.md`,
-aus einer Messreihe in deren CSV: frühere Werte
+Reihe desselben Parameters ein, aus dem Kapitel `kapitel/messwerte.md` und
+den Befunden dort, aus einer Messreihe in deren CSV: frühere Werte
 mit Datum, Differenz zum letzten Wert in Zahlen, ob er gestiegen, gesunken
 oder gleich ist, ob er einen Trend fortsetzt und ob er im Referenzbereich
 bleibt.
@@ -39,6 +39,7 @@ bleibt.
      Entwurf. Eine Korrektur eines committeten Eintrags ist ein neuer
      Eintrag und nennt den, den sie korrigiert; committete Einträge bleiben
      unverändert.
-   - **Beobachtungen und Messwerte:** als Zeile an die CSV des Themas aus
-     „Beobachten“ anhängen. Fehlt die Datei, sie mit den Spalten von dort
-     als erster Zeile anlegen.
+   - **Beobachtungen und Messwerte:** als Zeile an die CSV des Themas
+     anhängen, das ein Eintrag der Art Beobachten in der Beurteilung
+     `unterlagen/beurteilung.md` nennt. Fehlt die Datei, sie mit den
+     Spalten aus diesem Eintrag als erster Zeile anlegen.

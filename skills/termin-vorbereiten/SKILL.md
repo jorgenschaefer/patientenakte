@@ -7,19 +7,21 @@ description: Erstellt eine Themenliste für einen bevorstehenden Arzt- oder Phys
 
 ## Vorher
 
-1. Aus `AKTE.md` und `BEURTEILUNG.md` sammeln, was in diese Praxis gehört,
-   dazu Offenes anderer Praxen, das sich hier miterledigen lässt.
+1. Aus dem Überblick, den Kapiteln der Probleme, die diese Praxis
+   behandelt, `kapitel/behandelnde.md` und Einträgen der Beurteilung ohne
+   Commit sammeln, was in diese Praxis gehört, dazu Offenes anderer
+   Praxen, das sich hier miterledigen lässt.
 2. `termin-<praxis>-<JJJJ-MM-TT>.md` schreiben:
-   - Kopf: Termin, Stand, „Zusammengestellt aus AKTE.md und BEURTEILUNG.md;
-     Empfehlungen eines Modells, nicht ärztlich bestätigt.“
+   - Kopf: Termin, Stand, „Zusammengestellt aus der Akte; Empfehlungen
+     eines Modells, nicht ärztlich bestätigt.“
    - **Vorher erledigen:** was mitzubringen, abzuholen oder zu klären ist.
    - **Fragen** als Checkliste, Wichtigstes zuerst.
      Jede Frage so formuliert, dass man sie vorlesen kann, mit kurzer
      Begründung und Quelle.
    - **Zur Info für die Praxis:** die für diesen Termin wichtigen Befunde,
      Medikation und Vorgeschichte in wenigen Zeilen. Nur die geltenden
-     Angaben, nie was in `AKTE.md` als überholt steht; Daten wie den Beginn
-     einer Therapie aus `AKTE.md` abschreiben.
+     Angaben, nie was in der Akte als überholt steht; Daten wie den Beginn
+     einer Therapie aus dem Kapitel abschreiben.
 
    Allgemeinverständlich, ohne Abkürzungen, die die Praxis nicht kennt.
    Die Themenliste wird nicht committet.

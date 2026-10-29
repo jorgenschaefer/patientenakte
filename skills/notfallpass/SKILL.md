@@ -9,7 +9,9 @@ Wer den Notfallpass liest, hat keine Zeit: Rettungsdienst, Notaufnahme,
 eine fremde Praxis. Er steht auf dem Sperrbildschirm und soll auf einen
 Handybildschirm passen.
 
-1. Aus `AKTE.md` zusammenstellen, nach den Feldern des Notfallpasses auf
+1. Aus dem Überblick, `kapitel/person.md` und `kapitel/behandelnde.md`
+   zusammenstellen, dazu die Kapitel der Probleme, die im Notfall zählen,
+   nach den Feldern des Notfallpasses auf
    dem Pixel und in deren Reihenfolge, jedes als eigener Block zum
    Kopieren:
    - **Name**
@@ -19,7 +21,7 @@ Handybildschirm passen.
    - **Gewicht**
    - **Allergien:** Auslöser und Reaktion.
    - **Schwangerschaft:** nur, wenn eine besteht, mit Woche.
-   - **Medikamente:** alle aus „Medikation → Aktuell“, auch
+   - **Medikamente:** alle aus „Medikation“ im Überblick, auch
      Bedarfsmedikation und Nahrungsergänzung, je Zeile Präparat, Wirkstoff,
      Dosis und Schema, etwa `Ibuprofen 400 mg (Ibuprofen) – bei Bedarf,
      max. 3×/Tag`. Darüber der Stand.
@@ -30,11 +32,11 @@ Handybildschirm passen.
      Hilfsmittel, die im Notfall zählen (Herzschrittmacher, künstliche
      Herzklappe); Patientenverfügung und Vorsorgevollmacht mit Ort;
      Hausarzt mit Telefonnummer.
-   - **Organspender:** wie in `AKTE.md` festgehalten.
+   - **Organspender:** wie in der Akte festgehalten.
 
-   Nur, was in `AKTE.md` steht, ohne Quellen in eckigen Klammern, und nur
-   die geltenden Angaben, nie was dort als überholt steht. Keine
-   Verneinung, die `AKTE.md` nicht selbst enthält: „keine Allergien“ oder
+   Nur, was in diesen Dateien steht, ohne Quellen in eckigen Klammern, und
+   nur die geltenden Angaben, nie was dort als überholt steht. Keine
+   Verneinung, die die Akte nicht selbst enthält: „keine Allergien“ oder
    „keine Implantate“ nur, wenn es dort so steht; dass etwas fehlt, heißt
    nicht, dass es das nicht gibt. Leere Felder weglassen. Fachbegriffe und
    gängige Abkürzungen sind erlaubt, die Leser sind Fachleute.

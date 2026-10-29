@@ -25,7 +25,8 @@ fi
 
 cd "$akte"
 git init -q
-mkdir unterlagen literatur
+mkdir unterlagen literatur .claude
+cp "$plugin/vorlagen/claude.md" .claude/CLAUDE.md
 cp "$plugin/vorlagen/literatur-README.md" literatur/README.md
 sed -i 's/^|---|---|---|---|---|---|---|$/&\n| testleitlinie-hypertonie.txt | Erfundene Leitlinie für die Testakte | 2024 | 2029 | 10.01.2025 | 10.01.2025 | erfunden |/' literatur/README.md
 
@@ -112,6 +113,9 @@ cat >> unterlagen/beurteilung.md <<'BEURTEILUNG'
 - **Fettstoffwechsel, Lipidkontrolle – Frist:** Lipidkontrolle bis 01.09.2025, wie vom Hausarzt empfohlen. Grund: LDL 162 mg/dl [2025-03-01-labor_hausarzt].
 BEURTEILUNG
 
+# Der Schmerz in der Flanke vom 20.10.2025 trifft eine Frage nach Training
+# für den Rumpf, ohne dass eine Suche nach Rumpf, Training oder Übung ihn
+# findet.
 cat > unterlagen/historie.md <<'HISTORIE'
 # Historie
 
@@ -128,6 +132,10 @@ cat > unterlagen/historie.md <<'HISTORIE'
 - Lipidkontrolle beim Hausarzt erledigt, Befund folgt per Post.
 - Knie nach Physiotherapie fast beschwerdefrei, wieder leichtes Joggen.
 - Grippeimpfung beim Hausarzt angeboten, abgelehnt: möchte dieses Jahr keine.
+
+## 20.10.2025
+
+- Seit dem Umzug Anfang Oktober ziehender Schmerz in der linken Flanke beim Drehen des Oberkörpers und beim Heben; Hausarzt Dr. Beispiel: muskulär, Urinbefund unauffällig, Wärme und vorsichtige Bewegung.
 HISTORIE
 
 git add . && git commit -qm "Testakte angelegt"

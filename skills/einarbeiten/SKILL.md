@@ -1,6 +1,6 @@
 ---
 name: einarbeiten
-description: Arbeitet alles Ausstehende in den Baum der Akte aus Überblick AKTE.md und Kapiteln ein – Entwürfe in unterlagen/ ohne Commit, neue oder geänderte Unterlagen, Einträge der Beurteilung und literatur/ ohne Commit, einen nicht abgeschlossenen Bau, vorbeigegangene Fristen, zu lange Dateien und Verweise ins Leere –, mit gesammelter Bestätigung; Bau, Gegenprüfung und Commits macht der Subagent akte-nachziehen. Benutzen zu Beginn einer Sitzung, wenn etwas aussteht, auf /einarbeiten, wenn der Benutzer das Angebot am Ende des Gesprächs annimmt, und wenn er die Akte an die Vorlagen angleichen, den Baum neu bauen oder kontrollieren oder die Akte prüfen lassen will.
+description: Arbeitet alles Ausstehende in den Baum der Akte aus Überblick AKTE.md und Kapiteln ein – Entwürfe in unterlagen/ ohne Commit, neue oder geänderte Unterlagen, Einträge der Beurteilung und literatur/ ohne Commit, einen nicht abgeschlossenen Bau, vorbeigegangene Fristen, zu lange Dateien und Verweise ins Leere –, mit gesammelter Bestätigung; Bau, Gegenprüfung und Commits macht der Subagent akte-nachziehen. Benutzen zu Beginn einer Sitzung, wenn regeln.md es verlangt, auf /einarbeiten, wenn der Benutzer das Angebot am Ende des Gesprächs annimmt, und wenn er die Akte an die Vorlagen angleichen, den Baum neu bauen oder kontrollieren oder die Akte prüfen lassen will.
 ---
 
 # Einarbeiten
@@ -57,26 +57,26 @@ etwa `unterlagen/anamnese.md` aus dem Skill `anamnese`.
    Prüfsumme zeigt, außer es gibt `.git/akte-bau/schrittweise`. Bricht
    `akte-stand --stapel` ab, entfällt der Satz; das meldet der Subagent,
    und du sagst es in Schritt 5.
-5. **Änderungen nennen,** aus seiner Rückmeldung: was sich im Überblick
-   und in den Kapiteln geändert hat, die neuen Einträge der Beurteilung,
-   alle Funde der Gegenprüfungen, was nur gemeldet ist, die geklärten
-   Widersprüche kurz mit ihrer Quelle. Ist eine Gegenprüfung nicht
-   gelaufen, sagst du das. Dazu nach jedem Bau: was er aus `literatur/` zu
-   einer neuen Angabe aufgenommen hat und welche neuen Einschätzungen
-   daraus folgen; jedes Kapitel, das er geteilt hat; ob der Überblick über
-   seiner Höchstlänge bleibt; und was `akte-stand` danach noch meldet, je
-   in einem Satz: jede Datei über ihrer Höchstlänge, jeden Verweis ins
-   Leere, der sich nicht beheben ließ, und vorbeigegangene Fristen. Nach
-   einem Bau in Stapeln
-   dazu, was die Rückmeldung darüber sagt: die Zahl der Stapel; aus dem
-   Abgleich die Wiederherstellungen oder Berichtigungen, die verworfenen
-   Funde mit Grund und die Stapel, für die er nicht gelaufen ist; ob der
-   vollständige Bau oder die Kontrolle nicht gelaufen ist, mit der Meldung
-   von `akte-stand`; welche PDFs keine bestimmbare Seitenzahl haben und ob
-   `historie.md` oder `beurteilung.md` keine Datumsüberschriften hat.
-   Gibt sie verworfene Änderungen am Baum als Diff wieder, zeigst du ihn und fragst, ob
-   etwas davon eine Angabe ist, die in die Unterlagen gehört. Die Fragen
-   stellst du, wie in `regeln.md` beschrieben.
+5. **Änderungen nennen,** auf Deutsch und ohne Namen von Scripts oder
+   Subagenten, aus seiner Rückmeldung: was sich im Überblick und in den
+   Kapiteln geändert hat, die neuen Einträge der Beurteilung, alle Funde der
+   Gegenprüfungen, was nur gemeldet ist, die geklärten Widersprüche kurz mit
+   ihrer Quelle. Ist eine Gegenprüfung nicht gelaufen, sagst du das. Dazu
+   nach jedem Bau: was er aus `literatur/` zu einer neuen Angabe aufgenommen
+   hat und welche neuen Einschätzungen daraus folgen; jedes Kapitel, das er
+   geteilt hat; ob der Überblick über seiner Höchstlänge bleibt; und was
+   `akte-stand` danach noch meldet, je in einem Satz: jede Datei über ihrer
+   Höchstlänge, jeden Verweis ins Leere, der sich nicht beheben ließ, und
+   vorbeigegangene Fristen. Nach einem Bau in Stapeln dazu, was die
+   Rückmeldung darüber sagt: die Zahl der Stapel; aus dem Abgleich die
+   Wiederherstellungen oder Berichtigungen, die verworfenen Funde mit Grund
+   und die Stapel, für die er nicht gelaufen ist; ob der vollständige Bau
+   oder die Kontrolle nicht gelaufen ist, mit der Meldung von `akte-stand`;
+   welche PDFs keine bestimmbare Seitenzahl haben und ob `historie.md` oder
+   `beurteilung.md` keine Datumsüberschriften hat. Gibt sie verworfene
+   Änderungen am Baum als Diff wieder, zeigst du ihn und fragst, ob etwas
+   davon eine Angabe ist, die in die Unterlagen gehört. Die Fragen stellst
+   du, wie in `regeln.md` beschrieben.
    - Antworten, auch auf die Fragen der Prüfung, und die Angaben, die
      laut Rückmeldung nach `unterlagen/` gehören, nimmst du mit dem Skill
      `neue-information` auf.
