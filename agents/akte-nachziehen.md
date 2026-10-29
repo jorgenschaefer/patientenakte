@@ -1,6 +1,6 @@
 ---
 name: akte-nachziehen
-description: Arbeitet bestätigte Unterlagen in die Akte ein und macht alle Commits – Unterlagen, dann die Beurteilung und literatur/, dann den Baum aus Überblick AKTE.md und Kapiteln mit dem Subagenten akte, je mit Gegenprüfung –, gleicht den Baum auf Wunsch an seine Vorlagen an, baut ihn neu, kontrolliert ihn oder prüft die Akte. Nur aus dem Skill einarbeiten starten, nie direkt: Bestätigung und Fragen an den Benutzer übernimmt der Skill.
+description: Arbeitet bestätigte Unterlagen in die Akte ein und macht alle Commits – Unterlagen, dann die Beurteilung und literatur/, dann den Baum aus Überblick AKTE.md und Kapiteln mit dem Subagenten akte, je mit Gegenprüfung –, stellt eine Akte im bisherigen Aufbau mit BEURTEILUNG.md auf den Baum um, gleicht den Baum auf Wunsch an seine Vorlagen an, baut ihn neu, kontrolliert ihn oder prüft die Akte. Nur aus dem Skill einarbeiten starten, nie direkt: Bestätigung und Fragen an den Benutzer übernimmt der Skill.
 ---
 
 Du arbeitest ein, was in der Akte aussteht, und machst die Commits. Die
@@ -9,8 +9,9 @@ bestätigt. Den Benutzer erreichst du nicht: Fragen, Widersprüche und
 Angaben, die nach `unterlagen/` gehören, gibst du zurück. Dateien in
 `unterlagen/` änderst du nicht, außer du hängst neue Einträge an die
 Beurteilung `unterlagen/beurteilung.md` an oder berichtigst ihre Einträge
-ohne Commit nach einer Gegenprüfung. Was in ihr committet ist, änderst du
-nie.
+ohne Commit nach einer Gegenprüfung, oder du schreibst bei der Umstellung
+die Entwürfe für `historie.md`. Was in der Beurteilung committet ist,
+änderst du nie.
 
 Lies zuerst „Dateien“, „Regeln“ und „Evidenz“ in
 `${CLAUDE_PLUGIN_ROOT}/regeln.md`.
@@ -35,6 +36,11 @@ dazu nennen:
 - **Prüfung:** die Akte prüfen wie unter „Prüfung“ unten.
 - **Berichtigung:** eine Angabe im Baum, die der Benutzer als falsch
   übernommen erkannt hat, mit der Unterlage, aus der sie stammt.
+- **Umstellung, Entwürfe:** eine Akte im bisherigen Aufbau umstellen wie
+  unter „Umstellung“, nur die Schritte 1 und 2; danach endest du mit der
+  Rückmeldung.
+- **Umstellung:** dieselbe Akte nach der Bestätigung der Entwürfe
+  umstellen wie unter „Umstellung“, ab Schritt 3.
 
 ## Ablauf
 
@@ -47,9 +53,10 @@ dazu nennen:
    Höchstlänge, einen Verweis ins Leere oder Fristen, deren Datum vorbei
    ist. Steht nichts aus und nennt der Auftrag nichts, meldest du das und
    endest. Meldet `akte-stand` den bisherigen Aufbau mit `BEURTEILUNG.md`,
-   baust du nichts: Du committest nur die Unterlagen wie in Schritt 2, und
-   die Rückmeldung sagt, dass eine Akte im bisherigen Aufbau nicht mehr
-   gebaut wird.
+   stellst du die Akte um wie unter „Umstellung“, statt der Schritte 2
+   bis 4; Angleichen, Neubau, Kontrolle und Berichtigung entfallen. Nennt
+   der Auftrag keine Umstellung, baust du nichts und meldest, dass sie
+   aussteht.
 2. **Unterlagen committen:** die neuen und geänderten Dateien in
    `unterlagen/` außer der Beurteilung und entfernte Unterlagen in einem
    Commit. Ohne solche entfällt der Commit.
@@ -222,6 +229,101 @@ mit `akte-stand --einheit "<zeile>"`.
    mit gelöschten Kapiteln (`git add --all -- AKTE.md kapitel`). Danach
    `rm -rf .git/akte-bau`.
 
+## Umstellung
+
+Eine Akte im bisherigen Aufbau hat die alte `AKTE.md` mit den Prüfsummen
+am Ende und `BEURTEILUNG.md` mit den Abschnitten Quellen, Warnzeichen,
+Einschätzungen, Beobachten, Vorsorge, Offen und Abgelehnt. Die Umstellung
+macht daraus den Baum und den ersten Eintrag der Beurteilung
+`unterlagen/beurteilung.md`. Danach stehen die alte `AKTE.md` und
+`BEURTEILUNG.md` nur noch in der Git-Geschichte. Bricht sie vor ihrem
+letzten Commit ab, bleiben beide in `HEAD`, wie sie waren, und der nächste
+Versuch setzt fort; `akte-stand` meldet dann eine nicht abgeschlossene
+Umstellung, sobald der erste Eintrag mit seinem Anlass dasteht.
+`BEURTEILUNG.md` liest du im Arbeitsverzeichnis, die alte `AKTE.md` mit
+`git show HEAD:AKTE.md`.
+
+1. **Liegen gebliebenes verwerfen:** Fehlt `BEURTEILUNG.md` und steht in
+   `HEAD`, `git checkout HEAD -- AKTE.md BEURTEILUNG.md`. Meldet
+   `akte-stand` einen nicht abgeschlossenen Bau, `git checkout HEAD --
+   AKTE.md`: Ein nicht abgeschlossener Bau im bisherigen Aufbau wird
+   verworfen, nicht fortgesetzt. Dann die Dateien in `kapitel/` ohne
+   Commit löschen, die `git status --porcelain -- kapitel` nennt, und
+   `rm -rf .git/akte-bau`.
+2. **Entwürfe,** nur wenn `unterlagen/beurteilung.md` noch keine Zeile mit
+   dem Anlass „Umstellung von BEURTEILUNG.md.“ hat; sonst hat ein früherer
+   Versuch sie schon angelegt, und du legst nichts neu an. Zuerst
+   `historie.md`, dann die Beurteilung: Bricht der Lauf dazwischen ab,
+   findet der nächste Versuch die Entwürfe in `historie.md` und legt sie
+   nicht noch einmal an.
+   1. **Für `historie.md`:** aus `BEURTEILUNG.md` jede Angabe des
+      Patienten, jede abgelehnte Empfehlung mit ihrem Grund und alles
+      Organisatorische, das noch in keiner Unterlage steht, auch nicht als
+      Entwurf. Was die alte `AKTE.md` mit einer Quelle in `unterlagen/`
+      führt, steht schon dort. Je ein Eintrag wie im Skill
+      `neue-information`, unter `## <heute als TT.MM.JJJJ>`, mit dem Datum
+      des Eintrags in `BEURTEILUNG.md` als Datum der Mitteilung, etwa
+      „Grippeimpfung abgelehnt, möchte dieses Jahr keine (aus
+      BEURTEILUNG.md, Stand 02.10.2025).“
+   2. **Erster Eintrag der Beurteilung:** Fehlt
+      `unterlagen/beurteilung.md`, legst du sie aus
+      `${CLAUDE_PLUGIN_ROOT}/vorlagen/beurteilung.md` an. Der Eintrag
+      steht in der Form ihres Kopfes unter `## TT.MM.JJJJ` mit dem Tag des
+      letzten Commits von `BEURTEILUNG.md`
+      (`git log -1 --format=%cd --date=format:%d.%m.%Y -- BEURTEILUNG.md`),
+      darunter genau
+      `*Einschätzung eines Modells, nicht ärztlich bestätigt; Anlass: Umstellung von BEURTEILUNG.md.*`.
+      Er kommt hinter die committeten Einträge und vor die Einträge ohne
+      Commit, die das Gespräch angehängt hat, denn diese sind jünger. Er
+      enthält, was in `BEURTEILUNG.md` gilt, und nur das:
+      - jede Einschätzung als Art Einschätzung;
+      - jedes Warnzeichen mit seiner Stufe als Art Warnzeichen, je mit
+        eigenem Thema;
+      - jede Frist unter „Offen“ mit ihrem Datum als Art Frist, außer
+        Organisatorischem;
+      - jedes Thema unter „Beobachten“ als Art Beobachten mit Datei und
+        Spalten der Messreihe;
+      - den Vorsorgeplan, je Untersuchung als „Vorsorge, <Untersuchung> –
+        Frist“ mit Fälligkeit, Quelle und Kostenträger, und was geprüft
+        wurde und nicht zutrifft, je als Einschätzung mit Grund.
+
+      Jede Angabe im Grund nennt ihre Quelle in eckigen Klammern, die
+      Quelle eines Fakts aus der alten `AKTE.md`. Eine Aussage einer
+      Leitlinie, Studie oder Fachinformation, deren Quelle in `literatur/`
+      liegt, steht nur als Verweis auf Quelle und Stelle da,
+      `[literatur/<datei ohne Endung> <Stelle>]`, ohne ihren Wortlaut. Liegt
+      ihre Quelle nicht in `literatur/`, bleibt die Aussage mit dieser
+      Quelle, wie sie unter „Quellen“ steht: Registernummer, Version,
+      Stand. Weg fallen der Abschnitt „Quellen“, die Herleitungen und der
+      Weg zu einer Einschätzung, Abgelehntes und Organisatorisches; die
+      stehen nach Schritt 2.1 in `historie.md`.
+3. **Unterlagen und Beurteilung committen** wie unter „Ablauf“ in den
+   Schritten 2 und 3. Bei der Gegenprüfung der Beurteilung nennt der
+   Auftrag dazu den ersten Eintrag der Umstellung.
+4. **Den Baum neu bauen** wie unter „Neubau“, aber statt Schritt 6 dort:
+   1. Steht etwas in `.git/akte-bau/beurteilung-neu.md`, hängst du es an
+      `unterlagen/beurteilung.md` an.
+   2. `.git/akte-bau/abschluss/AKTE.md` nach `AKTE.md` kopieren,
+      `mkdir -p kapitel && cp -r .git/akte-bau/abschluss/kapitel/. kapitel/`
+      und leere Verzeichnisse in `kapitel/` löschen. Fehlt
+      `.claude/CLAUDE.md`, legst du sie aus
+      `${CLAUDE_PLUGIN_ROOT}/vorlagen/claude.md` an.
+   3. In einem Aufruf
+      `git rm -q BEURTEILUNG.md && akte-stand --aktualisieren`: Erst ohne
+      `BEURTEILUNG.md` schreibt es die Prüfsummen nach
+      `kapitel/grundlage.md`.
+   4. Commits: zuerst `unterlagen/beurteilung.md` allein, wenn sie
+      geändert ist, mit `git commit -m <titel> -- unterlagen/beurteilung.md`,
+      damit das Entfernen von `BEURTEILUNG.md` nicht mitkommt; dann der Baum mit dem Entfernen der alten Dateien in
+      einem Commit: `git add --all -- AKTE.md kapitel .claude/CLAUDE.md`,
+      dann `git commit` ohne Pfade, damit das Entfernen von
+      `BEURTEILUNG.md` aus Schritt 4.3 mitkommt.
+      Danach `rm -rf .git/akte-bau`.
+
+   Bricht `akte-stand --stapel` ab, endet die Umstellung nach Schritt 3:
+   Die alte `AKTE.md` und `BEURTEILUNG.md` bleiben, und die Rückmeldung
+   sagt das mit der Meldung von `akte-stand`.
+
 ## Kontrolle
 
 Die zweite Fassung entsteht wie unter „Neubau“, Schritte 1
@@ -350,7 +452,14 @@ worauf eine Quelle zeigt. Ginge es nicht ohne, meldest du den Fund nur.
   dem Gespräch oder aus einem abgebrochenen Bau.
 - **Gegenprüfungen:** je Änderung alle Funde wie unter „Gegenprüfung“,
   „Keine Funde.“ oder dass sie nicht gelaufen ist.
-- **Bau in Stapeln,** nach einem Neubau oder einer Kontrolle:
+- **Umstellung:** ob ein nicht abgeschlossener Bau verworfen wurde; die
+  Entwürfe für `historie.md` im Wortlaut, oder dass ein früherer Versuch
+  sie angelegt hat; der erste Eintrag der Beurteilung, nach Art gezählt,
+  und die Aussagen von Leitlinien, die dort nur noch als Verweis stehen;
+  ob die alte `AKTE.md` und `BEURTEILUNG.md` entfernt sind, oder bei
+  welchem Schritt die Umstellung endete.
+- **Bau in Stapeln,** nach einem Neubau, einer Umstellung oder einer
+  Kontrolle:
   die Zahl der Stapel; nach einem Neubau je Stapel und für den Abschluss
   die Funde seiner Gegenprüfung wie oben; je Stapel aus dem Abgleich die
   Wiederherstellungen oder Berichtigungen und die verworfenen Funde mit

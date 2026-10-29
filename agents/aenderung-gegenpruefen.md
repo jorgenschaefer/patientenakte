@@ -1,6 +1,6 @@
 ---
 name: aenderung-gegenpruefen
-description: Prüft in frischem Kontext gegen ihre Quellen, ohne etwas zu ändern, eine noch nicht committete Änderung am Baum aus Überblick AKTE.md und Kapiteln, an einem Zwischenstand eines Neubaus des Baums oder an der Beurteilung unterlagen/beurteilung.md, jeweils mit den neuen Einträgen der Beurteilung; prüft den Abschluss eines Neubaus; gleicht nach einem Neubau oder einer Kontrolle den neuen Baum mit dem vorigen ab. Wird vor jedem Commit am Baum und an der Beurteilung, nach jedem Stapel und nach dem Abschluss gestartet.
+description: Prüft in frischem Kontext gegen ihre Quellen, ohne etwas zu ändern, eine noch nicht committete Änderung am Baum aus Überblick AKTE.md und Kapiteln, an einem Zwischenstand eines Neubaus des Baums oder an der Beurteilung unterlagen/beurteilung.md, jeweils mit den neuen Einträgen der Beurteilung; prüft den ersten Eintrag einer Umstellung gegen BEURTEILUNG.md; prüft den Abschluss eines Neubaus; gleicht nach einem Neubau oder einer Kontrolle den neuen Baum mit dem vorigen ab. Wird vor jedem Commit am Baum und an der Beurteilung, nach jedem Stapel und nach dem Abschluss gestartet.
 tools: Read, Bash, Grep, Glob
 ---
 
@@ -53,7 +53,12 @@ Nennt der Auftrag die **Beurteilung**, ist die Änderung
 Modell im Gespräch angehängt hat, dazu die Änderungen in `literatur/`
 ohne Commit, die `git status --porcelain -- literatur` nennt. Quellen sind
 die Unterlagen und die Stellen in `literatur/`, die ein neuer Eintrag
-zitiert, und der Baum im Hauptverzeichnis, wie er committet ist.
+zitiert, und der Baum im Hauptverzeichnis, wie er committet ist. Nennt der
+Auftrag dazu den ersten Eintrag einer Umstellung, mit dem Anlass
+„Umstellung von BEURTEILUNG.md.“, sind seine Quellen `BEURTEILUNG.md` im
+Arbeitsverzeichnis und die alte `AKTE.md`, gelesen mit
+`git show HEAD:AKTE.md`, beide ganz, dazu `literatur/README.md` und die
+Dateinamen in `literatur/`; einen Baum gibt es dann noch nicht.
 
 Bei einem **Abgleich mit der vorigen Fassung** nennt der Auftrag die neue
 Fassung des Baums als Verzeichnis, die Einheiten eines Stapels als Quellen,
@@ -192,7 +197,8 @@ Kapitel:
 Gespräch angehängten, sonst die aus der Datei im Auftrag, mindestens:
 
 - eine Änderung an Einträgen, die schon committet sind, oder neue Einträge
-  anderswo als am Ende der Datei;
+  anderswo als am Ende der Datei; nur der erste Eintrag einer Umstellung
+  steht vor den Einträgen aus dem Gespräch;
 - ein Eintrag, dem Datum, Kennzeichnung als Einschätzung eines Modells,
   Thema, Art, Grund oder Quellen fehlen, oder einer nicht in der Form, die
   der Kopf der Vorlage vorgibt;
@@ -207,6 +213,23 @@ Gespräch angehängten, sonst die aus der Datei im Auftrag, mindestens:
   oder einer, der einen Eintrag nennt, den es nicht gibt;
 - bei einem Bau ein Kapitel, das statt des neuen Eintrags noch den
   abgelösten nennt.
+
+**Der erste Eintrag einer Umstellung,** gegen `BEURTEILUNG.md`, dazu:
+
+- eine Einschätzung, ein Warnzeichen, eine Frist unter „Offen“, ein Thema
+  unter „Beobachten“ oder ein Punkt des Vorsorgeplans, auch was dort
+  geprüft wurde und nicht zutrifft, das im Eintrag fehlt oder inhaltlich
+  abweicht, etwa in Stufe, Datum, Datei oder Spalten;
+- etwas im Eintrag, das in `BEURTEILUNG.md` nicht steht;
+- eine Aussage einer Quelle, die in `literatur/` liegt, mit ihrem
+  Wortlaut statt nur dem Verweis auf Quelle und Stelle, oder ohne diesen
+  Verweis; eine Aussage, deren Quelle nicht in `literatur/` liegt, ohne
+  ihre Quelle aus „Quellen“;
+- im Eintrag eine Herleitung, der Abschnitt „Quellen“, Abgelehntes,
+  Organisatorisches oder eine Angabe des Patienten;
+- eine Angabe des Patienten, eine Ablehnung oder Organisatorisches aus
+  `BEURTEILUNG.md`, die weder in `unterlagen/` steht, auch nicht als
+  Entwurf, noch in der alten `AKTE.md` mit Quelle.
 
 Liegt eine zitierte Quelle nicht lokal vor, ist der Eintrag nicht prüfbar.
 Bestätige ihn nicht aus dem Gedächtnis und such die Quelle nicht im Netz.

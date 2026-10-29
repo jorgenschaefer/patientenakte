@@ -21,6 +21,7 @@ nicht_abgeschlossen='AKTE.md oder kapitel/ hat Änderungen ohne Commit aus einem
 auf_dem_stand='AKTE.md und kapitel/ sind auf dem Stand von unterlagen/.'
 bisheriger_aufbau='Die Akte hat den bisherigen Aufbau mit BEURTEILUNG.md und weicht vom neuen Aufbau aus AKTE.md und kapitel/ ab.'
 bisheriger_aufbau_nicht_abgeschlossen='AKTE.md hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist.'
+umstellung_nicht_abgeschlossen='Eine Umstellung auf den neuen Aufbau ist nicht abgeschlossen.'
 # Claude Code übernimmt die Ausgabe eines Hooks nur bis etwa 10.000 Zeichen
 # ganz in den Kontext; längere ersetzt es durch ihre ersten 2 KB und den
 # Pfad einer Datei. Gemessen: 9.890 Zeichen ganz, 10.672 gekürzt.
@@ -41,6 +42,8 @@ main() {
   bisheriger_aufbau_eingearbeitet
   bisheriger_aufbau_auf_dem_stand
   bisheriger_aufbau_nicht_abgeschlossen
+  umstellung_begonnen
+  umstellung_beurteilung_entfernt
   ueberblick_fehlt
   ueberblick_hoechstlaenge
   kapitel_hoechstlaenge
@@ -49,6 +52,7 @@ main() {
   fristen_vorbei
   fristen_ohne_datum
   zwischenstand_pruefen
+  zwischenstand_bei_der_umstellung
   start_meldet_baum
   start_meldet_fehlenden_ueberblick
   start_meldet_bisherigen_aufbau
@@ -207,6 +211,37 @@ bisheriger_aufbau_nicht_abgeschlossen() {
 $bisheriger_aufbau_nicht_abgeschlossen" "$("$stand")"
 }
 
+# Die Umstellung legt als Erstes den ersten Eintrag der Beurteilung an, mit
+# diesem Anlass; ein Eintrag aus dem Gespräch zählt nicht.
+umstellung_begonnen() {
+  alte_akte
+  echo Anamnese > unterlagen/anamnese.md && git add unterlagen && git commit -qm anamnese
+  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  printf '# Beurteilung\n\n## 01.03.2025\n\n*Einschätzung eines Modells, nicht ärztlich bestätigt; Anlass: Gespräch über das Knie.*\n' > unterlagen/beurteilung.md
+  pruefe "Umstellung: Eintrag aus dem Gespräch ist kein Beginn" 0 "$("$stand" | grep -cxF "$umstellung_nicht_abgeschlossen")"
+  printf '\n*Einschätzung eines Modells, nicht ärztlich bestätigt; Anlass: Umstellung von BEURTEILUNG.md.*\n' >> unterlagen/beurteilung.md
+  pruefe "Umstellung begonnen, ohne Commit" "$bisheriger_aufbau
+$umstellung_nicht_abgeschlossen
+Eingearbeitet bis Commit $(git rev-parse --short HEAD).
+neu: unterlagen/beurteilung.md" "$("$stand")"
+  git add unterlagen && git commit -qm beurteilung
+  pruefe "Umstellung begonnen, committet" 1 "$("$stand" | grep -cxF "$umstellung_nicht_abgeschlossen")"
+  pruefe "Start: Umstellung nicht abgeschlossen" 1 "$(start_der_sitzung | grep -cxF "$umstellung_nicht_abgeschlossen")"
+}
+
+# Die Umstellung entfernt BEURTEILUNG.md vor dem Commit des Baums; bricht
+# sie dazwischen ab, bleibt es der bisherige Aufbau, aber die Prüfsummen
+# kommen schon nach kapitel/grundlage.md.
+umstellung_beurteilung_entfernt() {
+  alte_akte
+  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  git rm -q BEURTEILUNG.md
+  pruefe "Umstellung: BEURTEILUNG.md nur in HEAD ist bisheriger Aufbau" 1 "$("$stand" | grep -cxF "$bisheriger_aufbau")"
+  "$stand" --aktualisieren
+  pruefe "Umstellung: Prüfsummen in kapitel/grundlage.md, AKTE.md unverändert" "1 0" \
+    "$(grep -c '^[0-9a-f]\{64\}  unterlagen/a.md$' kapitel/grundlage.md) $(git diff --name-only -- AKTE.md | wc -l)"
+}
+
 ueberblick_fehlt() {
   neues_verzeichnis
   git init -q
@@ -340,6 +375,17 @@ zwischenstand_pruefen() {
 kapitel/messwerte.md hat 1501 Wörter, mehr als die Höchstlänge von 1500.
 Verweis ins Leere in AKTE.md: kapitel/knie.md
 Die Überschrift der Fristen in AKTE.md nennt kein Datum als TT.MM.JJJJ: ## Fristen bis TT.MM.JJJJ" "$("$stand")"
+}
+
+# Der Neubau bei der Umstellung prüft seinen Zwischenstand als Baum, obwohl
+# HEAD noch BEURTEILUNG.md hat.
+zwischenstand_bei_der_umstellung() {
+  alte_akte
+  mkdir -p .git/akte-bau/abschluss/kapitel
+  cd .git/akte-bau/abschluss || return
+  printf '# Akte\n\n[Knie](kapitel/knie.md)\n' > AKTE.md
+  pruefe "Zwischenstand bei der Umstellung" "AKTE.md und kapitel/ sind auf dem Stand von unterlagen/.
+Verweis ins Leere in AKTE.md: kapitel/knie.md" "$("$stand")"
 }
 
 start_meldet_baum() {

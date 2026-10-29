@@ -17,7 +17,7 @@ der Sitzung neben diesen Regeln einspielt.
   nicht abgeschlossenen Bau, oder haben `unterlagen/` oder `literatur/`
   Änderungen ohne Commit (`git status --short`), führst du den Skill
   `einarbeiten` aus, bevor du auf die Nachricht eingehst, außer der
-  Überblick fehlt.
+  Überblick fehlt oder die Akte hat den bisherigen Aufbau.
 - Schiebt der Benutzer das Einarbeiten auf, berätst du bei einem nicht
   abgeschlossenen Bau auf Grundlage der committeten Fassung,
   `git show HEAD:AKTE.md` und ebenso der Kapitel. Unterlagen, die der Stand
@@ -73,6 +73,28 @@ Einträge in `historie.md`. Will er das Gespräch erkennbar beenden, etwa mit
 „danke, das war's“, und steht etwas aus, bietest du es in einem Satz an.
 `AKTE.md` und `kapitel/` änderst du nie selbst. Steht dort etwas Falsches,
 weil eine Unterlage falsch ist, kommt die Korrektur in `historie.md`.
+
+# Bisheriger Aufbau
+
+Meldet der Stand den bisherigen Aufbau mit `BEURTEILUNG.md`, gilt bis zur
+Umstellung:
+
+- Statt Überblick und Kapiteln liest du vor der ersten beratenden Antwort
+  die alte `AKTE.md` und `BEURTEILUNG.md` ganz; meldet der Stand einen
+  nicht abgeschlossenen Bau oder eine nicht abgeschlossene Umstellung,
+  ihre committete Fassung mit `git show HEAD:AKTE.md` und
+  `git show HEAD:BEURTEILUNG.md`. Ein Eintrag der Beurteilung
+  `unterlagen/beurteilung.md` gilt vor einem älteren in `BEURTEILUNG.md`.
+- `AKTE.md` und `BEURTEILUNG.md` änderst du nie. Neue Angaben und
+  Einträge der Beurteilung schreibst du wie unter „Einarbeiten“; fehlt
+  `unterlagen/beurteilung.md`, legst du sie vorher aus der Vorlage des
+  Plugins an:
+  `cp "$(dirname "$(readlink -f "$(command -v akte-stand)")")/../vorlagen/beurteilung.md" unterlagen/`.
+- Beim Start arbeitest du nichts von selbst ein, auch nicht neue
+  Unterlagen oder Entwürfe. Deine erste Antwort sagt in einem Satz, dass
+  `/einarbeiten` die Akte zuerst auf den neuen Aufbau umstellt, bei einer
+  nicht abgeschlossenen Umstellung, dass es sie fortsetzt, und schlägt es
+  vor.
 
 # Dateien
 

@@ -4,20 +4,24 @@
 #
 # Arbeitet im aktuellen Verzeichnis, das die Akte sein muss. Eine Akte mit
 # BEURTEILUNG.md hat den bisherigen Aufbau: Dort stehen die Prüfsummen am
-# Ende von AKTE.md, und es gibt keinen Baum zu prüfen.
+# Ende von AKTE.md, und es gibt keinen Baum zu prüfen. Ebenso eine Akte, in
+# der eine Umstellung BEURTEILUNG.md entfernt, aber noch nicht committet hat.
 #
 #   akte-stand                  listet neue, geänderte und entfernte Dateien,
 #                               davor den Commit, mit dem die Prüfsummen
 #                               zuletzt committet wurden; meldet einen nicht
 #                               abgeschlossenen Bau, also Änderungen ohne
 #                               Commit an AKTE.md oder in kapitel/, und den
-#                               bisherigen Aufbau. Im neuen Aufbau meldet es
+#                               bisherigen Aufbau, dort auch eine Umstellung,
+#                               die nicht abgeschlossen ist. Im neuen Aufbau
+#                               meldet es
 #                               auch einen fehlenden Überblick, Überblick und
 #                               Kapitel über ihrer Höchstlänge, Verweise ins
 #                               Leere und abgelaufene Fristen des Überblicks
 #   akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in
 #                               kapitel/grundlage.md, im bisherigen Aufbau
-#                               ans Ende von AKTE.md
+#                               ans Ende von AKTE.md, solange es
+#                               BEURTEILUNG.md gibt
 #   akte-stand --vorlage        meldet, ob der Überblick oder ein Kapitel im
 #                               Gerüst von seiner Vorlage in vorlagen/
 #                               abweicht; im bisherigen Aufbau nichts
@@ -51,6 +55,9 @@ kapitel=kapitel
 # Die Prüfsummen des Baums. Sie stehen nicht im Überblick, weil der in
 # jeder Sitzung ganz im Kontext ist; grundlage.md ist kein Kapitel.
 grundlage=$kapitel/grundlage.md
+# Die Zeile unter der Überschrift des ersten Eintrags, den die Umstellung
+# aus BEURTEILUNG.md an die Beurteilung anhängt (Subagent akte-nachziehen).
+umstellung_anlass='; Anlass: Umstellung von BEURTEILUNG.md.*'
 # Ein Überblick nennt das Ende seiner Fristen in dieser Überschrift.
 fristen='^## Fristen bis ([0-9]{2})\.([0-9]{2})\.([0-9]{4})[[:space:]]*$'
 
@@ -63,6 +70,13 @@ bisheriger_aufbau=
 if [[ -f BEURTEILUNG.md ]]; then
   bisheriger_aufbau=1
   grundlage=$akte
+elif [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] &&
+  git cat-file -e HEAD:BEURTEILUNG.md 2>/dev/null; then
+  # Die Umstellung entfernt BEURTEILUNG.md kurz vor dem Commit des Baums und
+  # schreibt dazwischen die Prüfsummen schon nach kapitel/grundlage.md. Ihre
+  # Zwischenstände in .git/akte-bau/ liegen außerhalb des Arbeitsverzeichnisses
+  # und werden als Baum geprüft.
+  bisheriger_aufbau=1
 fi
 
 aktuell() {
@@ -116,7 +130,7 @@ aktualisieren() {
       !weg
     ' "$grundlage" > "$grundlage.tmp"
     mv "$grundlage.tmp" "$grundlage"
-  elif [[ -n $bisheriger_aufbau ]]; then
+  elif [[ $grundlage == "$akte" ]]; then
     if [[ ! -f $akte ]]; then
       echo "$akte fehlt." >&2
       exit 1
@@ -462,6 +476,9 @@ case "${1:-}" in
     offen=
     if [[ -n $bisheriger_aufbau ]]; then
       echo "Die Akte hat den bisherigen Aufbau mit BEURTEILUNG.md und weicht vom neuen Aufbau aus $akte und $kapitel/ ab."
+      if [[ -f $beurteilung ]] && grep -qF "$umstellung_anlass" "$beurteilung"; then
+        echo "Eine Umstellung auf den neuen Aufbau ist nicht abgeschlossen."
+      fi
     fi
     if nicht_abgeschlossen; then
       offen=1

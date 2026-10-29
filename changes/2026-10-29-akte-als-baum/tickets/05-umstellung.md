@@ -3,8 +3,8 @@ criteria:  CRITERIA.md
 closes:    AC-8, AC-15, AC-16, AC-21, AC-22, AC-29, AC-31
 advances:
 after:     04-beraten-auf-dem-baum
-status:    ready
-attempts:  0
+status:    done
+attempts:  1
 ---
 
 ## Build
@@ -50,3 +50,28 @@ Security policy sagt „None.“: Eine neue Berechtigung, etwa in den Einstellun
 - Eine große erfundene Testakte mit festen Fragen, um Änderungen an der Beratung zu messen (Backlog: `testakte-evals`).
 
 ## Left standing
+
+- **Behoben nach der letzten Prüfung, von niemandem geprüft (AC-16, AC-22):** zwei Should-fix-Funde aus der zweiten Runde.
+  - Bei der Umstellung committet Schritt 4.4 in `agents/akte-nachziehen.md` die Beurteilung jetzt mit `-- unterlagen/beurteilung.md`. Sonst käme das schon vorgemerkte Entfernen von `BEURTEILUNG.md` in diesen Commit statt in den Commit des Baums. Bräche die Umstellung zwischen den beiden Commits ab, hätte `HEAD` dann die alte `AKTE.md` ohne `BEURTEILUNG.md`, und `akte-stand` erkännte den bisherigen Aufbau nicht mehr.
+  - `neue-testakte --bisherig` legt als Entwurf aus dem Gespräch jetzt einen Eintrag zur Flanke an statt zum Knie. Bisher hängte `nachtrag` denselben Eintrag zum Knie ein zweites Mal an. Das Einarbeiten wollte die Kopie dann mit `git checkout` zurücknehmen, und das lehnt der Auto-Modus ab.
+- **Nicht automatisch geprüft (AC-8, AC-15, AC-16, AC-22, AC-29, AC-31):** Was die Umstellung tut, steht als Text für ein Modell in `regeln.md`, `skills/einarbeiten` und `agents/`. Automatisch geprüft wird nur `bin/akte-stand`: die gemeldete nicht abgeschlossene Umstellung, eine Akte, in der die Umstellung `BEURTEILUNG.md` schon entfernt, aber noch nicht committet hat, und der Zwischenstand, der während der Umstellung als Baum geprüft wird. Die übrigen Kriterien wurden in zwei Prüfrunden mit Testakten nach `.claude/skills/run/SKILL.md` geprüft, Schritt 4, mit drei Umstellungen:
+  - AC-31: Vor der Umstellung las die Beratung die alte `AKTE.md` und `BEURTEILUNG.md`, arbeitete nichts ein, schlug `/einarbeiten` vor und hängte Einschätzungen an `unterlagen/beurteilung.md` an, ohne Commit.
+  - AC-15: Der erste Eintrag stand vor dem Eintrag aus dem Gespräch und enthielt alle verlangten Arten. Empfehlung 3.2 der Testleitlinie stand nur noch als Verweis da, die Aussage der STIKO mit Wortlaut und Quelle. Der Abschnitt „Quellen“ und die Herleitungen fielen weg. Drei Entwürfe kamen nach `historie.md`: Ibuprofen, die Ablehnung des Statins und das Organisatorische, nicht die Grippeimpfung, die dort schon steht.
+  - AC-16: Nach dem ersten `/einarbeiten`, das bei der Bestätigung des Wortlauts endete, meldete der nächste Start die nicht abgeschlossene Umstellung. Ein zweites `/einarbeiten` ließ `historie.md` und `beurteilung.md` Byte für Byte gleich. Einmal brach ein Lauf mitten im Bau ab, weil das Werkzeug des Prüfers ihn nach zehn Minuten beendete. Der nächste Lauf setzte fort, ohne etwas doppelt anzulegen. Nicht gezeigt ist das Verwerfen eines liegen gebliebenen Baus (unter „Not here“).
+  - AC-29: `BEURTEILUNG.md` und die alte `AKTE.md` wurden im selben Commit entfernt wie der Baum angelegt wurde. `.git/akte-bau/` war danach gelöscht, `.claude/CLAUDE.md` angelegt, und `akte-stand` meldete nur noch den Stand.
+  - AC-22: Mit `woerter_kapitel` bei etwa drei Vierteln des Kapitels zur Hypertonie teilten `nachtrag` und `/einarbeiten` drei Kapitel in Unterkapitel. Danach meldete `akte-stand` keinen Verweis ins Leere.
+  - AC-8, nur teilweise gezeigt: Die Antwort auf eine Frage zur Physio nannte den Schmerz in der linken Flanke als Grundlage, begann aber mit einer Einschätzung der Dringlichkeit zum Knie. Grund war ein Eintrag „Knieschmerzen wieder da“, den eine frühere Testfrage desselben Laufs an die Beurteilung gehängt hatte. Eine Frage nach Amoxicillin ging von der Penicillinallergie aus, eine zur Grippeimpfung von der Hypertonie und der Ablehnung im Vorjahr. Auf eine Frage nach Ibuprofen gab es nur die Dringlichkeit zum Knie, keine Antwort. Abgenommen wird AC-8 in der Akte des Benutzers (unter „Not here“).
+- **Nicht geprüft (AC-15):** Bricht die Umstellung vor der Bestätigung ab und folgt eine neue Sitzung, erkennt `einarbeiten` die Entwürfe der Umstellung nur an ihrem Wortlaut, etwa „(aus BEURTEILUNG.md, Stand …)“. Nur dann schlägt es sie nicht zum Streichen vor. Gelaufen ist nur der Weg mit `--continue` in derselben Sitzung.
+- **Abweichung (Context, `akte-stand`):** Eine Akte gilt auch dann als bisheriger Aufbau, wenn `BEURTEILUNG.md` nur noch in `HEAD` steht. Das tritt ein, wenn die Umstellung die Datei schon entfernt, aber noch nicht committet hat. Die Prüfsummen schreibt `--aktualisieren` in diesem Fall schon nach `kapitel/grundlage.md`. Außerhalb des Arbeitsverzeichnisses, etwa in einem Zwischenstand unter `.git/akte-bau/`, gilt das nicht. Sonst würde ein Abbruch kurz vor dem letzten Commit wie ein liegen gebliebener Bau im neuen Aufbau aussehen.
+- **Entscheidungen, die teuer zu ändern sind:**
+  - Den Beginn einer Umstellung erkennt `akte-stand` an der Zeile „Anlass: Umstellung von BEURTEILUNG.md.“ in `unterlagen/beurteilung.md`. Daran erkennt die Umstellung auch, dass sie ihren ersten Eintrag und die Entwürfe schon angelegt hat. Die Meldung lautet „Eine Umstellung auf den neuen Aufbau ist nicht abgeschlossen.“.
+  - Der erste Eintrag trägt das Datum des letzten Commits von `BEURTEILUNG.md`. Er steht hinter den committeten Einträgen und vor denen aus dem Gespräch, denn diese sind jünger.
+  - `einarbeiten` startet `akte-nachziehen` bei der Umstellung zweimal: mit „Umstellung, Entwürfe“ vor der Bestätigung und mit „Umstellung“ danach.
+  - Die Beratung kennt `CLAUDE_PLUGIN_ROOT` nicht; gemessen mit `echo` in `claude -p`. Darum findet die Regel für den bisherigen Aufbau die Vorlage der Beurteilung über den Pfad von `akte-stand` im `PATH`.
+- **Glossar (AC-21):** `UBIQUITOUS_LANGUAGE.md` entstand ohne die Rückfragen, die der Skill `ubiquitous-language` vorsieht, weil der Lauf ohne Benutzer lief. Zu bestätigen sind:
+  - die Namen, die frühere Tickets offen ließen: Abschluss, Zwischenstand, Aufgehoben, die Namen der übergreifenden Kapitel;
+  - die Namen aus diesem Ticket: Umstellung, „bisheriger Aufbau“, „Abgleich mit der vorigen Fassung“, „Stand der Akte“;
+  - die Aliase, die vermieden werden sollen: „Akte“ für `AKTE.md` und „Diagnose“ für ein Problem.
+
+  Abweichend vom Format des Skills stehen in Klammern die deutschen Namen aus dem Code, denn das Plugin benennt seinen Code auf Deutsch. `stand-einspielen` und `vorlagen/claude.md` sind Dateinamen, keine Begriffe der Akte, und stehen nicht im Glossar.
+- **Blast radius:** Jedes `/einarbeiten` in einer Akte im bisherigen Aufbau stellt sie um und entfernt `AKTE.md` und `BEURTEILUNG.md`. Ein Revert des Plugins holt die Dateien nicht zurück, die Akte hat sie dann nur noch in ihrer Git-Geschichte. Auch der erste Eintrag der Beurteilung und die Entwürfe in `historie.md` bleiben. Zurück in den bisherigen Aufbau kommt eine Akte nur mit Git in der Akte selbst.
