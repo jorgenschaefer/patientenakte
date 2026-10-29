@@ -3,8 +3,8 @@ criteria:  CRITERIA.md
 closes:    AC-2, AC-3, AC-13, AC-14, AC-20, AC-28
 advances:  AC-9, AC-10, AC-11, AC-12, AC-17, AC-18, AC-27, AC-29, AC-33
 after:     01-akte-stand-baum
-status:    ready
-attempts:  0
+status:    done
+attempts:  1
 ---
 
 ## Build
@@ -88,3 +88,35 @@ Security policy sagt „None.“: Eine neue Berechtigung, etwa in den Einstellun
 - Wie viel Raum Warnzeichen einnehmen (Backlog: `warnzeichen-zu-viel-raum`).
 
 ## Left standing
+
+- **Behoben nach der letzten Prüfung, von niemandem geprüft (AC-2, AC-12, AC-13):** Drei Should-fix-Funde und zwei Nits aus der zweiten Runde.
+  - Welcher Eintrag der Beurteilung gilt: Ein späterer Eintrag löst einen früheren nur ab, wenn Thema und Art gleich sind. „Aufgehoben“ nennt Art und Datum des Eintrags, den es aufhebt. Mehrere Warnzeichen oder Fristen zu einem Problem bekommen je ein eigenes Thema, etwa „Hypertonie, Blutdruckkrise“. Das steht jetzt gleich in `vorlagen/beurteilung.md`, `vorlagen/kapitel.md`, `agents/akte.md` und `agents/aenderung-gegenpruefen.md`.
+  - Der Status eines Problems folgt jetzt aus allen Fakten des Kapitels, nicht nur aus der letzten Unterlage. Eine offene Behandlung, Abklärung oder Frist aus jeder Unterlage macht es aktiv. Eine frühere Operation oder Erkrankung, die keine Unterlage als fortbestehend nennt, ist abgeschlossen.
+  - Die Testakte hat jetzt einen ruhenden Heuschnupfen und eine abgeschlossene Appendektomie. Die Form ihrer Einträge passt zur Vorlage.
+- **Nicht automatisch geprüft (AC-2, AC-3, AC-13, AC-14, AC-20, AC-28; Toward AC-12, AC-17, AC-27, AC-29, AC-33):** Was der Neubau schreibt, steht in den Agenten und ist Text für ein Modell; kein Test prüft es. Geprüft wurde es in drei Läufen der Testakte nach `.claude/skills/run/SKILL.md`, einer davon mit `--klein` in fünf Stapeln. Die Läufe zeigten:
+  - Im Hauptverzeichnis stehen nur `AKTE.md`, `kapitel/`, `unterlagen/` und `literatur/`; die Kapitel sind committet.
+  - Die falschen Grade der Leitlinie sind nach `literatur/` berichtigt, und die Zusammenfassung nennt das.
+  - Die überholten Einträge sind als neue Einträge an `unterlagen/beurteilung.md` angehängt und vor dem Baum committet.
+  - Die abgelehnte Impfung steht im Kapitel Impfungen.
+  - Ein zweiter Neubau gleicht mit der vorigen Fassung ab, und `.git/akte-bau/` ist danach gelöscht.
+
+  Automatisch geprüft wird nur `bin/akte-stand`.
+- **Nicht vorgeführt (AC-9, AC-10, AC-11, AC-18):** Die Testakte ist zu klein, um ein Kapitel zu teilen, den Überblick über seine Höchstlänge zu bringen oder einen Verweis ins Leere zu reparieren. Die Regeln dafür stehen in `agents/akte.md` unter „Höchstlängen“ und „Verweise“, aber kein Lauf hat sie gebraucht. Die Erstbefragung mit `anamnese` lief nicht; geändert ist dort nur der Text: keine `BEURTEILUNG.md`, am Ende der Baum.
+- **Abweichung (Context, Beurteilung):** Der Neubau hängt nicht nur geänderte Einschätzungen an, sondern im Abschluss auch Einträge der Art „Aufgehoben“, wenn eine Einschätzung gar nicht mehr gilt, etwa nach einer erledigten Frist. Sonst bliebe sie in der Beurteilung gültig, weil diese nie umgeschrieben wird.
+- **Entscheidungen, auf die 03, 04 und 05 bauen:**
+  - Die Beurteilung ist `unterlagen/beurteilung.md` nach `vorlagen/beurteilung.md`. Ein Eintrag steht unter `## TT.MM.JJJJ`, darunter die kursive Zeile `*Einschätzung eines Modells, nicht ärztlich bestätigt; Anlass: …*`, dann je Eintrag eine Zeile `- **Thema – Art:** Inhalt. Grund: …`. Die Arten sind Einschätzung, Warnzeichen, Frist, Beobachten und Aufgehoben.
+  - `akte-stand --stapel` und `--einheit` teilen die Beurteilung an diesen Überschriften. Am selben Tag kommt sie nach `historie.md`.
+  - Die Vorlage für Kapitel ist `vorlagen/kapitel.md`, mit den Abschnitten Fakten, Literatur, Einschätzungen, Abgelehnt und Unterkapitel. Der Status steht unter dem Hinweis.
+  - Die übergreifenden Kapitel sind genau diese: `person`, `behandelnde`, `medikation`, `psyche`, `gynaekologie`, `impfungen`, `vorsorge` und `messwerte`.
+  - So nennt eine Angabe ihre Quelle: `[literatur/<datei ohne Endung> <Stelle>]` und `[beurteilung TT.MM.JJJJ]`.
+  - `akte-stand --vorlage` vergleicht den Überblick und jedes Kapitel ohne seinen Titel. Das Datum der Fristen zählt dabei nicht mit. Im bisherigen Aufbau meldet es nichts.
+  - Der Neubau arbeitet in `.git/akte-bau/stapel-N/` und `.git/akte-bau/abschluss/` und schreibt die neuen Einträge in `.git/akte-bau/beurteilung-neu.md`. Er committet zuerst die Beurteilung, dann `AKTE.md` und `kapitel/` zusammen.
+  - `vorlagen/BEURTEILUNG.md` ist gelöscht, auch weil es auf Dateisystemen ohne Groß- und Kleinschreibung mit `vorlagen/beurteilung.md` zusammenfiele. Der Name `vorlagen/AKTE.md` bleibt, mit der Vorlage für den Überblick.
+- **Für 03 (AC-17, AC-18):** Ein neues Problem bekommt beim Neubau keine erste Einschätzung und keine Warnzeichen. Der Neubau sucht keine Literatur und legt keine neuen Themen an. Eine neue Akte hat darum nach der Erstbefragung leere Abschnitte für Einschätzungen und Warnzeichen, bis 03 oder 04 sie füllt. Bis 03 gilt außerdem:
+  - Der schrittweise Bau committet noch „`AKTE.md` allein“.
+  - „Kontrolle“ und „Prüfung“ in `agents/akte-nachziehen.md` beschreiben noch den bisherigen Aufbau.
+  - `skills/einarbeiten` nennt in seiner Zusammenfassung an den Benutzer noch `BEURTEILUNG.md`.
+
+  Eine Akte im bisherigen Aufbau wird nicht mehr gebaut: Ihre Unterlagen werden nur committet. Der Branch sollte darum als Ganzes landen.
+- **Namen ohne Glossar:** Abschluss (der letzte Schritt eines Neubaus), Zwischenstand, die Art „Aufgehoben“ und die Namen der übergreifenden Kapitel. Sie sind zu bestätigen, wenn 05 das Glossar schreibt.
+- **Blast radius:** Wer `/einarbeiten` in einer Akte im bisherigen Aufbau aufruft, bekommt keinen Bau mehr, bis 05 die Umstellung bringt. Ein Revert stellt `vorlagen/BEURTEILUNG.md` und die alte Vorlage wieder her. Akten, die schon als Baum gebaut sind, bleiben dabei, wie sie sind, ebenso Einträge, die schon an `unterlagen/beurteilung.md` angehängt sind.

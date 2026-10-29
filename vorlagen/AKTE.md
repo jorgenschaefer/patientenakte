@@ -1,66 +1,33 @@
 # Akte
 
-*Aktueller Stand aus unterlagen/. Nur Fakten mit Quelle; Bewertungen stehen in BEURTEILUNG.md.*
+*Überblick über die Akte: was in jeder Beratung gelten muss, und je Problem eine Zeile mit Verweis auf sein Kapitel in kapitel/. Geschrieben beim Einarbeiten aus unterlagen/, literatur/ und der Beurteilung unterlagen/beurteilung.md; ältere Fassungen stehen nur in der Git-Geschichte.*
 
-*Jede Angabe endet mit ihrer Quelle in eckigen Klammern: ein Befund mit seinem Dateinamen in unterlagen/ ohne Endung, sonst [historie TT.MM.JJJJ] mit dem Datum der Mitteilung oder [anamnese]. Veränderliche Angaben tragen „Stand: TT.MM.JJJJ“. Was hinter einer Angabe als „überholt“ steht, gilt nicht mehr. Fehlt etwas, heißt das nicht, dass es das nicht gibt.*
+*Jede Angabe endet mit ihrer Quelle in eckigen Klammern wie in den Kapiteln. Veränderliche Angaben tragen „Stand: TT.MM.JJJJ“. Fehlt etwas, heißt das nicht, dass es das nicht gibt.*
 
-## Stammdaten
+## Probleme, Vorerkrankungen und Operationen
 
-## Ziele und Vorlieben
-
-*Was der Patient erreichen oder vermeiden möchte.*
-
-## Behandelnde Ärzte und Therapeuten
-
-## Diagnosen und Nebenbefunde
-
-*Je mit Beginn, letztem relevantem Befund und, wenn eine Unterlage es nennt, seit wann ausgeheilt.*
-
-## Medikation
-
-### Aktuell
-
-*Wirkstoff, Präparat, Dosis, Schema, verordnet von, Fristen.*
-
-### Früher
-
-*Wirkstoff, Zeitraum, Grund für das Ende.*
+*Je Problem eine Zeile: Name, Stand in wenigen Worten, Datum, Status (aktiv, ruhend oder abgeschlossen) und Verweis auf das Kapitel. Abgeschlossenes kann zu einer Zeile mit Verweis zusammengefasst werden.*
 
 ## Allergien und Unverträglichkeiten
 
-## Psychische Verfassung
+*Alle, je mit Reaktion.*
 
-*Stimmung, Antrieb, Ängste, Belastungen, frühere Psychotherapie, je mit Datum.*
+## Medikation
 
-## Gynäkologie und Schwangerschaft
+*Die ganze aktuelle Medikation: Wirkstoff, Präparat, Dosis, Schema, Stand. Frühere Mittel stehen im Kapitel Medikation.*
 
-## Impfungen und Immunstatus
+## Was die Wahl oder Dosis eines Mittels ändert
 
-## Vorsorge
+*Etwa Nieren- und Leberfunktion mit dem letzten Wert, Alter, Gewicht, Schwangerschaft oder Stillzeit.*
 
-*Früherkennung, Check-up, Zahnarzt, Augenarzt, Betriebsarzt, Kontrollen wegen einer Erkrankung, je mit Datum und Ergebnis.*
+## Warnzeichen
 
-## Lebensumstände
+*Alle Warnzeichen aus der Beurteilung, die gelten, je mit der Stufe aus den Regeln und dem Grund.*
 
-*Beruf, Wohnsituation, Hilfsmittel, Genussmittel, Sport, Familienanamnese.*
+## Fristen bis TT.MM.JJJJ
 
-## Messwerte
+*Was bis zu diesem Datum fällig ist, auch Überfälliges, je mit Datum und Verweis auf das Kapitel. Das Datum liegt vier Wochen nach dem Bau; spätere Fristen stehen in den Kapiteln.*
 
-*Je Parameter aus den Befunden eine Zeile mit Referenzbereich und allen Werten, älteste zuerst, je mit Quelle. Zu jeder Messreihe, was sie misst und in welcher Datei sie steht.*
+## Übergreifende Kapitel
 
-## Verlauf
-
-*Wichtige Ereignisse, je eine Zeile, chronologisch.*
-
-## Offen
-
-*Ärztlich veranlasst oder empfohlen oder vom Patienten geplant, noch nicht erledigt; Termine.*
-
-## Grundlage
-
-*Prüfsummen der eingearbeiteten Unterlagen, geschrieben von `akte-stand --aktualisieren`.*
-
-<!-- akte-stand: Anfang -->
-```
-```
-<!-- akte-stand: Ende -->
+*Je Kapitel eine Zeile mit Verweis.*

@@ -26,8 +26,23 @@ fi
 cd "$akte"
 git init -q
 mkdir unterlagen literatur
-cp "$plugin/vorlagen/BEURTEILUNG.md" BEURTEILUNG.md
 cp "$plugin/vorlagen/literatur-README.md" literatur/README.md
+sed -i 's/^|---|---|---|---|---|---|---|$/&\n| testleitlinie-hypertonie.txt | Erfundene Leitlinie für die Testakte | 2024 | 2029 | 10.01.2025 | 10.01.2025 | erfunden |/' literatur/README.md
+
+cat > literatur/testleitlinie-hypertonie.txt <<'LEITLINIE'
+Erfundene Leitlinie für die Testakte des Plugins patientenakte.
+Keine echte Empfehlung.
+
+3 Zielwerte
+
+Empfehlung 3.2: Bei Erwachsenen unter 65 Jahren soll ein Praxisblutdruck
+unter 140/90 mmHg angestrebt werden.
+Empfehlungsgrad A, Evidenzniveau 1a, starker Konsens.
+
+Empfehlung 3.3: Wird der Zielwert nach vier Wochen nicht erreicht, sollte
+die Therapie intensiviert werden.
+Empfehlungsgrad B, Evidenzniveau 2b, Konsens.
+LEITLINIE
 
 cat > unterlagen/anamnese.md <<'ANAMNESE'
 # Anamnese
@@ -43,6 +58,8 @@ cat > unterlagen/anamnese.md <<'ANAMNESE'
 
 ## Vorerkrankungen
 - Arterielle Hypertonie seit 2019
+- Heuschnupfen seit der Kindheit, seit Jahren ohne Beschwerden und ohne Behandlung
+- Appendektomie 2005
 
 ## Medikamente
 - Ramipril 5 mg 1-0-0
@@ -80,6 +97,21 @@ cat > unterlagen/2025-03-01-labor_hausarzt.md <<'BEFUND'
 Empfehlung: Lipidkontrolle in 6 Monaten.
 BEFUND
 
+# Die Beurteilung zitiert Empfehlung 3.2 mit falschen Graden, und zwei
+# ihrer Einträge sind durch historie.md überholt: Ein Neubau berichtigt die
+# Grade nach literatur/ und hängt neue Einschätzungen an.
+cp "$plugin/vorlagen/beurteilung.md" unterlagen/beurteilung.md
+cat >> unterlagen/beurteilung.md <<'BEURTEILUNG'
+
+## 01.03.2025
+
+*Einschätzung eines Modells, nicht ärztlich bestätigt; Anlass: Laborbefund vom 01.03.2025.*
+
+- **Hypertonie – Einschätzung:** Ziel ist ein Praxisblutdruck unter 140/90 mmHg; mit Ramipril 5 mg ist keine Änderung nötig. Grund: Hypertonie seit 2019, Ramipril 5 mg [anamnese]; Empfehlung 3.2, Empfehlungsgrad B, Evidenzniveau 2 [literatur/testleitlinie-hypertonie Empfehlung 3.2].
+- **Hypertonie, Blutdruckkrise – Warnzeichen:** Blutdruck über 180/110 mmHg mit Kopfschmerz, Sehstörung oder Brustschmerz – Notruf 112. Grund: hypertensiver Notfall möglich [anamnese].
+- **Fettstoffwechsel, Lipidkontrolle – Frist:** Lipidkontrolle bis 01.09.2025, wie vom Hausarzt empfohlen. Grund: LDL 162 mg/dl [2025-03-01-labor_hausarzt].
+BEURTEILUNG
+
 cat > unterlagen/historie.md <<'HISTORIE'
 # Historie
 
@@ -95,6 +127,7 @@ cat > unterlagen/historie.md <<'HISTORIE'
 
 - Lipidkontrolle beim Hausarzt erledigt, Befund folgt per Post.
 - Knie nach Physiotherapie fast beschwerdefrei, wieder leichtes Joggen.
+- Grippeimpfung beim Hausarzt angeboten, abgelehnt: möchte dieses Jahr keine.
 HISTORIE
 
 git add . && git commit -qm "Testakte angelegt"

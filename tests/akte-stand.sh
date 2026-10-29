@@ -44,11 +44,14 @@ main() {
   verweise_ins_leere
   fristen_vorbei
   fristen_ohne_datum
+  zwischenstand_pruefen
   start_meldet_baum
   start_meldet_fehlenden_ueberblick
   start_meldet_bisherigen_aufbau
   vorlage_eingehalten
   vorlage_abweichend
+  vorlage_fristen_ohne_datum
+  vorlage_bisheriger_aufbau
   stapel_einer
   stapel_geschnitten
   stapel_bilder
@@ -60,11 +63,15 @@ main() {
   stapel_historie_vorab
   stapel_seitenzahl_unbekannt
   stapel_historie_ohne_ueberschrift
+  stapel_beurteilung_tage
+  stapel_beurteilung_ohne_ueberschrift
   stapel_ohne_pdfinfo
   stapel_ohne_pdf_ohne_pdfinfo
   stapel_grenzen_einstellbar
   einheit_tage
   einheit_vorab
+  einheit_beurteilung
+  einheit_ohne_beurteilung
   einheit_falscher_aufruf
   einheit_ohne_historie
   einheit_ohne_abschnitt
@@ -313,6 +320,21 @@ Die Überschrift der Fristen in AKTE.md nennt kein Datum als TT.MM.JJJJ: ## Fris
 Die Fristen in AKTE.md reichen bis 01.01.2000; das Datum ist vorbei." "$("$stand")"
 }
 
+# Der Neubau prüft seinen Zwischenstand unter .git/akte-bau/ mit akte-stand
+# in dessen Verzeichnis: Höchstlängen, Verweise und Fristen wie im Baum.
+zwischenstand_pruefen() {
+  neue_akte
+  bauen
+  mkdir -p .git/akte-bau/stapel-1/kapitel
+  cd .git/akte-bau/stapel-1 || return
+  printf '# Akte\n\n[Knie](kapitel/knie.md)\n\n## Fristen bis TT.MM.JJJJ\n' > AKTE.md
+  woerter 1501 > kapitel/messwerte.md
+  pruefe "Zwischenstand prüfen" "AKTE.md und kapitel/ sind auf dem Stand von unterlagen/.
+kapitel/messwerte.md hat 1501 Wörter, mehr als die Höchstlänge von 1500.
+Verweis ins Leere in AKTE.md: kapitel/knie.md
+Die Überschrift der Fristen in AKTE.md nennt kein Datum als TT.MM.JJJJ: ## Fristen bis TT.MM.JJJJ" "$("$stand")"
+}
+
 start_meldet_baum() {
   neue_akte
   echo Anamnese > unterlagen/anamnese.md
@@ -358,31 +380,54 @@ start_der_sitzung() {
     sed '1,/^# Stand der Akte$/d'
 }
 
+# Ein Baum nach den Vorlagen, mit Inhalt, einem Datum der Fristen, Titeln
+# der Kapitel und einem Unterkapitel; dazu Prüfsummen und eine Beurteilung,
+# die nicht verglichen werden.
 vorlage_eingehalten() {
-  neues_verzeichnis
-  cp "$wurzel/vorlagen/AKTE.md" "$wurzel/vorlagen/BEURTEILUNG.md" .
-  mkdir unterlagen && echo eins > unterlagen/a.md
-  "$stand" --aktualisieren
-  sed -i '/^## Allergien/a\
-\
-- Penicillin: Exanthem [anamnese]' AKTE.md
-  sed -i '/^## Warnzeichen/,/^## /{/^\*/a\
-\
-- 01.01.2026 – Fieber über 39 °C – noch heute
-}' BEURTEILUNG.md
+  baum_nach_vorlage
   pruefe "Vorlage eingehalten" "" "$("$stand" --vorlage)"
 }
 
 vorlage_abweichend() {
+  baum_nach_vorlage
+  sed -i '/^## Warnzeichen/,/^## Fristen/{/^## Fristen/!d}' AKTE.md
+  sed -i 's/^\*Was der Patient abgelehnt hat.*/*Abgelehnt.*/' kapitel/knie/meniskus.md
+  echo '## Verlauf' >> kapitel/medikation.md
+  pruefe "Vorlage nicht eingehalten" "AKTE.md weicht von der Vorlage ab.
+kapitel/knie/meniskus.md weicht von der Vorlage ab.
+kapitel/medikation.md weicht von der Vorlage ab." "$("$stand" --vorlage)"
+}
+
+# Die Überschrift der Fristen nennt ein Datum; ohne Datum weicht sie ab.
+vorlage_fristen_ohne_datum() {
+  baum_nach_vorlage
+  sed -i 's/^## Fristen bis .*/## Fristen/' AKTE.md
+  pruefe "Fristen ohne Datum weichen von der Vorlage ab" "AKTE.md weicht von der Vorlage ab." "$("$stand" --vorlage)"
+}
+
+# Im bisherigen Aufbau meldet die Abweichung vom neuen Aufbau der Stand.
+vorlage_bisheriger_aufbau() {
   neues_verzeichnis
   printf '# Akte\n\n## Stammdaten\n' > AKTE.md
-  sed '/^## Abgelehnt/,$d' "$wurzel/vorlagen/BEURTEILUNG.md" > BEURTEILUNG.md
-  pruefe "Vorlage nicht eingehalten" "AKTE.md weicht von der Vorlage ab.
-BEURTEILUNG.md weicht von der Vorlage ab." "$("$stand" --vorlage)"
-  cp "$wurzel/vorlagen/AKTE.md" .
-  sed -i 's/^\*Was der Patient erreichen.*/*Was er will.*/' AKTE.md
-  rm BEURTEILUNG.md
-  pruefe "Hinweis geändert, BEURTEILUNG.md fehlt" "AKTE.md weicht von der Vorlage ab." "$("$stand" --vorlage)"
+  printf '# Beurteilung\n\n## Quellen\n' > BEURTEILUNG.md
+  pruefe "Vorlage im bisherigen Aufbau: keine Meldung" "" "$("$stand" --vorlage)"
+}
+
+baum_nach_vorlage() {
+  neues_verzeichnis
+  mkdir -p unterlagen kapitel/knie
+  echo eins > unterlagen/a.md
+  printf '# Beurteilung\n\n## 01.01.2026\n\n- Knie – Einschätzung: x\n' > unterlagen/beurteilung.md
+  "$stand" --aktualisieren
+  sed -e 's/^## Fristen bis TT.MM.JJJJ$/## Fristen bis 26.11.2026/' \
+    -e '/^\*Alle, je mit Reaktion/a\
+\
+- Penicillin: Exanthem [anamnese]' "$wurzel/vorlagen/AKTE.md" > AKTE.md
+  sed -e 's/^# Thema$/# Knie rechts/' -e '/^\*Kapitel der Akte/a\
+\
+Status: aktiv seit 03.02.2025 [2025-02-03-mrt]' "$wurzel/vorlagen/kapitel.md" > kapitel/knie.md
+  sed 's/^# Thema$/# Meniskus/' "$wurzel/vorlagen/kapitel.md" > kapitel/knie/meniskus.md
+  sed 's/^# Thema$/# Medikation/' "$wurzel/vorlagen/kapitel.md" > kapitel/medikation.md
 }
 
 stapel_einer() {
@@ -515,6 +560,37 @@ unterlagen/historie.md 01.02.2026–03.02.2026
 
 Stapel 2 (1 Seiten)
 unterlagen/historie.md 04.02.2026–04.02.2026" "$("$stand" --stapel)"
+}
+
+# Die Beurteilung wird an ihren Datumsüberschriften geteilt wie historie.md,
+# am selben Tag nach historie.md; aufeinander folgende Tage derselben Datei
+# stehen auf einer Zeile, Tage verschiedener Dateien nie.
+stapel_beurteilung_tage() {
+  neues_verzeichnis
+  mkdir unterlagen
+  echo 1 > unterlagen/2026-01-03-labor_hausarzt.md
+  printf '# Historie\n\n## 02.01.2026\n\nA\n\n## 03.01.2026\n\nB\n' > unterlagen/historie.md
+  printf '# Beurteilung\n\n## 02.01.2026\n\nX\n\n## 04.01.2026\n\nY\n\n## 05.01.2026\n\nZ\n' > unterlagen/beurteilung.md
+  pruefe "Tage in beurteilung.md nach Datum, nach historie.md" "Stapel 1 (2 Seiten)
+unterlagen/historie.md 02.01.2026–02.01.2026
+unterlagen/beurteilung.md 02.01.2026–02.01.2026
+unterlagen/2026-01-03-labor_hausarzt.md
+unterlagen/historie.md 03.01.2026–03.01.2026
+unterlagen/beurteilung.md 04.01.2026–05.01.2026" "$("$stand" --stapel)"
+}
+
+# Wie historie.md: ohne Datumsüberschrift eine Einheit und ein Hinweis.
+stapel_beurteilung_ohne_ueberschrift() {
+  neues_verzeichnis
+  mkdir unterlagen
+  printf '# Historie\n\nA\n' > unterlagen/historie.md
+  printf '# Beurteilung\n\n### 13.03.2026\n' > unterlagen/beurteilung.md
+  pruefe "beurteilung.md ohne Datumsüberschrift" "Stapel 1 (2 Seiten)
+unterlagen/beurteilung.md
+unterlagen/historie.md
+
+historie.md ohne Datumsüberschriften.
+beurteilung.md ohne Datumsüberschriften." "$("$stand" --stapel)"
 }
 
 # Der Text vor der ersten Überschrift zählt zum frühesten Tag, 05.01., nicht
@@ -664,13 +740,35 @@ Vorab.
 B" "$("$stand" --einheit "unterlagen/historie.md 02.01.2026–02.01.2026")"
 }
 
+einheit_beurteilung() {
+  historie_mit_tagen
+  printf '# Beurteilung\n\nKopf.\n\n## 05.01.2026\n\nX\n\n## 10.01.2026\n\nY\n' > unterlagen/beurteilung.md
+  pruefe "Einheit aus beurteilung.md" "# Beurteilung
+
+Kopf.
+
+## 05.01.2026
+
+X" "$("$stand" --einheit "unterlagen/beurteilung.md 05.01.2026–05.01.2026")"
+}
+
+einheit_ohne_beurteilung() {
+  historie_mit_tagen
+  local ausgabe code
+  ausgabe=$("$stand" --einheit "unterlagen/beurteilung.md 02.01.2026–02.01.2026" 2>&1)
+  code=$?
+  pruefe "Einheit ohne beurteilung.md: Exit-Code 1 und Meldung" "1
+unterlagen/beurteilung.md gibt es nicht." "$code
+$ausgabe"
+}
+
 einheit_falscher_aufruf() {
   historie_mit_tagen
   local ausgabe code
   ausgabe=$("$stand" --einheit unterlagen/anamnese.md 2>&1)
   code=$?
   pruefe "Einheit ohne Zeitraum: Exit-Code 2 und Meldung" "2
-akte-stand --einheit nimmt einen Teil von unterlagen/historie.md, wie --stapel ihn ausgibt, etwa \"unterlagen/historie.md 03.02.2025–17.06.2025\"; bekommen: unterlagen/anamnese.md" "$code
+akte-stand --einheit nimmt einen Teil von unterlagen/historie.md oder unterlagen/beurteilung.md, wie --stapel ihn ausgibt, etwa \"unterlagen/historie.md 03.02.2025–17.06.2025\"; bekommen: unterlagen/anamnese.md" "$code
 $ausgabe"
 }
 

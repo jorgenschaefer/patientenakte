@@ -1,0 +1,5 @@
+# Beurteilung
+
+*Einschätzungen eines Modells, nicht ärztlich bestätigt: was es aus unterlagen/ und literatur/ für den Fall schließt, Warnzeichen mit Stufe, Fristen und was beobachtet wird. Fakten stehen in den anderen Unterlagen, die Aussagen der Literatur in literatur/.*
+
+*Nur anhängen, nie umschreiben oder löschen: Ein Eintrag gilt, bis ein späterer mit demselben Thema und derselben Art ihn ablöst oder ein Eintrag „Aufgehoben“ ihn mit Art und Datum nennt. Das Thema ist so genau, dass jedes Warnzeichen und jede Frist ein eigenes hat, etwa „Hypertonie, Blutdruckkrise“. Neue Einträge kommen ans Ende unter eine Überschrift „## TT.MM.JJJJ“ mit dem Tag, an dem sie geschrieben wurden. Darunter steht „\*Einschätzung eines Modells, nicht ärztlich bestätigt; Anlass: …\*“, dann je Eintrag eine Zeile genau in dieser Form: „- \*\*Thema – Art:\*\* Inhalt. Grund: …“, jede Angabe im Grund mit ihrer Quelle in eckigen Klammern. Die Art ist Einschätzung, Warnzeichen mit Stufe, Frist, Beobachten mit Datei und Spalten der Messreihe, oder Aufgehoben, wenn ein früherer Eintrag nicht mehr gilt.*

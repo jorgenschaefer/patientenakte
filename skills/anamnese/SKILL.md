@@ -12,7 +12,6 @@ in `historie.md`.
 ## Ablauf
 
 1. In einer neuen Akte zuerst anlegen, was fehlt:
-   - `BEURTEILUNG.md` aus `${CLAUDE_PLUGIN_ROOT}/vorlagen/BEURTEILUNG.md`;
    - `literatur/README.md` aus
      `${CLAUDE_PLUGIN_ROOT}/vorlagen/literatur-README.md`;
    - das Verzeichnis `unterlagen/`.
@@ -28,7 +27,9 @@ in `historie.md`.
    Bestätigung übernehmen. Vermutungen des Patienten als solche kennzeichnen.
 5. Datei schreiben, dann den Skill `einarbeiten` ausführen, mit
    `unterlagen/anamnese.md` als schon bestätigt; er committet die neue
-   Akte und baut `AKTE.md`.
+   Akte und baut den Baum aus dem Überblick `AKTE.md` und den Kapiteln in
+   `kapitel/`. Eine `BEURTEILUNG.md` gibt es nicht mehr; Einschätzungen
+   eines Modells kommen in die Beurteilung `unterlagen/beurteilung.md`.
 
 ## Schema
 
