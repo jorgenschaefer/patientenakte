@@ -230,7 +230,12 @@ steht in ihrem Kopf.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht in `AKTE.md`
   eingearbeitet sind, ob ein Bau von `AKTE.md` nicht abgeschlossen ist und
   ob `AKTE.md` und `BEURTEILUNG.md` von ihrer Vorlage abweichen; schreibt
-  mit `--aktualisieren` die Prüfsummen; teilt mit `--stapel` die
+  mit `--aktualisieren` die Prüfsummen. In einer Akte aus Überblick
+  `AKTE.md` und Kapiteln in `kapitel/` stehen die Prüfsummen in
+  `kapitel/grundlage.md`; dort meldet es auch einen fehlenden Überblick,
+  Überblick und Kapitel über der Höchstlänge, die oben im Script steht,
+  Verweise ins Leere und abgelaufene Fristen. Eine Akte mit
+  `BEURTEILUNG.md` meldet es als bisherigen Aufbau. Es teilt mit `--stapel` die
   Unterlagen in der Reihenfolge ihres Datums nach Seitenzahl in Stapel für
   einen Bau von `AKTE.md`; gibt mit `--einheit` einen Teil von
   `historie.md` aus, wie ihn `--stapel` nennt.

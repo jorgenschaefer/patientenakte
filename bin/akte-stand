@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
-# Vergleicht die Dateien in unterlagen/ mit den Prüfsummen am Ende von AKTE.md.
+# Vergleicht die Dateien in unterlagen/ mit den Prüfsummen des Baums aus dem
+# Überblick AKTE.md und den Kapiteln in kapitel/; prüft den Baum.
 #
-# Arbeitet im aktuellen Verzeichnis, das die Akte sein muss.
+# Arbeitet im aktuellen Verzeichnis, das die Akte sein muss. Eine Akte mit
+# BEURTEILUNG.md hat den bisherigen Aufbau: Dort stehen die Prüfsummen am
+# Ende von AKTE.md, und es gibt keinen Baum zu prüfen.
 #
 #   akte-stand                  listet neue, geänderte und entfernte Dateien,
 #                               davor den Commit, mit dem die Prüfsummen
-#                               zuletzt committet wurden; meldet, wenn AKTE.md
-#                               nicht committete Änderungen hat
-#   akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in AKTE.md
+#                               zuletzt committet wurden; meldet einen nicht
+#                               abgeschlossenen Bau, also Änderungen ohne
+#                               Commit an AKTE.md oder in kapitel/, und den
+#                               bisherigen Aufbau. Im neuen Aufbau meldet es
+#                               auch einen fehlenden Überblick, Überblick und
+#                               Kapitel über ihrer Höchstlänge, Verweise ins
+#                               Leere und abgelaufene Fristen des Überblicks
+#   akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in
+#                               kapitel/grundlage.md, im bisherigen Aufbau
+#                               ans Ende von AKTE.md
 #   akte-stand --vorlage        meldet, ob AKTE.md und BEURTEILUNG.md im Gerüst
 #                               von ihrer Vorlage in vorlagen/ abweichen
 #   akte-stand --stapel         teilt die Unterlagen in der Reihenfolge ihres
@@ -20,6 +30,10 @@ set -euo pipefail
 
 akte=AKTE.md
 seiten_je_stapel=20
+# Höchstlängen in Wörtern, gezählt wie von `wc -w`: alles zwischen
+# Leerraum, auch Markdown wie # oder |; die Agenten lesen sie hier.
+woerter_ueberblick=2000
+woerter_kapitel=1500
 zeichen_je_seite=10000
 verzeichnis=unterlagen
 historie=$verzeichnis/historie.md
@@ -28,10 +42,22 @@ ueberschrift='^## ([0-9]{2})\.([0-9]{2})\.([0-9]{4})[[:space:]]*$'
 anfang='<!-- akte-stand: Anfang -->'
 ende='<!-- akte-stand: Ende -->'
 vorlagen=$(dirname "$(readlink -f "$0")")/../vorlagen
+kapitel=kapitel
+# Die Prüfsummen des Baums. Sie stehen nicht im Überblick, weil der in
+# jeder Sitzung ganz im Kontext ist; grundlage.md ist kein Kapitel.
+grundlage=$kapitel/grundlage.md
+# Ein Überblick nennt das Ende seiner Fristen in dieser Überschrift.
+fristen='^## Fristen bis ([0-9]{2})\.([0-9]{2})\.([0-9]{4})[[:space:]]*$'
 
 if [[ ! -f $akte && ! -d $verzeichnis ]]; then
   echo "$PWD ist keine Akte: weder $akte noch $verzeichnis/ gefunden." >&2
   exit 1
+fi
+
+bisheriger_aufbau=
+if [[ -f BEURTEILUNG.md ]]; then
+  bisheriger_aufbau=1
+  grundlage=$akte
 fi
 
 aktuell() {
@@ -40,22 +66,26 @@ aktuell() {
 }
 
 gespeichert() {
-  [[ -f $akte ]] || return 0
+  [[ -f $grundlage ]] || return 0
   awk -v a="$anfang" -v e="$ende" \
-    '$0 == a { drin = 1; next } $0 == e { drin = 0 } drin && /^[0-9a-f]{64}  /' "$akte"
+    '$0 == a { drin = 1; next } $0 == e { drin = 0 } drin && /^[0-9a-f]{64}  /' "$grundlage"
 }
 
-# Der letzte Commit, der Prüfsummenzeilen in AKTE.md geändert hat; leer ohne
-# Git oder ohne solchen Commit. Von dort zeigt `git diff`, was in einer
-# geänderten Unterlage seit dem letzten Bau neu ist.
+# Der letzte Commit, der Prüfsummenzeilen geändert hat; leer ohne Git oder
+# ohne solchen Commit. Von dort zeigt `git diff`, was in einer geänderten
+# Unterlage seit dem letzten Bau neu ist.
 eingearbeitet() {
-  git log -1 --format=%h -G '^[0-9a-f]{64}  ' -- "$akte" 2>/dev/null || true
+  git log -1 --format=%h -G '^[0-9a-f]{64}  ' -- "$grundlage" 2>/dev/null || true
 }
 
-# AKTE.md wird am Ende jedes Baus committet (Subagent akte-nachziehen),
+# Der Baum wird am Ende jedes Baus committet (Subagent akte-nachziehen),
 # nicht committete Änderungen stammen also aus einem nicht abgeschlossenen Bau.
 nicht_abgeschlossen() {
-  [[ -f $akte && -n $(git status --porcelain -- "$akte" 2>/dev/null) ]]
+  if [[ -n $bisheriger_aufbau ]]; then
+    [[ -f $akte && -n $(git status --porcelain -- "$akte" 2>/dev/null) ]]
+  else
+    [[ -n $(git status --porcelain -- "$akte" "$kapitel" 2>/dev/null) ]]
+  fi
 }
 
 vergleichen() {
@@ -72,23 +102,90 @@ vergleichen() {
 }
 
 aktualisieren() {
-  if [[ ! -f $akte ]]; then
-    echo "$akte fehlt." >&2
-    exit 1
-  fi
   local block
   block="$anfang"$'\n''```'$'\n'"$(aktuell)"$'\n''```'$'\n'"$ende"
-  if grep -qxF "$anfang" "$akte"; then
+  if [[ -f $grundlage ]] && grep -qxF "$anfang" "$grundlage"; then
     BLOCK="$block" awk -v a="$anfang" -v e="$ende" '
       $0 == a { print ENVIRON["BLOCK"]; weg = 1; next }
       $0 == e { weg = 0; next }
       !weg
-    ' "$akte" > "$akte.tmp"
-    mv "$akte.tmp" "$akte"
-  else
+    ' "$grundlage" > "$grundlage.tmp"
+    mv "$grundlage.tmp" "$grundlage"
+  elif [[ -n $bisheriger_aufbau ]]; then
+    if [[ ! -f $akte ]]; then
+      echo "$akte fehlt." >&2
+      exit 1
+    fi
     # shellcheck disable=SC2016 # Backticks sind Markdown.
     printf '\n## Grundlage\n\n*Prüfsummen der eingearbeiteten Unterlagen, geschrieben von `akte-stand --aktualisieren`.*\n\n%s\n' "$block" >> "$akte"
+  else
+    mkdir -p "$kapitel"
+    # shellcheck disable=SC2016 # Backticks sind Markdown.
+    printf '# Grundlage\n\n*Prüfsummen der in AKTE.md und kapitel/ eingearbeiteten Unterlagen, geschrieben von `akte-stand --aktualisieren`. Kein Kapitel.*\n\n%s\n' "$block" >> "$grundlage"
   fi
+}
+
+# Was am Baum zu beheben ist: Überblick und Kapitel über ihrer Höchstlänge,
+# Verweise ins Leere und abgelaufene Fristen.
+baum_pruefen() {
+  [[ ! -f $akte ]] || laenge_pruefen "$akte" "$woerter_ueberblick"
+  local datei
+  while IFS= read -r -d '' datei; do
+    laenge_pruefen "$datei" "$woerter_kapitel"
+  done < <(kapitel_dateien)
+  while IFS= read -r -d '' datei; do
+    verweise_pruefen "$datei"
+  done < <([[ ! -f $akte ]] || printf '%s\0' "$akte"; kapitel_dateien)
+  [[ ! -f $akte ]] || fristen_pruefen
+}
+
+# Die Kapitel und Unterkapitel, sortiert und durch Nullbytes getrennt.
+kapitel_dateien() {
+  [[ -d $kapitel ]] || return 0
+  find "$kapitel" -type f -name '*.md' ! -path "$grundlage" -print0 | sort -z
+}
+
+laenge_pruefen() { # Datei, Höchstlänge
+  local woerter
+  woerter=$(wc -w < "$1")
+  if ((woerter > $2)); then
+    echo "$1 hat $woerter Wörter, mehr als die Höchstlänge von $2."
+  fi
+}
+
+# Ein Verweis ist ein Markdown-Link mit einem Pfad relativ zu seiner Datei;
+# Adressen mit Schema wie https: und Anker in derselben Datei sind keine.
+verweise_pruefen() {
+  local link ziel
+  while IFS= read -r link; do
+    ziel=${link:2:${#link}-3}
+    if [[ $ziel == \<* ]]; then
+      ziel=${ziel#<}
+      ziel=${ziel%%>*}
+    else
+      ziel=${ziel%%[[:space:]]*}
+    fi
+    [[ ! $ziel =~ ^[[:alpha:]][[:alnum:]+.-]*: && $ziel != \#* ]] || continue
+    ziel=${ziel%%#*}
+    [[ -e $(dirname "$1")/$ziel ]] || echo "Verweis ins Leere in $1: $ziel"
+  done < <(grep -oE '\]\([^)]+\)' "$1" || true)
+}
+
+fristen_pruefen() {
+  local zeile
+  while IFS= read -r zeile || [[ -n $zeile ]]; do
+    [[ $zeile == '## Fristen'* ]] || continue
+    if [[ ! $zeile =~ $fristen ]] ||
+      ! date -d "${BASH_REMATCH[3]}-${BASH_REMATCH[2]}-${BASH_REMATCH[1]}" > /dev/null 2>&1; then
+      echo "Die Überschrift der Fristen in $akte nennt kein Datum als TT.MM.JJJJ: $zeile"
+      return
+    fi
+    local tag=${BASH_REMATCH[3]}${BASH_REMATCH[2]}${BASH_REMATCH[1]}
+    if [[ $tag < $(date +%Y%m%d) ]]; then
+      echo "Die Fristen in $akte reichen bis ${BASH_REMATCH[1]}.${BASH_REMATCH[2]}.${BASH_REMATCH[3]}; das Datum ist vorbei."
+    fi
+    return
+  done < "$akte"
 }
 
 # Das Gerüst einer Datei: die Überschriften und die kursiven Hinweise, die
@@ -319,19 +416,30 @@ case "${1:-}" in
   "")
     ergebnis=$(vergleichen)
     offen=
+    if [[ -n $bisheriger_aufbau ]]; then
+      echo "Die Akte hat den bisherigen Aufbau mit BEURTEILUNG.md und weicht vom neuen Aufbau aus $akte und $kapitel/ ab."
+    fi
     if nicht_abgeschlossen; then
       offen=1
-      echo "AKTE.md hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist."
+      if [[ -n $bisheriger_aufbau ]]; then
+        echo "$akte hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist."
+      else
+        echo "$akte oder $kapitel/ hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist."
+      fi
     fi
+    [[ -n $bisheriger_aufbau || -f $akte ]] || echo "Der Überblick $akte fehlt."
     if [[ -n $ergebnis ]]; then
       # Ein nicht committeter Bau hat schon Teile dieses Diffs eingearbeitet.
       commit=
       [[ -n $offen ]] || commit=$(eingearbeitet)
       [[ -z $commit ]] || echo "Eingearbeitet bis Commit $commit."
       echo "$ergebnis"
-    elif [[ -z $offen ]]; then
-      echo "AKTE.md ist auf dem Stand von $verzeichnis/."
+    elif [[ -z $offen && -n $bisheriger_aufbau ]]; then
+      echo "$akte ist auf dem Stand von $verzeichnis/."
+    elif [[ -z $offen && -f $akte ]]; then
+      echo "$akte und $kapitel/ sind auf dem Stand von $verzeichnis/."
     fi
+    [[ -n $bisheriger_aufbau ]] || baum_pruefen
     ;;
   --aktualisieren) aktualisieren ;;
   --vorlage) vorlage_pruefen ;;

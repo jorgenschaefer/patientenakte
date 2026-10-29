@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Tests für bin/akte-stand. Jeder Fall baut eine Akte in einem eigenen
-# temporären Verzeichnis, das am Ende gelöscht wird.
+# Tests für bin/akte-stand und für den Stand der Akte, den
+# hooks/regeln-einspielen beim Start einer Sitzung ausgibt. Jeder Fall baut
+# eine Akte in einem eigenen temporären Verzeichnis, das am Ende gelöscht
+# wird.
 #
 #   tests/akte-stand.sh
 set -uo pipefail
@@ -15,7 +17,10 @@ trap 'rm -rf "$tmp"' EXIT
 export GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_CEILING_DIRECTORIES=$tmp
 export GIT_AUTHOR_NAME=t GIT_AUTHOR_EMAIL=t@t GIT_COMMITTER_NAME=t GIT_COMMITTER_EMAIL=t@t
 
-nicht_abgeschlossen='AKTE.md hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist.'
+nicht_abgeschlossen='AKTE.md oder kapitel/ hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist.'
+auf_dem_stand='AKTE.md und kapitel/ sind auf dem Stand von unterlagen/.'
+bisheriger_aufbau='Die Akte hat den bisherigen Aufbau mit BEURTEILUNG.md und weicht vom neuen Aufbau aus AKTE.md und kapitel/ ab.'
+bisheriger_aufbau_nicht_abgeschlossen='AKTE.md hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist.'
 fehler=0
 
 main() {
@@ -28,6 +33,20 @@ main() {
   neue_akte_nie_committet
   bau_in_stapeln_abgebrochen
   ohne_git
+  kapitel_ohne_commit
+  bisheriger_aufbau_eingearbeitet
+  bisheriger_aufbau_auf_dem_stand
+  bisheriger_aufbau_nicht_abgeschlossen
+  ueberblick_fehlt
+  ueberblick_hoechstlaenge
+  kapitel_hoechstlaenge
+  hoechstlaengen_einstellbar
+  verweise_ins_leere
+  fristen_vorbei
+  fristen_ohne_datum
+  start_meldet_baum
+  start_meldet_fehlenden_ueberblick
+  start_meldet_bisherigen_aufbau
   vorlage_eingehalten
   vorlage_abweichend
   stapel_einer
@@ -54,7 +73,7 @@ main() {
 
 commit_vor_der_liste() {
   neue_akte
-  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  bauen
   local x
   x=$(git rev-parse --short HEAD)
   echo zwei >> unterlagen/a.md && git commit -qam a2
@@ -67,24 +86,25 @@ geändert: unterlagen/a.md" "$("$stand")"
 
 akte_commit_ohne_pruefsummen() {
   neue_akte
-  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  bauen
   local x
   x=$(git rev-parse --short HEAD)
   echo zwei >> unterlagen/a.md && git commit -qam a2
   echo Text >> AKTE.md && git commit -qam text
+  echo Text >> kapitel/grundlage.md && git commit -qam text
   pruefe "Commit an AKTE.md ohne Prüfsummen verschiebt nichts" "Eingearbeitet bis Commit $x.
 geändert: unterlagen/a.md" "$("$stand")"
 }
 
 auf_dem_stand() {
   neue_akte
-  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
-  pruefe "Auf dem Stand" "AKTE.md ist auf dem Stand von unterlagen/." "$("$stand")"
+  bauen
+  pruefe "Auf dem Stand" "$auf_dem_stand" "$("$stand")"
 }
 
 neu_und_entfernt() {
   neue_akte
-  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  bauen
   echo b > unterlagen/b.md && git rm -q unterlagen/a.md
   git add unterlagen && git commit -qm umbau
   pruefe "Neue und entfernte Unterlagen" "Eingearbeitet bis Commit $(git rev-parse --short HEAD~1).
@@ -102,7 +122,7 @@ geändert: unterlagen/a.md" "$("$stand")"
 
 gebaut_nicht_abgeschlossen() {
   neue_akte
-  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  bauen
   echo zwei >> unterlagen/a.md && git commit -qm a2 -- unterlagen/a.md
   "$stand" --aktualisieren
   pruefe "Gebaut, nicht abgeschlossen" "$nicht_abgeschlossen" "$("$stand")"
@@ -122,10 +142,10 @@ neue_akte_nie_committet() {
 
 bau_in_stapeln_abgebrochen() {
   neue_akte
-  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  bauen
   mkdir .git/akte-bau && printf '# Akte\nZwischenfassung\n' > .git/akte-bau/stapel-1.md
   pruefe "Zwischenfassungen unter .git/akte-bau/ sind kein offener Bau" \
-    "AKTE.md ist auf dem Stand von unterlagen/." "$("$stand")"
+    "$auf_dem_stand" "$("$stand")"
   pruefe "Zwischenfassungen stehen nicht in git status" "" "$(git status --porcelain)"
 }
 
@@ -135,6 +155,207 @@ ohne_git() {
   printf '# Akte\n' > AKTE.md && "$stand" --aktualisieren
   echo zwei >> unterlagen/a.md
   pruefe "Ohne Git" "geändert: unterlagen/a.md" "$("$stand" 2>&1)"
+}
+
+kapitel_ohne_commit() {
+  neue_akte
+  bauen
+  echo Text > kapitel/knie.md
+  pruefe "Ein Kapitel ohne Commit ist ein nicht abgeschlossener Bau" "$nicht_abgeschlossen" "$("$stand")"
+}
+
+bisheriger_aufbau_eingearbeitet() {
+  alte_akte
+  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  local x
+  x=$(git rev-parse --short HEAD)
+  echo zwei >> unterlagen/a.md && git commit -qam a2
+  pruefe "Bisheriger Aufbau: Prüfsummen am Ende von AKTE.md" "$bisheriger_aufbau
+Eingearbeitet bis Commit $x.
+geändert: unterlagen/a.md" "$("$stand")"
+  pruefe "Bisheriger Aufbau: kein kapitel/" "" "$([[ ! -e kapitel ]] || echo 'kapitel/ angelegt')"
+}
+
+bisheriger_aufbau_auf_dem_stand() {
+  alte_akte
+  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  echo zwei >> unterlagen/a.md && git commit -qam a2
+  "$stand" --aktualisieren && git commit -qm akte -- AKTE.md
+  pruefe "Bisheriger Aufbau: auf dem Stand" "$bisheriger_aufbau
+AKTE.md ist auf dem Stand von unterlagen/." "$("$stand")"
+  pruefe "Bisheriger Aufbau: Prüfsummen ersetzt, nicht angehängt" 1 "$(grep -c '^## Grundlage$' AKTE.md)"
+}
+
+bisheriger_aufbau_nicht_abgeschlossen() {
+  alte_akte
+  "$stand" --aktualisieren
+  pruefe "Bisheriger Aufbau: nicht abgeschlossener Bau" "$bisheriger_aufbau
+$bisheriger_aufbau_nicht_abgeschlossen" "$("$stand")"
+}
+
+ueberblick_fehlt() {
+  neues_verzeichnis
+  git init -q
+  mkdir unterlagen && echo eins > unterlagen/a.md
+  git add . && git commit -qm unterlagen
+  pruefe "Überblick fehlt" "Der Überblick AKTE.md fehlt.
+neu: unterlagen/a.md" "$("$stand")"
+}
+
+ueberblick_hoechstlaenge() {
+  neue_akte
+  woerter 2000 > AKTE.md
+  bauen
+  pruefe "Überblick mit 2000 Wörtern" "$auf_dem_stand" "$("$stand")"
+  woerter 2001 > AKTE.md && git commit -qam länger
+  pruefe "Überblick mit 2001 Wörtern" "$auf_dem_stand
+AKTE.md hat 2001 Wörter, mehr als die Höchstlänge von 2000." "$("$stand")"
+}
+
+# grundlage.md ist kein Kapitel und zählt nicht, so lang sie auch ist.
+kapitel_hoechstlaenge() {
+  neue_akte
+  mkdir -p kapitel/knie
+  woerter 1500 > kapitel/knie.md
+  woerter 1501 > kapitel/ruecken.md
+  woerter 1501 > kapitel/knie/meniskus.md
+  "$stand" --aktualisieren
+  woerter 1600 >> kapitel/grundlage.md
+  git add kapitel && git commit -qm bau
+  pruefe "Kapitel und Unterkapitel über der Höchstlänge" "$auf_dem_stand
+kapitel/knie/meniskus.md hat 1501 Wörter, mehr als die Höchstlänge von 1500.
+kapitel/ruecken.md hat 1501 Wörter, mehr als die Höchstlänge von 1500." "$("$stand")"
+}
+
+hoechstlaengen_einstellbar() {
+  neue_akte
+  mkdir bin
+  sed -e 's/^woerter_ueberblick=2000$/woerter_ueberblick=3/' \
+    -e 's/^woerter_kapitel=1500$/woerter_kapitel=2/' "$stand" > bin/akte-stand
+  chmod +x bin/akte-stand
+  mkdir kapitel
+  woerter 4 > AKTE.md
+  woerter 3 > kapitel/knie.md
+  bin/akte-stand --aktualisieren
+  git add AKTE.md kapitel && git commit -qm bau
+  pruefe "Höchstlängen an einer Stelle einstellbar" "$auf_dem_stand
+AKTE.md hat 4 Wörter, mehr als die Höchstlänge von 3.
+kapitel/knie.md hat 3 Wörter, mehr als die Höchstlänge von 2." "$(bin/akte-stand)"
+  pruefe "Die Höchstlängen stehen sonst nirgends" "woerter_ueberblick=2000
+woerter_kapitel=1500" "$(grep -Ew '2000|1500|2\.000|1\.500' "$stand")"
+}
+
+verweise_ins_leere() {
+  neue_akte
+  mkdir -p kapitel
+  cat > AKTE.md <<'MD'
+# Akte
+
+[Knie](kapitel/knie.md), [fehlt](kapitel/fehlt.md) und [Abschnitt](kapitel/knie.md#meniskus).
+[Befund](unterlagen/a.md "Titel"), [Leitlinie](https://register.awmf.org/x), [oben](#akte).
+![Bild](unterlagen/bild.png), [Klammern](<kapitel/knie.md>), [Klammern fehlt](<kapitel/ohne datei.md> "Titel").
+MD
+  cat > kapitel/knie.md <<'MD'
+# Knie
+
+[Befund](../unterlagen/a.md), [Meniskus](knie/meniskus.md), [falsch](unterlagen/a.md).
+MD
+  bauen
+  pruefe "Verweise ins Leere" "$auf_dem_stand
+Verweis ins Leere in AKTE.md: kapitel/fehlt.md
+Verweis ins Leere in AKTE.md: unterlagen/bild.png
+Verweis ins Leere in AKTE.md: kapitel/ohne datei.md
+Verweis ins Leere in kapitel/knie.md: knie/meniskus.md
+Verweis ins Leere in kapitel/knie.md: unterlagen/a.md" "$("$stand")"
+}
+
+fristen_vorbei() {
+  neue_akte
+  printf '# Akte
+
+## Fristen bis 01.01.2000
+' > AKTE.md
+  bauen
+  pruefe "Fristen vorbei" "$auf_dem_stand
+Die Fristen in AKTE.md reichen bis 01.01.2000; das Datum ist vorbei." "$("$stand")"
+  printf '# Akte
+
+## Fristen bis %s
+' "$(date -d yesterday +%d.%m.%Y)" > AKTE.md
+  git commit -qam gestern
+  pruefe "Fristen bis gestern" "$auf_dem_stand
+Die Fristen in AKTE.md reichen bis $(date -d yesterday +%d.%m.%Y); das Datum ist vorbei." "$("$stand")"
+  printf '# Akte
+
+## Fristen bis %s
+' "$(date +%d.%m.%Y)" > AKTE.md
+  git commit -qam heute
+  pruefe "Fristen bis heute sind nicht vorbei" "$auf_dem_stand" "$("$stand")"
+}
+
+fristen_ohne_datum() {
+  neue_akte
+  printf '# Akte\n\n## Fristen bis 1.1.2026\n' > AKTE.md
+  bauen
+  pruefe "Fristen ohne lesbares Datum" "$auf_dem_stand
+Die Überschrift der Fristen in AKTE.md nennt kein Datum als TT.MM.JJJJ: ## Fristen bis 1.1.2026" "$("$stand")"
+  printf '# Akte\n\n## Fristen\n' > AKTE.md
+  git commit -qam ohne
+  pruefe "Fristen ganz ohne Datum" "$auf_dem_stand
+Die Überschrift der Fristen in AKTE.md nennt kein Datum als TT.MM.JJJJ: ## Fristen" "$("$stand")"
+  printf '# Akte\n\n## Fristen bis 31.13.2099\n' > AKTE.md
+  git commit -qam monat
+  pruefe "Fristen mit einem Datum, das es nicht gibt" "$auf_dem_stand
+Die Überschrift der Fristen in AKTE.md nennt kein Datum als TT.MM.JJJJ: ## Fristen bis 31.13.2099" "$("$stand")"
+  printf '# Akte\n\n## Fristen bis 01.01.2000' > AKTE.md
+  git commit -qam zeilenende
+  pruefe "Fristen in der letzten Zeile ohne Zeilenende" "$auf_dem_stand
+Die Fristen in AKTE.md reichen bis 01.01.2000; das Datum ist vorbei." "$("$stand")"
+}
+
+start_meldet_baum() {
+  neue_akte
+  echo Anamnese > unterlagen/anamnese.md
+  mkdir kapitel
+  woerter 1501 > kapitel/knie.md
+  bauen
+  { printf '## Fristen bis 01.01.2000
+'; woerter 2001; } > AKTE.md
+  local start
+  start=$(start_der_sitzung)
+  pruefe "Start: nicht abgeschlossener Bau" 1 "$(grep -cxF "$nicht_abgeschlossen" <<< "$start")"
+  pruefe "Start: Überblick über der Höchstlänge" 1 \
+    "$(grep -cxF 'AKTE.md hat 2005 Wörter, mehr als die Höchstlänge von 2000.' <<< "$start")"
+  pruefe "Start: Kapitel über der Höchstlänge" 1 \
+    "$(grep -cxF 'kapitel/knie.md hat 1501 Wörter, mehr als die Höchstlänge von 1500.' <<< "$start")"
+  pruefe "Start: Fristen vorbei" 1 \
+    "$(grep -cxF 'Die Fristen in AKTE.md reichen bis 01.01.2000; das Datum ist vorbei.' <<< "$start")"
+}
+
+start_meldet_fehlenden_ueberblick() {
+  neues_verzeichnis
+  git init -q
+  mkdir unterlagen && echo Anamnese > unterlagen/anamnese.md
+  git add . && git commit -qm anamnese
+  pruefe "Start: Überblick fehlt" 1 "$(start_der_sitzung | grep -cxF 'Der Überblick AKTE.md fehlt.')"
+}
+
+start_meldet_bisherigen_aufbau() {
+  alte_akte
+  echo Anamnese > unterlagen/anamnese.md
+  "$stand" --aktualisieren
+  local start
+  start=$(start_der_sitzung)
+  pruefe "Start: bisheriger Aufbau" 1 "$(grep -cxF "$bisheriger_aufbau" <<< "$start")"
+  pruefe "Start: bisheriger Aufbau, nicht abgeschlossener Bau" 1 \
+    "$(grep -cxF "$bisheriger_aufbau_nicht_abgeschlossen" <<< "$start")"
+}
+
+# Was der Hook beim Start einer Sitzung in der Akte im aktuellen Verzeichnis
+# unter „Stand der Akte“ ausgibt.
+start_der_sitzung() {
+  CLAUDE_PLUGIN_ROOT=$wurzel CLAUDE_PROJECT_DIR=$PWD "$wurzel/hooks/regeln-einspielen" |
+    sed '1,/^# Stand der Akte$/d'
 }
 
 vorlage_eingehalten() {
@@ -481,14 +702,32 @@ historie_mit_tagen() {
   printf '# Historie\n\nVorab.\n\n## 05.01.2026\n\nA\n\n## 02.01.2026\n\nB\n\n## 05.01.2026\n\nC\n\n## 10.01.2026\n\nD\n' > unterlagen/historie.md
 }
 
-# Eine Akte mit einer Unterlage und einer AKTE.md ohne Prüfsummen, beide
-# committet.
+# Eine Akte im neuen Aufbau mit einer Unterlage und einer AKTE.md, beide
+# committet, ohne kapitel/grundlage.md.
 neue_akte() {
   neues_verzeichnis
   git init -q
   mkdir unterlagen && echo eins > unterlagen/a.md
   printf '# Akte\n' > AKTE.md
   git add . && git commit -qm start
+}
+
+# Wie neue_akte, aber im bisherigen Aufbau mit BEURTEILUNG.md.
+alte_akte() {
+  neue_akte
+  printf '# Beurteilung\n' > BEURTEILUNG.md
+  git add . && git commit -qm beurteilung
+}
+
+# Schreibt die Prüfsummen und committet den Baum, wie am Ende eines Baus.
+bauen() {
+  "$stand" --aktualisieren && git add AKTE.md kapitel && git commit -qm bau
+}
+
+woerter() { # Anzahl
+  local i
+  for ((i = 0; i < $1; i++)); do printf 'w '; done
+  echo
 }
 
 zeichen() { # Anzahl, Zeichen (x ohne Angabe)

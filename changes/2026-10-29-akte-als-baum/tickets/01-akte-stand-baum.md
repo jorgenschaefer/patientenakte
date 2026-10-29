@@ -3,8 +3,8 @@ criteria:  CRITERIA.md
 closes:    AC-4, AC-5, AC-23, AC-25
 advances:  AC-11, AC-15, AC-24, AC-26, AC-31, AC-33
 after:
-status:    ready
-attempts:  0
+status:    done
+attempts:  1
 ---
 
 ## Build
@@ -71,3 +71,11 @@ Security policy sagt „None.“: Eine neue Berechtigung, etwa in den Einstellun
 - Die Umstellung und die Meldung einer abgebrochenen Umstellung: 05.
 
 ## Left standing
+
+- **Review, Should-fix, nicht behoben (AC-15, AC-31):** Ob eine Akte den bisherigen Aufbau hat, entscheidet allein `BEURTEILUNG.md`. Der heutige `akte-nachziehen` ruft `akte-stand --aktualisieren` auf und committet danach nur `AKTE.md`. In einer Akte ohne `BEURTEILUNG.md` landen die Prüfsummen dann in einer `kapitel/grundlage.md` ohne Commit. Heute tritt das nicht auf, weil die Anamnese `BEURTEILUNG.md` beim Einrichten anlegt; neue Akten haben also den bisherigen Aufbau. Das Problem entsteht erst, wenn Ticket 02 die Anamnese ändert, ohne `akte-nachziehen` auf `kapitel/` umzustellen. Der Branch sollte deshalb als Ganzes landen, nicht nach diesem Ticket allein.
+- **Review, Nits, nicht behoben (AC-11):** Als Verweis ins Leere gemeldet werden auch funktionierende Links: mit `%20`, mit `)` im Pfad und in Code-Spans. Nicht geprüft werden Links mit Leerraum innerhalb der Klammern, etwa `[x]( pfad )`, und Referenz-Links wie `[r]: pfad`. Nicht behoben, weil `regeln.md` Dateinamen in Kleinbuchstaben ohne Leerzeichen und ohne Klammern verlangt und die Agenten aus Ticket 02 und 03 Inline-Links schreiben.
+- **Behoben nach der letzten Prüfung, von niemandem geprüft (AC-33):** Ein Datum, das es nicht gibt, etwa `31.13.2099`, wird als nicht lesbar gemeldet (Should-fix aus der zweiten Runde). Die Fristen-Überschrift zählt auch in der letzten Zeile ohne Zeilenende (Nit aus der zweiten Runde).
+- **Abweichung (AC-33):** Steht eine Überschrift `## Fristen…` im Überblick, ohne ein gültiges Datum als TT.MM.JJJJ zu nennen, meldet `akte-stand`: „Die Überschrift der Fristen in AKTE.md nennt kein Datum als TT.MM.JJJJ: …“. Das Ticket verlangt nur die Meldung abgelaufener Fristen; ohne die neue Meldung würde ein falsch geschriebenes Datum die Warnung stumm abschalten. Fehlt die Überschrift ganz, meldet `akte-stand` nichts, denn geschrieben wird sie erst in Ticket 02.
+- **Neue Meldungen, auf die Ticket 04 und 05 antworten (AC-15, AC-23, AC-25, AC-24, AC-26, AC-11, AC-33):** Im neuen Aufbau lauten sie: „AKTE.md oder kapitel/ hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist.“, „AKTE.md und kapitel/ sind auf dem Stand von unterlagen/.“, „Der Überblick AKTE.md fehlt.“, „<datei> hat N Wörter, mehr als die Höchstlänge von M.“, „Verweis ins Leere in <datei>: <ziel>“ und „Die Fristen in AKTE.md reichen bis TT.MM.JJJJ; das Datum ist vorbei.“ Im bisherigen Aufbau ist eine neue Zeile vorangestellt: „Die Akte hat den bisherigen Aufbau mit BEURTEILUNG.md und weicht vom neuen Aufbau aus AKTE.md und kapitel/ ab.“ Alles andere bleibt dort wie bisher. Die Höchstlängen heißen `woerter_ueberblick` und `woerter_kapitel` und werden wie mit `wc -w` gezählt, also auch Markdown-Zeichen wie `#` und `|`.
+- **Nicht von diesem Ticket (AC-26):** Im neuen Aufbau vergleicht `--vorlage` `AKTE.md` noch mit der alten Vorlage. Darum meldet der Start jeder Sitzung zusätzlich „AKTE.md weicht von der Vorlage ab.“ Das gehört zu Ticket 02.
+- **Blast radius:** Jede Akte ohne `BEURTEILUNG.md` gilt jetzt als neuer Aufbau. Ihre Prüfsummen erwartet `akte-stand` dann in `kapitel/grundlage.md`. Ein Revert nimmt das zurück; eine `kapitel/grundlage.md`, die schon geschrieben wurde, bleibt aber in der Akte liegen.
