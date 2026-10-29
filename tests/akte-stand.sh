@@ -21,6 +21,7 @@ nicht_abgeschlossen='AKTE.md oder kapitel/ hat Änderungen ohne Commit aus einem
 auf_dem_stand='AKTE.md und kapitel/ sind auf dem Stand von unterlagen/.'
 bisheriger_aufbau='Die Akte hat den bisherigen Aufbau mit BEURTEILUNG.md und weicht vom neuen Aufbau aus AKTE.md und kapitel/ ab.'
 bisheriger_aufbau_nicht_abgeschlossen='AKTE.md hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist.'
+nicht_eingebunden='.claude/CLAUDE.md bindet den Überblick AKTE.md nicht ein.'
 umstellung_nicht_abgeschlossen='Eine Umstellung auf den neuen Aufbau ist nicht abgeschlossen.'
 # Claude Code übernimmt die Ausgabe eines Hooks nur bis etwa 10.000 Zeichen
 # ganz in den Kontext; längere ersetzt es durch ihre ersten 2 KB und den
@@ -45,6 +46,7 @@ main() {
   umstellung_begonnen
   umstellung_beurteilung_entfernt
   ueberblick_fehlt
+  ueberblick_nicht_eingebunden
   ueberblick_hoechstlaenge
   kapitel_hoechstlaenge
   hoechstlaengen_einstellbar
@@ -155,7 +157,8 @@ neue_akte_nie_committet() {
   mkdir unterlagen && echo eins > unterlagen/a.md
   git add . && git commit -qm unterlagen
   printf '# Akte\n' > AKTE.md && "$stand" --aktualisieren
-  pruefe "Neue AKTE.md, nie committet" "$nicht_abgeschlossen" "$("$stand")"
+  pruefe "Neue AKTE.md, nie committet" "$nicht_abgeschlossen
+$nicht_eingebunden" "$("$stand")"
 }
 
 bau_in_stapeln_abgebrochen() {
@@ -249,6 +252,19 @@ ueberblick_fehlt() {
   git add . && git commit -qm unterlagen
   pruefe "Überblick fehlt" "Der Überblick AKTE.md fehlt.
 neu: unterlagen/a.md" "$("$stand")"
+}
+
+# Den Überblick bringt .claude/CLAUDE.md in jede Sitzung; ohne die Zeile
+# @../AKTE.md beriete die Sitzung ohne ihn.
+ueberblick_nicht_eingebunden() {
+  neue_akte
+  bauen
+  printf '*Eigene Notizen.*\n' > .claude/CLAUDE.md && git commit -qam eigene
+  pruefe "Überblick nicht eingebunden" "$auf_dem_stand
+$nicht_eingebunden" "$("$stand")"
+  rm -r .claude && git commit -qam weg
+  pruefe "Ohne .claude/CLAUDE.md" "$auf_dem_stand
+$nicht_eingebunden" "$("$stand")"
 }
 
 ueberblick_hoechstlaenge() {
@@ -893,13 +909,15 @@ historie_mit_tagen() {
   printf '# Historie\n\nVorab.\n\n## 05.01.2026\n\nA\n\n## 02.01.2026\n\nB\n\n## 05.01.2026\n\nC\n\n## 10.01.2026\n\nD\n' > unterlagen/historie.md
 }
 
-# Eine Akte im neuen Aufbau mit einer Unterlage und einer AKTE.md, beide
-# committet, ohne kapitel/grundlage.md.
+# Eine Akte im neuen Aufbau mit einer Unterlage, einer AKTE.md und der
+# .claude/CLAUDE.md, die sie einbindet, alle committet, ohne
+# kapitel/grundlage.md.
 neue_akte() {
   neues_verzeichnis
   git init -q
-  mkdir unterlagen && echo eins > unterlagen/a.md
+  mkdir unterlagen .claude && echo eins > unterlagen/a.md
   printf '# Akte\n' > AKTE.md
+  cp "$wurzel/vorlagen/claude.md" .claude/CLAUDE.md
   git add . && git commit -qm start
 }
 

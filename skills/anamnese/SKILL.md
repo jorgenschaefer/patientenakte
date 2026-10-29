@@ -17,7 +17,8 @@ in `historie.md`.
      `${CLAUDE_PLUGIN_ROOT}/vorlagen/literatur-README.md`;
    - das Verzeichnis `unterlagen/`;
    - `.claude/CLAUDE.md` aus `${CLAUDE_PLUGIN_ROOT}/vorlagen/claude.md`,
-     gleich committet: Sie bringt den Überblick in jede Sitzung.
+     oder in einer vorhandenen die Zeile `@../AKTE.md`, gleich committet:
+     Sie bringt den Überblick in jede Sitzung.
 2. Vorhandenes sammeln: Was sagen die Befunde in `unterlagen/` und frühere
    Angaben des Benutzers schon zu den Punkten unten? Daraus Vorschläge
    machen, statt neu zu fragen.

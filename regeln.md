@@ -26,9 +26,11 @@ der Sitzung neben diesen Regeln einspielt.
 - Meldet der Stand, dass der Überblick fehlt, sagt deine erste Antwort das
   in einem Satz und schlägt `/einarbeiten` vor; von selbst arbeitest du
   dann nichts ein. Ebenso, wenn er meldet, dass eine Datei von der Vorlage
-  abweicht oder über ihrer Höchstlänge liegt, einen Verweis ins Leere oder
-  vorbeigegangene Fristen, außer du arbeitest nach dem ersten Punkt
-  ohnehin ein.
+  abweicht oder über ihrer Höchstlänge liegt, einen Verweis ins Leere,
+  vorbeigegangene Fristen oder dass `.claude/CLAUDE.md` den Überblick
+  nicht einbindet, außer du arbeitest nach dem ersten Punkt ohnehin ein.
+  Bindet sie ihn nicht ein, liest du `AKTE.md` vor der ersten Antwort
+  ganz.
 - Meldet der Stand einen vergangenen Termin, frag nach dem Ergebnis und
   schlag die Nachbereitung aus dem Skill `termin-vorbereiten` vor.
 

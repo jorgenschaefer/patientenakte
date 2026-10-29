@@ -130,8 +130,13 @@ dazu nennen:
       nächsten Mal. Dann `akte-stand --aktualisieren` und
       `unterlagen/beurteilung.md` allein committen. Ohne neue Einträge
       entfällt der Schritt.
-   5. `AKTE.md` und `kapitel/` zusammen committen, wenn sie geändert sind,
-      mit gelöschten Kapiteln (`git add --all -- AKTE.md kapitel`). Danach
+   5. Meldet `akte-stand`, dass `.claude/CLAUDE.md` den Überblick nicht
+      einbindet, legst du die Datei aus
+      `${CLAUDE_PLUGIN_ROOT}/vorlagen/claude.md` an oder hängst an die
+      vorhandene die Zeile `@../AKTE.md` an. `AKTE.md`, `kapitel/` und
+      `.claude/CLAUDE.md` zusammen committen, wenn sie geändert sind, mit
+      gelöschten Kapiteln
+      (`git add --all -- AKTE.md kapitel .claude/CLAUDE.md`). Danach
       `rm -rf .git/akte-bau`.
 5. **Prüfung,** nur wenn der Auftrag sie nennt: wie unter „Prüfung“ unten.
    Neue Einträge der Beurteilung schreibst du dabei nach
@@ -226,7 +231,9 @@ mit `akte-stand --einheit "<zeile>"`.
    3. `akte-stand --aktualisieren`.
 7. **Commits:** zuerst `unterlagen/beurteilung.md` allein, wenn sie
    geändert ist, dann `AKTE.md` und `kapitel/` zusammen in einem Commit,
-   mit gelöschten Kapiteln (`git add --all -- AKTE.md kapitel`). Danach
+   mit gelöschten Kapiteln, und mit `.claude/CLAUDE.md`, wenn du sie wie
+   in Schritt 4.5 unter „Ablauf“ angelegt oder ergänzt hast
+   (`git add --all -- AKTE.md kapitel .claude/CLAUDE.md`). Danach
    `rm -rf .git/akte-bau`.
 
 ## Umstellung
@@ -307,7 +314,8 @@ Umstellung, sobald der erste Eintrag mit seinem Anlass dasteht.
       `mkdir -p kapitel && cp -r .git/akte-bau/abschluss/kapitel/. kapitel/`
       und leere Verzeichnisse in `kapitel/` löschen. Fehlt
       `.claude/CLAUDE.md`, legst du sie aus
-      `${CLAUDE_PLUGIN_ROOT}/vorlagen/claude.md` an.
+      `${CLAUDE_PLUGIN_ROOT}/vorlagen/claude.md` an; fehlt in ihr die
+      Zeile `@../AKTE.md`, hängst du sie an.
    3. In einem Aufruf
       `git rm -q BEURTEILUNG.md && akte-stand --aktualisieren`: Erst ohne
       `BEURTEILUNG.md` schreibt es die Prüfsummen nach

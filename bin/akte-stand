@@ -17,7 +17,9 @@
 #                               meldet es
 #                               auch einen fehlenden Überblick, Überblick und
 #                               Kapitel über ihrer Höchstlänge, Verweise ins
-#                               Leere und abgelaufene Fristen des Überblicks
+#                               Leere, abgelaufene Fristen des Überblicks
+#                               und eine .claude/CLAUDE.md, die ihn nicht
+#                               einbindet
 #   akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in
 #                               kapitel/grundlage.md, im bisherigen Aufbau
 #                               ans Ende von AKTE.md, solange es
@@ -55,6 +57,8 @@ kapitel=kapitel
 # Die Prüfsummen des Baums. Sie stehen nicht im Überblick, weil der in
 # jeder Sitzung ganz im Kontext ist; grundlage.md ist kein Kapitel.
 grundlage=$kapitel/grundlage.md
+# Bindet den Überblick beim Start jeder Sitzung ein (vorlagen/claude.md).
+einbindung=.claude/CLAUDE.md
 # Die Zeile unter der Überschrift des ersten Eintrags, den die Umstellung
 # aus BEURTEILUNG.md an die Beurteilung anhängt (Subagent akte-nachziehen).
 umstellung_anlass='; Anlass: Umstellung von BEURTEILUNG.md.*'
@@ -156,6 +160,15 @@ baum_pruefen() {
     verweise_pruefen "$datei"
   done < <([[ ! -f $akte ]] || printf '%s\0' "$akte"; kapitel_dateien)
   [[ ! -f $akte ]] || fristen_pruefen
+}
+
+# Ohne die Zeile @../AKTE.md in .claude/CLAUDE.md beriete jede Sitzung ohne
+# den Überblick. Ein Zwischenstand in .git/akte-bau/ hat keine.
+einbindung_pruefen() {
+  [[ -f $akte && $(git rev-parse --is-inside-work-tree 2>/dev/null) == true ]] || return 0
+  if ! grep -qxF "@../$akte" "$einbindung" 2>/dev/null; then
+    echo "$einbindung bindet den Überblick $akte nicht ein."
+  fi
 }
 
 # Die Kapitel und Unterkapitel, sortiert und durch Nullbytes getrennt.
@@ -501,6 +514,7 @@ case "${1:-}" in
       echo "$akte und $kapitel/ sind auf dem Stand von $verzeichnis/."
     fi
     [[ -n $bisheriger_aufbau ]] || baum_pruefen
+    [[ -n $bisheriger_aufbau ]] || einbindung_pruefen
     ;;
   --aktualisieren) aktualisieren ;;
   --vorlage) vorlage_pruefen ;;
