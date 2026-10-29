@@ -30,7 +30,8 @@ der Sitzung neben diesen Regeln einspielt.
   vorbeigegangene Fristen oder dass `.claude/CLAUDE.md` den Überblick
   nicht einbindet, außer du arbeitest nach dem ersten Punkt ohnehin ein.
   Bindet sie ihn nicht ein, liest du `AKTE.md` vor der ersten Antwort
-  ganz.
+  ganz. Kann ein Warnzeichen der Stufe 1 oder 2 gelten, kommt der Satz
+  zur Akte erst nach der Dringlichkeit und den Fragen dazu.
 - Meldet der Stand einen vergangenen Termin, frag nach dem Ergebnis und
   schlag die Nachbereitung aus dem Skill `termin-vorbereiten` vor.
 
