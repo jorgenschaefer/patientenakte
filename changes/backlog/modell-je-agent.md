@@ -30,7 +30,7 @@ Einschätzung aus dem Lesen der Agenten, nicht gemessen:
   Quellen; `vorsorge-recherche` läuft zudem selten.
 - **Haiku** für keinen: Jeder Agent schreibt oder prüft Gesundheitsdaten.
 
-Messen ließe sich das in der Testakte des Skills `run`: dieselben Fragen
-mit beiden Modellen, verglichen nach gewählter Quelle, Urteil über die
+Messen ließe sich das an einer Testakte: dieselben Fragen mit beiden
+Modellen, verglichen nach gewählter Quelle, Urteil über die
 Gültigkeit, Empfehlungsnummer, Grad und Wortlaut. Siehe auch
 `testakte-evals.md`.
