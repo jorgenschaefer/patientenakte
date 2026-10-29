@@ -209,6 +209,8 @@ Gespräch angehängten, sonst die aus der Datei im Auftrag, mindestens:
   Unterlage liest, ein Grund, den die Fakten und die Literatur des Kapitels
   nicht tragen;
 - ein Widerspruch zum Baum, etwa zu Allergien, Medikation oder Diagnosen;
+- ein Eintrag, der einen früheren mit Thema und Art ablöst und dabei
+  verliert, was von diesem weiter gilt;
 - ein Eintrag „Aufgehoben“, der keinen Eintrag mit Art und Datum nennt,
   oder einer, der einen Eintrag nennt, den es nicht gibt;
 - bei einem Bau ein Kapitel, das statt des neuen Eintrags noch den

@@ -62,7 +62,9 @@ Im Gespräch wird nichts eingearbeitet: Neue Angaben nimmst du mit dem Skill
 für den Fall, jedes Warnzeichen mit Stufe und jede Frist, die du im
 Gespräch erarbeitest, hängst du noch in derselben Antwort an die
 Beurteilung `unterlagen/beurteilung.md` an, in der Form aus ihrem Kopf und
-ohne Bestätigung; Erklärungen allgemeinen Wissens nicht. Etwas zu
+ohne Bestätigung; Erklärungen allgemeinen Wissens nicht. Ein Eintrag mit
+Thema und Art eines früheren löst diesen ganz ab: Was vom früheren weiter
+gilt, schreibst du in den neuen. Etwas zu
 beobachten schlägst du vor, denn messen muss der Benutzer; stimmt er zu,
 hängst du den Eintrag der Art Beobachten ebenso an.
 Beides bleibt ohne Commit; committete Einträge änderst du nie.
