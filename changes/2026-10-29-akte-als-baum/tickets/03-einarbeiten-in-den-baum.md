@@ -3,8 +3,8 @@ criteria:  CRITERIA.md
 closes:    AC-9, AC-10, AC-11, AC-17, AC-24, AC-27, AC-32, AC-33
 advances:  AC-12, AC-18
 after:     02-baum-neu-bauen
-status:    ready
-attempts:  0
+status:    done
+attempts:  1
 ---
 
 ## Build
@@ -60,3 +60,22 @@ Security policy sagt „None.“: Eine neue Berechtigung, etwa in den Einstellun
 - Leitlinien, die noch nicht in `literatur/` liegen; sie sucht die Beratung wie heute vor einer Empfehlung.
 
 ## Left standing
+
+- **Behoben nach der letzten Prüfung, von niemandem geprüft (AC-12, AC-27, AC-33, AC-9):** Funde aus der zweiten Runde.
+  - Should-fix: Beim Anlass „Berichtigung“ prüft die Gegenprüfung an der Unterlage aus dem Auftrag, nicht an `HEAD`. `HEAD` ist nur beim Anlass „Prüfung“ eine Quelle (`agents/aenderung-gegenpruefen.md`).
+  - Should-fix: Der Fall „Fristen vorbei“ im Run-Skill läuft jetzt nach dem Nachtrag. So steht eine offene Frist in einem Kapitel, das der Bau nicht berührt.
+  - Nits: Ein fortgesetzter Bau behält die Einträge in `.git/akte-bau/beurteilung-neu.md` und hängt neue dahinter. Die Rückmeldung nennt die Einträge, die Schritt 3 nach einem abgebrochenen Bau committet, als solche. Dazu Grammatik und die Begründung beim Marker `.git/akte-bau/schrittweise`.
+- **Nicht automatisch geprüft (AC-9, AC-10, AC-11, AC-17, AC-24, AC-27, AC-32, AC-33; Toward AC-12, AC-18):** Alles in diesem Ticket ist Text für ein Modell in `agents/` und `skills/einarbeiten`; `bin/akte-stand` ist unverändert, und kein Test prüft die Agenten. Geprüft wurde in zwei Läufen der Testakte nach `.claude/skills/run/SKILL.md`:
+  - Neubau, dann `nachtrag` und `/einarbeiten`: Der Eintrag aus dem Gespräch wurde gegengeprüft, berichtigt und vor dem Baum committet. Empfehlung 3.3 kam mit Stelle ins Kapitel zur Hypertonie, eine neue Einschätzung daraus an die Beurteilung, und die Zusammenfassung nannte beides. Die Beurteilung wuchs nur am Ende. Danach meldete `akte-stand` nur den Stand, und `.git/akte-bau/` war gelöscht.
+  - Fristen vorbei ohne neue Unterlagen: Ein Commit nur an `AKTE.md`, das Datum vier Wochen nach heute, Gegenprüfung ohne Funde.
+- **Nicht vorgeführt (AC-9, AC-10, AC-24, AC-17):** Keine Datei kam in die Nähe ihrer Höchstlänge. Teilen, Kürzen des Überblicks und ein Kapitel über der Grenze liefen also nie. Ebenso nicht gelaufen: Kontrolle, Prüfung und der Abbruch eines Baus mit Fortsetzung. Dass der Überblick die Fristen auch aus Kapiteln übernimmt, die der Bau nicht berührt, zeigte kein Lauf; die Testakte hatte damals keine offene Frist.
+- **Abweichung (Context, Prüfung):** Die Prüfung berichtigt die Beurteilung nicht mehr durch Löschen. Wo ein Eintrag nicht mehr trägt oder widerspricht, hängt sie einen Eintrag „Aufgehoben“ oder einen eingeschränkten neuen Eintrag an, mit Gegenprüfung, wie der Neubau. Sonst bliebe er gültig, weil die Beurteilung nie umgeschrieben wird.
+- **Abweichung (AC-12, `literatur/`):** Das Einarbeiten committet Änderungen in `literatur/` ohne Commit zusammen mit der Beurteilung, nach einer Gegenprüfung (Schritt 3 in `agents/akte-nachziehen.md`). Seit Ticket 02 committete niemand mehr `literatur/`, und neue Einträge der Beurteilung zitieren solche Dateien.
+- **Entscheidungen, auf die 04 und 05 bauen:**
+  - Es steht etwas aus, wenn `unterlagen/` oder `literatur/` Änderungen ohne Commit haben oder `akte-stand` etwas anderes meldet als den Stand. Dazu zählen auch nur vorbeigegangene Fristen, zu lange Dateien und Verweise ins Leere; dann läuft ein schrittweiser Bau ohne Dateien. Ob der Start einer Sitzung darum `einarbeiten` von selbst startet, steht in `regeln.md` und gehört zu 04.
+  - Jeder schrittweise Bau zieht Warnzeichen und Fristen des Überblicks aus allen Kapiteln nach und setzt das Datum der Fristen auf vier Wochen nach heute.
+  - Ein schrittweiser Bau schreibt neue Einträge nach `.git/akte-bau/beurteilung-neu.md`, Anlass „Einarbeiten von <Dateien>.“; die Prüfung mit Anlass „Prüfung der Akte.“. Der Marker `.git/akte-bau/schrittweise` lässt einen abgebrochenen schrittweisen Bau ohne neue Prüfsumme schrittweise fortsetzen statt neu bauen.
+  - Die Gegenprüfung kennt die Arten „Baum“ mit Anlass (schrittweiser Bau, Berichtigung, Prüfung) und „Beurteilung“. Die Prüfungen für `BEURTEILUNG.md` und ihre Kürzung sind aus `agents/aenderung-gegenpruefen.md` entfernt, weil sie niemand mehr aufrief; braucht die Umstellung in 05 sie, schreibt sie sie neu.
+- **Nicht von diesem Ticket:** `README.md` beschreibt noch durchweg den bisherigen Aufbau, auch das Einarbeiten, die Prüfung und dass `akte-nachziehen` `leitlinien-recherche` aufruft; das tut es nicht mehr. `agents/akte-nachziehen.md` lässt „Dateien“ in `regeln.md` lesen, wo noch `BEURTEILUNG.md` steht (04). Ein Lauf antwortete auf Englisch, und die Zusammenfassung nannte „akte-stand“ beim Namen; beides kommt aus der Ausgabe von `skills/einarbeiten` und wäre eine Sache für 04.
+- **Lücke zu AC-28 (Ticket 02):** Eine Aussage der Literatur, die das Einarbeiten zu einer neuen Angabe aufnimmt und aus der keine Einschätzung folgt, zitiert keine Beurteilung. Ein Neubau ohne vorige Fassung bekäme sie nicht wieder; mit voriger Fassung stellt sie der Abgleich „mit Literatur“ wieder her.
+- **Blast radius:** Jedes `/einarbeiten` in einer Akte im neuen Aufbau läuft über den geänderten Ablauf. Ein Revert stellt die Texte wieder her; Einträge, die schon an `unterlagen/beurteilung.md` angehängt und committet sind, bleiben.

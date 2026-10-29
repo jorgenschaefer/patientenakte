@@ -38,7 +38,23 @@ Nie in einer echten Akte: Akten enthalten Gesundheitsdaten.
    „/einarbeiten und bau die Akte neu“ baut ihn noch einmal und gleicht mit
    der vorigen Fassung ab, „/einarbeiten und kontrollier die Akte“ macht
    die Kontrolle.
-3. Was geschah, zeigen `git log --stat`, `AKTE.md`, `kapitel/`, das Ende
+3. Für ein schrittweises Einarbeiten nach dem ersten Bau
+   `.claude/skills/run/nachtrag <akte>`: Es committet einen Befund zum
+   Blutdruck, der Empfehlung 3.3 der Leitlinie berührt, und hängt einen
+   Eintrag an die Beurteilung an, ohne Commit. Ein `/einarbeiten` danach
+   sollte die Beurteilung nach einer Gegenprüfung committen, die
+   Empfehlung 3.3 mit Stelle ins Kapitel zur Hypertonie aufnehmen, daraus
+   eine neue Einschätzung an die Beurteilung hängen und beides in der
+   Zusammenfassung nennen. Weitere Fälle:
+   - Fristen vorbei, nach dem Nachtrag: in `AKTE.md` das Datum unter
+     `## Fristen bis` auf einen vergangenen Tag setzen und committen;
+     `/einarbeiten` schreibt dann den Überblick neu, ohne neue Unterlagen.
+     Die Wiedervorstellung aus dem Befund des Nachtrags ist überfällig und
+     sollte unter den Fristen stehen, auch wenn der Bau ihr Kapitel nicht
+     berührt.
+   - Teilung eines Kapitels: mit `--klein` in der Kopie des Plugins
+     `woerter_kapitel` in `bin/akte-stand` auf etwa 250 senken.
+4. Was geschah, zeigen `git log --stat`, `AKTE.md`, `kapitel/`, das Ende
    von `unterlagen/beurteilung.md` und, solange ein Bau läuft oder wenn er
    abbricht, `.git/akte-bau/`.
 

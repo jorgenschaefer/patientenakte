@@ -17,13 +17,38 @@ neu bauen.
 Der Auftrag nennt das Zielverzeichnis, in dem `AKTE.md` und `kapitel/`
 liegen (sonst das Hauptverzeichnis der Akte), und die Art des Baus:
 
-- **Schrittweise:** Der Auftrag nennt die Dateien mit ihrem Status aus
-  `akte-stand` (neu, geändert, entfernt). Jede gemeldete Datei
+- **Schrittweise:** der Normalfall beim Einarbeiten, im Hauptverzeichnis.
+  Der Auftrag nennt die Ausgabe von `akte-stand`, darin die Dateien mit
+  ihrem Status (neu, geändert, entfernt), und die Datei für die neuen
+  Einträge der Beurteilung. Die Liste der Dateien kann leer sein, etwa
+  wenn nur die Fristen des Überblicks vorbei sind. Jede gemeldete Datei
   vollständig lesen. Bei geänderten Textdateien zeigt
   `git diff <commit> -- <datei>`, was neu ist; den Commit nennt
   `akte-stand`. Fehlt er oder ist der Diff leer, die Datei gegen den Baum
   abgleichen. Bei entfernten Dateien Angaben streichen, die nur auf ihnen
-  beruhen.
+  beruhen. Du liest den Überblick und die Kapitel, die die Dateien
+  berühren, und arbeitest die Dateien dort ein; neue Einträge der
+  Beurteilung kommen unter „Einschätzungen“ in das Kapitel ihres Themas.
+  Dann der Reihe nach:
+  1. **Literatur zur neuen Angabe:** Berührt eine neue oder geänderte
+     Unterlage außer der Beurteilung ein Kapitel, liest du in jeder Quelle
+     in `literatur/`, die das Kapitel unter „Literatur“ als Quelle nennt, die
+     Stellen zu der neuen Angabe, in der Textfassung, die
+     `literatur/README.md` nennt. Was dort steht und noch nicht im Kapitel,
+     schreibst du unter „Literatur“, wie es die Regel „Literatur“ verlangt.
+     Folgt daraus etwas für den Fall, etwa weil eine Empfehlung nun greift,
+     schreibst du eine neue Einschätzung als Eintrag in die Datei aus dem
+     Auftrag, wie unter „Neue Einträge der Beurteilung“, mit der Stelle der
+     Literatur und der neuen Angabe im Grund. Andere Quellen in
+     `literatur/` liest du nicht, und du suchst keine neuen.
+  2. **Einschätzungen prüfen** wie im Abschluss, nur in den Kapiteln, die
+     die Dateien berühren.
+  3. **Überblick** wie im Abschluss. Dafür liest du die Warnzeichen und
+     Fristen aller Kapitel, nicht nur der berührten: Das Datum der
+     Fristen rückt vor, und der Überblick nennt danach alles, was bis
+     dahin fällig ist.
+  4. **Höchstlängen und Verweise** wie im Abschluss, mit `akte-stand` im
+     Hauptverzeichnis.
 - **Stapel:** ein Teil eines Neubaus. Der Auftrag nennt die Einheiten des
   Stapels, je Zeile wie in der Ausgabe von `akte-stand --stapel`, und die
   offenen Punkte der vorigen Stapel. Das Zielverzeichnis ist ein
@@ -56,18 +81,11 @@ liegen (sonst das Hauptverzeichnis der Akte), und die Art des Baus:
      Einschätzung, etwa ein späterer Wert, eine erledigte Frist, ein
      abgesetztes Mittel, oder trägt die Literatur sie nicht mehr, weil
      ihre Aussage berichtigt wurde, schreibst du die neue Einschätzung mit
-     Grund als Eintrag in die Datei aus dem Auftrag, wie es der Kopf von
-     `${CLAUDE_PLUGIN_ROOT}/vorlagen/beurteilung.md` beschreibt: unter
-     `## <heute als TT.MM.JJJJ>`, darunter
-     `*Einschätzung eines Modells, nicht ärztlich bestätigt; Anlass: Neubau der Akte.*`,
-     je Eintrag eine Zeile in der Form, die der Kopf vorgibt, wie
-     `- **Hypertonie – Einschätzung:** … Grund: … [historie 15.04.2025].`
-     Gilt sie gar nicht mehr, ist der Eintrag von der Art „Aufgehoben“
-     und nennt Art und Datum des Eintrags, den er aufhebt.
-     Im Kapitel ersetzt der neue Eintrag den alten, mit Quelle
-     `[beurteilung <heute>]`. Neue Themen, neue Empfehlungen und eine
-     Suche nach Literatur gehören nicht dazu; ohne Änderung bleibt die
-     Datei leer.
+     Grund als Eintrag in die Datei aus dem Auftrag, wie unter „Neue
+     Einträge der Beurteilung“. Gilt sie gar nicht mehr, ist der Eintrag
+     von der Art „Aufgehoben“ und nennt Art und Datum des Eintrags, den er
+     aufhebt. Neue Themen, neue Empfehlungen und eine Suche nach Literatur
+     gehören nicht dazu; ohne Änderung bleibt die Datei leer.
   2. **Überblick:** Warnzeichen und Fristen aus den Kapiteln nachziehen,
      die Überschrift der Fristen auf `## Fristen bis TT.MM.JJJJ` mit dem
      Datum vier Wochen nach heute. Abgelaufene Fristen, die keine
@@ -81,6 +99,18 @@ liegen (sonst das Hauptverzeichnis der Akte), und die Art des Baus:
 Die Prüfsummen in `kapitel/grundlage.md` fasst du nicht an, sie schreibt
 `akte-stand --aktualisieren`. `unterlagen/` änderst du nie, auch nicht
 die Beurteilung.
+
+**Neue Einträge der Beurteilung** schreibst du in die Datei aus dem
+Auftrag, hinter Einträge, die schon darin stehen, wie es der Kopf von
+`${CLAUDE_PLUGIN_ROOT}/vorlagen/beurteilung.md` beschreibt: unter
+`## <heute als TT.MM.JJJJ>`, darunter
+`*Einschätzung eines Modells, nicht ärztlich bestätigt; Anlass: …*` mit dem
+Anlass, im Abschluss „Neubau der Akte.“, beim schrittweisen Bau
+„Einarbeiten von <Dateinamen ohne Endung>.“; dann je Eintrag eine Zeile in
+der Form, die der Kopf vorgibt, wie
+`- **Hypertonie – Einschätzung:** … Grund: … [historie 15.04.2025].`
+Im Kapitel ersetzt der neue Eintrag den alten, mit Quelle
+`[beurteilung <heute>]`.
 
 ## Regeln
 
@@ -100,7 +130,10 @@ die Beurteilung.
   eine solche Untersuchung in einem Befund fehlt, ist dagegen ein Fakt
   über diesen Befund, nie „nicht erfolgt“, etwa `HbA1c veranlasst
   [historie 20.02.2025]; nicht enthalten in [2025-03-01-labor]`.
-- **Literatur:** nur, was die Beurteilung aus `literatur/` zitiert. Jede
+- **Literatur:** nur, was die Beurteilung aus `literatur/` zitiert und,
+  beim schrittweisen Bau, was die Stellen zu einer neuen Angabe sagen,
+  wie unter „Literatur zur neuen Angabe“; was schon im Kapitel steht,
+  bleibt mit seiner Stelle. Jede
   Aussage liest du an der genannten Stelle der Quelle neu ab, in ihrer
   Textfassung, die `literatur/README.md` nennt, und schreibst sie so, wie
   sie dort steht: je Empfehlung ein Satz mit Empfehlungsnummer,
@@ -113,8 +146,9 @@ die Beurteilung.
   Eintrag, der gilt: Ein späterer Eintrag mit demselben Thema und
   derselben Art löst einen früheren ab, ein Eintrag „Aufgehoben“
   streicht den, den er mit Art und Datum nennt. Mehrere Warnzeichen oder
-  Fristen zu einem Problem haben je ihr eigenes Thema. Eigene Einschätzungen schreibst
-  du nur im Abschluss, als neuen Eintrag für die Beurteilung.
+  Fristen zu einem Problem haben je ihr eigenes Thema. Eigene
+  Einschätzungen schreibst du nur im Abschluss und beim schrittweisen Bau,
+  als neuen Eintrag für die Beurteilung.
 - **Diagnosesicherheit:** Verdacht, Zustand nach, Ausschluss und
   Verneinungen wie „kein Anhalt für“ wörtlich übernehmen, ebenso Seite,
   Lokalisation und Schweregrad. Aus „V. a. Meniskusriss“ wird nie
@@ -268,10 +302,13 @@ dazu diese Listen, soweit sie etwas enthalten:
 - **Berichtigt nach literatur/:** je Aussage, was die Beurteilung sagt,
   was an der Stelle der Quelle steht, und das Kapitel; dazu die Aussagen,
   die an ihrer Stelle nicht stehen oder deren Quelle fehlt.
+- **Literatur zur neuen Angabe,** beim schrittweisen Bau: je Kapitel die
+  neuen Aussagen unter „Literatur“ mit ihrer Stelle.
 - **Geteilt:** jedes Kapitel, das du in Unterkapitel geteilt hast, mit den
   Unterkapiteln.
-- **Über der Höchstlänge:** der Überblick, wenn er es bleibt, mit der Zahl
-  der Wörter.
+- **Über der Höchstlänge:** der Überblick und jedes Kapitel, das es
+  bleibt, mit der Zahl der Wörter.
 - **Verweise ins Leere,** die du nicht beheben konntest.
-- **Neue Einträge der Beurteilung,** im Abschluss: je Eintrag das Thema,
-  der abgelöste Eintrag mit Datum und der Grund.
+- **Neue Einträge der Beurteilung,** im Abschluss und beim schrittweisen
+  Bau: je Eintrag das Thema, der abgelöste Eintrag mit Datum oder dass er
+  neu ist, und der Grund.
