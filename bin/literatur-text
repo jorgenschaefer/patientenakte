@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# Schreibt die Textfassung eines PDFs in literatur/ als .txt daneben und
+# nennt die Seiten, deren Inhalt nicht als Text darin steht.
+#
+#   literatur-text <datei.pdf>  schreibt <datei>.txt, eine vorhandene
+#                               ersetzt es; braucht pdftotext aus
+#                               poppler-utils
+#
+# Der Text steht in der Reihenfolge des Lesens, nicht wie mit -layout im
+# Bild der Seite: Dort stehen zwei Spalten nebeneinander auf einer Zeile,
+# und ein Satz der einen Spalte läuft durch den der anderen. pdftotext
+# verbindet dabei am Zeilenende getrennte Wörter („Ka-“ und „tarakt“ zu
+# „Katarakt“), lässt aber auch den Bindestrich eines getrennten
+# Kompositums weg („PlaceboGruppe“).
+#
+# Eine Seite mit weniger als woerter_je_seite Wörtern ist ein Scan ohne
+# Textschicht, eine Abbildung, ein Deckblatt oder leer. Ihren Inhalt liest
+# nur, wer sie im PDF ansieht; welche es sind, gibt das Skript aus.
+set -euo pipefail
+
+woerter_je_seite=10
+
+if [[ $# -ne 1 || ${1,,} != *.pdf ]]; then
+  echo "Aufruf: $0 <datei.pdf>" >&2
+  exit 2
+fi
+pdf=$1
+if [[ ! -f $pdf ]]; then
+  echo "$pdf gibt es nicht." >&2
+  exit 1
+fi
+if ! command -v pdftotext > /dev/null; then
+  echo "literatur-text braucht pdftotext; poppler-utils installieren, etwa mit \`apt install poppler-utils\`." >&2
+  exit 1
+fi
+
+txt=${pdf%.*}.txt
+pdftotext -q -enc UTF-8 "$pdf" "$txt"
+
+# pdftotext schließt jede Seite mit einem Seitenvorschub ab.
+awk -v pdf="$pdf" -v grenze="$woerter_je_seite" '
+  BEGIN { RS = "\f" }
+  NF < grenze { seite[++n] = NR }
+  END {
+    if (!n) exit
+    if (n == NR) {
+      print "Ohne Text in " pdf ": " (NR > 1 ? "alle " NR " Seiten" : "die einzige Seite") "; im PDF lesen."
+      exit
+    }
+    for (i = 1; i <= n; i = j + 1) {
+      for (j = i; j < n && seite[j + 1] == seite[j] + 1; j++) {}
+      liste = liste (liste ? ", " : "") seite[i] (j > i ? "–" seite[j] : "")
+    }
+    print "Ohne Text in " pdf ": " (n > 1 ? "Seiten " : "Seite ") liste " von " NR "; im PDF lesen."
+  }
+' "$txt"

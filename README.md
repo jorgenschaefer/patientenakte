@@ -15,8 +15,9 @@ ausgerichtet: AWMF-Leitlinien, Nationale VersorgungsLeitlinien, STIKO.
 
 ## Installation
 
-Das Plugin braucht `pdfinfo` aus poppler-utils, um die Seiten der Befunde
-zu zählen, ebenso `tests/check.sh`; unter Debian und Ubuntu mit
+Das Plugin braucht `pdfinfo` und `pdftotext` aus poppler-utils, um die
+Seiten der Befunde zu zählen und die Textfassung der Literatur zu
+schreiben, ebenso `tests/check.sh`; unter Debian und Ubuntu mit
 `sudo apt install poppler-utils`.
 
 Das Plugin wird nie global aktiviert, sondern nur in den Akten. Sonst
@@ -309,6 +310,9 @@ Prüfdatum steht in `literatur/README.md`.
   mit `--stapel` die Unterlagen in der Reihenfolge ihres Datums nach
   Seitenzahl in Stapel für einen Neubau; gibt mit `--einheit` einen Teil
   von `historie.md` oder `beurteilung.md` aus, wie ihn `--stapel` nennt.
+- `bin/literatur-text` – schreibt zu einem PDF in `literatur/` die
+  Textfassung in der Reihenfolge des Lesens und nennt die Seiten, deren
+  Inhalt nicht als Text darin steht.
 - `vorlagen/` – Vorlagen für den Überblick `AKTE.md`, die Kapitel, die
   Beurteilung, `literatur/README.md` und `.claude/CLAUDE.md` der Akte
   (`claude.md`); sie legen Abschnitte und Hinweise fest.

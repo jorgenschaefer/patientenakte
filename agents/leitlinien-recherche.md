@@ -58,14 +58,16 @@ Den Rang einer Leitlinie haben je nach Fachgebiet auch:
    ein früherer Vermerk wird dabei ersetzt.
 3. Wird die Quelle voraussichtlich wieder gebraucht, speichern:
    - das PDF als `literatur/<herausgeber>-<nummer>-<thema>-<stand>.pdf`
-     und daneben die Textfassung mit `pdftotext -layout` als `.txt`;
+     und daneben die Textfassung mit `literatur-text <datei>.pdf`;
    - eine Zeile in `literatur/README.md`: Datei, Quelle, Version oder Stand,
-     gültig bis, Abrufdatum, Herkunft;
+     gültig bis, Abrufdatum, Herkunft. Nennt `literatur-text` Seiten ohne
+     Text, kommen sie in die Spalte „Quelle“, etwa „(Seiten 1–2, 67–68
+     ohne Text)“;
    - lässt sie sich nicht herunterladen (Paywall, Download gesperrt), unter
      „Nicht gespeichert“ mit Grund und Fundort eintragen und die Aussage
      als aus Sekundärquellen gekennzeichnet verwenden.
-4. Die Aussage zur Frage in der Textfassung nachlesen, im ganzen Abschnitt,
-   nicht nur an der Fundstelle: Empfehlungsnummer, Empfehlungsgrad,
+4. Die Aussage zur Frage in der Textfassung nachlesen, auf einer Seite ohne
+   Text im PDF, im ganzen Abschnitt, nicht nur an der Fundstelle: Empfehlungsnummer, Empfehlungsgrad,
    Evidenzniveau und Konsensstärke; ohne Empfehlungsnummer, etwa bei
    Fachinformationen und Studien, den Abschnitt oder die Seite.
 5. Nach einer erneuten Prüfung in `literatur/README.md` das Prüfdatum

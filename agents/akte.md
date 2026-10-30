@@ -34,7 +34,8 @@ liegen (sonst das Hauptverzeichnis der Akte), und die Art des Baus:
      Unterlage außer der Beurteilung ein Kapitel, liest du in jeder Quelle
      in `literatur/`, die das Kapitel unter „Literatur“ als Quelle nennt, die
      Stellen zu der neuen Angabe, in der Textfassung, die
-     `literatur/README.md` nennt. Was dort steht und noch nicht im Kapitel,
+     `literatur/README.md` nennt, auf einer Seite, die dort ohne Text
+     steht, im PDF. Was dort steht und noch nicht im Kapitel,
      schreibst du unter „Literatur“, wie es die Regel „Literatur“ verlangt.
      Folgt daraus etwas für den Fall, etwa weil eine Empfehlung nun greift,
      schreibst du eine neue Einschätzung als Eintrag in die Datei aus dem
@@ -135,8 +136,8 @@ Im Kapitel ersetzt der neue Eintrag den alten, mit Quelle
   wie unter „Literatur zur neuen Angabe“; was schon im Kapitel steht,
   bleibt mit seiner Stelle. Jede
   Aussage liest du an der genannten Stelle der Quelle neu ab, in ihrer
-  Textfassung, die `literatur/README.md` nennt, und schreibst sie so, wie
-  sie dort steht: je Empfehlung ein Satz mit Empfehlungsnummer,
+  Textfassung, die `literatur/README.md` nennt, auf einer Seite, die dort
+  ohne Text steht, im PDF, und schreibst sie so, wie sie dort steht: je Empfehlung ein Satz mit Empfehlungsnummer,
   Empfehlungsgrad und Evidenzniveau, wo die Quelle sie nennt. Weicht die
   Beurteilung davon ab, gilt die Quelle; du nennst die Abweichung in der
   Rückmeldung unter „Berichtigt nach literatur/“. Steht die Aussage an
