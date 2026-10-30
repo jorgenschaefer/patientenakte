@@ -67,13 +67,31 @@ Den Rang einer Leitlinie haben je nach Fachgebiet auch:
      „Nicht gespeichert“ mit Grund und Fundort eintragen und die Aussage
      als aus Sekundärquellen gekennzeichnet verwenden.
 4. Die Aussage zur Frage in der Textfassung nachlesen, auf einer Seite ohne
-   Text im PDF, im ganzen Abschnitt, nicht nur an der Fundstelle: Empfehlungsnummer, Empfehlungsgrad,
+   Text im PDF, wie unter „Eine Stelle finden“, im ganzen Abschnitt, nicht
+   nur an der Fundstelle: Empfehlungsnummer, Empfehlungsgrad,
    Evidenzniveau und Konsensstärke; ohne Empfehlungsnummer, etwa bei
    Fachinformationen und Studien, den Abschnitt oder die Seite.
 5. Nach einer erneuten Prüfung in `literatur/README.md` das Prüfdatum
    anpassen und einen Vermerk „nicht prüfbar“ streichen, ohne Commit; er
    kommt beim Einarbeiten. Außer `literatur/` änderst du nichts in der
    Akte.
+
+## Eine Stelle finden
+
+Die Textfassung steht in der Reihenfolge des Lesens. Was das für die
+Suche heißt:
+
+- **Seitenangaben** wie „S. 216“ oder „CPG12“ sind Seiten des PDFs, nicht
+  Text, nach dem sich suchen lässt. Die Seite liest du mit
+  `pdftotext -f <seite> -l <seite> <datei>.pdf -`; die gedruckte Nummer
+  steht meist in der Fußzeile und kann von der des PDFs abweichen.
+- **Empfehlungsgrade,** die neben der Empfehlung stehen statt in ihr, etwa
+  ein Buchstabe am Rand, trennt die Textfassung von ihrer Empfehlung, oft
+  steht er bei der nächsten. Den Grad liest du auf der Seite mit
+  `pdftotext -layout -f <seite> -l <seite> <datei>.pdf -`.
+- **Nicht gefunden** ist eine Aussage erst, wenn auch die Suche nach
+  Wörtern aus ihr selbst nichts findet, nicht nur die nach ihrer Nummer,
+  und die genannte Seite sie nicht enthält.
 
 ## Rückmeldung
 

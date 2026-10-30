@@ -108,7 +108,9 @@ nicht: Quelle ist jede Einheit ganz, von `historie.md` und
 - Ältere Unterlagen und Stellen in `literatur/` nur, soweit eine geänderte
   Angabe sie zitiert; dort die zitierte Stelle mit ihrem Abschnitt. Eine
   Leitlinie liest du in ihrer Textfassung, `literatur/README.md` nennt sie;
-  eine Seite, die dort ohne Text steht, im PDF.
+  eine Seite, die dort ohne Text steht, im PDF. Die Stelle suchst du wie
+  unter „Eine Stelle finden“ in
+  `${CLAUDE_PLUGIN_ROOT}/agents/leitlinien-recherche.md`.
   Ist die vorige Fassung in `HEAD` eine Quelle, liest du außer den Quellen
   des Auftrags keine Unterlagen und keine Literatur, die eine geänderte
   Angabe zitiert. Nennt der Auftrag eine Vorfassung als Verzeichnis, liest

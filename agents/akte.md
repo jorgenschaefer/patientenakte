@@ -140,9 +140,11 @@ Im Kapitel ersetzt der neue Eintrag den alten, mit Quelle
   ohne Text steht, im PDF, und schreibst sie so, wie sie dort steht: je Empfehlung ein Satz mit Empfehlungsnummer,
   Empfehlungsgrad und Evidenzniveau, wo die Quelle sie nennt. Weicht die
   Beurteilung davon ab, gilt die Quelle; du nennst die Abweichung in der
-  Rückmeldung unter „Berichtigt nach literatur/“. Steht die Aussage an
-  der Stelle nicht oder fehlt die Quelle in `literatur/`, übernimmst du
-  sie nicht und meldest das dort. Nichts aus dem Gedächtnis.
+  Rückmeldung unter „Berichtigt nach literatur/“. Eine Stelle suchst du
+  wie unter „Eine Stelle finden“ in
+  `${CLAUDE_PLUGIN_ROOT}/agents/leitlinien-recherche.md`. Steht die
+  Aussage an der Stelle nicht oder fehlt die Quelle in `literatur/`,
+  übernimmst du sie nicht und meldest das dort. Nichts aus dem Gedächtnis.
 - **Einschätzungen:** nur aus der Beurteilung, je Thema und Art der
   Eintrag, der gilt: Ein späterer Eintrag mit demselben Thema und
   derselben Art löst einen früheren ab, ein Eintrag „Aufgehoben“
