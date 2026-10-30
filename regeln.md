@@ -11,33 +11,9 @@ zusammengehörige in einem Satz verbunden, nie als nummerierte Liste.
 # Beginn einer Sitzung
 
 Was sich in der Akte getan hat, steht unter „Stand der Akte“, den der Start
-der Sitzung neben diesen Regeln einspielt.
-
-- Meldet der Stand neue, geänderte oder entfernte Unterlagen oder einen
-  nicht abgeschlossenen Bau, oder haben `unterlagen/` oder `literatur/`
-  Änderungen ohne Commit (`git status --short`), führst du den Skill
-  `einarbeiten` aus, bevor du auf die Nachricht eingehst, außer der
-  Überblick fehlt oder die Akte hat den bisherigen Aufbau.
-- Schiebt der Benutzer das Einarbeiten auf, berätst du bei einem nicht
-  abgeschlossenen Bau auf Grundlage der committeten Fassung,
-  `git show HEAD:AKTE.md` und ebenso der Kapitel. Unterlagen, die der Stand
-  als neu oder geändert meldet, nennst du dann in jeder Antwort, die berät,
-  in einem Satz und sagst, dass die Antwort sie nicht berücksichtigt.
-- Meldet der Stand, dass der Überblick fehlt, sagt deine erste Antwort das
-  in einem Satz und schlägt `/einarbeiten` vor; von selbst arbeitest du
-  dann nichts ein. Ebenso, wenn er meldet, dass eine Datei von der Vorlage
-  abweicht oder über ihrer Höchstlänge liegt, einen Verweis ins Leere,
-  vorbeigegangene Fristen oder dass `.claude/CLAUDE.md` den Überblick
-  nicht einbindet, außer du arbeitest nach dem ersten Punkt ohnehin ein.
-  Bindet sie ihn nicht ein, liest du `AKTE.md` vor der ersten Antwort
-  ganz. Was er zu `literatur/` meldet, sagt deine erste Antwort in einem
-  Satz; beheben lässt es der Subagent `leitlinien-recherche`, kein
-  `/einarbeiten`. Steht ein Wortlaut nicht in der Quelle, löst ein neuer
-  Eintrag mit dem Wortlaut, den er findet, den alten ab; trägt die Quelle
-  die Einschätzung nicht, ändert der neue Eintrag auch sie. Kann ein Warnzeichen der Stufe 1 oder 2 gelten, kommt
-  der Satz zur Akte erst nach der Dringlichkeit und den Fragen dazu.
-- Meldet der Stand einen vergangenen Termin, frag nach dem Ergebnis und
-  schlag die Nachbereitung aus dem Skill `termin-vorbereiten` vor.
+der Sitzung neben diesen Regeln einspielt, und darunter, was daraus für
+deine ersten Antworten folgt. Kann ein Warnzeichen der Stufe 1 oder 2
+gelten, kommt all das erst nach der Dringlichkeit und den Fragen dazu.
 
 # Beraten
 
@@ -82,28 +58,6 @@ Einträge in `historie.md`. Will er das Gespräch erkennbar beenden, etwa mit
 „danke, das war's“, und steht etwas aus, bietest du es in einem Satz an.
 `AKTE.md` und `kapitel/` änderst du nie selbst. Steht dort etwas Falsches,
 weil eine Unterlage falsch ist, kommt die Korrektur in `historie.md`.
-
-# Bisheriger Aufbau
-
-Meldet der Stand den bisherigen Aufbau mit `BEURTEILUNG.md`, gilt bis zur
-Umstellung:
-
-- Statt Überblick und Kapiteln liest du vor der ersten beratenden Antwort
-  die alte `AKTE.md` und `BEURTEILUNG.md` ganz; meldet der Stand einen
-  nicht abgeschlossenen Bau oder eine nicht abgeschlossene Umstellung,
-  ihre committete Fassung mit `git show HEAD:AKTE.md` und
-  `git show HEAD:BEURTEILUNG.md`. Ein Eintrag der Beurteilung
-  `unterlagen/beurteilung.md` gilt vor einem älteren in `BEURTEILUNG.md`.
-- `AKTE.md` und `BEURTEILUNG.md` änderst du nie. Neue Angaben und
-  Einträge der Beurteilung schreibst du wie unter „Einarbeiten“; fehlt
-  `unterlagen/beurteilung.md`, legst du sie vorher aus der Vorlage des
-  Plugins an:
-  `cp "$(dirname "$(readlink -f "$(command -v akte-stand)")")/../vorlagen/beurteilung.md" unterlagen/`.
-- Beim Start arbeitest du nichts von selbst ein, auch nicht neue
-  Unterlagen oder Entwürfe. Deine erste Antwort sagt in einem Satz, dass
-  `/einarbeiten` die Akte zuerst auf den neuen Aufbau umstellt, bei einer
-  nicht abgeschlossenen Umstellung, dass es sie fortsetzt, und schlägt es
-  vor.
 
 # Dateien
 

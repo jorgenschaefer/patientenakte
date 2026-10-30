@@ -25,6 +25,10 @@ bisheriger_aufbau='Die Akte hat den bisherigen Aufbau mit BEURTEILUNG.md und wei
 bisheriger_aufbau_nicht_abgeschlossen='AKTE.md hat Änderungen ohne Commit aus einem Bau, der nicht abgeschlossen ist.'
 nicht_eingebunden='.claude/CLAUDE.md bindet den Überblick AKTE.md nicht ein.'
 umstellung_nicht_abgeschlossen='Eine Umstellung auf den neuen Aufbau ist nicht abgeschlossen.'
+# Anfänge von Anweisungen, die stand-einspielen unter „Was daraus folgt“ gibt.
+# shellcheck disable=SC2016 # Backticks sind Markdown.
+folgt_einarbeiten='Führ den Skill `einarbeiten` aus'
+folgt_baum='Was der Stand am Überblick, an den Kapiteln'
 # Claude Code übernimmt die Ausgabe eines Hooks nur bis etwa 10.000 Zeichen
 # ganz in den Kontext; längere ersetzt es durch ihre ersten 2 KB und den
 # Pfad einer Datei. Gemessen: 9.890 Zeichen ganz, 10.672 gekürzt.
@@ -67,6 +71,10 @@ main() {
   start_meldet_baum
   start_meldet_fehlenden_ueberblick
   start_meldet_bisherigen_aufbau
+  start_folgt_vorlage
+  start_folgt_unterlagen
+  start_folgt_literatur
+  start_folgt_termin
   start_hooks_eingetragen
   start_regeln_ganz
   start_stand_unter_der_grenze
@@ -551,6 +559,9 @@ start_meldet_baum() {
     "$(grep -cxF 'kapitel/knie.md hat 1501 Wörter, mehr als die Höchstlänge von 1500.' <<< "$start")"
   pruefe "Start: Fristen vorbei" 1 \
     "$(grep -cxF 'Die Fristen in AKTE.md reichen bis 01.01.2000; das Datum ist vorbei.' <<< "$start")"
+  pruefe "Start: Bau offen, einarbeiten" 1 "$(grep -cF "$folgt_einarbeiten" <<< "$start")"
+  pruefe "Start: Bau offen, aufgeschoben auf der committeten Fassung" 1 "$(grep -cF 'committeten Fassung' <<< "$start")"
+  pruefe "Start: Bau offen, Meldungen zum Baum nicht eigens vorgeschlagen" 0 "$(grep -cF "$folgt_baum" <<< "$start")"
 }
 
 start_meldet_fehlenden_ueberblick() {
@@ -558,7 +569,11 @@ start_meldet_fehlenden_ueberblick() {
   git init -q
   mkdir unterlagen && echo Anamnese > unterlagen/anamnese.md
   git add . && git commit -qm anamnese
-  pruefe "Start: Überblick fehlt" 1 "$(start_der_sitzung | grep -cxF 'Der Überblick AKTE.md fehlt.')"
+  local start
+  start=$(start_der_sitzung)
+  pruefe "Start: Überblick fehlt" 1 "$(grep -cxF 'Der Überblick AKTE.md fehlt.' <<< "$start")"
+  pruefe "Start: Überblick fehlt, sagen" 1 "$(grep -cF 'dass der Überblick fehlt' <<< "$start")"
+  pruefe "Start: Überblick fehlt, nicht einarbeiten" 0 "$(grep -cF "$folgt_einarbeiten" <<< "$start")"
 }
 
 start_meldet_bisherigen_aufbau() {
@@ -570,6 +585,55 @@ start_meldet_bisherigen_aufbau() {
   pruefe "Start: bisheriger Aufbau" 1 "$(grep -cxF "$bisheriger_aufbau" <<< "$start")"
   pruefe "Start: bisheriger Aufbau, nicht abgeschlossener Bau" 1 \
     "$(grep -cxF "$bisheriger_aufbau_nicht_abgeschlossen" <<< "$start")"
+  pruefe "Start: bisheriger Aufbau, seine Regeln" 1 "$(grep -cxF '## Bisheriger Aufbau' <<< "$start")"
+  pruefe "Start: bisheriger Aufbau, nicht einarbeiten" 0 "$(grep -cF "$folgt_einarbeiten" <<< "$start")"
+}
+
+# Nur eine Abweichung von der Vorlage: vorschlagen, nicht einarbeiten.
+start_folgt_vorlage() {
+  akte_mit_anamnese
+  local start
+  start=$(start_der_sitzung)
+  pruefe "Start: Vorlage, vorschlagen" 1 "$(grep -cF "$folgt_baum" <<< "$start")"
+  pruefe "Start: Vorlage, nicht einarbeiten" 0 "$(grep -cF "$folgt_einarbeiten" <<< "$start")"
+  pruefe "Start: Vorlage, keine Regeln des bisherigen Aufbaus" 0 "$(grep -cxF '## Bisheriger Aufbau' <<< "$start")"
+}
+
+start_folgt_unterlagen() {
+  akte_mit_anamnese
+  echo b > unterlagen/b.md
+  local start
+  start=$(start_der_sitzung)
+  pruefe "Start: neue Unterlage ohne Commit gemeldet" 1 \
+    "$(grep -cxF 'unterlagen/ oder literatur/ hat Änderungen ohne Commit.' <<< "$start")"
+  pruefe "Start: neue Unterlage, einarbeiten" 1 "$(grep -cF "$folgt_einarbeiten" <<< "$start")"
+  pruefe "Start: neue Unterlage, aufgeschoben in jeder Antwort nennen" 1 "$(grep -cF 'in jeder Antwort, die berät' <<< "$start")"
+  pruefe "Start: neue Unterlage, kein Bau offen" 0 "$(grep -cF 'committeten Fassung' <<< "$start")"
+}
+
+start_folgt_literatur() {
+  akte_mit_anamnese
+  mkdir literatur && echo x > literatur/x.pdf
+  pruefe "Start: Literatur, leitlinien-recherche" 1 \
+    "$(start_der_sitzung | grep -cF "beheben lässt es der Subagent \`leitlinien-recherche\`")"
+}
+
+start_folgt_termin() {
+  akte_mit_anamnese
+  echo Themen > termin-hausarzt-2000-01-01.md
+  echo Themen > "termin-hausarzt-$(date -d tomorrow +%F).md"
+  local start
+  start=$(start_der_sitzung)
+  pruefe "Start: vergangener Termin" "Termin vorbei, Nachbereitung offen: termin-hausarzt-2000-01-01.md" \
+    "$(grep '^Termin' <<< "$start")"
+  pruefe "Start: vergangener Termin, nach dem Ergebnis fragen" 1 "$(grep -cF 'termin-vorbereiten' <<< "$start")"
+}
+
+# Eine gebaute Akte mit Anamnese, die nur von der Vorlage abweicht.
+akte_mit_anamnese() {
+  neue_akte
+  echo Anamnese > unterlagen/anamnese.md && git add unterlagen && git commit -qm anamnese
+  bauen
 }
 
 # Was die Tests unten einzeln aufrufen, ruft Claude Code beim Start auf.

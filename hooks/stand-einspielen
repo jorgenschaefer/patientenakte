@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # Spielt den Stand der Akte zu Beginn jeder Sitzung als Kontext ein, neben
 # regeln-einspielen in einem eigenen Hook, weil Claude Code die Ausgabe
-# eines Hooks nur bis etwa 10.000 Zeichen ganz übernimmt. Endet immer mit 0:
-# Eine gescheiterte Prüfung erscheint als Zeile im Stand, statt die Sitzung
-# zu verhindern.
+# eines Hooks nur bis etwa 10.000 Zeichen ganz übernimmt. Unter „Was daraus
+# folgt“ stehen nur die Anweisungen zu dem, was der Stand meldet; so trägt
+# regeln.md sie nicht in jede Sitzung. Endet immer mit 0: Eine gescheiterte
+# Prüfung erscheint als Zeile im Stand, statt die Sitzung zu verhindern.
+# shellcheck disable=SC2016 # Backticks sind Markdown.
 set -uo pipefail
 
 printf '# Stand der Akte\n\n*Ermittelt beim Start der Sitzung.*\n\n'
@@ -11,21 +13,99 @@ printf '# Stand der Akte\n\n*Ermittelt beim Start der Sitzung.*\n\n'
 cd "${CLAUDE_PROJECT_DIR:-.}" 2>/dev/null || { echo "Akte nicht gefunden: ${CLAUDE_PROJECT_DIR:-.}"; exit 0; }
 
 if [[ ! -f unterlagen/anamnese.md ]]; then
-  # shellcheck disable=SC2016 # Backticks sind Markdown.
   echo '`unterlagen/anamnese.md` fehlt. Führ den Skill `patientenakte:anamnese` aus, was auch immer der Benutzer geschrieben hat, vor deiner ersten Antwort. Nennt er neue oder stärkere Beschwerden, prüfst du vorher auf Warnzeichen, wie unter „Regeln“ beschrieben, und beginnst die Anamnese danach.'
   exit 0
 fi
 
-"$CLAUDE_PLUGIN_ROOT/bin/akte-stand" 2>&1 || echo "akte-stand ist gescheitert."
-"$CLAUDE_PLUGIN_ROOT/bin/akte-stand" --vorlage 2>&1 || echo "akte-stand --vorlage ist gescheitert."
-
+stand=$("$CLAUDE_PLUGIN_ROOT/bin/akte-stand" 2>&1 || echo "akte-stand ist gescheitert.")
+stand+=$'\n'$("$CLAUDE_PLUGIN_ROOT/bin/akte-stand" --vorlage 2>&1 || echo "akte-stand --vorlage ist gescheitert.")
+if [[ -n $(git status --porcelain -- unterlagen literatur 2>/dev/null) ]]; then
+  stand+=$'\nunterlagen/ oder literatur/ hat Änderungen ohne Commit.'
+fi
 heute=$(date +%F)
 for termin in termin-*-[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].md; do
   [[ -f $termin ]] || continue
   datum=${termin: -13:10}
   if [[ $datum < $heute ]]; then
-    echo "Termin vorbei, Nachbereitung offen: $termin"
+    stand+=$'\n'"Termin vorbei, Nachbereitung offen: $termin"
   fi
 done
+stand=$(grep -v '^$' <<< "$stand")
+echo "$stand"
+
+meldet() { # erweiterter regulärer Ausdruck
+  grep -qE "$1" <<< "$stand"
+}
+
+bisher='' bau='' unterlagen='' ueberblick_fehlt='' einarbeiten=''
+meldet '^Die Akte hat den bisherigen Aufbau' && bisher=1
+meldet 'aus einem Bau, der nicht abgeschlossen ist\.$' && bau=1
+meldet '^(neu|geändert): ' && unterlagen=1
+meldet '^Der Überblick .* fehlt\.$' && ueberblick_fehlt=1
+if [[ -z $bisher && -z $ueberblick_fehlt ]] &&
+  { [[ -n $bau ]] || meldet '^(neu|geändert|entfernt): |Änderungen ohne Commit\.$'; }; then
+  einarbeiten=1
+fi
+
+folgt=()
+if [[ -n $einarbeiten ]]; then
+  folgt+=('Führ den Skill `einarbeiten` aus, bevor du auf die Nachricht eingehst.')
+  if [[ -n $bau ]]; then
+    folgt+=('Schiebt der Benutzer das Einarbeiten auf, berätst du auf Grundlage der committeten Fassung, `git show HEAD:AKTE.md` und ebenso der Kapitel.')
+  fi
+  if [[ -n $unterlagen ]]; then
+    folgt+=('Schiebt der Benutzer das Einarbeiten auf, nennst du die neuen oder geänderten Unterlagen in jeder Antwort, die berät, in einem Satz und sagst, dass die Antwort sie nicht berücksichtigt.')
+  fi
+fi
+if [[ -n $ueberblick_fehlt ]]; then
+  folgt+=('Deine erste Antwort sagt in einem Satz, dass der Überblick fehlt, und schlägt `/einarbeiten` vor; von selbst arbeitest du nichts ein.')
+fi
+if [[ -z $einarbeiten ]] &&
+  meldet 'weicht von der Vorlage ab\.$|Höchstlänge|^Verweis ins Leere|Fristen in |bindet den Überblick'; then
+  folgt+=('Was der Stand am Überblick, an den Kapiteln oder an `.claude/CLAUDE.md` meldet, sagt deine erste Antwort in einem Satz und schlägt `/einarbeiten` vor; von selbst arbeitest du nichts ein.')
+fi
+if meldet 'bindet den Überblick'; then
+  folgt+=('Lies `AKTE.md` vor der ersten Antwort ganz.')
+fi
+if meldet '^Quelle ohne |^Zeile in |^literatur/README\.md fehlt\.$|^Wortlaut nicht '; then
+  folgt+=('Was der Stand zu `literatur/` meldet, sagt deine erste Antwort in einem Satz; beheben lässt es der Subagent `leitlinien-recherche`, kein `/einarbeiten`.')
+fi
+if meldet '^Wortlaut nicht in der Textfassung'; then
+  folgt+=('Steht ein Wortlaut nicht in der Quelle, löst ein neuer Eintrag der Beurteilung mit dem Wortlaut, den der Subagent findet, den alten ab; trägt die Quelle die Einschätzung nicht, ändert der neue Eintrag auch sie.')
+fi
+if meldet '^Termin vorbei'; then
+  folgt+=('Frag nach dem Ergebnis des vergangenen Termins und schlag die Nachbereitung aus dem Skill `termin-vorbereiten` vor.')
+fi
+
+if ((${#folgt[@]})); then
+  printf '\n## Was daraus folgt\n\n'
+  printf -- '- %s\n' "${folgt[@]}"
+fi
+
+if [[ -n $bisher ]]; then
+  cat <<'EOF'
+
+## Bisheriger Aufbau
+
+Bis zur Umstellung gilt:
+
+- Statt Überblick und Kapiteln liest du vor der ersten beratenden Antwort
+  die alte `AKTE.md` und `BEURTEILUNG.md` ganz; meldet der Stand einen
+  nicht abgeschlossenen Bau oder eine nicht abgeschlossene Umstellung,
+  ihre committete Fassung mit `git show HEAD:AKTE.md` und
+  `git show HEAD:BEURTEILUNG.md`. Ein Eintrag der Beurteilung
+  `unterlagen/beurteilung.md` gilt vor einem älteren in `BEURTEILUNG.md`.
+- `AKTE.md` und `BEURTEILUNG.md` änderst du nie. Neue Angaben und
+  Einträge der Beurteilung schreibst du wie unter „Einarbeiten“; fehlt
+  `unterlagen/beurteilung.md`, legst du sie vorher aus der Vorlage des
+  Plugins an:
+  `cp "$(dirname "$(readlink -f "$(command -v akte-stand)")")/../vorlagen/beurteilung.md" unterlagen/`.
+- Beim Start arbeitest du nichts von selbst ein, auch nicht neue
+  Unterlagen oder Entwürfe. Deine erste Antwort sagt in einem Satz, dass
+  `/einarbeiten` die Akte zuerst auf den neuen Aufbau umstellt, bei einer
+  nicht abgeschlossenen Umstellung, dass es sie fortsetzt, und schlägt es
+  vor.
+EOF
+fi
 
 exit 0

@@ -32,7 +32,7 @@ Die Fachsprache ist Deutsch. Auch der Code des Plugins benennt die Dinge auf Deu
 - **Prüfung** - die Prüfung der ganzen **Akte** auf Lücken, Widersprüche und Form, ohne Befunde und **Literatur** zu lesen, nur auf Wunsch.
 - **Ruhend** - der Status eines **Problems**, das fortbesteht, aber gerade weder Beschwerden macht noch behandelt wird.
 - **Schrittweiser Bau** - das **Einarbeiten** neuer **Unterlagen** nur in die **Kapitel**, die sie berühren, und in den **Überblick**.
-- **Stand der Akte** - was beim Start einer Sitzung eingespielt wird: was `akte-stand` an Ausstehendem und zu Behebendem meldet, und vergangene Termine.
+- **Stand der Akte** - was beim Start einer Sitzung eingespielt wird: was `akte-stand` an Ausstehendem und zu Behebendem meldet, und vergangene Termine, dazu, was daraus folgt.
 - **Stapel** - eine Gruppe von **Unterlagen** in der Reihenfolge ihres Datums, die ein **Neubau** oder eine **Kontrolle** in einem Schritt einarbeitet.
 - **Übergreifendes Thema** - ein **Kapitel**, das zu keinem einzelnen **Problem** gehört, genau eines von `person`, `behandelnde`, `medikation`, `psyche`, `gynaekologie`, `impfungen`, `vorsorge` und `messwerte`.
 - **Überblick** (`akte`, `AKTE.md`) - was in jeder Beratung gelten muss, dazu je **Problem** und **übergreifendem Thema** eine Zeile mit Verweis auf sein **Kapitel**; er ist ab dem Start jeder Sitzung im Kontext.

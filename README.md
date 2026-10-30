@@ -292,15 +292,16 @@ Prüfdatum steht in `literatur/README.md`.
 ### Das Plugin
 
 - `regeln.md` – die Regeln für die Beratung: Rolle, Beginn einer Sitzung,
-  Beraten, Einarbeiten, eine Akte im bisherigen Aufbau, Dateien,
+  Beraten, Einarbeiten, Dateien,
   Dringlichkeit, wohin eine Angabe gehört, und unter „Evidenz“, dass vor
   jeder Empfehlung eine Quelle geprüft wird.
 - `hooks/regeln-einspielen` – spielt beim Start jeder Sitzung `regeln.md`
   in zwei Teilen ein, weil Claude Code die Ausgabe eines Hooks nur bis zu
   einer Länge ganz übernimmt.
 - `hooks/stand-einspielen` – spielt beim Start den Stand der Akte und
-  vergangene Termine ein; fehlt `unterlagen/anamnese.md`, verlangt er die
-  Erstbefragung.
+  vergangene Termine ein, dazu nur die Anweisungen zu dem, was der Stand
+  meldet, und die Regeln für eine Akte im bisherigen Aufbau, wenn sie einen
+  hat; fehlt `unterlagen/anamnese.md`, verlangt er die Erstbefragung.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht im Baum
   eingearbeitet sind, ob ein Bau nicht abgeschlossen ist, einen fehlenden
   Überblick, Überblick und Kapitel über ihrer Höchstlänge, Verweise ins
