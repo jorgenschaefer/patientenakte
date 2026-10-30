@@ -82,7 +82,8 @@ ohne Ergebnis“.
    - **Hängt ein Intervall an einem Befund,** es daraus bestimmen; ändert
      ein Befund aus der Akte es nicht, das ausdrücklich sagen.
 4. An die Beurteilung anhängen, was neu ist oder sich geändert hat, in der
-   Form aus ihrem Kopf, ohne Commit: je Untersuchung einen Eintrag mit dem
+   Form aus dem Kopf von `${CLAUDE_PLUGIN_ROOT}/vorlagen/beurteilung.md`,
+   ohne Commit: je Untersuchung einen Eintrag mit dem
    Thema „Vorsorge, <Untersuchung>“ der Art Frist, mit Anlass, zuletzt,
    wieder fällig, Quelle und Kostenträger, und was geprüft wurde und nicht
    zutrifft als Einschätzung mit Grund, damit es nicht erneut gesucht wird.

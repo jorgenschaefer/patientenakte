@@ -5,6 +5,8 @@
 # wird.
 #
 #   tests/akte-stand.sh
+# Die Meldungen zu Wortlauten zitieren mit „“, auch direkt vor einem ".
+# shellcheck disable=SC1111
 set -uo pipefail
 
 wurzel=$(cd "$(dirname "$0")/.." && pwd)
@@ -55,6 +57,9 @@ main() {
   literatur_ohne_zeile
   literatur_zeile_unvollstaendig
   literatur_ohne_uebersicht
+  wortlaut_gefunden
+  wortlaut_nicht_gefunden
+  wortlaut_ohne_textfassung
   fristen_vorbei
   fristen_ohne_datum
   zwischenstand_pruefen
@@ -412,6 +417,51 @@ literatur_ohne_uebersicht() {
   pruefe "literatur/ ohne README.md" "$auf_dem_stand
 Quelle ohne Datei in AKTE.md: literatur/fehlt
 literatur/README.md fehlt." "$("$stand")"
+}
+
+# Die Textfassung bricht anders um als der Wortlaut und hat den
+# Bindestrich eines getrennten Kompositums verloren.
+wortlaut_gefunden() {
+  neue_akte
+  literatur_mit_uebersicht
+  printf 'Kommentar: Bei 4-12 %% kommt es zu Episkleritis; eine häufige\nsekundäre Manifestation ist ein Katarakt als Folge einer\nLangzeitTherapie [594].\f' > literatur/leitlinie.txt
+  printf 'Ein Kurs  kostet\n50 Euro.\n' > literatur/seiten/start.txt
+  mkdir -p kapitel
+  printf '# Knie\n\n- A [literatur/seiten Kurse: „Ein Kurs kostet 50 Euro.“]\n' > kapitel/knie.md
+  printf '# Beurteilung\n\n- **A – Einschätzung:** A. Grund: B [literatur/leitlinie Kommentar zu 5.11: „Bei 4–12 %% kommt es zu Episkleritis; eine häufige sekundäre Manifestation ist ein Katarakt als Folge einer Langzeit-Therapie [594].“; historie 01.01.2026].\n' > unterlagen/beurteilung.md
+  sed -i 's/4–12/4-12/' unterlagen/beurteilung.md
+  git add . && git commit -qm wortlaut
+  bauen
+  pruefe "Wortlaute in der Textfassung" "$auf_dem_stand" "$("$stand")"
+}
+
+wortlaut_nicht_gefunden() {
+  neue_akte
+  literatur_mit_uebersicht
+  printf 'Patienten sollten zu Beschwerden am Auge befragt werden.\n' > literatur/leitlinie.txt
+  : > literatur/seiten/start.txt
+  printf '# Akte\n\n- A [literatur/leitlinie 5.11: „Patienten sollen regelmäßig zum Augenarzt.“; literatur/seiten Start: „Kurse“]\n- B [literatur/fehlt S. 1: „egal“]\n' > AKTE.md
+  bauen
+  pruefe "Wortlaute, die nicht in der Textfassung stehen" "$auf_dem_stand
+Quelle ohne Datei in AKTE.md: literatur/fehlt
+Wortlaut nicht in der Textfassung von literatur/leitlinie, zitiert in AKTE.md: „Patienten sollen regelmäßig zum Augenarzt.“
+Wortlaut nicht in der Textfassung von literatur/seiten, zitiert in AKTE.md: „Kurse“" "$("$stand")"
+  # shellcheck disable=SC2016 # Backticks sind Markdown.
+  sed -i 's/^| `leitlinie` | Quelle /| `leitlinie` | Quelle (Seite 3 ohne Text) /' literatur/README.md
+  pruefe "Mit Seiten ohne Text ein Hinweis aufs PDF" "$auf_dem_stand
+Quelle ohne Datei in AKTE.md: literatur/fehlt
+Wortlaut nicht in der Textfassung von literatur/leitlinie, zitiert in AKTE.md: „Patienten sollen regelmäßig zum Augenarzt.“; die Quelle hat Seiten ohne Text, dort im PDF nachsehen
+Wortlaut nicht in der Textfassung von literatur/seiten, zitiert in AKTE.md: „Kurse“" "$("$stand")"
+}
+
+wortlaut_ohne_textfassung() {
+  neue_akte
+  literatur_mit_uebersicht
+  rm literatur/leitlinie.txt
+  printf '# Akte\n\n- A [literatur/leitlinie 5.11: „Ein Satz.“]\n' > AKTE.md
+  bauen
+  pruefe "Wortlaut ohne Textfassung" "$auf_dem_stand
+Wortlaut nicht prüfbar, literatur/leitlinie hat keine Textfassung, zitiert in AKTE.md: „Ein Satz.“" "$("$stand")"
 }
 
 fristen_vorbei() {

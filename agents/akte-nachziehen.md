@@ -420,8 +420,9 @@ Neubau:
 - eine Angabe im Baum ohne Quelle;
 - was `akte-stand` zu `literatur/` meldet, im Wortlaut: eine Quelle
   `[literatur/…]` ohne Datei, eine Datei ohne Zeile in
-  `literatur/README.md` und eine Zeile mit leerer Spalte. Das prüfst du
-  nicht selbst;
+  `literatur/README.md`, eine Zeile mit leerer Spalte und einen Wortlaut,
+  der nicht in der Textfassung seiner Quelle steht. Das prüfst du nicht
+  selbst;
 - eine Quelle `[beurteilung TT.MM.JJJJ]` ohne Eintrag mit diesem Datum;
 - ein Eintrag der Art Beobachten, der gilt, ohne CSV oder mit anderen
   Spalten als ihre erste Zeile;

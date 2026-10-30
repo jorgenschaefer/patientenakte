@@ -282,7 +282,10 @@ Fristen und was beobachtet wird. Sie wird nur angehängt, nie umgeschrieben,
 damit Einschätzungen von Beratung zu Beratung gleich bleiben. Ein Eintrag
 gilt, bis ein späterer mit demselben Thema und derselben Art ihn ablöst
 oder ein Eintrag „Aufgehoben“ ihn streicht. Wie Einträge aussehen, steht
-in ihrem Kopf. Was eine Quelle aus `literatur/` sagt, steht in den
+in ihrem Kopf. Stützt sich ein Eintrag auf `literatur/`, zitiert er die
+Quelle im Wortlaut, und `akte-stand` prüft, ob der Wortlaut in ihrer
+Textfassung steht: Ohne diese Prüfung hatten Einträge Aussagen einer
+Leitlinie zugeschrieben, die dort nicht stehen. Was eine Quelle aus `literatur/` sagt, steht in den
 Kapiteln unter „Literatur“, mit Stelle; die Übersicht der Quellen mit
 Prüfdatum steht in `literatur/README.md`.
 
@@ -301,8 +304,9 @@ Prüfdatum steht in `literatur/README.md`.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht im Baum
   eingearbeitet sind, ob ein Bau nicht abgeschlossen ist, einen fehlenden
   Überblick, Überblick und Kapitel über ihrer Höchstlänge, Verweise ins
-  Leere, abgelaufene Fristen, Quellen in `literatur/` ohne Datei und
-  Dateien dort ohne vollständige Zeile in `literatur/README.md`; meldet
+  Leere, abgelaufene Fristen, Quellen in `literatur/` ohne Datei,
+  Dateien dort ohne vollständige Zeile in `literatur/README.md` und einen
+  Wortlaut, der nicht in der Textfassung seiner Quelle steht; meldet
   eine Akte im bisherigen Aufbau
   und eine Umstellung, die nicht abgeschlossen ist. Schreibt mit
   `--aktualisieren` die Prüfsummen nach `kapitel/grundlage.md`; meldet mit

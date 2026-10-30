@@ -32,7 +32,9 @@ der Sitzung neben diesen Regeln einspielt.
   Bindet sie ihn nicht ein, liest du `AKTE.md` vor der ersten Antwort
   ganz. Was er zu `literatur/` meldet, sagt deine erste Antwort in einem
   Satz; beheben lässt es der Subagent `leitlinien-recherche`, kein
-  `/einarbeiten`. Kann ein Warnzeichen der Stufe 1 oder 2 gelten, kommt
+  `/einarbeiten`. Steht ein Wortlaut nicht in der Quelle, löst ein neuer
+  Eintrag mit dem Wortlaut, den er findet, den alten ab; trägt die Quelle
+  die Einschätzung nicht, ändert der neue Eintrag auch sie. Kann ein Warnzeichen der Stufe 1 oder 2 gelten, kommt
   der Satz zur Akte erst nach der Dringlichkeit und den Fragen dazu.
 - Meldet der Stand einen vergangenen Termin, frag nach dem Ergebnis und
   schlag die Nachbereitung aus dem Skill `termin-vorbereiten` vor.
@@ -218,6 +220,14 @@ geschrieben, nur `AKTE.md`, `CLAUDE.md` und `README.md` groß.
   Beurteilung an.
 - Nenn bei jeder Empfehlung die Quelle (Leitlinie mit Registernummer und
   Stand, oder Studie) und, wo angegeben, Empfehlungsgrad und Evidenzniveau.
+- Stützt sich ein Eintrag der Beurteilung auf `literatur/`, steht im Grund
+  die Quelle mit Wortlaut: `[literatur/<Dateiname ohne Endung> <Stelle>:
+  „<Wortlaut>“]`, ein zusammenhängendes Stück von höchstens 25 Wörtern,
+  wie es der Subagent `leitlinien-recherche` zurückgibt oder wie es in der
+  Textfassung steht, nie aus dem Gedächtnis oder in eigenen Worten.
+  `akte-stand` prüft, ob der Wortlaut in der Textfassung steht. Das gilt
+  auch, wenn der Kopf von `unterlagen/beurteilung.md` es noch nicht
+  nennt.
 - Gibt es keine Leitlinie zur Frage, sag das ausdrücklich und nenn, worauf
   sich die Einschätzung stattdessen stützt.
 - Trenn sichtbar, was die Quelle sagt, und deine Übertragung auf den Fall.

@@ -21,7 +21,9 @@
 #                               eine .claude/CLAUDE.md, die ihn nicht
 #                               einbindet, Quellen in literatur/ ohne Datei
 #                               und Dateien in literatur/ ohne vollständige
-#                               Zeile in literatur/README.md
+#                               Zeile in literatur/README.md, dazu einen
+#                               Wortlaut, der nicht in der Textfassung
+#                               seiner Quelle steht
 #   akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in
 #                               kapitel/grundlage.md, im bisherigen Aufbau
 #                               ans Ende von AKTE.md, solange es
@@ -181,8 +183,8 @@ literatur_pruefen() {
       [[ -e $literatur/$name ]] || compgen -G "$literatur/$name.*" > /dev/null ||
         echo "Quelle ohne Datei in $datei: $literatur/$name"
     done < <(literatur_zitate "$datei")
-  done < <([[ ! -f $akte ]] || printf '%s\0' "$akte"; kapitel_dateien
-    [[ ! -f $beurteilung ]] || printf '%s\0' "$beurteilung")
+  done < <(zitierende_dateien)
+  wortlaute_pruefen
   if [[ ! -f $literatur_uebersicht ]]; then
     echo "$literatur_uebersicht fehlt."
     return
@@ -195,6 +197,88 @@ literatur_pruefen() {
     [[ -n ${zeilen[$name]:-} ]] || echo "Quelle ohne Zeile in $literatur_uebersicht: $literatur/$name"
   done < <(literatur_namen)
   uebersicht_pruefen
+}
+
+# Überblick, Kapitel und Beurteilung, durch Nullbytes getrennt.
+zitierende_dateien() {
+  [[ ! -f $akte ]] || printf '%s\0' "$akte"
+  kapitel_dateien
+  [[ ! -f $beurteilung ]] || printf '%s\0' "$beurteilung"
+}
+
+# Ein Wortlaut in einer Quelle, [literatur/<name> <Stelle>: „<Wortlaut>“],
+# steht so in der Textfassung, gleich wie dort die Zeilen umbrechen. Ein
+# Modell, das eine Leitlinie aus dem Gedächtnis wiedergibt oder ihre
+# Aussagen zusammenzieht, schreibt meist keinen Satz, der dort steht.
+# Verglichen wird ohne Bindestriche: pdftotext lässt den eines am
+# Zeilenende getrennten Kompositums weg. Eine Quelle ohne Datei meldet
+# schon literatur_pruefen.
+wortlaute_pruefen() {
+  local -x LC_ALL=C.UTF-8
+  local zitate name pfad
+  zitate=$(while IFS= read -r -d '' pfad; do
+    wortlaute "$pfad" | sed "s|^|$pfad\t|"
+  done < <(zitierende_dateien))
+  [[ -n $zitate ]] || return 0
+  while IFS= read -r name; do
+    [[ -e $literatur/$name ]] || compgen -G "$literatur/$name.*" > /dev/null || continue
+    local texte=()
+    if [[ -d $literatur/$name ]]; then
+      texte=("$literatur/$name"/*.txt)
+      [[ -e ${texte[0]} ]] || texte=()
+    elif [[ -f $literatur/$name.txt ]]; then
+      texte=("$literatur/$name.txt")
+    fi
+    if ((!${#texte[@]})); then
+      awk -F '\t' -v name="$name" -v literatur="$literatur" '$2 == name {
+        print "Wortlaut nicht prüfbar, " literatur "/" name " hat keine Textfassung, zitiert in " $1 ": „" $3 "“"
+      }' <<< "$zitate"
+      continue
+    fi
+    local hinweis=''
+    if [[ -f $literatur_uebersicht ]] &&
+      grep -E "^\| *\`$name/?\` *\|" "$literatur_uebersicht" | grep -q 'ohne Text'; then
+      hinweis="; die Quelle hat Seiten ohne Text, dort im PDF nachsehen"
+    fi
+    LC_ALL=C awk -F '\t' -v name="$name" -v quelle="$literatur/$name" -v hinweis="$hinweis" '
+      function normal(t) {
+        gsub(/\xc2\xa0/, " ", t)
+        gsub(/\xc2\xad|-/, "", t)
+        gsub(/[ \t\n\r\f\v]+/, " ", t)
+        return t
+      }
+      FNR == NR { if ($2 == name) { datei[++n] = $1; wortlaut[n] = $3 } next }
+      { text = text " " $0 }
+      END {
+        text = normal(text)
+        for (i = 1; i <= n; i++)
+          if (!index(text, normal(wortlaut[i])))
+            print "Wortlaut nicht in der Textfassung von " quelle ", zitiert in " datei[i] ": „" wortlaut[i] "“" hinweis
+      }
+    ' <(printf '%s\n' "$zitate") "${texte[@]}"
+  done < <(cut -f 2 <<< "$zitate" | awk '!gesehen[$0]++')
+}
+
+# Je Wortlaut in einer Datei der Name der Quelle und der Wortlaut, durch
+# einen Tabulator getrennt. Die Stelle reicht bis zum Doppelpunkt vor dem
+# Wortlaut und enthält kein Semikolon, das die nächste Quelle abtrennt; der
+# Wortlaut reicht bis zum ersten schließenden Anführungszeichen und darf
+# Semikolon und eckige Klammern enthalten.
+wortlaute() { # Datei
+  awk '
+    {
+      zeile = $0
+      while (match(zeile, /literatur\/[^]; \t]+[^];„]*: „[^“]*“/)) {
+        stueck = substr(zeile, RSTART + 10, RLENGTH - 10)
+        zeile = substr(zeile, RSTART + RLENGTH)
+        name = stueck
+        sub(/[ \t:].*/, "", name)
+        sub(/^[^„]*„/, "", stueck)
+        sub(/“$/, "", stueck)
+        print name "\t" stueck
+      }
+    }
+  ' "$1"
 }
 
 # Die Namen der Quellen, die eine Datei zitiert, je einmal in der Reihenfolge

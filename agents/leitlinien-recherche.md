@@ -84,7 +84,11 @@ Je Frage:
   mit Grund.
 - **Aussagen zur Frage:** je mit Empfehlungsnummer, sonst Abschnitt oder
   Seite, mit Empfehlungsgrad, Evidenzniveau und Konsensstärke, wo
-  angegeben; Empfehlungen im Wortlaut. Dazu, für welche Patientengruppe sie
+  angegeben; je Aussage ihr Wortlaut, ein zusammenhängendes Stück von
+  höchstens 25 Wörtern, ohne Auslassung aus der Textfassung kopiert, von
+  einer Seite ohne Text aus dem PDF abgeschrieben. Er kommt so in die
+  Beurteilung, und `akte-stand` prüft, ob er in der Textfassung steht.
+  Dazu, für welche Patientengruppe sie
   gelten, welche Einschränkungen die Quelle nennt und ob die Evidenz
   schwach, widersprüchlich oder von anderen Gruppen übertragen ist.
 - **Keine Leitlinie:** Gibt es keine zur Frage, das ausdrücklich, und
