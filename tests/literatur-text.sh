@@ -14,6 +14,7 @@ fehler=0
 main() {
   spalten_nacheinander
   getrennte_woerter
+  gesperrte_ueberschriften
   seiten_ohne_text
   alle_seiten_ohne_text
   vorhandene_textfassung
@@ -38,6 +39,28 @@ getrennte_woerter() {
   "$text" leitlinie.pdf > /dev/null
   pruefe "Am Zeilenende getrennte Wörter verbunden" "ist ein Katarakt als Folge
 LangzeitTherapie" "$(tr -d '\f' < leitlinie.txt | sed '/^$/d')"
+}
+
+gesperrte_ueberschriften() {
+  neues_verzeichnis
+  seiten_pdf leitlinie.pdf "$(spalte 10 \
+    'E M P F E H LU N G 2 . 7 ( N E U 20 2 1 )' \
+    'STAT EM ENT 2. 6 ( MO DI FIZI ERT 2 021 )' \
+    'EM PFEH LU NG 4. 12 B (NE U 2 021 )' \
+    'EM PFEH LU NG (NE U 2 02 1)' \
+    'EM PFEH LU NGEN' \
+    'E M P F E H LU N G / S T AT E M E N T' \
+    'EMPFEHLUNG 3.1 sollte hier nicht zusammenlaufen' \
+    'Siehe auch EM PFEH LU NG 2. 7')"
+  "$text" leitlinie.pdf > /dev/null
+  pruefe "Gesperrte Überschriften geschlossen" "EMPFEHLUNG 2.7 (NEU 2021)
+STATEMENT 2.6 (MODIFIZIERT 2021)
+EMPFEHLUNG 4.12B (NEU 2021)
+EMPFEHLUNG (NEU 2021)
+EMPFEHLUNGEN
+EMPFEHLUNG/STATEMENT
+EMPFEHLUNG 3.1 sollte hier nicht zusammenlaufen
+Siehe auch EM PFEH LU NG 2. 7" "$(tr -d '\f' < leitlinie.txt | sed '/^$/d')"
 }
 
 seiten_ohne_text() {

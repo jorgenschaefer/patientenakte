@@ -20,6 +20,43 @@ set -euo pipefail
 
 woerter_je_seite=10
 
+# Die Leitlinien der DGVS im Satz von Thieme sperren die Überschriften
+# ihrer Empfehlungen, und pdftotext gibt sie mit Leerzeichen mitten in den
+# Wörtern aus, etwa „E M P F E H LU N G 2 . 7 ( G E P R Ü F T 20 2 1 )“ oder
+# „STAT EM ENT 2. 6“. Eine Suche nach „Empfehlung 2.7“ fände sie nicht.
+# Eine Zeile, die ohne Leerraum nur aus solchen Wörtern besteht, mit einer
+# Nummer und dem Stand in Klammern, wird geschrieben wie
+# „EMPFEHLUNG 2.7 (GEPRÜFT 2021)“; andere Zeilen bleiben, wie sie sind.
+ueberschriften_schliessen() { # Textfassung
+  LC_ALL=C.UTF-8 awk '
+    # Wie die Zeile ausgegeben wird, mit ihrem Zeilenende aus RT: Die
+    # letzte Zeile endet ohne, und ein angehängtes ergäbe eine Seite mehr.
+    function aus(text) { printf "%s%s", vorschub text, RT; next }
+    {
+      vorschub = $0
+      sub(/[^\f].*/, "", vorschub)
+      zeile = substr($0, length(vorschub) + 1)
+      kurz = zeile
+      gsub(/[ \t]/, "", kurz)
+      wort = "(EMPFEHLUNG(EN)?|STATEMENTS?|DEFINITION)"
+      if (zeile != kurz && match(kurz, "^" wort "(/" wort ")*")) {
+        kopf = substr(kurz, 1, RLENGTH)
+        rest = substr(kurz, RLENGTH + 1)
+        if (match(rest, /^[0-9]+\.[0-9]+[A-Za-z]?/)) {
+          kopf = kopf " " substr(rest, 1, RLENGTH)
+          rest = substr(rest, RLENGTH + 1)
+        }
+        if (rest == "") aus(kopf)
+        if (match(rest, /^\([A-ZÄÖÜ]+[0-9]{4}\)$/))
+          aus(kopf " (" substr(rest, 2, RLENGTH - 6) " " substr(rest, RLENGTH - 4, 4) ")")
+      }
+      vorschub = ""
+      aus($0)
+    }
+  ' "$1" > "$1.neu"
+  mv "$1.neu" "$1"
+}
+
 if [[ $# -ne 1 || ${1,,} != *.pdf ]]; then
   echo "Aufruf: $0 <datei.pdf>" >&2
   exit 2
@@ -36,6 +73,7 @@ fi
 
 txt=${pdf%.*}.txt
 pdftotext -q -enc UTF-8 "$pdf" "$txt"
+ueberschriften_schliessen "$txt"
 
 # pdftotext schließt jede Seite mit einem Seitenvorschub ab.
 awk -v pdf="$pdf" -v grenze="$woerter_je_seite" '
