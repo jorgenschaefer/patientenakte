@@ -51,6 +51,10 @@ main() {
   kapitel_hoechstlaenge
   hoechstlaengen_einstellbar
   verweise_ins_leere
+  literatur_ohne_datei
+  literatur_ohne_zeile
+  literatur_zeile_unvollstaendig
+  literatur_ohne_uebersicht
   fristen_vorbei
   fristen_ohne_datum
   zwischenstand_pruefen
@@ -332,6 +336,82 @@ Verweis ins Leere in AKTE.md: unterlagen/bild.png
 Verweis ins Leere in AKTE.md: kapitel/ohne datei.md
 Verweis ins Leere in kapitel/knie.md: knie/meniskus.md
 Verweis ins Leere in kapitel/knie.md: unterlagen/a.md" "$("$stand")"
+}
+
+literatur_ohne_datei() {
+  neue_akte
+  literatur_mit_uebersicht
+  mkdir -p kapitel unterlagen
+  cat > AKTE.md <<'MD'
+# Akte
+
+- Knie [literatur/leitlinie Empfehlung 1; literatur/fehlt-im-akte § 2]
+- Muster [literatur/<Dateiname ohne Endung> <Stelle>], [historie 01.01.2026]
+MD
+  cat > kapitel/knie.md <<'MD'
+# Knie
+
+- [literatur/seiten Startseite], [literatur/fehlt-im-kapitel], [literatur/fehlt-im-kapitel 2]
+MD
+  printf '# Beurteilung
+
+- **Knie – Einschätzung:** A. Grund: B [literatur/fehlt-in-der-beurteilung 3].
+' > unterlagen/beurteilung.md
+  git add . && git commit -qm literatur
+  bauen
+  pruefe "Quellen ohne Datei in literatur/" "$auf_dem_stand
+Quelle ohne Datei in AKTE.md: literatur/fehlt-im-akte
+Quelle ohne Datei in kapitel/knie.md: literatur/fehlt-im-kapitel
+Quelle ohne Datei in unterlagen/beurteilung.md: literatur/fehlt-in-der-beurteilung" "$("$stand")"
+}
+
+literatur_ohne_zeile() {
+  neue_akte
+  literatur_mit_uebersicht
+  : > literatur/ohne-zeile.pdf
+  : > literatur/ohne-zeile.txt
+  mkdir literatur/ordner-ohne-zeile
+  bauen
+  pruefe "Quellen ohne Zeile in literatur/README.md" "$auf_dem_stand
+Quelle ohne Zeile in literatur/README.md: literatur/ohne-zeile
+Quelle ohne Zeile in literatur/README.md: literatur/ordner-ohne-zeile" "$("$stand")"
+}
+
+literatur_zeile_unvollstaendig() {
+  neue_akte
+  literatur_mit_uebersicht
+  : > literatur/leer.pdf
+  : > literatur/kurz.pdf
+  : > literatur/neu.pdf
+  : > literatur/neu-ohne-vermerk.pdf
+  cat >> literatur/README.md <<'MD'
+| `leer` | Quelle |  | bis 2030 | 01.01.2026 | 01.01.2026 |  |
+| `kurz` | Quelle | 2026 | bis 2030 |
+| `neu` | Quelle | 2026 | nicht prüfbar am 01.01.2026: gesperrt | 01.01.2026 |  | [Seite](https://x) |
+| `neu-ohne-vermerk` | Quelle | 2026 | bis 2030 | 01.01.2026 |  | [Seite](https://x) |
+MD
+  bauen
+  pruefe "Zeilen in literatur/README.md mit leeren Spalten" "$auf_dem_stand
+Zeile in literatur/README.md ohne Version / Stand: leer
+Zeile in literatur/README.md ohne Herkunft: leer
+Zeile in literatur/README.md ohne Abgerufen: kurz
+Zeile in literatur/README.md ohne Geprüft: kurz
+Zeile in literatur/README.md ohne Herkunft: kurz
+Zeile in literatur/README.md ohne Geprüft: neu-ohne-vermerk" "$("$stand")"
+}
+
+literatur_ohne_uebersicht() {
+  neue_akte
+  mkdir literatur
+  : > literatur/leitlinie.pdf
+  printf '# Akte
+
+- [literatur/fehlt]
+' > AKTE.md
+  bauen
+  pruefe "literatur/ ohne README.md" "$auf_dem_stand
+Quelle ohne Datei in AKTE.md: literatur/fehlt
+literatur/README.md fehlt." "$("$stand")"
 }
 
 fristen_vorbei() {
@@ -919,6 +999,22 @@ neue_akte() {
   printf '# Akte\n' > AKTE.md
   cp "$wurzel/vorlagen/claude.md" .claude/CLAUDE.md
   git add . && git commit -qm start
+}
+
+# literatur/ mit der Übersicht aus der Vorlage und zwei Quellen mit
+# vollständiger Zeile, eine davon ein Verzeichnis, wie Webseiten es sind.
+literatur_mit_uebersicht() {
+  mkdir -p literatur/seiten
+  : > literatur/leitlinie.pdf
+  : > literatur/leitlinie.txt
+  : > literatur/seiten/start.html
+  {
+    sed '/^## Nicht gespeichert/,$d' "$wurzel/vorlagen/literatur-README.md"
+    cat <<'MD'
+| `leitlinie` | Quelle | 2026 | bis 2030 | 01.01.2026 | 01.01.2026 | [Seite](https://x) |
+| `seiten/` | Webseiten | 2026 | bis zur nächsten Änderung | 01.01.2026 | 01.01.2026 | [Seite](https://x) |
+MD
+  } > literatur/README.md
 }
 
 # Wie neue_akte, aber im bisherigen Aufbau mit BEURTEILUNG.md.

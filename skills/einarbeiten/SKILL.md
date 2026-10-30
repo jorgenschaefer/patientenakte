@@ -20,9 +20,11 @@ etwa `unterlagen/anamnese.md` aus dem Skill `anamnese`.
    Änderungen ohne Commit haben oder `akte-stand` etwas anderes meldet als
    „AKTE.md und kapitel/ sind auf dem Stand von unterlagen/.“, auch nur
    vorbeigegangene Fristen, eine Datei über ihrer Höchstlänge oder einen
-   Verweis ins Leere. Steht nichts aus, ist nichts anzugleichen und will
-   der Benutzer keinen Neubau, keine Kontrolle und keine Prüfung, sagst du
-   das in einem Satz, und der Skill endet.
+   Verweis ins Leere. Was `akte-stand` zu `literatur/` meldet, lässt nichts
+   ausstehen; es kommt nur in die Zusammenfassung. Steht nichts aus, ist
+   nichts anzugleichen und will der Benutzer keinen Neubau, keine
+   Kontrolle und keine Prüfung, sagst du das in einem Satz, und der Skill
+   endet.
 2. **Umstellen,** wenn `akte-stand` den bisherigen Aufbau mit
    `BEURTEILUNG.md` meldet, bei jedem Aufruf, vor allem anderen: Du sagst
    in einem Satz, dass die Akte auf den neuen Aufbau umgestellt wird und
@@ -88,9 +90,10 @@ etwa `unterlagen/anamnese.md` aus dem Skill `anamnese`.
    hat und welche neuen Einschätzungen daraus folgen; jedes Kapitel, das er
    geteilt hat; ob der Überblick über seiner Höchstlänge bleibt; und was
    `akte-stand` danach noch meldet, je in einem Satz: jede Datei über ihrer
-   Höchstlänge, jeden Verweis ins Leere, der sich nicht beheben ließ, und
-   vorbeigegangene Fristen. Nach einem Bau in Stapeln dazu, was die
-   Rückmeldung darüber sagt: die Zahl der Stapel; aus dem Abgleich die
+   Höchstlänge, jeden Verweis ins Leere, der sich nicht beheben ließ,
+   vorbeigegangene Fristen und was es zu `literatur/` meldet; das behebt
+   der Subagent `leitlinien-recherche`. Nach einem Bau in Stapeln dazu,
+   was die Rückmeldung darüber sagt: die Zahl der Stapel; aus dem Abgleich die
    Wiederherstellungen oder Berichtigungen, die verworfenen Funde mit Grund
    und die Stapel, für die er nicht gelaufen ist; ob der vollständige Bau
    oder die Kontrolle nicht gelaufen ist, mit der Meldung von `akte-stand`;

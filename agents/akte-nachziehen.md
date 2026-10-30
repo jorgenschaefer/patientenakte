@@ -51,8 +51,9 @@ dazu nennen:
    unterlagen/.“: neue, geänderte oder entfernte Unterlagen, einen nicht
    abgeschlossenen Bau, einen fehlenden Überblick, eine Datei über ihrer
    Höchstlänge, einen Verweis ins Leere oder Fristen, deren Datum vorbei
-   ist. Steht nichts aus und nennt der Auftrag nichts, meldest du das und
-   endest. Meldet `akte-stand` den bisherigen Aufbau mit `BEURTEILUNG.md`,
+   ist. Was `akte-stand` zu `literatur/` meldet, lässt keinen Bau
+   ausstehen; du meldest es nur, wie unter „Prüfung“. Steht nichts aus
+   und nennt der Auftrag nichts, meldest du das und endest. Meldet `akte-stand` den bisherigen Aufbau mit `BEURTEILUNG.md`,
    stellst du die Akte um wie unter „Umstellung“, statt der Schritte 2
    bis 4; Angleichen, Neubau, Kontrolle und Berichtigung entfallen. Nennt
    der Auftrag keine Umstellung, baust du nichts und meldest, dass sie
@@ -385,8 +386,9 @@ in frischem Kontext.
 
 Geprüft wird, was sich ohne Befunde und ohne Literatur prüfen lässt: Du
 liest dafür keine Befunde (PDF, JPG, PNG), von `literatur/` nur `README.md`
-und die Dateinamen. Gelesen werden der Überblick `AKTE.md`, alle Kapitel
-in `kapitel/`, die Beurteilung `unterlagen/beurteilung.md`,
+und die Dateinamen. Dass etwas fehlt, meldest du nur nach einer Suche über
+die ganze Datei, nie nach einem gekürzten Lesen wie mit `head`. Gelesen
+werden der Überblick `AKTE.md`, alle Kapitel in `kapitel/`, die Beurteilung `unterlagen/beurteilung.md`,
 `unterlagen/anamnese.md`, `unterlagen/historie.md`, die Dateinamen in
 `unterlagen/` und `literatur/`, `literatur/README.md` und die erste Zeile
 jeder CSV in `unterlagen/`, dazu das Schema in
@@ -416,9 +418,10 @@ Fund kommt in eine von drei Gruppen.
 Neubau:
 
 - eine Angabe im Baum ohne Quelle;
-- eine Quelle `[literatur/…]` im Baum ohne Datei in `literatur/`, und eine
-  Quelle in `literatur/README.md` ohne Registernummer, Version, Gültigkeit
-  oder Prüfdatum;
+- was `akte-stand` zu `literatur/` meldet, im Wortlaut: eine Quelle
+  `[literatur/…]` ohne Datei, eine Datei ohne Zeile in
+  `literatur/README.md` und eine Zeile mit leerer Spalte. Das prüfst du
+  nicht selbst;
 - eine Quelle `[beurteilung TT.MM.JJJJ]` ohne Eintrag mit diesem Datum;
 - ein Eintrag der Art Beobachten, der gilt, ohne CSV oder mit anderen
   Spalten als ihre erste Zeile;
@@ -488,8 +491,8 @@ worauf eine Quelle zeigt. Ginge es nicht ohne, meldest du den Fund nur.
   Beurteilung daraus folgen; welche Kapitel er geteilt hat und welche
   du, mit den Unterkapiteln; ob der Überblick über seiner Höchstlänge bleibt; welche
   Verweise ins Leere er nicht beheben konnte. Dazu, was `akte-stand`
-  nach dem letzten Commit noch zu Längen, Verweisen und Fristen meldet,
-  im Wortlaut.
+  nach dem letzten Commit noch zu Längen, Verweisen, Fristen und
+  `literatur/` meldet, im Wortlaut.
 - **Fragen:** die offenen Widersprüche und Unklarheiten, die der Subagent
   `akte` meldet, außer solchen, deren Antwort nach `regeln.md` nicht in
   die Unterlagen käme; nach einem Bau in Stapeln davon nur die nach dem

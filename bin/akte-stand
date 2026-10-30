@@ -17,9 +17,11 @@
 #                               meldet es
 #                               auch einen fehlenden Überblick, Überblick und
 #                               Kapitel über ihrer Höchstlänge, Verweise ins
-#                               Leere, abgelaufene Fristen des Überblicks
-#                               und eine .claude/CLAUDE.md, die ihn nicht
-#                               einbindet
+#                               Leere, abgelaufene Fristen des Überblicks,
+#                               eine .claude/CLAUDE.md, die ihn nicht
+#                               einbindet, Quellen in literatur/ ohne Datei
+#                               und Dateien in literatur/ ohne vollständige
+#                               Zeile in literatur/README.md
 #   akte-stand --aktualisieren  schreibt die aktuellen Prüfsummen in
 #                               kapitel/grundlage.md, im bisherigen Aufbau
 #                               ans Ende von AKTE.md, solange es
@@ -57,6 +59,10 @@ kapitel=kapitel
 # Die Prüfsummen des Baums. Sie stehen nicht im Überblick, weil der in
 # jeder Sitzung ganz im Kontext ist; grundlage.md ist kein Kapitel.
 grundlage=$kapitel/grundlage.md
+# Die Quellen, die Baum und Beurteilung als [literatur/<name> <Stelle>]
+# zitieren, mit ihrer Übersicht.
+literatur=literatur
+literatur_uebersicht=$literatur/README.md
 # Bindet den Überblick beim Start jeder Sitzung ein (vorlagen/claude.md).
 einbindung=.claude/CLAUDE.md
 # Die Zeile unter der Überschrift des ersten Eintrags, den die Umstellung
@@ -161,6 +167,102 @@ baum_pruefen() {
   done < <([[ ! -f $akte ]] || printf '%s\0' "$akte"; kapitel_dateien)
   [[ ! -f $akte ]] || fristen_pruefen
 }
+
+# Was an der Literatur fehlt: eine Datei zu einer Quelle [literatur/…] im
+# Baum oder in der Beurteilung, eine Zeile in der Übersicht zu einer Datei
+# und eine Angabe in einer Zeile. Das prüft hier ein Skript, weil ein Modell
+# beim Lesen einer gekürzten Übersicht Zeilen für fehlend hielt. Ohne
+# literatur/, wie im Zwischenstand eines Baus unter .git/akte-bau/, nichts.
+literatur_pruefen() {
+  [[ -d $literatur ]] || return 0
+  local datei name
+  while IFS= read -r -d '' datei; do
+    while IFS= read -r name; do
+      [[ -e $literatur/$name ]] || compgen -G "$literatur/$name.*" > /dev/null ||
+        echo "Quelle ohne Datei in $datei: $literatur/$name"
+    done < <(literatur_zitate "$datei")
+  done < <([[ ! -f $akte ]] || printf '%s\0' "$akte"; kapitel_dateien
+    [[ ! -f $beurteilung ]] || printf '%s\0' "$beurteilung")
+  if [[ ! -f $literatur_uebersicht ]]; then
+    echo "$literatur_uebersicht fehlt."
+    return
+  fi
+  local -A zeilen=()
+  while IFS= read -r name; do
+    zeilen[$name]=1
+  done < <(awk -F '|' '/^\| *`/ { print zeilen_name($2) } '"$zeilen_name" "$literatur_uebersicht")
+  while IFS= read -r name; do
+    [[ -n ${zeilen[$name]:-} ]] || echo "Quelle ohne Zeile in $literatur_uebersicht: $literatur/$name"
+  done < <(literatur_namen)
+  uebersicht_pruefen
+}
+
+# Die Namen der Quellen, die eine Datei zitiert, je einmal in der Reihenfolge
+# der Datei. Eine eckige Klammer kann mehrere Quellen haben, durch Semikolon
+# getrennt; der Platzhalter <Dateiname ohne Endung> der Vorlagen zählt nicht.
+literatur_zitate() { # Datei
+  awk '
+    {
+      zeile = $0
+      while (match(zeile, /\[[^]]*\]/)) {
+        n = split(substr(zeile, RSTART + 1, RLENGTH - 2), teile, ";")
+        zeile = substr(zeile, RSTART + RLENGTH)
+        for (i = 1; i <= n; i++) {
+          sub(/^[ \t]+/, "", teile[i])
+          if (teile[i] !~ /^literatur\/[^< \t]/) continue
+          name = substr(teile[i], 11)
+          sub(/[ \t].*/, "", name)
+          if (!(name in gesehen)) { gesehen[name] = 1; print name }
+        }
+      }
+    }
+  ' "$1"
+}
+
+# Die Quellen in literatur/: eine Datei ohne ihre Endung, ein Verzeichnis
+# mit seinem Namen; PDF und Textfassung derselben Quelle sind eine.
+literatur_namen() {
+  local pfad name
+  for pfad in "$literatur"/*; do
+    [[ -e $pfad && $pfad != "$literatur_uebersicht" ]] || continue
+    name=${pfad##*/}
+    [[ -d $pfad ]] || name=${name%.*}
+    echo "$name"
+  done | sort -u
+}
+
+# Jede Zeile der Tabelle hat jede Spalte ausgefüllt. Nur „Geprüft“ darf leer
+# sein, wenn die Zeile „nicht prüfbar“ vermerkt: Eine neue Quelle, deren
+# Gültigkeit sich nicht prüfen ließ, hat kein Prüfdatum.
+uebersicht_pruefen() {
+  awk -F '|' -v datei="$literatur_uebersicht" '
+    !kopf && /^\|/ {
+      kopf = 1
+      for (i = 2; i < NF; i++) { spalte[i] = $i; gsub(/^ +| +$/, "", spalte[i]) }
+      spalten = NF
+      next
+    }
+    /^\| *`/ {
+      name = zeilen_name($2)
+      for (i = 2; i < spalten; i++) {
+        zelle = i < NF ? $i : ""
+        gsub(/^ +| +$/, "", zelle)
+        if (zelle != "" || (spalte[i] == "Geprüft" && /nicht prüfbar/)) continue
+        print "Zeile in " datei " ohne " spalte[i] ": " name
+      }
+    }
+  '"$zeilen_name" "$literatur_uebersicht"
+}
+
+# Der Name einer Quelle in der ersten Spalte der Übersicht, für awk: ohne
+# Leerzeichen und Backticks und, bei einem Verzeichnis, ohne den
+# Schrägstrich am Ende.
+zeilen_name='
+  function zeilen_name(zelle) {
+    gsub(/[ `]/, "", zelle)
+    sub(/\/$/, "", zelle)
+    return zelle
+  }'
 
 # Ohne die Zeile @../AKTE.md in .claude/CLAUDE.md beriete jede Sitzung ohne
 # den Überblick. Ein Zwischenstand in .git/akte-bau/ hat keine.
@@ -514,6 +616,7 @@ case "${1:-}" in
       echo "$akte und $kapitel/ sind auf dem Stand von $verzeichnis/."
     fi
     [[ -n $bisheriger_aufbau ]] || baum_pruefen
+    [[ -n $bisheriger_aufbau ]] || literatur_pruefen
     [[ -n $bisheriger_aufbau ]] || einbindung_pruefen
     ;;
   --aktualisieren) aktualisieren ;;
