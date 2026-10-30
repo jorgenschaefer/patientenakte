@@ -8,11 +8,13 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
 1. Nach veralteten Ständen fragen, die für die Reihenfolge zählen: Hat ein
    Termin stattgefunden, liegt ein Ergebnis vor, hat eine Therapie begonnen?
 2. Alles Offene sammeln: die Fristen im Überblick und, weil dort nur die
-   der nächsten vier Wochen stehen, die in den Kapiteln jedes aktiven
-   Problems und in `kapitel/medikation.md`, je ärztlich veranlasst oder
-   empfohlen unter „Fakten“ und vom Modell empfohlen unter
+   der nächsten vier Wochen stehen, die in den Kapiteln und Unterkapiteln
+   jedes aktiven Problems und in `kapitel/medikation.md`, je ärztlich
+   veranlasst oder empfohlen unter „Fakten“ und vom Modell empfohlen unter
    „Einschätzungen“; dazu Fristen in Einträgen der Beurteilung ohne
-   Commit.
+   Commit. Einen eigenen Abschnitt für Fristen hat ein Kapitel nicht:
+   Unter „Einschätzungen“ beginnt jede mit `**<Thema> – Frist:**`, unter
+   „Fakten“ steht sie im Text der Empfehlung.
 3. Fällige Vorsorge aus `kapitel/vorsorge.md` und `kapitel/impfungen.md`
    übernehmen und mit einordnen, ohne den Skill `vorsorge` auszuführen.
    Fehlen dort Einschätzungen zur Vorsorge oder stammen sie aus der Zeit
@@ -31,7 +33,11 @@ description: Sagt, was der Patient als Nächstes tun sollte, in welcher Reihenfo
    - **Jetzt und diese Woche**, **in den nächsten Wochen**, **bis in drei
      Monaten**: was überfällig ist oder in dieser Zeit ansteht. Späteres
      nur, wenn vorher etwas zu tun ist, etwa einen Termin zu buchen; sonst
-     eine Zeile, wie viele Punkte ab wann folgen;
+     eine Zeile, wie viele Punkte ab wann folgen. Eine Frist ohne Datum,
+     etwa „regulärer Termin“, kommt in den Abschnitt, in dem sie am
+     besten erledigt wird, etwa zu einem Termin beim selben Arzt oder vor
+     dem Ereignis, für das sie zählt; passt sie in keinen, steht sie
+     danach unter **ohne festes Datum**. Keine fällt weg;
    - jeder Punkt: was zu tun ist, bei wem, bis wann, und in einem Satz warum,
      mit der Quelle aus dem Kapitel: der Name der Leitlinie aus
      `literatur/README.md` und die Empfehlungsnummer;
