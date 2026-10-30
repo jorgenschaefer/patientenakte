@@ -300,7 +300,9 @@ Prüfdatum steht in `literatur/README.md`.
 - `bin/akte-stand` – meldet, welche Unterlagen noch nicht im Baum
   eingearbeitet sind, ob ein Bau nicht abgeschlossen ist, einen fehlenden
   Überblick, Überblick und Kapitel über ihrer Höchstlänge, Verweise ins
-  Leere und abgelaufene Fristen; meldet eine Akte im bisherigen Aufbau
+  Leere, abgelaufene Fristen, Quellen in `literatur/` ohne Datei und
+  Dateien dort ohne vollständige Zeile in `literatur/README.md`; meldet
+  eine Akte im bisherigen Aufbau
   und eine Umstellung, die nicht abgeschlossen ist. Schreibt mit
   `--aktualisieren` die Prüfsummen nach `kapitel/grundlage.md`; meldet mit
   `--vorlage`, ob Überblick oder Kapitel von ihrer Vorlage abweichen; teilt
