@@ -22,6 +22,10 @@ bleibt.
    nicht ein, fragst nicht danach und der Skill endet.
 2. **Nachfragen**, was zur Einordnung fehlt, nur soweit es nach dieser Regel
    zählt: Datum, wer was gesagt oder verordnet hat, seit wann, wie stark.
+   Vergleich die Angabe auch mit dem, was die Akte zum selben Thema sagt;
+   das Kapitel dazu liest du dafür, wenn es noch nicht im Kontext ist.
+   Widerspricht sie der Akte, nennst du beide Angaben mit Datum und fragst,
+   welche stimmt. Darauf berätst du erst, wenn das geklärt ist.
 3. **Ablegen** als Entwurf, ohne Commit:
    - **Befund als Datei:** lesen, dann ablegen als
      `unterlagen/JJJJ-MM-TT-<art>_<absender>.<endung>` mit dem Datum des
