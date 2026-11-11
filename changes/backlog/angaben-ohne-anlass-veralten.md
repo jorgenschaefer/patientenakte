@@ -1,6 +1,6 @@
 ---
 effort: S
-utility: M
+value: M
 ---
 
 # Angaben ohne Anlass werden nie aufgefrischt
@@ -9,7 +9,7 @@ utility: M
 danach unverändert (`skills/anamnese/SKILL.md:8-10`). Was sich seitdem
 geändert hat, kommt nur nach `historie.md`, wenn es im Gespräch zur Sprache
 kommt. Nach einem veralteten Stand fragt die Beratung nur, wenn er zum
-Thema passt (`regeln.md:145-148`). Angaben, zu denen nie ein passendes
+Thema passt (`regeln.md:132-135`). Angaben, zu denen nie ein passendes
 Thema kommt, etwa Beruf, Wohnsituation, Sport oder Familienanamnese,
 bleiben so auf dem Stand der Erstbefragung, ohne dass jemand nachfragt.
 

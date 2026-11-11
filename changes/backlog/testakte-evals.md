@@ -1,6 +1,6 @@
 ---
 effort: L
-utility: L
+value: L
 ---
 
 # Keine Testakte und keine Evals
@@ -18,23 +18,26 @@ Dazu die Gegenprüfung (`agents/aenderung-gegenpruefen.md`), bei ihrer
 Abnahme nur durch Lesen geprüft. Offen ist:
 
 - ob sie läuft: nach schrittweisem, vollständigem und liegen gebliebenem
-  Bau, und vor jedem Commit an `BEURTEILUNG.md` (`agents/akte-nachziehen.md`,
-  Schritt 5);
+  Bau, und vor jedem Commit an der Beurteilung (`agents/akte-nachziehen.md`,
+  „Gegenprüfung“);
 - ob sie eingebaute Fehler findet: einen falschen Wert, eine fehlende
   Angabe, eine Schlussfolgerung als Fakt, einen falschen Empfehlungsgrad,
   einen Widerspruch zu einer Allergie;
 - was der Benutzer erfährt, wenn sie scheitert
-  (`agents/akte-nachziehen.md:109`, „Gescheitert“).
+  (`agents/akte-nachziehen.md:379`, „Gescheitert“).
 
 Ergänzt aus der Überprüfung von `AKTE.md` und `BEURTEILUNG.md` am
 29.10.2026: Die echten Beratungen liefern Fragen, an denen sich messen
 lässt, ob eine Änderung an Aufbau und Regeln die Beratung verbessert.
 Fünf, sechs davon allgemein gehalten gegen eine Testakte stellen, die so
-groß und so gebaut ist wie eine echte nach einigen Wochen, einmal mit dem
-alten und einmal mit dem neuen Aufbau. Bewertet wird, ob die Antwort
-berücksichtigt, was in der Akte steht: laufende Medikation, Warnzeichen,
-Abgelehntes. Das betrifft `ueberblick-beim-start.md`,
-`beurteilung-nach-problem.md` und `laengenbudget-statt-knapp.md`.
+groß und so gebaut ist wie eine echte nach einigen Wochen. Bewertet wird,
+ob die Antwort berücksichtigt, was in der Akte steht: laufende Medikation,
+Warnzeichen, Abgelehntes. Der Baum aus Überblick und Kapiteln
+(`changes/2026-10-29-akte-als-baum/`) wurde ohne eine solche Messung
+gebaut.
+
+Die kleine Testakte und der run-Skill, die es eine Zeit lang gab, sind
+entfernt (`acdeea8`).
 
 Geklärt am 21.10.2026 mit Claude Code 2.1.306 und einem Test-Agenten, aus
 dem Gespräch und eine Ebene tiefer aus einem anderen Subagenten gestartet:

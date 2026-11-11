@@ -1,13 +1,13 @@
 ---
 effort: S
-utility: M
+value: M
 ---
 
 # Ein unlesbares PDF gilt als eingearbeitet
 
 `akte-stand --aktualisieren` schreibt die Prüfsumme jeder Datei in
-`unterlagen/` unter „Grundlage“ (`bin/akte-stand`, `aktualisieren`),
-auch eines PDFs, aus dem nichts in `AKTE.md` steht, weil es sich nicht
+`unterlagen/` nach `kapitel/grundlage.md` (`bin/akte-stand`,
+`aktualisieren`), auch eines PDFs, aus dem nichts in der Akte steht, weil es sich nicht
 lesen lässt. Danach meldet `akte-stand` es nie wieder; die Lücke bleibt
 still, bis jemand die Datei ersetzt.
 

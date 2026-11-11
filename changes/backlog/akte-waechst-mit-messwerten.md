@@ -1,20 +1,20 @@
 ---
-effort: M
-utility: M
+effort: S
+value: S
 ---
 
-# AKTE.md wächst mit jedem Laborwert
+# Das Kapitel Messwerte wächst mit jedem Laborwert
 
-„Messwerte“ in `vorlagen/AKTE.md:47-49` verlangt je Parameter alle Werte,
-älteste zuerst, je mit Quelle. Mit jedem Laborbefund wird der Abschnitt
-länger, ohne Grenze. In einer echten Akte hatte er nach gut zwei Wochen
-etwa 1.900 Wörter; „Diagnosen und Nebenbefunde“ (`vorlagen/AKTE.md:15-17`)
-etwa 2.100, weil zu einer Diagnose auch ältere Befunde einzeln stehen.
+Das Kapitel Messwerte behält je Parameter jeden Wert, auch den ältesten,
+ohne Zusammenfassung (`agents/akte.md:196-200`). Mit jedem Laborbefund wird
+es länger. Die Höchstlänge eines Kapitels (1.500 Wörter,
+`bin/akte-stand:48`) hält es nur klein, indem es sich in Unterkapitel
+teilt.
 
-Das widerspricht `regeln.md`, Abschnitt „Dateien“: `AKTE.md` ist der
-aktuelle Stand, „mit knappem Verlauf, wo er für Entscheidungen zählt“.
+Vor dem Baum aus Überblick und Kapiteln hatte der Abschnitt „Messwerte“ in
+einer echten Akte nach gut zwei Wochen etwa 1.900 Wörter. Die Diagnosen sind
+inzwischen gelöst: je Diagnose ein Kapitel, ältere Befunde zusammengefasst.
 
-Idee aus der Überprüfung: In `AKTE.md` je Parameter nur der letzte Wert,
-der Trend und die Werte, die für Entscheidungen zählen; die ganze Reihe in
-einer CSV, wie die Messreihen unter „Beobachten“. Bei den Diagnosen der
-aktuelle Stand je Diagnose; ältere Befunde bleiben in `unterlagen/`.
+Idee aus der Überprüfung: im Kapitel je Parameter nur der letzte Wert, der
+Trend und die Werte, die für Entscheidungen zählen; die ganze Reihe in einer
+CSV, wie die Messreihen unter „Beobachten“.
